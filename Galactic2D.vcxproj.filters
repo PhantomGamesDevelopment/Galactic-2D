@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{83b6210b-33af-4188-8b86-b17c2bdd423a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\App">
+      <UniqueIdentifier>{42300b52-7d22-45db-995c-86988ac891a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\App\Main">
+      <UniqueIdentifier>{1216cadc-349f-4dc7-9e02-d5a44ce3d984}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Console">
+      <UniqueIdentifier>{b42577ac-0a7c-46d6-902b-60b3defada81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\App\Game">
+      <UniqueIdentifier>{5aedc355-dbee-4010-adb9-60c523561a76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Console\LUA">
+      <UniqueIdentifier>{0fd3b561-c205-4b05-ab39-8e8df9dae87b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Net">
+      <UniqueIdentifier>{27689f60-f170-4991-9ba3-c4a89c22732b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenGL">
+      <UniqueIdentifier>{6d9546da-c4ea-4ec9-8a42-82ac108bed23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EngineCore">
+      <UniqueIdentifier>{e899b256-3c29-4690-a035-3cb54b523340}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EngineCore\Android">
+      <UniqueIdentifier>{46a8b7bc-1b62-4e8b-b031-a8efc944b44b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EngineCore\Delegates">
+      <UniqueIdentifier>{4305f743-c6ff-493d-bdae-e774e4fd9714}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EngineCore\Files">
+      <UniqueIdentifier>{a5d96637-04b4-4cb1-8319-34404e30fe07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EngineCore\GenericPlatform">
+      <UniqueIdentifier>{067dfbe7-1c5c-492f-807a-0164648087bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EngineCore\IPhone">
+      <UniqueIdentifier>{780e7535-4ef4-4287-925c-3abcd54bf383}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EngineCore\Linux">
+      <UniqueIdentifier>{36aaba3b-2b0f-4c2b-9a4d-c508062564f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EngineCore\Mac">
+      <UniqueIdentifier>{d1afc2d6-f5cf-4799-8a0a-3b7f35ee4ba8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EngineCore\Math">
+      <UniqueIdentifier>{38d318a7-6281-4de0-9917-5afd19174a63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EngineCore\Stream">
+      <UniqueIdentifier>{8050766b-407b-428b-8362-075e681792ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EngineCore\Tools">
+      <UniqueIdentifier>{49928279-3af2-4bfc-a004-6fb1cb1e9d11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EngineCore\Windows">
+      <UniqueIdentifier>{d1106edf-8eb8-4b49-87aa-29f9fe1a5cf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EngineCore\Thread">
+      <UniqueIdentifier>{82cff8c0-2760-48cb-a1e3-35baaaf56474}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Net\Client.cpp">
+      <Filter>Source Files\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Net\NetConnection.cpp">
+      <Filter>Source Files\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Net\NetInfo.cpp">
+      <Filter>Source Files\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Net\NetMain.cpp">
+      <Filter>Source Files\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Net\Packet.cpp">
+      <Filter>Source Files\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Net\Server.cpp">
+      <Filter>Source Files\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\App\Main\galacticMain.cpp">
+      <Filter>Source Files\Engine\App\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Console\console.cpp">
+      <Filter>Source Files\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Console\logging.cpp">
+      <Filter>Source Files\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\platformMemory.cpp">
+      <Filter>Source Files\EngineCore</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\Files\crc.cpp">
+      <Filter>Source Files\EngineCore\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\Files\directory.cpp">
+      <Filter>Source Files\EngineCore\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\Files\file.cpp">
+      <Filter>Source Files\EngineCore\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\Files\fileCore.cpp">
+      <Filter>Source Files\EngineCore\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\Files\filePath.cpp">
+      <Filter>Source Files\EngineCore\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\Files\fileRef.cpp">
+      <Filter>Source Files\EngineCore\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\Files\fileSystem.cpp">
+      <Filter>Source Files\EngineCore\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\GenericPlatform\genericMemory.cpp">
+      <Filter>Source Files\EngineCore\GenericPlatform</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\GenericPlatform\genericPlatform.cpp">
+      <Filter>Source Files\EngineCore\GenericPlatform</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\Stream\bitStream.cpp">
+      <Filter>Source Files\EngineCore\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\Stream\fileStream.cpp">
+      <Filter>Source Files\EngineCore\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\Stream\stream.cpp">
+      <Filter>Source Files\EngineCore\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\Tools\huffman.cpp">
+      <Filter>Source Files\EngineCore\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\Tools\string.cpp">
+      <Filter>Source Files\EngineCore\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\GenericPlatform\genericPlatformOperations.cpp">
+      <Filter>Source Files\EngineCore\GenericPlatform</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\Thread\pThread.cpp">
+      <Filter>Source Files\EngineCore\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\engineCore.cpp">
+      <Filter>Source Files\EngineCore</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\GenericPlatform\genericPlatformTime.cpp">
+      <Filter>Source Files\EngineCore\GenericPlatform</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EngineCore\Windows\WinTime.cpp">
+      <Filter>Source Files\EngineCore\Windows</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Source\resource.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Net\Client.h">
+      <Filter>Source Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Net\NetConnection.h">
+      <Filter>Source Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Net\NetInfo.h">
+      <Filter>Source Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Net\NetMain.h">
+      <Filter>Source Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Net\NetTypes.h">
+      <Filter>Source Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Net\Packet.h">
+      <Filter>Source Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Net\Server.h">
+      <Filter>Source Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\App\Main\galacticMain.h">
+      <Filter>Source Files\Engine\App\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\App\Game\genre.h">
+      <Filter>Source Files\Engine\App\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Console\console.h">
+      <Filter>Source Files\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Console\logging.h">
+      <Filter>Source Files\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\allocaterOverloads.h">
+      <Filter>Source Files\EngineCore</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\endian.h">
+      <Filter>Source Files\EngineCore</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\platform.h">
+      <Filter>Source Files\EngineCore</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\platformInclude.h">
+      <Filter>Source Files\EngineCore</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\platformMemory.h">
+      <Filter>Source Files\EngineCore</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\defines.h">
+      <Filter>Source Files\EngineCore</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Android\platformAndroid.h">
+      <Filter>Source Files\EngineCore\Android</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Files\crc.h">
+      <Filter>Source Files\EngineCore\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Files\directory.h">
+      <Filter>Source Files\EngineCore\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Files\file.h">
+      <Filter>Source Files\EngineCore\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Files\fileBase.h">
+      <Filter>Source Files\EngineCore\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Files\fileCore.h">
+      <Filter>Source Files\EngineCore\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Files\filePath.h">
+      <Filter>Source Files\EngineCore\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Files\fileRef.h">
+      <Filter>Source Files\EngineCore\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Files\files.h">
+      <Filter>Source Files\EngineCore\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Files\fileSystem.h">
+      <Filter>Source Files\EngineCore\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\GenericPlatform\genericMemory.h">
+      <Filter>Source Files\EngineCore\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\GenericPlatform\genericPlatform.h">
+      <Filter>Source Files\EngineCore\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\IPhone\platformIOS.h">
+      <Filter>Source Files\EngineCore\IPhone</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Linux\platformLinux.h">
+      <Filter>Source Files\EngineCore\Linux</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Mac\platformMac.h">
+      <Filter>Source Files\EngineCore\Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Math\mVector.h">
+      <Filter>Source Files\EngineCore\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Stream\bitStream.h">
+      <Filter>Source Files\EngineCore\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Stream\fileStream.h">
+      <Filter>Source Files\EngineCore\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Stream\stream.h">
+      <Filter>Source Files\EngineCore\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Tools\advTools.h">
+      <Filter>Source Files\EngineCore\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Tools\color.h">
+      <Filter>Source Files\EngineCore\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Tools\dynArray.h">
+      <Filter>Source Files\EngineCore\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Tools\huffman.h">
+      <Filter>Source Files\EngineCore\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Tools\libLoader.h">
+      <Filter>Source Files\EngineCore\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Tools\map.h">
+      <Filter>Source Files\EngineCore\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Tools\mSingleton.h">
+      <Filter>Source Files\EngineCore\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Tools\reference.h">
+      <Filter>Source Files\EngineCore\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Tools\string.h">
+      <Filter>Source Files\EngineCore\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Tools\strTools.h">
+      <Filter>Source Files\EngineCore\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Windows\loadWindows.h">
+      <Filter>Source Files\EngineCore\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Windows\platformWindows.h">
+      <Filter>Source Files\EngineCore\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Windows\safeWindowsH.h">
+      <Filter>Source Files\EngineCore\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Windows\WinCriticalSection.h">
+      <Filter>Source Files\EngineCore\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Windows\WinMemory.h">
+      <Filter>Source Files\EngineCore\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Windows\WinThread.h">
+      <Filter>Source Files\EngineCore\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\engineCore.h">
+      <Filter>Source Files\EngineCore</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\platformTypes.h">
+      <Filter>Source Files\EngineCore</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\GenericPlatform\genericPlatformOperations.h">
+      <Filter>Source Files\EngineCore\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Thread\pThread.h">
+      <Filter>Source Files\EngineCore\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Thread\pThreadCritcalSection.h">
+      <Filter>Source Files\EngineCore\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Thread\threadBase.h">
+      <Filter>Source Files\EngineCore\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\galacticSettings.h">
+      <Filter>Source Files\EngineCore</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\GenericPlatform\genericPlatformTime.h">
+      <Filter>Source Files\EngineCore\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Windows\WinTime.h">
+      <Filter>Source Files\EngineCore\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\GenericPlatform\genericPlatformAtomics.h">
+      <Filter>Source Files\EngineCore\GenericPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Windows\WinAtomics.h">
+      <Filter>Source Files\EngineCore\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Linux\LinuxAtomics.h">
+      <Filter>Source Files\EngineCore\Linux</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Android\AndroidAtomics.h">
+      <Filter>Source Files\EngineCore\Android</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Mac\loadMac.h">
+      <Filter>Source Files\EngineCore\Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Linux\loadLinux.h">
+      <Filter>Source Files\EngineCore\Linux</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\IPhone\loadIOS.h">
+      <Filter>Source Files\EngineCore\IPhone</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Android\loadAndroid.h">
+      <Filter>Source Files\EngineCore\Android</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\IPhone\IOSAtomics.h">
+      <Filter>Source Files\EngineCore\IPhone</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Mac\MacAtomics.h">
+      <Filter>Source Files\EngineCore\Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Delegates\delegate.h">
+      <Filter>Source Files\EngineCore\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Delegates\delegateCore.h">
+      <Filter>Source Files\EngineCore\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Delegates\delegateInstance.h">
+      <Filter>Source Files\EngineCore\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Delegates\delegateTypes.h">
+      <Filter>Source Files\EngineCore\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Delegates\multicastDelegateCore.h">
+      <Filter>Source Files\EngineCore\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Tools\frameTicker.h">
+      <Filter>Source Files\EngineCore\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Android\AndroidTime.h">
+      <Filter>Source Files\EngineCore\Android</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Source\EngineCore\Files\read me.txt">
+      <Filter>Source Files\EngineCore\Files</Filter>
+    </Text>
+    <Text Include="Source\EngineCore\GenericPlatform\generic.txt">
+      <Filter>Source Files\EngineCore\GenericPlatform</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\EngineCore\Delegates\delegateInstance.inl">
+      <Filter>Source Files\EngineCore\Delegates</Filter>
+    </None>
+    <None Include="Source\EngineCore\Delegates\delegateTypes.inl">
+      <Filter>Source Files\EngineCore\Delegates</Filter>
+    </None>
+    <None Include="Source\EngineCore\Delegates\delegateInterface.inl">
+      <Filter>Source Files\EngineCore\Delegates</Filter>
+    </None>
+  </ItemGroup>
+</Project>

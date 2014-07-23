@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Console\console.cpp" />
+    <ClCompile Include="Source\Console\logging.cpp" />
+    <ClCompile Include="Source\EngineCore\engineCore.cpp" />
+    <ClCompile Include="Source\EngineCore\Files\crc.cpp" />
+    <ClCompile Include="Source\EngineCore\Files\directory.cpp" />
+    <ClCompile Include="Source\EngineCore\Files\file.cpp" />
+    <ClCompile Include="Source\EngineCore\Files\fileCore.cpp" />
+    <ClCompile Include="Source\EngineCore\Files\filePath.cpp" />
+    <ClCompile Include="Source\EngineCore\Files\fileRef.cpp" />
+    <ClCompile Include="Source\EngineCore\Files\fileSystem.cpp" />
+    <ClCompile Include="Source\EngineCore\GenericPlatform\genericMemory.cpp" />
+    <ClCompile Include="Source\EngineCore\GenericPlatform\genericPlatform.cpp" />
+    <ClCompile Include="Source\EngineCore\GenericPlatform\genericPlatformOperations.cpp" />
+    <ClCompile Include="Source\EngineCore\GenericPlatform\genericPlatformTime.cpp" />
+    <ClCompile Include="Source\EngineCore\platformMemory.cpp" />
+    <ClCompile Include="Source\EngineCore\Stream\bitStream.cpp" />
+    <ClCompile Include="Source\EngineCore\Stream\fileStream.cpp" />
+    <ClCompile Include="Source\EngineCore\Stream\stream.cpp" />
+    <ClCompile Include="Source\EngineCore\Thread\pThread.cpp" />
+    <ClCompile Include="Source\EngineCore\Tools\huffman.cpp" />
+    <ClCompile Include="Source\EngineCore\Tools\string.cpp" />
+    <ClCompile Include="Source\EngineCore\Windows\WinTime.cpp" />
+    <ClCompile Include="Source\Engine\App\Main\galacticMain.cpp" />
+    <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Net\Client.cpp" />
+    <ClCompile Include="Source\Net\NetConnection.cpp" />
+    <ClCompile Include="Source\Net\NetInfo.cpp" />
+    <ClCompile Include="Source\Net\NetMain.cpp" />
+    <ClCompile Include="Source\Net\Packet.cpp" />
+    <ClCompile Include="Source\Net\Server.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Source\resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Console\console.h" />
+    <ClInclude Include="Source\Console\logging.h" />
+    <ClInclude Include="Source\EngineCore\allocaterOverloads.h" />
+    <ClInclude Include="Source\EngineCore\Android\AndroidAtomics.h" />
+    <ClInclude Include="Source\EngineCore\Android\AndroidTime.h" />
+    <ClInclude Include="Source\EngineCore\Android\loadAndroid.h" />
+    <ClInclude Include="Source\EngineCore\Android\platformAndroid.h" />
+    <ClInclude Include="Source\EngineCore\Delegates\delegate.h" />
+    <ClInclude Include="Source\EngineCore\Delegates\delegateCore.h" />
+    <ClInclude Include="Source\EngineCore\Delegates\delegateInstance.h" />
+    <ClInclude Include="Source\EngineCore\Delegates\delegateTypes.h" />
+    <ClInclude Include="Source\EngineCore\Delegates\multicastDelegateCore.h" />
+    <ClInclude Include="Source\EngineCore\endian.h" />
+    <ClInclude Include="Source\EngineCore\engineCore.h" />
+    <ClInclude Include="Source\EngineCore\defines.h" />
+    <ClInclude Include="Source\EngineCore\Files\crc.h" />
+    <ClInclude Include="Source\EngineCore\Files\directory.h" />
+    <ClInclude Include="Source\EngineCore\Files\file.h" />
+    <ClInclude Include="Source\EngineCore\Files\fileBase.h" />
+    <ClInclude Include="Source\EngineCore\Files\fileCore.h" />
+    <ClInclude Include="Source\EngineCore\Files\filePath.h" />
+    <ClInclude Include="Source\EngineCore\Files\fileRef.h" />
+    <ClInclude Include="Source\EngineCore\Files\files.h" />
+    <ClInclude Include="Source\EngineCore\Files\fileSystem.h" />
+    <ClInclude Include="Source\EngineCore\galacticSettings.h" />
+    <ClInclude Include="Source\EngineCore\GenericPlatform\genericMemory.h" />
+    <ClInclude Include="Source\EngineCore\GenericPlatform\genericPlatform.h" />
+    <ClInclude Include="Source\EngineCore\GenericPlatform\genericPlatformAtomics.h" />
+    <ClInclude Include="Source\EngineCore\GenericPlatform\genericPlatformOperations.h" />
+    <ClInclude Include="Source\EngineCore\GenericPlatform\genericPlatformTime.h" />
+    <ClInclude Include="Source\EngineCore\IPhone\IOSAtomics.h" />
+    <ClInclude Include="Source\EngineCore\IPhone\loadIOS.h" />
+    <ClInclude Include="Source\EngineCore\IPhone\platformIOS.h" />
+    <ClInclude Include="Source\EngineCore\Linux\LinuxAtomics.h" />
+    <ClInclude Include="Source\EngineCore\Linux\loadLinux.h" />
+    <ClInclude Include="Source\EngineCore\Linux\platformLinux.h" />
+    <ClInclude Include="Source\EngineCore\Mac\loadMac.h" />
+    <ClInclude Include="Source\EngineCore\Mac\MacAtomics.h" />
+    <ClInclude Include="Source\EngineCore\Mac\platformMac.h" />
+    <ClInclude Include="Source\EngineCore\Math\mVector.h" />
+    <ClInclude Include="Source\EngineCore\platform.h" />
+    <ClInclude Include="Source\EngineCore\platformInclude.h" />
+    <ClInclude Include="Source\EngineCore\platformMemory.h" />
+    <ClInclude Include="Source\EngineCore\platformTypes.h" />
+    <ClInclude Include="Source\EngineCore\Stream\bitStream.h" />
+    <ClInclude Include="Source\EngineCore\Stream\fileStream.h" />
+    <ClInclude Include="Source\EngineCore\Stream\stream.h" />
+    <ClInclude Include="Source\EngineCore\Thread\pThread.h" />
+    <ClInclude Include="Source\EngineCore\Thread\pThreadCritcalSection.h" />
+    <ClInclude Include="Source\EngineCore\Thread\threadBase.h" />
+    <ClInclude Include="Source\EngineCore\Tools\advTools.h" />
+    <ClInclude Include="Source\EngineCore\Tools\color.h" />
+    <ClInclude Include="Source\EngineCore\Tools\dynArray.h" />
+    <ClInclude Include="Source\EngineCore\Tools\frameTicker.h" />
+    <ClInclude Include="Source\EngineCore\Tools\huffman.h" />
+    <ClInclude Include="Source\EngineCore\Tools\libLoader.h" />
+    <ClInclude Include="Source\EngineCore\Tools\map.h" />
+    <ClInclude Include="Source\EngineCore\Tools\mSingleton.h" />
+    <ClInclude Include="Source\EngineCore\Tools\reference.h" />
+    <ClInclude Include="Source\EngineCore\Tools\string.h" />
+    <ClInclude Include="Source\EngineCore\Tools\strTools.h" />
+    <ClInclude Include="Source\EngineCore\Windows\loadWindows.h" />
+    <ClInclude Include="Source\EngineCore\Windows\platformWindows.h" />
+    <ClInclude Include="Source\EngineCore\Windows\safeWindowsH.h" />
+    <ClInclude Include="Source\EngineCore\Windows\WinAtomics.h" />
+    <ClInclude Include="Source\EngineCore\Windows\WinCriticalSection.h" />
+    <ClInclude Include="Source\EngineCore\Windows\WinMemory.h" />
+    <ClInclude Include="Source\EngineCore\Windows\WinThread.h" />
+    <ClInclude Include="Source\EngineCore\Windows\WinTime.h" />
+    <ClInclude Include="Source\Engine\App\Game\genre.h" />
+    <ClInclude Include="Source\Engine\App\Main\galacticMain.h" />
+    <ClInclude Include="Source\Net\Client.h" />
+    <ClInclude Include="Source\Net\NetConnection.h" />
+    <ClInclude Include="Source\Net\NetInfo.h" />
+    <ClInclude Include="Source\Net\NetMain.h" />
+    <ClInclude Include="Source\Net\NetTypes.h" />
+    <ClInclude Include="Source\Net\Packet.h" />
+    <ClInclude Include="Source\Net\Server.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Source\EngineCore\Files\read me.txt" />
+    <Text Include="Source\EngineCore\GenericPlatform\generic.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\EngineCore\Delegates\delegateInstance.inl" />
+    <None Include="Source\EngineCore\Delegates\delegateInterface.inl" />
+    <None Include="Source\EngineCore\Delegates\delegateTypes.inl" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1A9648C8-BA26-48F7-9C99-8043F99106DD}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Galactic2D</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>C:\Users\Owner\Documents\Phantom Games Development\Galactic 2D\Galactic2D\Galactic2D\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Owner\Documents\Phantom Games Development\Galactic 2D\Galactic2D\Galactic2D\Lib;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>C:\Users\Owner\Documents\Phantom Games Development\Galactic 2D\Galactic2D\Galactic2D\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Owner\Documents\Phantom Games Development\Galactic 2D\Galactic2D\Galactic2D\Lib;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\Users\Owner\Documents\Phantom Games Development\Galactic 2D\Galactic2D\Galactic2D\Lib;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Owner\Documents\Phantom Games Development\Galactic 2D\Galactic2D\Galactic2D\Lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\Users\Owner\Documents\Phantom Games Development\Galactic 2D\Galactic2D\Galactic2D\Lib;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Owner\Documents\Phantom Games Development\Galactic 2D\Galactic2D\Galactic2D\Lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <IgnoreSpecificDefaultLibraries>libcmt</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;UNICODE;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <IgnoreSpecificDefaultLibraries>libcmt</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

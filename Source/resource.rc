@@ -1,0 +1,30 @@
+#include <windows.h> // include for version info constants
+
+A ICON MOVEABLE PURE LOADONCALL DISCARDABLE "../G2D.ico"
+
+1 VERSIONINFO
+FILEVERSION 1,0,0,0
+PRODUCTVERSION 1,0,0,0
+FILETYPE VFT_APP
+FILETYPE VFT_APP
+{
+  BLOCK "StringFileInfo"
+	 {
+		 BLOCK "040904E4"
+		 {
+			 VALUE "CompanyName", "Phantom Games Development"
+			 VALUE "FileVersion", "0.0.1"
+			 VALUE "FileDescription", "Galactic 2D Engine Application."
+			 VALUE "InternalName", "Phantom Games Development"
+			 VALUE "LegalCopyright", "Copyright (c) 2014 Phantom Games Development."
+			 VALUE "LegalTrademarks", " "
+			 VALUE "OriginalFilename", "Galactic2D.exe"
+			 VALUE "ProductName", "Galactic 2D Game Engine (G2D)"
+			 VALUE "ProductVersion", "0.0.1"
+		 }
+	 }
+  BLOCK "VarFileInfo"
+	 {
+		 VALUE "Translation", 0x0409, 1252
+	 }
+}

@@ -1,0 +1,14 @@
+To anyone who's looking to document the engine:
+
+* All of the files in this specific folder specify individual BASE classes and BASE operations. For example,
+the FilePath class is a BASE operation used by each of the File classes located in this folder. File is a
+BASE class which is overriden by individual platform classes.
+
+If you're trying to see how this is done, look to the FileStream class located in:
+Galactic/Internal/Streams/FileStream.h
+
+You will notice that it uses a basic reference to Files::X which is overriden by the compiled platform class
+instances. You will need to find platformFile.h in the Galactic/Platform/X/ folder, replacing X with the
+platform that is being compiled.
+
+~Phantom139
