@@ -36,12 +36,7 @@ namespace Galactic {
 		 cumulative counter variable.
 		*/
 		class GenericPlatformAtomics {
-			protected:
-				/* Protected Class Methods */
-				//Checks if the target pointer is in alignment to be used with atomic functions
-				SFIN bool aligned(const volatile any ptr, Z32 memAlignment = sizeof(any)) {
-					return !((IntPointer(ptr)) & (memAlignment - 1));
-				}
+			/* Phantom139: Depricated, will delete... */
 		};
 
 	};

@@ -43,12 +43,6 @@
     <ClCompile Include="Source\EngineCore\Windows\WinTime.cpp" />
     <ClCompile Include="Source\Engine\App\Main\galacticMain.cpp" />
     <ClCompile Include="Source\Main.cpp" />
-    <ClCompile Include="Source\Net\Client.cpp" />
-    <ClCompile Include="Source\Net\NetConnection.cpp" />
-    <ClCompile Include="Source\Net\NetInfo.cpp" />
-    <ClCompile Include="Source\Net\NetMain.cpp" />
-    <ClCompile Include="Source\Net\Packet.cpp" />
-    <ClCompile Include="Source\Net\Server.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\resource.rc" />
@@ -125,13 +119,6 @@
     <ClInclude Include="Source\EngineCore\Windows\WinTime.h" />
     <ClInclude Include="Source\Engine\App\Game\genre.h" />
     <ClInclude Include="Source\Engine\App\Main\galacticMain.h" />
-    <ClInclude Include="Source\Net\Client.h" />
-    <ClInclude Include="Source\Net\NetConnection.h" />
-    <ClInclude Include="Source\Net\NetInfo.h" />
-    <ClInclude Include="Source\Net\NetMain.h" />
-    <ClInclude Include="Source\Net\NetTypes.h" />
-    <ClInclude Include="Source\Net\Packet.h" />
-    <ClInclude Include="Source\Net\Server.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Source\EngineCore\Files\read me.txt" />

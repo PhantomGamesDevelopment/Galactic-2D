@@ -27,9 +27,6 @@
     <Filter Include="Source Files\Console\LUA">
       <UniqueIdentifier>{0fd3b561-c205-4b05-ab39-8e8df9dae87b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Net">
-      <UniqueIdentifier>{27689f60-f170-4991-9ba3-c4a89c22732b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\OpenGL">
       <UniqueIdentifier>{6d9546da-c4ea-4ec9-8a42-82ac108bed23}</UniqueIdentifier>
     </Filter>
@@ -72,28 +69,13 @@
     <Filter Include="Source Files\EngineCore\Thread">
       <UniqueIdentifier>{82cff8c0-2760-48cb-a1e3-35baaaf56474}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Net">
+      <UniqueIdentifier>{661d8631-956c-49db-aa54-728cc35ff679}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Net\Client.cpp">
-      <Filter>Source Files\Net</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Net\NetConnection.cpp">
-      <Filter>Source Files\Net</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Net\NetInfo.cpp">
-      <Filter>Source Files\Net</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Net\NetMain.cpp">
-      <Filter>Source Files\Net</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Net\Packet.cpp">
-      <Filter>Source Files\Net</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Net\Server.cpp">
-      <Filter>Source Files\Net</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\App\Main\galacticMain.cpp">
       <Filter>Source Files\Engine\App\Main</Filter>
@@ -171,27 +153,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Net\Client.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Net\NetConnection.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Net\NetInfo.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Net\NetMain.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Net\NetTypes.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Net\Packet.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Net\Server.h">
-      <Filter>Source Files\Net</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Engine\App\Main\galacticMain.h">
       <Filter>Source Files\Engine\App\Main</Filter>
     </ClInclude>
