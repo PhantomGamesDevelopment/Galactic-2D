@@ -17,10 +17,6 @@ namespace Galactic {
 			return 0;
 		}
 
-		const TCHAR *GenericPlatformProcess::getBaseDir() {
-			//Not implemented in the generic platform...
-		}
-
 		const TCHAR *GenericPlatformProcess::getUserDir() {
 
 		}

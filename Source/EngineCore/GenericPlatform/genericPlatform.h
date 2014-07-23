@@ -123,8 +123,6 @@ namespace Galactic {
 				/* General Platform Processing Information */
 				//Get the process ID
 				static U32 getProcID();
-				//get the base directory of the project
-				static const TCHAR *getBaseDir();
 				//Get the user directory
 				static const TCHAR *getUserDir();
 				//Get the application settings directory
@@ -179,8 +177,6 @@ namespace Galactic {
 				static bool becomeServiceProcess();
 
 				/* Misc Functions */
-				//Delete all temporary files and cached stuff
-				static void clearTemp() { };
 				//Is this platform multithreaded?
 				static bool isMultithreaded();
 				//create a event object

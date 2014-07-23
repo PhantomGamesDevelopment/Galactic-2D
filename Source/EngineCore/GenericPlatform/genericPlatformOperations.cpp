@@ -42,16 +42,6 @@ namespace Galactic {
 			return gMax(gMin(cores - 1, GALACTIC_MAXIMUM_WORKING_THREADS), 1);
 		}
 
-		const TCHAR *GenericPlatformOperations::getRootDir() {
-			GC_Warn("getRootDir() is not implemented on the generic platform.");
-			return (const TCHAR *)("");
-		}
-
-		const TCHAR *GenericPlatformOperations::getGameDir() {
-			GC_Warn("getGameDir() is not implemented on the generic platform.");
-			return (const TCHAR *)("");
-		}
-
 		bool GenericPlatformOperations::fetchRegistryItem(const String &Key, const String &Value, bool useUser, String &result) {
 			GC_Warn("fetchRegistryItem() is not implemented on the generic platform.");
 			return false;

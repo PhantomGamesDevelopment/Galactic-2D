@@ -84,10 +84,6 @@ namespace Galactic {
 				static S32 numLogicalCores();
 				//Returns the recommended thread count to be used for game threads
 				static S32 numThreadsToSpawn();
-				//Return the root directory
-				static const TCHAR *getRootDir();
-				//Return the game directory
-				static const TCHAR *getGameDir();
 				//Fetch an item from the registry (on non-windows OS's, use their relative system for a registry)
 				static bool fetchRegistryItem(const String &Key, const String &Value, bool useUser, String &result);
 				//Copy text to the system clipboard.
