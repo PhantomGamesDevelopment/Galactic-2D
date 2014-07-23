@@ -61,4 +61,5 @@ typedef int32_t S32_t;
 typedef int64_t S64_t;
 
 //Load up the G2D Platform Files (see platformInclude.h for proper load order)
+#include "IOSTime.h"
 #include "IOSAtomics.h"

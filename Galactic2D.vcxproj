@@ -33,6 +33,8 @@
     <ClCompile Include="Source\EngineCore\GenericPlatform\genericPlatform.cpp" />
     <ClCompile Include="Source\EngineCore\GenericPlatform\genericPlatformOperations.cpp" />
     <ClCompile Include="Source\EngineCore\GenericPlatform\genericPlatformTime.cpp" />
+    <ClCompile Include="Source\EngineCore\IPhone\IOSTime.cpp" />
+    <ClCompile Include="Source\EngineCore\Mac\MacTime.cpp" />
     <ClCompile Include="Source\EngineCore\platformMemory.cpp" />
     <ClCompile Include="Source\EngineCore\Stream\bitStream.cpp" />
     <ClCompile Include="Source\EngineCore\Stream\fileStream.cpp" />
@@ -79,6 +81,7 @@
     <ClInclude Include="Source\EngineCore\GenericPlatform\genericPlatformOperations.h" />
     <ClInclude Include="Source\EngineCore\GenericPlatform\genericPlatformTime.h" />
     <ClInclude Include="Source\EngineCore\IPhone\IOSAtomics.h" />
+    <ClInclude Include="Source\EngineCore\IPhone\IOSTime.h" />
     <ClInclude Include="Source\EngineCore\IPhone\loadIOS.h" />
     <ClInclude Include="Source\EngineCore\IPhone\platformIOS.h" />
     <ClInclude Include="Source\EngineCore\Linux\LinuxAtomics.h" />
@@ -86,6 +89,7 @@
     <ClInclude Include="Source\EngineCore\Linux\platformLinux.h" />
     <ClInclude Include="Source\EngineCore\Mac\loadMac.h" />
     <ClInclude Include="Source\EngineCore\Mac\MacAtomics.h" />
+    <ClInclude Include="Source\EngineCore\Mac\MacTime.h" />
     <ClInclude Include="Source\EngineCore\Mac\platformMac.h" />
     <ClInclude Include="Source\EngineCore\Math\mVector.h" />
     <ClInclude Include="Source\EngineCore\platform.h" />
