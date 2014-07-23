@@ -31,14 +31,6 @@ namespace Galactic {
 			S64 high;
 		} GNU_ALIGN(16);
 
-		/*
-		GenericPlatformAtomics: Define a generic class for forcing functions to be "atomic", or completely thread safe, by locking a
-		 cumulative counter variable.
-		*/
-		class GenericPlatformAtomics {
-			/* Phantom139: Depricated, will delete... */
-		};
-
 	};
 
 };

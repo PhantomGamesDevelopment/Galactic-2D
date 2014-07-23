@@ -16,7 +16,7 @@ namespace Galactic {
 		/*
 		PlatformAtomics: Defines atomic locking capabilties for Windows platforms.
 		*/
-		class PlatformAtomics : public GenericPlatformAtomics {
+		class PlatformAtomics {
 			public:
 				/* Public Class Methods */
 				//NOTE! InterlockX64 functions are only available on vista, upwards, so check for those.

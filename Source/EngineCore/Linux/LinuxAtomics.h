@@ -16,7 +16,7 @@ namespace Galactic {
 		/*
 		PlatformAtomics: Defines atomic locking capabilties for Linux platforms.
 		*/
-		class PlatformAtomics : public GenericPlatformAtomics {
+		class PlatformAtomics {
 			public:
 				/* Public Class Methods */
 				//Add to the interlocked counter
