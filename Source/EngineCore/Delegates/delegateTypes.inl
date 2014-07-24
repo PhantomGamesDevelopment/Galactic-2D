@@ -926,279 +926,279 @@ namespace Galactic {
 						addDelegate(SingleCastDelegateInstance::createGlobalMethodDelegate(mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_EightArgs));
 					}
 					/* Add methods for Class Methods */
-					template <class T> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_ZeroArgs<T>::methodPointer mthd) {
+					template <class T> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance<T>::methodPointer mthd) {
 						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd));
 					}
-					template <class T> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_ZeroArgs_constant<T>::methodPointer mthd) {
-						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd));
+					template <class T> static inline void addClassMethod_const(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_constant<T>::methodPointer mthd) {
+						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate_const(trgObj, mthd));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_OneArg> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_OneArg<T, DELEGATE_TEMPLATE_ARGS_LIST_OneArg>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_OneArg) {
 						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_OneArg));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_OneArg> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_OneArg_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_OneArg>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_OneArg) {
-						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_OneArg));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_OneArg> static inline void addClassMethod_const(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_OneArg_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_OneArg>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_OneArg) {
+						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_OneArg));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_TwoArgs> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_TwoArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_TwoArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_TwoArgs) {
 						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_TwoArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_TwoArgs> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_TwoArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_TwoArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_TwoArgs) {
-						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_TwoArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_TwoArgs> static inline void addClassMethod_const(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_TwoArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_TwoArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_TwoArgs) {
+						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_TwoArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_ThreeArgs> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_ThreeArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_ThreeArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_ThreeArgs) {
 						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_ThreeArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_ThreeArgs> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_ThreeArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_ThreeArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_ThreeArgs) {
-						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_ThreeArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_ThreeArgs> static inline void addClassMethod_const(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_ThreeArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_ThreeArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_ThreeArgs) {
+						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_ThreeArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FourArgs> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_FourArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_FourArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FourArgs) {
 						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FourArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FourArgs> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_FourArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FourArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FourArgs) {
-						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FourArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FourArgs> static inline void addClassMethod_const(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_FourArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FourArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FourArgs) {
+						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FourArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FiveArgs> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_FiveArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_FiveArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FiveArgs) {
 						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FiveArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FiveArgs> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_FiveArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FiveArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FiveArgs) {
-						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FiveArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FiveArgs> static inline void addClassMethod_const(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_FiveArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FiveArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FiveArgs) {
+						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FiveArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SixArgs> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_SixArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_SixArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SixArgs) {
 						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SixArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SixArgs> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_SixArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SixArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SixArgs) {
-						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SixArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SixArgs> static inline void addClassMethod_const(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_SixArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SixArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SixArgs) {
+						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SixArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SevenArgs> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_SevenArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_SevenArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SevenArgs) {
 						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SevenArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SevenArgs> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_SevenArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SevenArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SevenArgs) {
-						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SevenArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SevenArgs> static inline void addClassMethod_const(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_SevenArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SevenArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SevenArgs) {
+						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SevenArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_EightArgs> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_EightArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_EightArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_EightArgs) {
 						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_EightArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_EightArgs> static inline void addClassMethod(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_EightArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_EightArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_EightArgs) {
-						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_EightArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_EightArgs> static inline void addClassMethod_const(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_EightArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_EightArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_EightArgs) {
+						addDelegate(SingleCastDelegateInstance::createMemberMethodDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_EightArgs));
 					}
 					/* Add methods for StrongReference<X, PointerModes::Determine> */
-					template <class T> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_ZeroArgs<T>::methodPointer mthd) {
+					template <class T> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance<T>::methodPointer mthd) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd));
 					}
-					template <class T> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_ZeroArgs_constant<T>::methodPointer mthd) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd));
+					template <class T> static inline void addStrongPointer_const(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_constant<T>::methodPointer mthd) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_OneArg> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_OneArg<T, DELEGATE_TEMPLATE_ARGS_LIST_OneArg>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_OneArg) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_OneArg));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_OneArg> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_OneArg_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_OneArg>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_OneArg) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_OneArg));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_OneArg> static inline void addStrongPointer_const(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_OneArg_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_OneArg>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_OneArg) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_OneArg));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_TwoArgs> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_TwoArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_TwoArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_TwoArgs) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_TwoArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_TwoArgs> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_TwoArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_TwoArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_TwoArgs) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_TwoArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_TwoArgs> static inline void addStrongPointer_const(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_TwoArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_TwoArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_TwoArgs) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_TwoArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_ThreeArgs> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_ThreeArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_ThreeArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_ThreeArgs) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_ThreeArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_ThreeArgs> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_ThreeArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_ThreeArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_ThreeArgs) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_ThreeArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_ThreeArgs> static inline void addStrongPointer_const(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_ThreeArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_ThreeArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_ThreeArgs) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_ThreeArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FourArgs> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_FourArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_FourArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FourArgs) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FourArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FourArgs> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_FourArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FourArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FourArgs) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FourArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FourArgs> static inline void addStrongPointer_const(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_FourArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FourArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FourArgs) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FourArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FiveArgs> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_FiveArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_FiveArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FiveArgs) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FiveArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FiveArgs> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_FiveArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FiveArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FiveArgs) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FiveArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FiveArgs> static inline void addStrongPointer_const(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_FiveArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FiveArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FiveArgs) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FiveArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SixArgs> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_SixArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_SixArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SixArgs) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SixArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SixArgs> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_SixArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SixArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SixArgs) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SixArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SixArgs> static inline void addStrongPointer_const(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_SixArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SixArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SixArgs) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SixArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SevenArgs> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_SevenArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_SevenArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SevenArgs) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SevenArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SevenArgs> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_SevenArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SevenArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SevenArgs) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SevenArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SevenArgs> static inline void addStrongPointer_const(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_SevenArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SevenArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SevenArgs) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SevenArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_EightArgs> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_EightArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_EightArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_EightArgs) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_EightArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_EightArgs> static inline void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_EightArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_EightArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_EightArgs) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_EightArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_EightArgs> static inline void addStrongPointer_const(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_EightArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_EightArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_EightArgs) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_EightArgs));
 					}
 					/* Add methods for StrongReference<X, PointerModes::ThreadSafe> */
-					template <class T> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_ZeroArgs<T>::methodPointer mthd) {
+					template <class T> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance<T>::methodPointer mthd) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd));
 					}
-					template <class T> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_ZeroArgs_constant<T>::methodPointer mthd) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd));
+					template <class T> static inline void addTSStrongPointer_const(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_constant<T>::methodPointer mthd) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_OneArg> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_OneArg<T, DELEGATE_TEMPLATE_ARGS_LIST_OneArg>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_OneArg) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_OneArg));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_OneArg> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_OneArg_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_OneArg>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_OneArg) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_OneArg));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_OneArg> static inline void addTSStrongPointer_const(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_OneArg_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_OneArg>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_OneArg) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_OneArg));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_TwoArgs> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_TwoArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_TwoArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_TwoArgs) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_TwoArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_TwoArgs> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_TwoArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_TwoArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_TwoArgs) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_TwoArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_TwoArgs> static inline void addTSStrongPointer_const(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_TwoArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_TwoArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_TwoArgs) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_TwoArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_ThreeArgs> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_ThreeArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_ThreeArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_ThreeArgs) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_ThreeArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_ThreeArgs> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_ThreeArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_ThreeArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_ThreeArgs) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_ThreeArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_ThreeArgs> static inline void addTSStrongPointer_const(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_ThreeArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_ThreeArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_ThreeArgs) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_ThreeArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FourArgs> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_FourArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_FourArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FourArgs) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FourArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FourArgs> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_FourArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FourArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FourArgs) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FourArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FourArgs> static inline void addTSStrongPointer_const(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_FourArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FourArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FourArgs) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FourArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FiveArgs> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_FiveArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_FiveArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FiveArgs) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FiveArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FiveArgs> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_FiveArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FiveArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FiveArgs) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FiveArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FiveArgs> static inline void addTSStrongPointer_const(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_FiveArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FiveArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FiveArgs) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FiveArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SixArgs> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_SixArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_SixArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SixArgs) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SixArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SixArgs> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_SixArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SixArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SixArgs) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SixArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SixArgs> static inline void addTSStrongPointer_const(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_SixArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SixArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SixArgs) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SixArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SevenArgs> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_SevenArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_SevenArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SevenArgs) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SevenArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SevenArgs> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_SevenArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SevenArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SevenArgs) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SevenArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SevenArgs> static inline void addTSStrongPointer_const(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_SevenArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SevenArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SevenArgs) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SevenArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_EightArgs> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_EightArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_EightArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_EightArgs) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_EightArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_EightArgs> static inline void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_EightArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_EightArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_EightArgs) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_EightArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_EightArgs> static inline void addTSStrongPointer_const(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_EightArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_EightArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_EightArgs) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_EightArgs));
 					}
 					/* Add methods for Object -> StrongReference<X, PointerModes::Determine> */
-					template <class T> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_ZeroArgs<T>::methodPointer mthd) {
+					template <class T> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance<T>::methodPointer mthd) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd));
 					}
-					template <class T> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_ZeroArgs_constant<T>::methodPointer mthd) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd));
+					template <class T> static inline void addStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_constant<T>::methodPointer mthd) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_OneArg> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_OneArg<T, DELEGATE_TEMPLATE_ARGS_LIST_OneArg>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_OneArg) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_OneArg));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_OneArg> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_OneArg_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_OneArg>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_OneArg) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_OneArg));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_OneArg> static inline void addStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_OneArg_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_OneArg>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_OneArg) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_OneArg));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_TwoArgs> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_TwoArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_TwoArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_TwoArgs) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_TwoArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_TwoArgs> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_TwoArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_TwoArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_TwoArgs) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_TwoArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_TwoArgs> static inline void addStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_TwoArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_TwoArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_TwoArgs) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_TwoArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_ThreeArgs> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_ThreeArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_ThreeArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_ThreeArgs) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_ThreeArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_ThreeArgs> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_ThreeArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_ThreeArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_ThreeArgs) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_ThreeArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_ThreeArgs> static inline void addStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_ThreeArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_ThreeArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_ThreeArgs) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_ThreeArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FourArgs> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_FourArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_FourArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FourArgs) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FourArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FourArgs> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_FourArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FourArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FourArgs) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FourArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FourArgs> static inline void addStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_FourArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FourArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FourArgs) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FourArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FiveArgs> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_FiveArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_FiveArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FiveArgs) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FiveArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FiveArgs> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_FiveArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FiveArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FiveArgs) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FiveArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FiveArgs> static inline void addStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_FiveArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FiveArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FiveArgs) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FiveArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SixArgs> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_SixArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_SixArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SixArgs) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SixArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SixArgs> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_SixArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SixArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SixArgs) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SixArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SixArgs> static inline void addStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_SixArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SixArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SixArgs) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SixArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SevenArgs> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_SevenArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_SevenArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SevenArgs) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SevenArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SevenArgs> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_SevenArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SevenArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SevenArgs) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SevenArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SevenArgs> static inline void addStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_SevenArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SevenArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SevenArgs) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SevenArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_EightArgs> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_EightArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_EightArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_EightArgs) {
 						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_EightArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_EightArgs> static inline void addStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_EightArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_EightArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_EightArgs) {
-						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_EightArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_EightArgs> static inline void addStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_EightArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_EightArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_EightArgs) {
+						addDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_EightArgs));
 					}
 					/* Add methods for Object -> StrongReference<X, PointerModes::ThreadSafe> */
-					template <class T> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_ZeroArgs<T>::methodPointer mthd) {
+					template <class T> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance<T>::methodPointer mthd) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd));
 					}
-					template <class T> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_ZeroArgs_constant<T>::methodPointer mthd) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd));
+					template <class T> static inline void addTSStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_constant<T>::methodPointer mthd) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_OneArg> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_OneArg<T, DELEGATE_TEMPLATE_ARGS_LIST_OneArg>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_OneArg) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_OneArg));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_OneArg> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_OneArg_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_OneArg>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_OneArg) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_OneArg));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_OneArg> static inline void addTSStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_OneArg_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_OneArg>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_OneArg) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_OneArg));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_TwoArgs> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_TwoArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_TwoArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_TwoArgs) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_TwoArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_TwoArgs> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_TwoArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_TwoArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_TwoArgs) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_TwoArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_TwoArgs> static inline void addTSStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_TwoArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_TwoArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_TwoArgs) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_TwoArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_ThreeArgs> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_ThreeArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_ThreeArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_ThreeArgs) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_ThreeArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_ThreeArgs> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_ThreeArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_ThreeArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_ThreeArgs) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_ThreeArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_ThreeArgs> static inline void addTSStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_ThreeArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_ThreeArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_ThreeArgs) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_ThreeArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FourArgs> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_FourArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_FourArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FourArgs) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FourArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FourArgs> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_FourArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FourArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FourArgs) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FourArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FourArgs> static inline void addTSStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_FourArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FourArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FourArgs) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FourArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FiveArgs> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_FiveArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_FiveArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FiveArgs) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FiveArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FiveArgs> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_FiveArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FiveArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FiveArgs) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FiveArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_FiveArgs> static inline void addTSStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_FiveArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_FiveArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_FiveArgs) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_FiveArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SixArgs> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_SixArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_SixArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SixArgs) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SixArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SixArgs> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_SixArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SixArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SixArgs) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SixArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SixArgs> static inline void addTSStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_SixArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SixArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SixArgs) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SixArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SevenArgs> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_SevenArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_SevenArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SevenArgs) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SevenArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SevenArgs> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_SevenArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SevenArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SevenArgs) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SevenArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_SevenArgs> static inline void addTSStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_SevenArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_SevenArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_SevenArgs) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_SevenArgs));
 					}
 					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_EightArgs> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_EightArgs<T, DELEGATE_TEMPLATE_ARGS_LIST_EightArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_EightArgs) {
 						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_EightArgs));
 					}
-					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_EightArgs> static inline void addTSStrongPointer(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_EightArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_EightArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_EightArgs) {
-						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_EightArgs));
+					template <class T, DELEGATE_TEMPLATE_ARGS_DECLARATION_EightArgs> static inline void addTSStrongPointer_const(T *trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_EightArgs_constant<T, DELEGATE_TEMPLATE_ARGS_LIST_EightArgs>::methodPointer mthd, DELEGATE_TEMPLATE_ARGS_PASS_EightArgs) {
+						addDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd, DELEGATE_TEMPLATE_ARGS_PASSTOFUNC_EightArgs));
 					}
 
 					/* Methods to remove a single-cast delegate from the multi-cast list */
@@ -1210,37 +1210,37 @@ namespace Galactic {
 					template <class T> inline void killClassMethodDelegate(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance<T>::methodPointer mthd) {
 						killDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd));
 					}
-					template <class T> inline void killClassMethodDelegate(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_constant<T>::methodPointer mthd) {
-						killDelegate(SingleCastDelegateInstance::createMemberMethodDelegate(trgObj, mthd));
+					template <class T> inline void killClassMethodDelegate_const(T* trgObj, typename SingleCastDelegateInstance::template ClassMethodDelegateClassInstance_constant<T>::methodPointer mthd) {
+						killDelegate(SingleCastDelegateInstance::createMemberMethodDelegate_const(trgObj, mthd));
 					}
 					/* Remove methods for Strong Reference Delegates */
 					/* Remove methods for StrongReference<X, PointerModes::Determine> */
 					template <class T> inline void killStrongReferenceDelegate(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance<T>::methodPointer mthd) {
 						killDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd));
 					}
-					template <class T> inline void killStrongReferenceDelegate(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_constant<T>::methodPointer mthd) {
-						killDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd));
+					template <class T> inline void killStrongReferenceDelegate_const(const StrongReference<T, PointerModes::Determine> &trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_constant<T>::methodPointer mthd) {
+						killDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd));
 					}
 					/* Remove methods for StrongReference<X, PointerModes::ThreadSafe> */
 					template <class T> inline void killTSStrongReferenceDelegate(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance<T>::methodPointer mthd) {
 						killDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd));
 					}
-					template <class T> inline void killTSStrongReferenceDelegate(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_constant<T>::methodPointer mthd) {
-						killDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd));
+					template <class T> inline void killTSStrongReferenceDelegate_const(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, typename SingleCastDelegateInstance::template TSStrongReferenceDelegateClassInstance_constant<T>::methodPointer mthd) {
+						killDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd));
 					}
 					/* Remove methods for Object -> StrongReference<X, PointerModes::Determine> */
 					template <class T> inline void killStrongReferenceDelegate(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance<T>::methodPointer mthd) {
 						killDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd));
 					}
-					template <class T> inline void killStrongReferenceDelegate(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_constant<T>::methodPointer mthd) {
-						killDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate(trgObj, mthd));
+					template <class T> inline void killStrongReferenceDelegate_const(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_constant<T>::methodPointer mthd) {
+						killDelegate(SingleCastDelegateInstance::createStrongReferenceDelegate_const(trgObj, mthd));
 					}
 					/* Remove methods for Object -> StrongReference<X, PointerModes::ThreadSafe> */
 					template <class T> inline void killTSStrongReferenceDelegate(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance<T>::methodPointer mthd) {
 						killDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd));
 					}
-					template <class T> inline void killTSStrongReferenceDelegate(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_constant<T>::methodPointer mthd) {
-						killDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate(trgObj, mthd));
+					template <class T> inline void killTSStrongReferenceDelegate_const(T *trgObj, typename SingleCastDelegateInstance::template StrongReferenceDelegateClassInstance_constant<T>::methodPointer mthd) {
+						killDelegate(SingleCastDelegateInstance::createTSStrongReferenceDelegate_const(trgObj, mthd));
 					}
 
 					/* Support Methods for Public Class Methods */

@@ -1,0 +1,103 @@
+﻿Build started 7/24/2014 10:25:08 AM.
+     1>Project "C:\Users\Owner\Documents\Phantom Games Development\Galactic 2D\Galactic2D\Galactic2D\Galactic2D.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _CRT_SECURE_NO_WARNINGS /D UNICODE /D _UNICODE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt Source\Console\console.cpp Source\Console\logging.cpp Source\EngineCore\engineCore.cpp Source\EngineCore\Files\crc.cpp Source\EngineCore\Files\directory.cpp Source\EngineCore\Files\file.cpp Source\EngineCore\Files\fileCore.cpp Source\EngineCore\Files\filePath.cpp Source\EngineCore\Files\fileRef.cpp Source\EngineCore\Files\fileSystem.cpp Source\EngineCore\GenericPlatform\genericMemory.cpp Source\EngineCore\GenericPlatform\genericPlatformOperations.cpp Source\EngineCore\GenericPlatform\genericPlatformTime.cpp Source\EngineCore\Stream\bitStream.cpp Source\EngineCore\Stream\fileStream.cpp Source\EngineCore\Stream\stream.cpp Source\EngineCore\Tools\huffman.cpp Source\EngineCore\Tools\string.cpp Source\EngineCore\Windows\WinTime.cpp
+         console.cpp
+         logging.cpp
+     1>c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\Thread/singleThreadBase.h(97): error C2079: 'Galactic::Core::SingleThreadedContinualThread::threadName' uses undefined class 'Galactic::Core::String'
+         engineCore.cpp
+         crc.cpp
+     1>c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\files\../Stream/stream.h(14): fatal error C1083: Cannot open include file: '../../Net/NetMain.h': No such file or directory
+         directory.cpp
+     1>c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(404): error C2955: 'Galactic::Core::StrongObject' : use of class template requires template argument list
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(308) : see declaration of 'Galactic::Core::StrongObject'
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(872) : see reference to class template instantiation 'Galactic::Core::WeakObject<0>' being compiled
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(961) : see reference to class template instantiation 'Galactic::Core::WeakReferencePtr<T,0>' being compiled
+                 with
+                 [
+                     T=Galactic::Core::Files::FileBase
+                 ]
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\files\fileBase.h(26) : see reference to class template instantiation 'Galactic::Core::createStrongFromObj<Galactic::Core::Files::FileBase,0>' being compiled
+         file.cpp
+     1>c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(404): error C2955: 'Galactic::Core::StrongObject' : use of class template requires template argument list
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(308) : see declaration of 'Galactic::Core::StrongObject'
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(872) : see reference to class template instantiation 'Galactic::Core::WeakObject<0>' being compiled
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(961) : see reference to class template instantiation 'Galactic::Core::WeakReferencePtr<T,0>' being compiled
+                 with
+                 [
+                     T=Galactic::Core::Files::FileBase
+                 ]
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\files\fileBase.h(26) : see reference to class template instantiation 'Galactic::Core::createStrongFromObj<Galactic::Core::Files::FileBase,0>' being compiled
+         fileCore.cpp
+     1>c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(404): error C2955: 'Galactic::Core::StrongObject' : use of class template requires template argument list
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(308) : see declaration of 'Galactic::Core::StrongObject'
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(872) : see reference to class template instantiation 'Galactic::Core::WeakObject<0>' being compiled
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(961) : see reference to class template instantiation 'Galactic::Core::WeakReferencePtr<T,0>' being compiled
+                 with
+                 [
+                     T=Galactic::Core::Files::FileBase
+                 ]
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\files\fileBase.h(26) : see reference to class template instantiation 'Galactic::Core::createStrongFromObj<Galactic::Core::Files::FileBase,0>' being compiled
+         filePath.cpp
+     1>c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\Thread/singleThreadBase.h(97): error C2079: 'Galactic::Core::SingleThreadedContinualThread::threadName' uses undefined class 'Galactic::Core::String'
+         fileRef.cpp
+     1>c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(404): error C2955: 'Galactic::Core::StrongObject' : use of class template requires template argument list
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(308) : see declaration of 'Galactic::Core::StrongObject'
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(872) : see reference to class template instantiation 'Galactic::Core::WeakObject<0>' being compiled
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(961) : see reference to class template instantiation 'Galactic::Core::WeakReferencePtr<T,0>' being compiled
+                 with
+                 [
+                     T=Galactic::Core::Files::FileBase
+                 ]
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\files\fileBase.h(26) : see reference to class template instantiation 'Galactic::Core::createStrongFromObj<Galactic::Core::Files::FileBase,0>' being compiled
+     1>Source\EngineCore\Files\fileRef.cpp(22): error C2143: syntax error : missing ';' before 'Galactic::Core::Files::FileRef::getLastModified'
+     1>Source\EngineCore\Files\fileRef.cpp(22): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>Source\EngineCore\Files\fileRef.cpp(22): error C2556: 'int Galactic::Core::Files::FileRef::getLastModified(void)' : overloaded function differs only by return type from 'Galactic::Core::TimeVars Galactic::Core::Files::FileRef::getLastModified(void)'
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\files\fileRef.h(91) : see declaration of 'Galactic::Core::Files::FileRef::getLastModified'
+     1>Source\EngineCore\Files\fileRef.cpp(22): error C2371: 'Galactic::Core::Files::FileRef::getLastModified' : redefinition; different basic types
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\files\fileRef.h(91) : see declaration of 'Galactic::Core::Files::FileRef::getLastModified'
+     1>Source\EngineCore\Files\fileRef.cpp(27): error C2064: term does not evaluate to a function taking 0 arguments
+     1>Source\EngineCore\Files\fileRef.cpp(33): error C2064: term does not evaluate to a function taking 0 arguments
+     1>Source\EngineCore\Files\fileRef.cpp(35): error C2146: syntax error : missing ';' before identifier 'lastModified'
+     1>Source\EngineCore\Files\fileRef.cpp(35): error C2065: 'lastModified' : undeclared identifier
+     1>Source\EngineCore\Files\fileRef.cpp(36): error C2065: 'lastModified' : undeclared identifier
+     1>Source\EngineCore\Files\fileRef.cpp(42): error C2825: 'Galactic::Core::Files::Time': must be a class or namespace when followed by '::'
+     1>Source\EngineCore\Files\fileRef.cpp(42): error C2039: 'getCurrentTime' : is not a member of '`global namespace''
+     1>Source\EngineCore\Files\fileRef.cpp(42): error C2679: binary '=' : no operator found which takes a right-hand operand of type 'int' (or there is no acceptable conversion)
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\GenericPlatform/genericPlatformTime.h(152): could be 'Galactic::Core::TimeVars &Galactic::Core::TimeVars::operator =(const Galactic::Core::TimeVars &)'
+                 while trying to match the argument list '(Galactic::Core::TimeVars, int)'
+     1>Source\EngineCore\Files\fileRef.cpp(42): error C2146: syntax error : missing ';' before identifier 'getCurrentTime'
+     1>Source\EngineCore\Files\fileRef.cpp(42): error C3861: 'getCurrentTime': identifier not found
+         fileSystem.cpp
+     1>c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(404): error C2955: 'Galactic::Core::StrongObject' : use of class template requires template argument list
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(308) : see declaration of 'Galactic::Core::StrongObject'
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(872) : see reference to class template instantiation 'Galactic::Core::WeakObject<0>' being compiled
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\delegates\../Tools/reference.h(961) : see reference to class template instantiation 'Galactic::Core::WeakReferencePtr<T,0>' being compiled
+                 with
+                 [
+                     T=Galactic::Core::Files::FileBase
+                 ]
+                 c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\files\fileBase.h(26) : see reference to class template instantiation 'Galactic::Core::createStrongFromObj<Galactic::Core::Files::FileBase,0>' being compiled
+         genericMemory.cpp
+         genericPlatformOperations.cpp
+     1>Source\EngineCore\GenericPlatform\genericPlatformOperations.cpp(36): error C2653: 'PlatformOperations' : is not a class or namespace name
+     1>Source\EngineCore\GenericPlatform\genericPlatformOperations.cpp(118): error C2653: 'PlatformOperations' : is not a class or namespace name
+         genericPlatformTime.cpp
+         bitStream.cpp
+     1>c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\stream\stream.h(14): fatal error C1083: Cannot open include file: '../../Net/NetMain.h': No such file or directory
+         fileStream.cpp
+     1>c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\stream\stream.h(14): fatal error C1083: Cannot open include file: '../../Net/NetMain.h': No such file or directory
+         stream.cpp
+     1>c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\stream\stream.h(14): fatal error C1083: Cannot open include file: '../../Net/NetMain.h': No such file or directory
+         huffman.cpp
+     1>c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\stream\stream.h(14): fatal error C1083: Cannot open include file: '../../Net/NetMain.h': No such file or directory
+         string.cpp
+     1>c:\users\owner\documents\phantom games development\galactic 2d\galactic2d\galactic2d\source\enginecore\Thread/singleThreadBase.h(97): error C2079: 'Galactic::Core::SingleThreadedContinualThread::threadName' uses undefined class 'Galactic::Core::String'
+         WinTime.cpp
+     1>Source\EngineCore\Windows\WinTime.cpp(81): error C2653: 'PlatformOperations' : is not a class or namespace name
+     1>Source\EngineCore\Windows\WinTime.cpp(81): error C3861: 'numLogicalCores': identifier not found
+     1>Done Building Project "C:\Users\Owner\Documents\Phantom Games Development\Galactic 2D\Galactic2D\Galactic2D\Galactic2D.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:29.72

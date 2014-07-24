@@ -12,32 +12,36 @@
 *  Staff Discussion on PGD for using clock()...
 **/
 
-#ifndef GALACTIC_PLATFORM_LINUX_PLATFORMTIME
-#define GALACTIC_PLATFORM_LINUX_PLATFORMTIME
+#ifdef GALACTIC_LINUX
 
-#include <sys/resource.h>
+	#ifndef GALACTIC_PLATFORM_LINUX_PLATFORMTIME
+	#define GALACTIC_PLATFORM_LINUX_PLATFORMTIME
 
-namespace Galactic {
+	#include <sys/resource.h>
 
-	namespace Core {
+	namespace Galactic {
 
-		/*
-		PlatformTime: Defines a list of methods and members for calculating system time parameters for Linux platforms.
-		*/
-		class PlatformTime : public GenericPlatformTime {
-			/* Public Class Methods */
-			//Fetch the current seconds
-			SFIN F64 fetchSeconds();
-			//Fetch the amount of cycles that have passed
-			SFIN U64 fetchCycles();
-			//Return a CPUTimeInfo object
-			static CPUTimeInfo getTimeInfo();
-			//Convert to microseconds
-			static F64 toMicroseconds(timeval &timeInfo);
+		namespace Core {
+
+			/*
+			PlatformTime: Defines a list of methods and members for calculating system time parameters for Linux platforms.
+			*/
+			class PlatformTime : public GenericPlatformTime {
+				/* Public Class Methods */
+				//Fetch the current seconds
+				SFIN F64 fetchSeconds();
+				//Fetch the amount of cycles that have passed
+				SFIN U64 fetchCycles();
+				//Return a CPUTimeInfo object
+				static CPUTimeInfo getTimeInfo();
+				//Convert to microseconds
+				static F64 toMicroseconds(timeval &timeInfo);
+			};
+
 		};
 
 	};
 
-};
+	#endif //GALACTIC_PLATFORM_LINUX_PLATFORMTIME
 
-#endif //GALACTIC_PLATFORM_LINUX_PLATFORMTIME
+#endif //GALACTIC_LINUX

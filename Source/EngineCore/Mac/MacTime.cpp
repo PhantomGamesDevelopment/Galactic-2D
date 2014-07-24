@@ -8,32 +8,36 @@
 
 #include "../engineCore.h"
 
-namespace Galactic {
+#ifdef GALACTIC_MAC
 
-	namespace Core {
+	namespace Galactic {
 
-		F64 PlatformTime::init() {
-			//Info on Absolute Time Here: http://stackoverflow.com/questions/1450737/what-is-mach-absolute-time-based-on-on-iphone
-			mach_timebase_info_data_t absTimeInfo;
-			if (mach_timebase_info(&absTimeInfo) != 0) {
-				//Something went wrong...
-				GC_Error("PlatformTime::init(): Failed to initialize timebase information...");
-				return 0;
+		namespace Core {
+
+			F64 PlatformTime::init() {
+				//Info on Absolute Time Here: http://stackoverflow.com/questions/1450737/what-is-mach-absolute-time-based-on-on-iphone
+				mach_timebase_info_data_t absTimeInfo;
+				if (mach_timebase_info(&absTimeInfo) != 0) {
+					//Something went wrong...
+					GC_Error("PlatformTime::init(): Failed to initialize timebase information...");
+					return 0;
+				}
+				timePerCycle = (0.000000001) * (F64)absTimeInfo.numer / (F64)absTimeInfo.denom;
+				return PlatformTime::fetchSeconds();
 			}
-			timePerCycle = (0.000000001) * (F64)absTimeInfo.numer / (F64)absTimeInfo.denom;
-			return PlatformTime::fetchSeconds();
-		}
 
-		F64 PlatformTime::fetchSeconds() {
-			//We want to start by calculating the absolute time (or number of CPU cycles), then multiply by timePerCycle.
-			U64 absTime = mach_absolute_time();
-			return F64(absTime * timePerCycle);
-		}
+			F64 PlatformTime::fetchSeconds() {
+				//We want to start by calculating the absolute time (or number of CPU cycles), then multiply by timePerCycle.
+				U64 absTime = mach_absolute_time();
+				return F64(absTime * timePerCycle);
+			}
 
-		U64 PlatformTime::fetchCycles() {
-			return mach_absolute_time();
-		}
+			U64 PlatformTime::fetchCycles() {
+				return mach_absolute_time();
+			}
+
+		};
 
 	};
 
-};
+#endif //GALACTIC_MAC

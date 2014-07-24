@@ -7,7 +7,7 @@
 *  and settings for this project. You are responsible for updating both this file & the delegate system located within the engine itself 
 *  during operation.
 *
-* Side Note: This script has been tested on Windows & Linux platforms with success.
+* Side Note: This script has been tested and confirms to work on Win32 & Linux. As long as the platform supports STD::X, you should be fine.
 **/
 
 #include <iostream>
@@ -791,10 +791,10 @@ int main() {
 	fileStrm << T5 << "/* Add methods for Class Methods */" << NL;
 	for (int i = 0; i <= MaxArguments; i++) {
 		for (int c = 0; c <= 1; c++) {
-			tempStorage = EngineClassName_CLMTD + EngineClass_di + "_" + num2Text[i] + EngineDelegateArg + addS(i) + (c == 1 ? EngineMacro_TagConst : "");
+			tempStorage = EngineClassName_CLMTD + EngineClass_di + (i > 0 ? "_" + num2Text[i] + EngineDelegateArg + addS(i) : "") + (c == 1 ? EngineMacro_TagConst : "");
 			fileStrm << T5 << "template <class T" << (i > 0 ? ", " + EngineMacro_TArgDecl + "_" + num2Text[i] + EngineDelegateArg + addS(i) : "") << "> " << EngineKeyword_StaticInline
-				<< " void addClassMethod(T* trgObj, " << tempStorage2 + tempStorage << "<T" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgList, EngineDelegateArg, i) : "") << ">::methodPointer mthd"
-				<< (i > 0 ? ", " + MacroPlus(EngineMacro_TArgPass, EngineDelegateArg, i) : "") << ") {" << NL << T6 << "addDelegate(" << EngineClass_bscdi << "::createMemberMethodDelegate("
+				<< " void addClassMethod" << (c == 1 ? "_const" : "") << "(T* trgObj, " << tempStorage2 + tempStorage << "<T" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgList, EngineDelegateArg, i) : "") << ">::methodPointer mthd"
+				<< (i > 0 ? ", " + MacroPlus(EngineMacro_TArgPass, EngineDelegateArg, i) : "") << ") {" << NL << T6 << "addDelegate(" << EngineClass_bscdi << "::createMemberMethodDelegate" << (c == 1 ? "_const" : "") << "("
 				<< "trgObj, mthd" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgPTF, EngineDelegateArg, i) : "") << "));" << NL << T5 << "}" << NL;
 		}
 	}
@@ -802,11 +802,11 @@ int main() {
 	fileStrm << T5 << "/* Add methods for StrongReference<X, PointerModes::Determine> */" << NL;
 	for (int i = 0; i <= MaxArguments; i++) {
 		for (int c = 0; c <= 1; c++) {
-			tempStorage = EngineClassName_SPNTS + EngineClass_di + "_" + num2Text[i] + EngineDelegateArg + addS(i) + (c == 1 ? EngineMacro_TagConst : "");
+			tempStorage = EngineClassName_SPNTS + EngineClass_di + (i > 0 ? "_" + num2Text[i] + EngineDelegateArg + addS(i) : "") + (c == 1 ? EngineMacro_TagConst : "");
 			fileStrm << T5 << "template <class T" << (i > 0 ? ", " + EngineMacro_TArgDecl + "_" + num2Text[i] + EngineDelegateArg + addS(i) : "") << "> " << EngineKeyword_StaticInline
-				<< " void addStrongPointer(const StrongReference<T, PointerModes::Determine> &trgObj, " << tempStorage2 + tempStorage << "<T" 
+				<< " void addStrongPointer" << (c == 1 ? "_const" : "") << "(const StrongReference<T, PointerModes::Determine> &trgObj, " << tempStorage2 + tempStorage << "<T"
 				<< (i > 0 ? ", " + MacroPlus(EngineMacro_TArgList, EngineDelegateArg, i) : "") << ">::methodPointer mthd" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgPass, EngineDelegateArg, i) : "") << ") {"
-				<< NL << T6 << "addDelegate(" << EngineClass_bscdi << "::createStrongReferenceDelegate(trgObj, mthd" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgPTF, EngineDelegateArg, i) : "") 
+				<< NL << T6 << "addDelegate(" << EngineClass_bscdi << "::createStrongReferenceDelegate" << (c == 1 ? "_const" : "") << "(trgObj, mthd" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgPTF, EngineDelegateArg, i) : "")
 				<< "));" << NL << T5 << "}" << NL;
 		}
 	}
@@ -814,11 +814,11 @@ int main() {
 	fileStrm << T5 << "/* Add methods for StrongReference<X, PointerModes::ThreadSafe> */" << NL;
 	for (int i = 0; i <= MaxArguments; i++) {
 		for (int c = 0; c <= 1; c++) {
-			tempStorage = EngineClassName_SPTS + EngineClass_di + "_" + num2Text[i] + EngineDelegateArg + addS(i) + (c == 1 ? EngineMacro_TagConst : "");
+			tempStorage = EngineClassName_SPTS + EngineClass_di + (i > 0 ? "_" + num2Text[i] + EngineDelegateArg + addS(i) : "") + (c == 1 ? EngineMacro_TagConst : "");
 			fileStrm << T5 << "template <class T" << (i > 0 ? ", " + EngineMacro_TArgDecl + "_" + num2Text[i] + EngineDelegateArg + addS(i) : "") << "> " << EngineKeyword_StaticInline
-				<< " void addTSStrongPointer(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, " << tempStorage2 + tempStorage << "<T"
+				<< " void addTSStrongPointer" << (c == 1 ? "_const" : "") << "(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, " << tempStorage2 + tempStorage << "<T"
 				<< (i > 0 ? ", " + MacroPlus(EngineMacro_TArgList, EngineDelegateArg, i) : "") << ">::methodPointer mthd" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgPass, EngineDelegateArg, i) : "") << ") {"
-				<< NL << T6 << "addDelegate(" << EngineClass_bscdi << "::createTSStrongReferenceDelegate(trgObj, mthd" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgPTF, EngineDelegateArg, i) : "")
+				<< NL << T6 << "addDelegate(" << EngineClass_bscdi << "::createTSStrongReferenceDelegate" << (c == 1 ? "_const" : "") << "(trgObj, mthd" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgPTF, EngineDelegateArg, i) : "")
 				<< "));" << NL << T5 << "}" << NL;
 		}
 	}
@@ -826,22 +826,22 @@ int main() {
 	fileStrm << T5 << "/* Add methods for Object -> StrongReference<X, PointerModes::Determine> */" << NL;
 	for (int i = 0; i <= MaxArguments; i++) {
 		for (int c = 0; c <= 1; c++) {
-			tempStorage = EngineClassName_SPNTS + EngineClass_di + "_" + num2Text[i] + EngineDelegateArg + addS(i) + (c == 1 ? EngineMacro_TagConst : "");
+			tempStorage = EngineClassName_SPNTS + EngineClass_di + (i > 0 ? "_" + num2Text[i] + EngineDelegateArg + addS(i) : "") + (c == 1 ? EngineMacro_TagConst : "");
 			fileStrm << T5 << "template <class T" << (i > 0 ? ", " + EngineMacro_TArgDecl + "_" + num2Text[i] + EngineDelegateArg + addS(i) : "") << "> " << EngineKeyword_StaticInline
-				<< " void addStrongPointer(T *trgObj, " << tempStorage2 + tempStorage << "<T" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgList, EngineDelegateArg, i) : "")
+				<< " void addStrongPointer" << (c == 1 ? "_const" : "") << "(T *trgObj, " << tempStorage2 + tempStorage << "<T" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgList, EngineDelegateArg, i) : "")
 				<< ">::methodPointer mthd" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgPass, EngineDelegateArg, i) : "") << ") {" << NL << T6 << "addDelegate(" << EngineClass_bscdi
-				<< "::createStrongReferenceDelegate(trgObj, mthd" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgPTF, EngineDelegateArg, i) : "") << "));" << NL << T5 << "}" << NL;
+				<< "::createStrongReferenceDelegate" << (c == 1 ? "_const" : "") << "(trgObj, mthd" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgPTF, EngineDelegateArg, i) : "") << "));" << NL << T5 << "}" << NL;
 		}
 	}
 	//Object -> Strong Pointer <X, ThreadSafe>
 	fileStrm << T5 << "/* Add methods for Object -> StrongReference<X, PointerModes::ThreadSafe> */" << NL;
 	for (int i = 0; i <= MaxArguments; i++) {
 		for (int c = 0; c <= 1; c++) {
-			tempStorage = EngineClassName_SPTS + EngineClass_di + "_" + num2Text[i] + EngineDelegateArg + addS(i) + (c == 1 ? EngineMacro_TagConst : "");
+			tempStorage = EngineClassName_SPTS + EngineClass_di + (i > 0 ? "_" + num2Text[i] + EngineDelegateArg + addS(i) : "") + (c == 1 ? EngineMacro_TagConst : "");
 			fileStrm << T5 << "template <class T" << (i > 0 ? ", " + EngineMacro_TArgDecl + "_" + num2Text[i] + EngineDelegateArg + addS(i) : "") << "> " << EngineKeyword_StaticInline
-				<< " void addTSStrongPointer(T *trgObj, " << tempStorage2 + tempStorage << "<T" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgList, EngineDelegateArg, i) : "")
+				<< " void addTSStrongPointer" << (c == 1 ? "_const" : "") << "(T *trgObj, " << tempStorage2 + tempStorage << "<T" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgList, EngineDelegateArg, i) : "")
 				<< ">::methodPointer mthd" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgPass, EngineDelegateArg, i) : "") << ") {" << NL << T6 << "addDelegate(" << EngineClass_bscdi
-				<< "::createTSStrongReferenceDelegate(trgObj, mthd" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgPTF, EngineDelegateArg, i) : "") << "));" << NL << T5 << "}" << NL;
+				<< "::createTSStrongReferenceDelegate" << (c == 1 ? "_const" : "") << "(trgObj, mthd" << (i > 0 ? ", " + MacroPlus(EngineMacro_TArgPTF, EngineDelegateArg, i) : "") << "));" << NL << T5 << "}" << NL;
 		}
 	}
 	//Remove Methods
@@ -853,32 +853,32 @@ int main() {
 	fileStrm << T5 << "/* Remove methods for Class Method Delegates */" << NL;
 	for (int c = 0; c <= 1; c++) {
 		tempStorage = EngineClassName_CLMTD + EngineClass_di + (c == 1 ? EngineMacro_TagConst : "");
-		fileStrm << T5 << "template <class T> " << EngineKeyword_Inline << " void killClassMethodDelegate(T* trgObj, " << tempStorage2 << tempStorage
-			<< "<T>::methodPointer mthd) {" << NL << T6 << "killDelegate(" << EngineClass_bscdi << "::createMemberMethodDelegate(trgObj, mthd));" << NL << T5 << "}" << NL;
+		fileStrm << T5 << "template <class T> " << EngineKeyword_Inline << " void killClassMethodDelegate" << (c == 1 ? "_const" : "") << "(T* trgObj, " << tempStorage2 << tempStorage
+			<< "<T>::methodPointer mthd) {" << NL << T6 << "killDelegate(" << EngineClass_bscdi << "::createMemberMethodDelegate" << (c == 1 ? "_const" : "") << "(trgObj, mthd));" << NL << T5 << "}" << NL;
 	}
 	fileStrm << T5 << "/* Remove methods for Strong Reference Delegates */" << NL << T5 << "/* Remove methods for StrongReference<X, PointerModes::Determine> */" << NL;
 	for (int c = 0; c <= 1; c++) {
 		tempStorage = EngineClassName_SPNTS + EngineClass_di + (c == 1 ? EngineMacro_TagConst : "");
-		fileStrm << T5 << "template <class T> " << EngineKeyword_Inline << " void killStrongReferenceDelegate(const StrongReference<T, PointerModes::Determine> &trgObj, " << tempStorage2 << tempStorage
-			<< "<T>::methodPointer mthd) {" << NL << T6 << "killDelegate(" << EngineClass_bscdi << "::createStrongReferenceDelegate(trgObj, mthd));" << NL << T5 << "}" << NL;
+		fileStrm << T5 << "template <class T> " << EngineKeyword_Inline << " void killStrongReferenceDelegate" << (c == 1 ? "_const" : "") << "(const StrongReference<T, PointerModes::Determine> &trgObj, " << tempStorage2 << tempStorage
+			<< "<T>::methodPointer mthd) {" << NL << T6 << "killDelegate(" << EngineClass_bscdi << "::createStrongReferenceDelegate" << (c == 1 ? "_const" : "") << "(trgObj, mthd));" << NL << T5 << "}" << NL;
 	}
 	fileStrm << T5 << "/* Remove methods for StrongReference<X, PointerModes::ThreadSafe> */" << NL;
 	for (int c = 0; c <= 1; c++) {
 		tempStorage = EngineClassName_SPTS + EngineClass_di + (c == 1 ? EngineMacro_TagConst : "");
-		fileStrm << T5 << "template <class T> " << EngineKeyword_Inline << " void killTSStrongReferenceDelegate(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, " << tempStorage2 << tempStorage
-			<< "<T>::methodPointer mthd) {" << NL << T6 << "killDelegate(" << EngineClass_bscdi << "::createTSStrongReferenceDelegate(trgObj, mthd));" << NL << T5 << "}" << NL;
+		fileStrm << T5 << "template <class T> " << EngineKeyword_Inline << " void killTSStrongReferenceDelegate" << (c == 1 ? "_const" : "") << "(const StrongReference<T, PointerModes::ThreadSafe> &trgObj, " << tempStorage2 << tempStorage
+			<< "<T>::methodPointer mthd) {" << NL << T6 << "killDelegate(" << EngineClass_bscdi << "::createTSStrongReferenceDelegate" << (c == 1 ? "_const" : "") << "(trgObj, mthd));" << NL << T5 << "}" << NL;
 	}
 	fileStrm << T5 << "/* Remove methods for Object -> StrongReference<X, PointerModes::Determine> */" << NL;
 	for (int c = 0; c <= 1; c++) {
 		tempStorage = EngineClassName_SPNTS + EngineClass_di + (c == 1 ? EngineMacro_TagConst : "");
-		fileStrm << T5 << "template <class T> " << EngineKeyword_Inline << " void killStrongReferenceDelegate(T *trgObj, " << tempStorage2 << tempStorage
-			<< "<T>::methodPointer mthd) {" << NL << T6 << "killDelegate(" << EngineClass_bscdi << "::createStrongReferenceDelegate(trgObj, mthd));" << NL << T5 << "}" << NL;
+		fileStrm << T5 << "template <class T> " << EngineKeyword_Inline << " void killStrongReferenceDelegate" << (c == 1 ? "_const" : "") << "(T *trgObj, " << tempStorage2 << tempStorage
+			<< "<T>::methodPointer mthd) {" << NL << T6 << "killDelegate(" << EngineClass_bscdi << "::createStrongReferenceDelegate" << (c == 1 ? "_const" : "") << "(trgObj, mthd));" << NL << T5 << "}" << NL;
 	}
 	fileStrm << T5 << "/* Remove methods for Object -> StrongReference<X, PointerModes::ThreadSafe> */" << NL;
 	for (int c = 0; c <= 1; c++) {
 		tempStorage = EngineClassName_SPNTS + EngineClass_di + (c == 1 ? EngineMacro_TagConst : "");
-		fileStrm << T5 << "template <class T> " << EngineKeyword_Inline << " void killTSStrongReferenceDelegate(T *trgObj, " << tempStorage2 << tempStorage
-			<< "<T>::methodPointer mthd) {" << NL << T6 << "killDelegate(" << EngineClass_bscdi << "::createTSStrongReferenceDelegate(trgObj, mthd));" << NL << T5 << "}" << NL;
+		fileStrm << T5 << "template <class T> " << EngineKeyword_Inline << " void killTSStrongReferenceDelegate" << (c == 1 ? "_const" : "") << "(T *trgObj, " << tempStorage2 << tempStorage
+			<< "<T>::methodPointer mthd) {" << NL << T6 << "killDelegate(" << EngineClass_bscdi << "::createTSStrongReferenceDelegate" << (c == 1 ? "_const" : "") << "(trgObj, mthd));" << NL << T5 << "}" << NL;
 	}
 
 	//Define the support and usable methods...
