@@ -25,7 +25,7 @@ namespace Galactic {
 			}
 			timePerCycle = 1.0f / tFreq.QuadPart;
 			//Queue up the core ticker, and add a timer instance for the platform
-			FrameTicker::fetchMainTicker().addTickerInstance(GalacticFrameTickerDelegate::createGlobalMethodDelegate(&PlatformTime::updateCPUTimeInfo), timePerCycle);
+			FrameTicker::fetchMainTicker().addTickerInstance(GalacticFrameTickerDelegate::createGlobalMethodDelegate(&PlatformTime::updateCPUTimeInfo), (1.0f / 4.0f));
 			//Return current time
 			return fetchSeconds();
 		}

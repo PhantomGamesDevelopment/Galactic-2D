@@ -42,4 +42,5 @@
 #endif 
 
 //Load in the G2D platform files (see platformInclude.h for include order)
+#include "LinuxTime.h"
 #include "LinuxAtomics.h"

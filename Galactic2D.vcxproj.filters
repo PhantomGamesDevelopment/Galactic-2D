@@ -152,6 +152,9 @@
     <ClCompile Include="Source\EngineCore\Mac\MacTime.cpp">
       <Filter>Source Files\EngineCore\Mac</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EngineCore\Linux\LinuxTime.cpp">
+      <Filter>Source Files\EngineCore\Linux</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\resource.rc">
@@ -377,6 +380,9 @@
     </ClInclude>
     <ClInclude Include="Source\EngineCore\Mac\MacTime.h">
       <Filter>Source Files\EngineCore\Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Linux\LinuxTime.h">
+      <Filter>Source Files\EngineCore\Linux</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
