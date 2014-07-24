@@ -112,7 +112,7 @@ namespace Galactic {
 						//tryAcquire(): Safer form of acquire, set the system to try to acquire the lock over a specified time
 						virtual bool tryAcquire(U64 nsToWait) = 0;
 						//getName(): Get the stored name on the object
-						const TCHAR *getName() const;
+						UTF16 getName() const;
 
 					protected:
 						/* Protected Class Members */
@@ -124,49 +124,49 @@ namespace Galactic {
 				//Get the process ID
 				static U32 getProcID();
 				//Get the user directory
-				static const TCHAR *getUserDir();
+				static UTF16 getUserDir();
 				//Get the application settings directory
-				static const TCHAR *getAppSetDir();
+				static UTF16 getAppSetDir();
 				//Get the user settings directory
-				static const TCHAR *getUserSetDir();
+				static UTF16 getUserSetDir();
 				//Set the process affinity mask (called on the main thread)
 				static void setAffinityMask(U64 mask);
 				//Get the user name
-				static const TCHAR *userName();
+				static UTF16 userName();
 				//Get the computer name
-				static const TCHAR *compName();
+				static UTF16 compName();
 				//Get the name of the executable being ran
-				static const TCHAR *getExeName(bool includeExtension = false);
+				static UTF16 getExeName(bool includeExtension = false);
 
 				/* Platform Specific Library Loading */
 				//Load a dynamic library into a handle
-				static any getLibHandle(const TCHAR *filePath);
+				static any getLibHandle(UTF16 filePath);
 				//Free a library handle
 				static void freeLibHandle(any handle);
 				//Fetch the specified function from the lib
-				static any fetchFunction(any handle, const TCHAR *procName);
+				static any fetchFunction(any handle, UTF16 procName);
 				//Fetch the file extension for libraries on this platform
-				static const TCHAR *getLibExtension();
+				static UTF16 getLibExtension();
 				//Fetch the version of the specified binary file (.exe, .dll, .so, etc)
-				static BinaryVersion fetchVersion(const TCHAR *filePath);
+				static BinaryVersion fetchVersion(UTF16 filePath);
 
 				/* Process Functions */
 				//Launch a new process with the given parameters
-				static pHandle launchProcess(const TCHAR *path, const TCHAR *args, bool newWindow, bool minimized, bool hiddenProcess, U32 forceID, S32 threadPriority, const TCHAR *procWD);
+				static pHandle launchProcess(UTF16 path, UTF16 args, bool newWindow, bool minimized, bool hiddenProcess, U32 forceID, S32 threadPriority, UTF16 procWD);
 				//Launch a processes with normal level access
-				static bool launchProcess(const TCHAR *path, const TCHAR *args, S32 *retCodePtr, String *stdOut, String *stdErr);
+				static bool launchProcess(UTF16 path, UTF16 args, S32 *retCodePtr, String *stdOut, String *stdErr);
 				//Launch a process with admin access
-				static bool launchAdminProcess(const TCHAR *path, const TCHAR *args, S32 *retCodePtr);
+				static bool launchAdminProcess(UTF16 path, UTF16 args, S32 *retCodePtr);
 				//Check is the specified process is active
 				static bool activeProc(pHandle &proc);
 				//Duplicate of above, uses process id
 				static bool activeProc(U32 procID);
 				//Duplicate of above, uses process name
-				static bool activeProc(const TCHAR *procName);
+				static bool activeProc(UTF16 procName);
 				//Assign a flag to the specified process that it must stop before the main process can also stop
 				static void forceMustStop(pHandle &proc);
 				//Returns the name of the process if one is present
-				static const TCHAR *getProcName(U32 procID);
+				static UTF16 getProcName(U32 procID);
 				//Return a flag based on if the process has focus
 				static bool hasFocus();
 				//Get the return code from the specified process

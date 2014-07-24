@@ -87,11 +87,11 @@ namespace Galactic {
 				//Fetch an item from the registry (on non-windows OS's, use their relative system for a registry)
 				static bool fetchRegistryItem(const String &Key, const String &Value, bool useUser, String &result);
 				//Copy text to the system clipboard.
-				static void copyToClipboard(const TCHAR *text);
+				static void copyToClipboard(UTF16 text);
 				//Paste text from the clipboard into the specified string.
 				static void pasteFromClipboard(String &trgStr);
 				//Open a message box with the specified options
-				static MBDefs::MBReturnType OpenPlatformMB(MBDefs::MBTypes mbType, const TCHAR *mbText, const TCHAR *mbCaption);
+				static MBDefs::MBReturnType OpenPlatformMB(MBDefs::MBTypes mbType, UTF16 mbText, UTF16 mbCaption);
 
 			private:
 				/* Private Class Methods */
@@ -106,7 +106,7 @@ namespace Galactic {
 				//Fetch the window object.
 				static any fetchWindowObject();
 				//Fetch an environment variable and store it.
-				static void fetchEnvVar(const TCHAR *varName, TCHAR *result, S32 length);
+				static void fetchEnvVar(UTF16 varName, UTF8 result, S32 length);
 				//Fetch the MAC address string
 				static String fetchMACAddr();
 				//Fetch the raw MAC address

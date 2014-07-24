@@ -17,7 +17,7 @@ namespace Galactic {
 			return 0;
 		}
 
-		const TCHAR *GenericPlatformProcess::getUserDir() {
+		UTF16 GenericPlatformProcess::getUserDir() {
 
 		}
 

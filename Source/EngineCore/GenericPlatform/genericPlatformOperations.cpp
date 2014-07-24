@@ -47,7 +47,7 @@ namespace Galactic {
 			return false;
 		}
 
-		void GenericPlatformOperations::copyToClipboard(const TCHAR *text) {
+		void GenericPlatformOperations::copyToClipboard(UTF16 text) {
 			GC_Warn("copyToClipboard() is not implemented on the generic platform.");
 		}
 
@@ -56,7 +56,7 @@ namespace Galactic {
 			trgStr = String::emptyStrRef;
 		}
 
-		MBDefs::MBReturnType GenericPlatformOperations::OpenPlatformMB(MBDefs::MBTypes mbType, const TCHAR *mbText, const TCHAR *mbCaption) {
+		MBDefs::MBReturnType GenericPlatformOperations::OpenPlatformMB(MBDefs::MBTypes mbType, UTF16 mbText, UTF16 mbCaption) {
 			GC_Warn("OpenPlatformMB() is not implemented on the generic platform, returning relevant negative type (If Possible).");
 			switch (mbType) {
 				case MBDefs::MBTypes::Ok:
@@ -108,7 +108,7 @@ namespace Galactic {
 			return NULL;
 		}
 
-		void GenericPlatformOperations::fetchEnvVar(const TCHAR *varName, TCHAR *result, S32 length) {
+		void GenericPlatformOperations::fetchEnvVar(UTF16 varName, UTF8 result, S32 length) {
 			GC_Warn("fetchEnvVar() is not implemented on the generic platform.");
 			*result = NULL;
 		}

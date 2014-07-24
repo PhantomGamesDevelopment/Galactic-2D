@@ -31,6 +31,7 @@ namespace Galactic {
 					High,
 					//Highest: Declare the thread to have the highest priority in the system
 					Highest,
+					//Note: While Realtime is also a standard thread priority level, we don't actually need it in the engine, so it's ignored.
 				};
 		};
 
@@ -138,38 +139,38 @@ namespace Galactic {
 				//fetch the thread registry object
 				static struct threadRegistry &fetchRegistry();
 				//Returns a delegate for thread destruction
-				//MulticastDelegate<void> &onDestroyed();
+				BasicMulticastDelegate &onDestroyed();
 
 				/* Public Class Members */
 				//threadRegistry: Handles the gateway between this class and the platform threading commands
 				struct threadRegistry {
-				public:
-					/* Public Struct Members */
-					//add(): Add thread to registry
-					void add(U32 id, ContinualThread *t);
-					//remove(): Remove a thread from the registry based on ID
-					void remove(U32 id);
-					//fetch(): Fetch the specified thread based on it's ID
-					ContinualThread *fetch(U32 id);
-					//count(): Get the number of threads in the registry
-					S32 count();
-					//lock(): lock the current thread
-					void lock();
-					//unlock(): unlock the current thread
-					void unlock();
-					//reset(): reset the updated flag
-					void reset();
-					//isUpdated(): check if the registry is updated
-					bool isUpdated();
+					public:
+						/* Public Struct Members */
+						//add(): Add thread to registry
+						void add(U32 id, ContinualThread *t);
+						//remove(): Remove a thread from the registry based on ID
+						void remove(U32 id);
+						//fetch(): Fetch the specified thread based on it's ID
+						ContinualThread *fetch(U32 id);
+						//count(): Get the number of threads in the registry
+						S32 count();
+						//lock(): lock the current thread
+						void lock();
+						//unlock(): unlock the current thread
+						void unlock();
+						//reset(): reset the updated flag
+						void reset();
+						//isUpdated(): check if the registry is updated
+						bool isUpdated();
 
-				private:
-					/* Private Struct Members */
-					//The internal thread registry
-					Map<U32, ContinualThread> tRegistry;
-					//The attached critical section object
-					PlatformCriticalSection cSec;
-					//Flag for the status of the registry
-					bool updated;
+					private:
+						/* Private Struct Members */
+						//The internal thread registry
+						Map<U32, ContinualThread> tRegistry;
+						//The attached critical section object
+						PlatformCriticalSection cSec;
+						//Flag for the status of the registry
+						bool updated;
 				};
 
 			protected:
@@ -180,8 +181,8 @@ namespace Galactic {
 				virtual bool onCreated() = 0;
 
 				/* Protected Class Members */
-				//Stored delegate for destruction of the thread
-				//MulticastDelegate<void> threadDestroyed;
+				//Stored delegate method for the onDestroyed() callback
+				BasicMulticastDelegate onThreadDestroyedDelegate;
 		};
 
 	};
