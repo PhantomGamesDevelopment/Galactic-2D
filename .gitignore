@@ -4,3 +4,6 @@
 *.log
 *.lastbuildstate
 *.pdb
+*.vcxproj
+*.filters
+*.user
