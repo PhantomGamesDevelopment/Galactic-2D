@@ -1,48 +1,10 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
-
-# Folder config file
-Desktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
-
-# Visual Studio Files
-*.ncb
-*.sln
-*.suo
-*.vcxproj
-*.vcxproj.filters
-*.vcxproj.user
-*.pdb
-*.obj
-*.idb
-*.htm
-
-# =========================
-# Operating System Files
-# =========================
-
-# OSX
-# =========================
-
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Icon must ends with two \r.
-Icon
-
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
+$ cat .gitignore
+# exclude everything except directories Source, Lib, And Programs
+/*
+!/Source
+!/Lib
+!/Programs
+# exclude files that are required from the above list.
+!README.md
+!G2D.ico
+!Engine Doc.txt
