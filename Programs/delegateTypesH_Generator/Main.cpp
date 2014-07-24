@@ -7,8 +7,7 @@
 *  and settings for this project. You are responsible for updating both this file & the delegate system located within the engine itself 
 *  during operation.
 *
-* Side Note: While G2D is cross-compatible, this C++ script is Win32/Win64 only currently, barring platform implementation of STD:: functions.
-*
+* Side Note: This script has been tested on Windows & Linux platforms with success.
 **/
 
 #include <iostream>
@@ -138,7 +137,7 @@ cstr addS(int num) {
 	return (num == 1 ? "" : "s");
 }
 
-void main() {
+int main() {
 	string tempStorage, tempStorage2;
 
 	//Basic Welcome Message.
@@ -953,6 +952,7 @@ void main() {
 	std::cout << "Generation Complete, Your files will be located in the .exe directory..." << NL2;
 	std::cin.get();
 	//All finished!
+	return 0;
 }
 
 //Add Macro Def
