@@ -19,27 +19,32 @@ namespace Galactic {
 				checksum = 0;
 			}
 
-			Time FileRef::getLastModified() {
+			TimeVars FileRef::getLastModified() {
 				FileAttributes atrb;
 
 				bool success = getAttributes(&atrb);
 				if(!success) {
-					return Time();
+					TimeVars t;
+					PlatformTime::sysTime(t);
+					return t;
 				}
 				return atrb.fLastModified;
 			}
 
 			U64 FileRef::getChecksum() {
-				bool needCalc = (lastChecksum == Time());
+				TimeVars t;
+				PlatformTime::sysTime(t);
+
+				bool needCalc = (lastChecksum == t);
 				if(!needCalc) {
-					Time lastModified = getLastModified();
+					TimeVars lastModified = getLastModified();
 					needCalc = (lastModified > lastChecksum);
 				}
 				if(needCalc) {
 					checksum = calcChecksum();
 				}
 				if(checksum) {
-					lastChecksum = Time::getCurrentTime();
+					PlatformTime::sysTime(lastChecksum);
 				}
 				return checksum;
 			}

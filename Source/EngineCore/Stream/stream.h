@@ -11,7 +11,7 @@
 
 #include "../engineCore.h"
 #include "../Tools/color.h"
-#include "../../Net/NetMain.h"
+//#include "../../Net/NetMain.h"
 #include "../endian.h"
 
 namespace Galactic {
