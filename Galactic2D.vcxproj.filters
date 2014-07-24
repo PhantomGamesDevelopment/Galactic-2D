@@ -158,6 +158,9 @@
     <ClCompile Include="Source\EngineCore\Thread\threadBase.cpp">
       <Filter>Source Files\EngineCore\Thread</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EngineCore\Thread\singleThreadBase.cpp">
+      <Filter>Source Files\EngineCore\Thread</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\resource.rc">
@@ -386,6 +389,12 @@
     </ClInclude>
     <ClInclude Include="Source\EngineCore\Linux\LinuxTime.h">
       <Filter>Source Files\EngineCore\Linux</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Thread\singleThreadBase.h">
+      <Filter>Source Files\EngineCore\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EngineCore\Thread\threadTasks.h">
+      <Filter>Source Files\EngineCore\Thread</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

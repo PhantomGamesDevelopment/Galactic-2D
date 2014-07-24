@@ -38,6 +38,8 @@ namespace Galactic {
 //Load everything else we need.
 #include "Delegates/delegate.h"
 #include "Thread/threadBase.h"
+#include "Thread/singleThreadBase.h"
+#include "Thread/threadTasks.h"
 #include "Tools/frameTicker.h"
 
 //Give the user a using namespace override so they don't need to use ::Galactic::Core::X in all of their files.

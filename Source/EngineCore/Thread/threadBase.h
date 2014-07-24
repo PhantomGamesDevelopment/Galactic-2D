@@ -186,56 +186,6 @@ namespace Galactic {
 				BasicMulticastDelegate onThreadDestroyedDelegate;
 		};
 
-		/*
-		SingleThreadedEvent: When multi-threading is disabled, use this special version of Event.
-		*/
-		class SingleThreadedEvent : public Event {
-			public:
-				/* Constructor / Destructor */
-				//Default Constructor
-				SingleThreadedEvent();
-				/* Public Class Methods */
-				//init(): initialize the event
-				virtual bool init(bool manualReset = false);
-				//reset(): reset the event state to prior to execution
-				virtual void reset();
-				//fire(): triggers the event and it's representative code.
-				virtual void fire();
-				//wait(): hold the execution of the event until the stated amount of MS has passed, passing no variable sets the event to wait infinitely
-				virtual bool wait(U32 timeInMS = ((U32)0xffffffff));
-
-			private:
-				/* Private Class Members */
-				//Has this event been fired off?
-				bool hasFired;
-				//Should this event reset manually (true) or automatically (false)
-				bool shouldResetManually;
-		};
-
-		/*
-		SingleThreadedObjThread: When multi-threading is disabled, this class runs as the equivalent of ObjectThread.
-		*/
-		class SingleThreadedObjThread {
-			public:
-				/* Constructor / Destructor */
-				//Destructor
-				virtual ~SingleThreadedObjThread() { }
-
-				/* Public Class Methods */
-				//Called each time the thread is parsed
-				virtual void run() = 0;
-		};
-
-		/*
-		SingleThreadedContinualThread: When multi-threading is disabled, this class runs as the equivalent of ContinualThread.
-		*/
-		class SingleThreadedContinualThread : public ContinualThread {
-			public:
-
-			private:
-
-		};
-
 	};
 
 };

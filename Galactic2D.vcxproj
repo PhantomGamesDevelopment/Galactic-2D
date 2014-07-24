@@ -41,6 +41,7 @@
     <ClCompile Include="Source\EngineCore\Stream\fileStream.cpp" />
     <ClCompile Include="Source\EngineCore\Stream\stream.cpp" />
     <ClCompile Include="Source\EngineCore\Thread\pThread.cpp" />
+    <ClCompile Include="Source\EngineCore\Thread\singleThreadBase.cpp" />
     <ClCompile Include="Source\EngineCore\Thread\threadBase.cpp" />
     <ClCompile Include="Source\EngineCore\Tools\huffman.cpp" />
     <ClCompile Include="Source\EngineCore\Tools\string.cpp" />
@@ -104,7 +105,9 @@
     <ClInclude Include="Source\EngineCore\Stream\stream.h" />
     <ClInclude Include="Source\EngineCore\Thread\pThread.h" />
     <ClInclude Include="Source\EngineCore\Thread\pThreadCritcalSection.h" />
+    <ClInclude Include="Source\EngineCore\Thread\singleThreadBase.h" />
     <ClInclude Include="Source\EngineCore\Thread\threadBase.h" />
+    <ClInclude Include="Source\EngineCore\Thread\threadTasks.h" />
     <ClInclude Include="Source\EngineCore\Tools\advTools.h" />
     <ClInclude Include="Source\EngineCore\Tools\color.h" />
     <ClInclude Include="Source\EngineCore\Tools\dynArray.h" />
