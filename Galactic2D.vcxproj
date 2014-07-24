@@ -41,6 +41,7 @@
     <ClCompile Include="Source\EngineCore\Stream\fileStream.cpp" />
     <ClCompile Include="Source\EngineCore\Stream\stream.cpp" />
     <ClCompile Include="Source\EngineCore\Thread\pThread.cpp" />
+    <ClCompile Include="Source\EngineCore\Thread\threadBase.cpp" />
     <ClCompile Include="Source\EngineCore\Tools\huffman.cpp" />
     <ClCompile Include="Source\EngineCore\Tools\string.cpp" />
     <ClCompile Include="Source\EngineCore\Windows\WinTime.cpp" />

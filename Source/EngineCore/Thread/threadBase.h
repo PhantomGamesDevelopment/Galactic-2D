@@ -108,6 +108,39 @@ namespace Galactic {
 		};
 
 		/*
+		threadRegistry: A small and compact struct system used to register and store threads in a simple to access system.
+		*/
+		struct threadRegistry {
+			public:
+				/* Public Struct Members */
+				//add(): Add thread to registry
+				void add(U32 id, class ContinualThread *t);
+				//remove(): Remove a thread from the registry based on ID
+				void remove(U32 id);
+				//fetch(): Fetch the specified thread based on it's ID
+				class ContinualThread *fetch(U32 id);
+				//count(): Get the number of threads in the registry
+				S32 count();
+				//lock(): lock the current thread
+				void lock();
+				//unlock(): unlock the current thread
+				void unlock();
+				//reset(): reset the updated flag
+				void reset();
+				//isUpdated(): check if the registry is updated
+				bool isUpdated();
+
+			private:
+				/* Private Struct Members */
+				//The internal thread registry
+				Map<U32, class ContinualThread> tRegistry;
+				//The attached critical section object
+				PlatformCriticalSection cSec;
+				//Flag for the status of the registry
+				bool updated;
+		};
+
+		/*
 		ContinualThread: The main threading class of the engine, places all of the common threading concepts and methods into one easy
 		to deploy and use class.
 		*/
@@ -137,41 +170,9 @@ namespace Galactic {
 				//waitForCompletion(): Hold the calling function/method until the thread is complete
 				virtual void waitForCompletion() = 0;
 				//fetch the thread registry object
-				static struct threadRegistry &fetchRegistry();
+				static threadRegistry &fetchRegistry();
 				//Returns a delegate for thread destruction
 				BasicMulticastDelegate &onDestroyed();
-
-				/* Public Class Members */
-				//threadRegistry: Handles the gateway between this class and the platform threading commands
-				struct threadRegistry {
-					public:
-						/* Public Struct Members */
-						//add(): Add thread to registry
-						void add(U32 id, ContinualThread *t);
-						//remove(): Remove a thread from the registry based on ID
-						void remove(U32 id);
-						//fetch(): Fetch the specified thread based on it's ID
-						ContinualThread *fetch(U32 id);
-						//count(): Get the number of threads in the registry
-						S32 count();
-						//lock(): lock the current thread
-						void lock();
-						//unlock(): unlock the current thread
-						void unlock();
-						//reset(): reset the updated flag
-						void reset();
-						//isUpdated(): check if the registry is updated
-						bool isUpdated();
-
-					private:
-						/* Private Struct Members */
-						//The internal thread registry
-						Map<U32, ContinualThread> tRegistry;
-						//The attached critical section object
-						PlatformCriticalSection cSec;
-						//Flag for the status of the registry
-						bool updated;
-				};
 
 			protected:
 				/* Protected Class Methods */
@@ -183,6 +184,56 @@ namespace Galactic {
 				/* Protected Class Members */
 				//Stored delegate method for the onDestroyed() callback
 				BasicMulticastDelegate onThreadDestroyedDelegate;
+		};
+
+		/*
+		SingleThreadedEvent: When multi-threading is disabled, use this special version of Event.
+		*/
+		class SingleThreadedEvent : public Event {
+			public:
+				/* Constructor / Destructor */
+				//Default Constructor
+				SingleThreadedEvent();
+				/* Public Class Methods */
+				//init(): initialize the event
+				virtual bool init(bool manualReset = false);
+				//reset(): reset the event state to prior to execution
+				virtual void reset();
+				//fire(): triggers the event and it's representative code.
+				virtual void fire();
+				//wait(): hold the execution of the event until the stated amount of MS has passed, passing no variable sets the event to wait infinitely
+				virtual bool wait(U32 timeInMS = ((U32)0xffffffff));
+
+			private:
+				/* Private Class Members */
+				//Has this event been fired off?
+				bool hasFired;
+				//Should this event reset manually (true) or automatically (false)
+				bool shouldResetManually;
+		};
+
+		/*
+		SingleThreadedObjThread: When multi-threading is disabled, this class runs as the equivalent of ObjectThread.
+		*/
+		class SingleThreadedObjThread {
+			public:
+				/* Constructor / Destructor */
+				//Destructor
+				virtual ~SingleThreadedObjThread() { }
+
+				/* Public Class Methods */
+				//Called each time the thread is parsed
+				virtual void run() = 0;
+		};
+
+		/*
+		SingleThreadedContinualThread: When multi-threading is disabled, this class runs as the equivalent of ContinualThread.
+		*/
+		class SingleThreadedContinualThread : public ContinualThread {
+			public:
+
+			private:
+
 		};
 
 	};

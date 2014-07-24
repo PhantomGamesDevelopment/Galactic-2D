@@ -155,6 +155,9 @@
     <ClCompile Include="Source\EngineCore\Linux\LinuxTime.cpp">
       <Filter>Source Files\EngineCore\Linux</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EngineCore\Thread\threadBase.cpp">
+      <Filter>Source Files\EngineCore\Thread</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\resource.rc">
