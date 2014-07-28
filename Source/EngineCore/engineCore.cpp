@@ -17,7 +17,7 @@
 Allocater *_GAllocater    = NULL;      //Define the global memory allocater
 
 //Global Parameters
-F32  gVolumeModifier      = 1.0f;      //gvolumeModifier: Declares the global audio modifier to levels of output, set to 0.0f to silence the app.
+F64  gVolumeModifier      = 1.0f;      //gvolumeModifier: Declares the global audio modifier to levels of output, set to 0.0f to silence the app.
 bool gRunning             = false;     //gRunning: Is execution in mainLoop() occuring?
 bool gWantExit            = false;     //gWantExit: Has a quit() command or equivalent been sent?
 U32  gMainGameThreadID    = 0;         //gMainGameThreadID: Set once the game thread object is initialized.

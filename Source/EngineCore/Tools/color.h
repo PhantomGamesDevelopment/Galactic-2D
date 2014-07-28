@@ -76,12 +76,12 @@ namespace Galactic {
 		//ColorF - Define a RGBA Color With a range of 0.0 to 1.0
 		class ColorF {
 			public:
-				F32 r; // Red Component
-				F32 g; // Green Component
-				F32 b; // Blue Component
-				F32 a; // Alpha Component
+				F64 r; // Red Component
+				F64 g; // Green Component
+				F64 b; // Blue Component
+				F64 a; // Alpha Component
 
-				ColorF(F32 red = 1.0f, F32 green = 1.0f, F32 blue = 1.0f, F32 alpha = 1.0f) {
+				ColorF(F64 red = 1.0f, F64 green = 1.0f, F64 blue = 1.0f, F64 alpha = 1.0f) {
 					r = red;
 					g = green;
 					b = blue;
@@ -142,12 +142,12 @@ namespace Galactic {
 		}
 
 		FINLINE ColorF ColorI::toColorF() {
-			F32 convFactor = 1.0f / 255.0f;
-			return ColorF(F32((r) * convFactor), F32((g) * convFactor), F32((b) * convFactor), F32((a) * convFactor));
+			F64 convFactor = 1.0f / 255.0f;
+			return ColorF(F64((r)* convFactor), F64((g)* convFactor), F64((b)* convFactor), F64((a)* convFactor));
 		}
 
 		FINLINE ColorF::ColorF(ColorI in) {
-			F32 convFactor = 1.0f / 255.0f;
+			F64 convFactor = 1.0f / 255.0f;
 
 			r = (in.r) * convFactor;
 			g = (in.g) * convFactor;

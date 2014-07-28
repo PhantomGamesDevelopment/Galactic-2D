@@ -40,8 +40,8 @@
 				const F64 minimumUpdateFreq = 250000000.0;
 				//Now, we pull a page from the WinTime.cpp playbook in the updateCPUTimeInfo() method here.
 				static F64 lastProcessTime = 0.0f, lastTotalTime = 0.0f;
-				//Linux doesn't have FILETIME, so instead we make use of clock(), which has F32 variable types.
-				static F32 currentCPUUtil = 0.0f, normalizedCCPUU = 0.0f;
+				//Linux doesn't have FILETIME, so instead we make use of clock(), which has F64 variable types.
+				static F64 currentCPUUtil = 0.0f, normalizedCCPUU = 0.0f;
 				struct timespec timeInfo;
 				if (clock_gettime(CLOCK_MONOTONIC, &timeInfo) == 0) {
 					const F64 currentTimeInNanoSec = F64(timeInfo.tv_sec * 1000000000) + F64(timeInfo.tv_nsec);
@@ -56,8 +56,8 @@
 							//The last thing we need to do is calculate the relative effect of one CPU versus all of the available ones, then re-apply values.
 							F64 cpuUsagePercentage = usageSincePriorCall / ((currentTimeInNanoSec - lastProcessTime) / 1000.0) * 100.0;
 							//Re-apply values.
-							currentCPUUtil = (F32)cpuUsagePercentage;
-							normalizedCCPUU = cpuUsagePercentage / (F32)PlatformOperations::numLogicalCores();
+							currentCPUUtil = (F64)cpuUsagePercentage;
+							normalizedCCPUU = cpuUsagePercentage / (F64)PlatformOperations::numLogicalCores();
 							lastProcessTime = allTime;
 							lastTotalTime = currentTimeInNanoSec;
 						}

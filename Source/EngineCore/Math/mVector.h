@@ -20,10 +20,10 @@ namespace Galactic {
 	
 			class Vector2F {
 				public:
-					F32 x; // x-component
-					F32 y; // y-component
+					F64 x; // x-component
+					F64 y; // y-component
 
-					Vector2F::Vector2F(F32 iX = 0.0f, F32 iY = 0.0f) {
+					Vector2F::Vector2F(F64 iX = 0.0f, F64 iY = 0.0f) {
 						x = iX;
 						y = iY;
 					}
@@ -44,7 +44,7 @@ namespace Galactic {
 					}
 
 					//Vector Scaling
-					Vector2F operator*(F32 s) {
+					Vector2F operator*(F64 s) {
 						return Vector2F(x * s, y * s);
 					}
 
@@ -75,17 +75,17 @@ namespace Galactic {
 					}
 
 					// Vector Length
-					F32 length() const { return sqrt(pow(x, 2) + pow(y, 2)); }
+					F64 length() const { return sqrt(pow(x, 2) + pow(y, 2)); }
 
 					// Vector Dot Product
-					F32 dot(Vector2F &v) const { return ((x * v.x) + (y * v.y)); }
+					F64 dot(Vector2F &v) const { return ((x * v.x) + (y * v.y)); }
 
 					// Vector Cross Product (IE: 2D Determinant), 2D Vector Cross Product returns a Scalar
-					F32 cross(Vector2F &v) const { return((x * v.y) - (y * v.x)); }
-					F32 det(Vector2F &v) const { return cross(v); }
+					F64 cross(Vector2F &v) const { return((x * v.y) - (y * v.x)); }
+					F64 det(Vector2F &v) const { return cross(v); }
 
 					//Angle Between
-					F32 ang(Vector2F &v) const { return (atan2(v.y, v.x) - atan2(y, x)); }
+					F64 ang(Vector2F &v) const { return (atan2(v.y, v.x) - atan2(y, x)); }
 			};
 	
 			//Position Typedef

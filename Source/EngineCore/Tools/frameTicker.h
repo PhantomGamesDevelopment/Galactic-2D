@@ -15,8 +15,8 @@ namespace Galactic {
 
 	namespace Core {
 
-		//Initialize the ticker delegate class instance. Returns a boolean value, and accepts F32 dT as a parameter.
-		GALACTIC_INIT_SC_DELEGATE_ReturnType_OneParam(GalacticFrameTickerDelegate, bool, F32);
+		//Initialize the ticker delegate class instance. Returns a boolean value, and accepts F64 dT as a parameter.
+		GALACTIC_INIT_SC_DELEGATE_ReturnType_OneParam(GalacticFrameTickerDelegate, bool, F64);
 
 		/*
 		struct TickerInstance: Stores all of the information for the individual ticker.
@@ -26,11 +26,11 @@ namespace Galactic {
 			//Default Constructor
 			TickerInstance() {}
 			//Copy Constructor
-			TickerInstance(F64 net, F32 dt, const GalacticFrameTickerDelegate &c) : nextExecTime(net), deltaTime(dt), tickerDelegate(c) { }
+			TickerInstance(F64 net, F64 dt, const GalacticFrameTickerDelegate &c) : nextExecTime(net), deltaTime(dt), tickerDelegate(c) { }
 
 			/* Stuct Methods */
 			//Execute the event, returns true if the event was executed.
-			bool exec(F32 dt) {
+			bool exec(F64 dt) {
 				if (tickerDelegate.bound()) {
 					return tickerDelegate.exec(dt);
 				}
@@ -41,7 +41,7 @@ namespace Galactic {
 			//The next scheduled time this ticker element will execute.
 			F64 nextExecTime;
 			//The change in time (delay) between the fire.
-			F32 deltaTime;
+			F64 deltaTime;
 			//The delegate instance of this ticker.
 			GalacticFrameTickerDelegate tickerDelegate;
 		};
@@ -60,7 +60,7 @@ namespace Galactic {
 				/* Public Class Methods */
 				//Process all events for this frame, by doing it this way, we can save some performance by only pulling out the instances we need to
 				// execute, and keeping the ones that aren't ready in the list until the next "tick"
-				void tick(F32 dt) {
+				void tick(F64 dt) {
 					if (tickerList.isEmpty()) {
 						return;
 					}
@@ -87,7 +87,7 @@ namespace Galactic {
 				}
 
 				//Add a TickerInstance to the list.
-				void addTickerInstance(const GalacticFrameTickerDelegate &dele, F32 dt = 0.0f) {
+				void addTickerInstance(const GalacticFrameTickerDelegate &dele, F64 dt = 0.0f) {
 					TickerInstance newInst(cTime + dt, dt, dele);
 					tickerList.pushToBack(newInst);
 				}

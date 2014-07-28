@@ -31,7 +31,7 @@ namespace Galactic {
 		*/
 		struct CPUTimeInfo {
 			//Default Constructor
-			CPUTimeInfo(F32 lastCPU, F32 lastCPUREL) {
+			CPUTimeInfo(F64 lastCPU, F64 lastCPUREL) {
 				lastCPUCyclePerc = lastCPU;
 				lastCPUCyclePerc_Relative = lastCPUREL;
 			}
@@ -45,9 +45,9 @@ namespace Galactic {
 			}
 
 			// How much CPU usage has occured since the last call to CPUTimeInfo?
-			F32 lastCPUCyclePerc;
+			F64 lastCPUCyclePerc;
 			// This is essentially the same as above, but the information is relative to one core. IE: If we had 2 cores, this number would be 2 * lastCPUCyclePerc
-			F32 lastCPUCyclePerc_Relative;
+			F64 lastCPUCyclePerc_Relative;
 		};
 
 		/*
@@ -176,7 +176,7 @@ namespace Galactic {
 					return F64(numCycles * timePerCycle * 1000.0f);
 				}
 				//Update the CPU time information
-				static bool updateCPUTimeInfo(F32 dT) {
+				static bool updateCPUTimeInfo(F64 dT) {
 					return true;
 				}
 				//Fetch the current timestamp

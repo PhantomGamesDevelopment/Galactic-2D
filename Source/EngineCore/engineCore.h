@@ -48,7 +48,7 @@ using namespace Galactic::Core;
 /*
  Extern Access: Give all of our global flags and tools access to the files.
 */
-extern F32  gVolumeModifier;
+extern F64  gVolumeModifier;
 extern bool gRunning;
 extern bool gWantExit;
 extern U32  gMainGameThreadID;

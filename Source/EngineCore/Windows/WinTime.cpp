@@ -17,7 +17,7 @@
 
 		namespace Core {
 
-			F32 PlatformTime::lastCPUCyclePerc_Relative = 0.0f;
+			F64 PlatformTime::lastCPUCyclePerc_Relative = 0.0f;
 
 			F64 PlatformTime::init() {
 				LARGE_INTEGER tFreq;
@@ -78,10 +78,10 @@
 				This calculation is briefly discussed in the SO article mentioned in genericPlatformTime.h. Essentially, you take a calculated value of a 
 				 relative core's processing time and divide it by the number of "logical" or working cores for the process.
 				*/
-				return CPUTimeInfo((lastCPUCyclePerc_Relative / (F32)PlatformOperations::numLogicalCores()), lastCPUCyclePerc_Relative);
+				return CPUTimeInfo((lastCPUCyclePerc_Relative / (F64)PlatformOperations::numLogicalCores()), lastCPUCyclePerc_Relative);
 			}
 
-			bool PlatformTime::updateCPUTimeInfo(F32 dT) {
+			bool PlatformTime::updateCPUTimeInfo(F64 dT) {
 				//This method is called by the CoreTicker each time around. Our job is to determine the relative cycles that were ran last time around in order
 				// for the getTimeInfo() method to properly calculate the current time.
 				static F64 lastProcessTime = 0.0f, lastTotalTime = 0.0f;
@@ -97,7 +97,7 @@
 				const F64 differentialUserAndCore = combUserAndCore - lastTotalTime;
 				if (differentialUserAndCore > 0.0f) {
 					//If the time has updated, update the CPU info...
-					lastCPUCyclePerc_Relative = F32(differentialUserAndCore / (differentialProcTime * 100.0f));
+					lastCPUCyclePerc_Relative = F64(differentialUserAndCore / (differentialProcTime * 100.0f));
 					lastProcessTime = currentProcTime;
 					lastTotalTime = combUserAndCore;
 				}

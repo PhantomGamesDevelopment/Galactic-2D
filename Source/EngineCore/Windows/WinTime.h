@@ -37,7 +37,7 @@
 					//Return a CPUTimeInfo object
 					static CPUTimeInfo getTimeInfo();
 					//Update the CPU time information
-					static bool updateCPUTimeInfo(F32 dT);
+					static bool updateCPUTimeInfo(F64 dT);
 
 				protected:
 					/* Protected Class Methods */
@@ -45,7 +45,7 @@
 					SFIN F64 convertFTToSeconds(const FILETIME &ft);
 					/* Protected Class Members */
 					//For windows, we only need the relatvie CPU processing for one core calculation to determine time.
-					static F32 lastCPUCyclePerc_Relative;
+					static F64 lastCPUCyclePerc_Relative;
 			};
 
 		};

@@ -190,7 +190,7 @@ namespace Galactic {
 				//If the platform has access to <sys/time.h>, then we can define some helpful sleep methods
 				#if GALACTIC_USE_SYS_TIME == 1
 					//Force the current thread to sleep for the specified time period, or set parameter 2 to true to sleep indefinitely
-					static void sleep(F32 seconds = 0.0f, bool sleepInfinite = false);
+					static void sleep(F64 seconds = 0.0f, bool sleepInfinite = false);
 				#endif
 		};
 
