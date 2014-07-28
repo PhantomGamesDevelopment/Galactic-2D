@@ -94,7 +94,9 @@ namespace Galactic {
 
 			S32 TSCounter::toS32() const {
 				//We're on a windows platform below vista, hence there is no actual convert-to-S32 function, since, we're already S32, push a warn()
-				GC_Warn("TSCounter::toS32(): This version of windows does not support 64-bit thread-safe counters, you may safely use fetch() to obtain the requested value.");
+				#if !(GALACTIC_DONT_REPORT_INTERNAL_ERRORS)
+					GC_Warn("TSCounter::toS32(): This version of windows does not support 64-bit thread-safe counters, you may safely use fetch() to obtain the requested value.");
+				#endif
 				return fetch();
 			}
 
