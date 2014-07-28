@@ -180,11 +180,11 @@ namespace Galactic {
 					return true;
 				}
 				//Fetch the current timestamp
-				static const TCHAR *fetchTimestamp();
+				static UTF16 fetchTimestamp();
 				//Fetch the system time
-				static void fetchSysTime(TCHAR *dst);
+				static void fetchSysTime(UTF8 dst);
 				//Fetch a date string
-				static void fetchDateString(TCHAR *dst);
+				static void fetchDateString(UTF8 dst);
 
 				/* If we have access to <sys/time.h>, define the time overlay */
 				#if GALACTIC_USE_SYS_TIME == 1

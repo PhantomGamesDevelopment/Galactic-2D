@@ -55,6 +55,25 @@ namespace Galactic {
 		};
 
 		/*
+		EventPool: A special container class instance that holds all of the Events queued in the engine
+		*/
+		class EventPool {
+			public:
+				/* Public Class Methods */
+				//Fetch the managedSingleton instance of this class
+				static EventPool &fetchInstance();
+				//Fetch the 'last' event from the pool
+				Event *fetchFromPool();
+				//Return an event to the pool
+				void returnToPool(Event *e);
+
+			private:
+				/* Private Class Members */
+				//The list of events stored in the engine
+				DynArray<Event *>ePool;
+		};
+
+		/*
 		SingleEvent: A special class that can scope an event to handle single-fire actions when necessary
 		*/
 		class SingleEvent : public ThreadBase {

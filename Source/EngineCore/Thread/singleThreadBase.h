@@ -73,23 +73,23 @@ namespace Galactic {
 				//Run the thread and it's relevant task (Called once per instance of FrameTicker::tick())
 				void run();
 				//hold(): orders the thread to hold execution
-				virtual void hold() = 0;
+				virtual void hold();
 				//resume(): orders the thread to resume execution
-				virtual void resume() = 0;
+				virtual void resume();
 				//kill(): deletes the thread, you can specify whether or not the thread should wait to die
-				virtual void kill(bool waitForCompletion = false) = 0;
+				virtual void kill(bool waitForCompletion = false);
 				//getThreadID(): returns the thread's ID
-				virtual U32 getThreadID() = 0;
+				virtual U32 getThreadID();
 				//getThreadName(): returns the thread's name
-				virtual String getThreadName() = 0;
+				virtual String getThreadName();
 				//setPriority(): set the priority of the thread
-				virtual void setPriority(ThreadPriority newPriority) = 0;
+				virtual void setPriority(ThreadPriority newPriority);
 				//setAffinityMask(): set the affinity mask of the thread
-				virtual void setAffinityMask(U64 newMask) = 0;
+				virtual void setAffinityMask(U64 newMask);
 				//waitForCompletion(): Hold the calling function/method until the thread is complete
-				virtual void waitForCompletion() = 0;
+				virtual void waitForCompletion();
 				//onCreated(): Simple internal callback
-				virtual bool onCreated() = 0;
+				virtual bool onCreated();
 
 			private:
 				/* Private Class Members */
@@ -107,6 +107,28 @@ namespace Galactic {
 				bool shouldDeleteObjThread;
 				//For single-threaded threads, we start the identification number "really really" high (2e16 - 1) for differentiation
 				static const U32 startIDAt = 65535;
+
+		};
+
+		/*
+		SingleThreadedThreadManager: The control class for the list of threads when multi-threading is disabled in the engine.
+		*/
+		class SingleThreadedThreadManager {
+			public:
+				/* Public Class Methods */
+				//Fetch the managedSingleton instance of the thread manager
+				static SingleThreadedThreadManager &fetchInstance();
+				//Send a run() event to all attached thread instances
+				void run();
+				//Add a thread instance to the manager
+				void add(SingleThreadedContinualThread *t);
+				//Remove a thread instance from the manager
+				void remove(SingleThreadedContinualThread *t);
+
+			private:
+				/* Private Class Members */
+				//The list containing the thread instances
+				DynArray<SingleThreadedContinualThread *> threadInstances;
 
 		};
 

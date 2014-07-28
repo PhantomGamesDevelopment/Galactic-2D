@@ -23,33 +23,37 @@ namespace Galactic {
 
 		F64 GenericPlatformTime::timePerCycle = 0.0f;
 
-		const TCHAR *GenericPlatformTime::fetchTimestamp() {
-			//Create a TCHAR array to store the result in.
-			static TCHAR timestamp[1024];
+		UTF16 GenericPlatformTime::fetchTimestamp() {
+			//Create a char array to store the result in.
+			static C8 timestamp[1024];
 			*timestamp = NULL;
 			//Fetch the time info
 			fetchDateString(timestamp);
-			strcat((UTF8)timestamp, " ");
+			//Note: This line generates C4996, however, strcat_s is not cross-platform compatible, so we ignore it.
+			#pragma warning( push )
+			#pragma warning( disable : 4996 )
+				strcat((UTF8)timestamp, " ");
+			#pragma warning( pop )
 			fetchSysTime(timestamp + strlen((UTF16)timestamp));
 			return timestamp;
 		}
 
-		void GenericPlatformTime::fetchSysTime(TCHAR *dst) {
+		void GenericPlatformTime::fetchSysTime(UTF8 dst) {
 			TimeVars t;
 			String result;
 			PlatformTime::sysTime(t);
 			//Convert to String
 			result = String::ToStr("%02d:%02d:%02d", t.hours, t.minutes, t.seconds);
-			dst = (TCHAR *)result.c_str();
+			dst = result.c_str();
 		}
 
-		void GenericPlatformTime::fetchDateString(TCHAR *dst) {
+		void GenericPlatformTime::fetchDateString(UTF8 dst) {
 			TimeVars t;
 			String result;
 			PlatformTime::sysTime(t);
 			//Convert to String
 			result = String::ToStr("%02d/%02d/%02d", t.months, t.dayNum, (t.years % 100));
-			dst = (TCHAR *)result.c_str();
+			dst = (UTF8 )result.c_str();
 		}
 
 		#if GALACTIC_USE_SYS_TIME == 1
