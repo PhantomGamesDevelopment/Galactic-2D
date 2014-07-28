@@ -123,7 +123,7 @@ namespace Galactic {
 				//stop(): contextual method called to perform cleanup operations on the thread once it is terminated
 				virtual void stop();
 				//fetchNMT(): special override method to fetch the similar thread from the NMT manager in the event the platform is single threaded.
-				virtual class NMTObjectThread *fetchNMT();
+				virtual class SingleThreadedObjThread *fetchNMT();
 		};
 
 		/*
@@ -199,7 +199,7 @@ namespace Galactic {
 			private:
 				/* Private Class Members */
 				//The internal thread registry
-				Map<U32, ContinualThread> tRegistry;
+				Map<U32, ContinualThread *> tRegistry;
 				//The attached critical section object
 				PlatformCriticalSection cSec;
 				//Flag for the status of the registry

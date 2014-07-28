@@ -12,8 +12,6 @@
 #ifndef GALACTIC_INTERNAL_MANAGED_SINGLETON
 #define GALACTIC_INTERNAL_MANAGED_SINGLETON
 
-#include "../platformTypes.h"
-
 namespace Galactic {
 
 	namespace Core {
@@ -42,7 +40,7 @@ namespace Galactic {
 				}
 
 				static UTF16 getInstanceName() {
-					return "EMPTY";
+					return "UNNAMED_SINGLETON_INSTACE";
 				}
 
 				static T* instance() {
