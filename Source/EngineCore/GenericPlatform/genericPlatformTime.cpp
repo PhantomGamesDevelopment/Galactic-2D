@@ -44,7 +44,11 @@ namespace Galactic {
 			PlatformTime::sysTime(t);
 			//Convert to String
 			result = String::ToStr("%02d:%02d:%02d", t.hours, t.minutes, t.seconds);
-			dst = result.c_str();
+			//Note: This line generates C4996, however, strcpy_s is not cross-platform compatible, so we ignore it.
+			#pragma warning( push )
+			#pragma warning( disable : 4996 )
+				strcpy(dst, result.c_str());
+			#pragma warning( pop )
 		}
 
 		void GenericPlatformTime::fetchDateString(UTF8 dst) {
