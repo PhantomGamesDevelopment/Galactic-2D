@@ -41,7 +41,7 @@ namespace Galactic {
 		*  deleted at any time, if this is the case, the weak pointer is also deleted. Unlike the strong references, if all weak references are
 		*  destroyed, the object is not destroyed.
 		*
-		* createStrongFromObj<T>: This is a special template class that is overloaded by a secondary class. Whenever the secondary class is instanced by
+		* makeRefPtr<T>: This is a special template class that is overloaded by a secondary class. Whenever the secondary class is instanced by
 		*  another method, it automatically creates a StrongReference<T> to the object.
 		*
 		* All of these classes have a secondary template parameter to declare thread-safety rules. These rules are specified under PointerModes::TSRules as
@@ -72,7 +72,7 @@ namespace Galactic {
 				//ThreadSafe: Slower than NonThreadSafe, however all functioning is completely thread safe
 				ThreadSafe = 1,
 				//Determine: Use this define to have the engine automatically determine which one of these modes to use
-				Determine = GALACTIC_THREADSAFE_SHAREDPTRS ? 1 : 0,
+				Determine = GALACTIC_THREADSAFE_STRONGPTRS ? 1 : 0,
 			};
 
 			//Tags: Declares a list of pointer tags that may be used throughout the engine
@@ -95,8 +95,8 @@ namespace Galactic {
 		template <class T, PointerModes::TSMode tsMode = PointerModes::Determine> class StrongReferencePtr;
 		//Forward declaration for WeakReferencePtr
 		template <class T, PointerModes::TSMode tsMode = PointerModes::Determine> class WeakReferencePtr;
-		//Forward declaration for createStrongFromObj conversion class
-		template <class T, PointerModes::TSMode tsMode = PointerModes::Determine> class createStrongFromObj;
+		//Forward declaration for makeRefPtr conversion class
+		template <class T, PointerModes::TSMode tsMode = PointerModes::Determine> class makeRefPtr;
 		//Forward declaration for WeakObject
 		template <PointerModes::TSMode tsMode> class WeakObject;
 		//Forward declaration for Reference
@@ -469,7 +469,7 @@ namespace Galactic {
 		/* These last methods are used to create strong reference pointers by providing an object to it */
 
 		template <class strongType, class objType, class newType, PointerModes::TSMode mode> FINLINE
-		void createStrongFromObject(const StrongReferencePtr<strongType, mode> *strongPtr, const objType *obj, const createStrongFromObj<newType, mode> *newPtr) {
+		void MakeRefPtr(const StrongReferencePtr<strongType, mode> *strongPtr, const objType *obj, const makeRefPtr<newType, mode> *newPtr) {
 			if (newPtr != NULL) {
 				#define GALACTIC_CREATESTRONGFROMOBJ_UPDATEWEAKREFERENCES_INTERNALCALL
 					newPtr->updateWeakReferences(strongPtr, const_cast<objType *>(obj));
@@ -478,7 +478,7 @@ namespace Galactic {
 		}
 
 		template <class strongType, class objType, class newType, PointerModes::TSMode mode> FINLINE
-		void createStrongFromObject(StrongReferencePtr<strongType, mode> *strongPtr, const objType *obj, const createStrongFromObj<newType, mode> *newPtr) {
+		void MakeRefPtr(StrongReferencePtr<strongType, mode> *strongPtr, const objType *obj, const makeRefPtr<newType, mode> *newPtr) {
 			if (newPtr != NULL) {
 				#define GALACTIC_CREATESTRONGFROMOBJ_UPDATEWEAKREFERENCES_INTERNALCALL
 					newPtr->updateWeakReferences(strongPtr, const_cast<objType *>(obj));
@@ -487,7 +487,7 @@ namespace Galactic {
 		}
 
 		template <class strongType, class objType, class newType, PointerModes::TSMode mode> FINLINE
-		void createStrongFromObject(const StrongReference<strongType, mode> *strongRef, const objType *obj, const createStrongFromObj<newType, mode> *newPtr) {
+		void MakeRefPtr(const StrongReference<strongType, mode> *strongRef, const objType *obj, const makeRefPtr<newType, mode> *newPtr) {
 			if (newPtr != NULL) {
 				#define GALACTIC_CREATESTRONGFROMOBJ_UPDATEWEAKREFERENCES_INTERNALCALL
 					newPtr->updateWeakReferences(strongRef, const_cast<objType *>(obj));
@@ -496,7 +496,7 @@ namespace Galactic {
 		}
 
 		template <class strongType, class objType, class newType, PointerModes::TSMode mode> FINLINE
-		void createStrongFromObject(StrongReference<strongType, mode> *strongRef, const objType *obj, const createStrongFromObj<newType, mode> *newPtr) {
+		void MakeRefPtr(StrongReference<strongType, mode> *strongRef, const objType *obj, const makeRefPtr<newType, mode> *newPtr) {
 			if (newPtr != NULL) {
 				#define GALACTIC_CREATESTRONGFROMOBJ_UPDATEWEAKREFERENCES_INTERNALCALL
 					newPtr->updateWeakReferences(strongRef, const_cast<objType *>(obj));
@@ -504,9 +504,9 @@ namespace Galactic {
 			}
 		}
 		
-		FINLINE void createStrongFromObject(...) {
+		FINLINE void MakeRefPtr(...) {
 			//ToDo: Throw some kind of assert here for invalid creation?
-			//GC_Error("createStrongFromObject() [reference.h, 755]: Unable to deduce target pointer with specified arguments.");
+			//GC_Error("makeRefPtr() [reference.h, 755]: Unable to deduce target pointer with specified arguments.");
 		}
 
 		/**************************************************************************************************************************
@@ -877,17 +877,17 @@ namespace Galactic {
 		};
 
 		/*
-		createStrongFromObj: A helper class instance that is attached to a class instance to create a StrongReference<> instance of the class
+		makeRefPtr: A helper class instance that is attached to a class instance to create a StrongReference<> instance of the class
 		whenever it is created.
 		*/
-		template <class T, PointerModes::TSMode m> class createStrongFromObj {
+		template <class T, PointerModes::TSMode m> class makeRefPtr {
 			public:
 				/* Public Class Methods */
 				//Return the specified object as a StrongReference instance
 				StrongReference<T, m> becomeStrongRef() {
 					StrongReferencePtr<T, m> strRef(weakSelf.toStrongRefPtr());
 					if (strRef.getPointer() != this) {
-						GC_Error("createStrongFromObj::becomeStrongRef(): Cannot instance a strongReference. This is likely due to one of two reasons. 1. You called this in a constructor, 2. You called this while the object was being deleted.");
+						GC_Error("makeRefPtr::becomeStrongRef(): Cannot instance a strongReference. This is likely due to one of two reasons. 1. You called this in a constructor, 2. You called this while the object was being deleted.");
 						return;
 					}
 					return strRef.toStrongRef();
@@ -896,7 +896,7 @@ namespace Galactic {
 				StrongReference<const T, m> becomeStrongRef() const {
 					StrongReferencePtr<T, m> strRef(weakSelf.toStrongRefPtr());
 					if (strRef.getPointer() != this) {
-						GC_Error("createStrongFromObj::becomeStrongRef(): Cannot instance a strongReference. This is likely due to one of two reasons. 1. You called this in a constructor, 2. You called this while the object was being deleted.");
+						GC_Error("makeRefPtr::becomeStrongRef(): Cannot instance a strongReference. This is likely due to one of two reasons. 1. You called this in a constructor, 2. You called this while the object was being deleted.");
 						return;
 					}
 					return strRef.toStrongRef();
@@ -943,15 +943,15 @@ namespace Galactic {
 
 				/* Hidden Constructors */
 				//Default Constructor
-				createStrongFromObj() { }
+				makeRefPtr() { }
 				//Copy Constructor
-				createStrongFromObj(const createStrongFromObj &c) { }
+				makeRefPtr(const makeRefPtr &c) { }
 				//Destructor
-				~createStrongFromObj() { }
+				~makeRefPtr() { }
 
 				/* Operators */
 				//Assignment operator (Hidden)
-				FINLINE createStrongFromObj& operator=(const createStrongFromObj &c) {
+				FINLINE makeRefPtr& operator=(const makeRefPtr &c) {
 					return *this;
 				}
 

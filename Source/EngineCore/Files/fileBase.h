@@ -23,7 +23,7 @@ namespace Galactic {
 			FileBase: This is a strongly referenced class that is the center of the File I/O system in the Galactic Engine. Our other file classes base from 
 			 this object here.
 			*/
-			class FileBase : public createStrongFromObj<FileBase> {
+			class FileBase : public makeRefPtr<FileBase> {
 				public:
 					virtual ~FileBase() { }
 			};

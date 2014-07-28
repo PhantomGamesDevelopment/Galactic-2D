@@ -94,7 +94,7 @@ namespace Galactic {
 					return new DELEGATE_STRONGPOINTER_CLASS <T, DELEGATE_FUNCTION_TEMPLATE_ARGUMENTS, m>(c, p DELEGATE_ARGUMENT_ASSIGN_W_COMMA);
 				}
 
-				//Create an instance from a class instanced by createStrongFromObj
+				//Create an instance from a class instanced by makeRefPtr
 				SFIN DELEGATE_INSTANCE_CLASS <DELEGATE_FUNCTION_TEMPLATE_ARGUMENTS> *createInstance(T *trgObj, methodPointer p DELEGATE_ARGUMENT_LIST_W_COMMA) {
 					StrongReference<T> objectRef(StaticCastStrongReference<T>(trgObj->becomeStrongRef()));
 					return new DELEGATE_STRONGPOINTER_CLASS <T, DELEGATE_FUNCTION_TEMPLATE_ARGUMENTS, m>(objectRef, p DELEGATE_ARGUMENT_ASSIGN_W_COMMA);

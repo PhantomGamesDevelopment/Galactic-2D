@@ -44,13 +44,13 @@
 **/
 #define GALACTIC_DISABLE_MULTITHREADING 0
 
-//GALACTIC_THREADSAFE_SHAREDPTRS
+//GALACTIC_THREADSAFE_STRONGPTRS
 /**
-	This define controls whether or not our shared_ptr classes must be thread safe at all times. You should consider performance gains/losses for 
+	This define controls whether or not our strongReference classes must be thread safe at all times. You should consider performance gains/losses for 
 	this setting, also, be aware that you should only ever use this define if you're running a hyperfast computer that can handle parallel code
 	execution without any performance hits. You should leave this define as 0 for builds of products being launched to unknown platforms
 **/
-#define GALACTIC_THREADSAFE_SHAREDPTRS 0
+#define GALACTIC_THREADSAFE_STRONGPTRS 0
 
 //GALACTIC_MAXIMUM_WORKING_THREADS
 /**
@@ -59,6 +59,14 @@
 	define this to be a larger number. The engine itself defines this by default as 8.
 **/
 #define GALACTIC_MAXIMUM_WORKING_THREADS 8
+
+//GALACTIC_THREAD_DEFAULT_STACKSIZE
+/*
+	This define is used to declare the default amount of space needed by the threading system on the stack by the engine. This value should
+	typically be on a power of 2 and not too significant, but also not too small to limit the system. By default this is specified as a value
+	of 32K, or 2^15.
+*/
+#define GALACTIC_THREAD_DEFAULT_STACKSIZE 32768
 
 //GALACTIC_USE_NETWORKING
 /**
