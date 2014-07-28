@@ -36,6 +36,29 @@ namespace Galactic {
 					S64 fetch() const;
 					//Convert the counter to a 32-bit integer, if possible
 					S32 toS32() const;
+					//Add one to the counter
+					S64 inc();
+					//Decrement one from the coutner
+					S64 dec();
+					//Add to the counter
+					S64 add(S64 amount);
+					//Subtract from the counter
+					S64 sub(S64 amount);
+					//Set the counter to the specified value, pass no parameter to reset the counter
+					S64 set(S64 value = 0);
+
+					/* Operators */
+					//Increment Operator
+					S64 operator++();
+					//Decrement Operator
+					S64 operator--();
+					//Addition Operator
+					S64 operator+=(S64 amount);
+					//Subtraction Operator
+					S64 operator-=(S64 amount);
+					//Application Operator
+					S64 operator=(S64 value);
+
 				#else
 					//Default Constructor
 					TSCounter(S32 initValue = 0);
@@ -46,12 +69,35 @@ namespace Galactic {
 					//Fetch the value on the counter
 					S32 fetch() const;
 					//Convert the counter to a 32-bit integer, if possible
-					S32 toS32() const { GC_Error("TSCounter::toS32(): This version of windows does not support 64-bit thread counters."); return fetch(); }
+					S32 toS32() const;
+					//Add one to the counter
+					S32 inc();
+					//Decrement one from the coutner
+					S32 dec();
+					//Add to the counter
+					S32 add(S32 amount);
+					//Subtract from the counter
+					S32 sub(S32 amount);
+					//Set the counter to the specified value, pass no parameter to reset the counter
+					S32 set(S32 value = 0);
+
+					/* Operators */
+					//Increment Operator
+					S32 operator++();
+					//Decrement Operator
+					S32 operator--();
+					//Addition Operator
+					S32 operator+=(S32 amount);
+					//Subtraction Operator
+					S32 operator-=(S32 amount);
+					//Application Operator
+					S32 operator=(S32 value);
+
 				#endif
 
 			private:
 				/* Private Class Methods */
-				//Block access to the = operator
+				//Block access to the assignment operator
 				void operator=(const TSCounter &) { }
 
 				/* Private Class Members */
