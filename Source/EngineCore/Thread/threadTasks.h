@@ -127,26 +127,131 @@ namespace Galactic {
 		};
 
 		/*
-		WorkPool: Holds all instances of Work objects and their individual threads in a queue to be executed in order that they were added to the list of
-		 items to be done.
+		WorkerThread: A thread instance used to perform a work task. Think of this as the ObjectThread instance where Work can be treated as a form of
+		 Event class.
 		*/
-		class WorkPool {
+		class WorkerThread : public ObjectThread {
+			public:
+				/* Constructor / Destructor */
+				//Default Constructor
+				WorkerThread();
 
+				/* Public Class Methods */
+				//Create an instance of the WorkedThread
+				virtual bool create(class WorkPoolBase *owningPool, ThreadBase::ThreadPriority p = ThreadBase::Normal, U32 stackSize = 0);
+				//Order the thread to perform it's work
+				void performWork(Work *workToDo);
+				//Kill this thread instance
+				virtual bool kill();
+
+			protected:
+				/* Protected Class Methods */
+				//The process to run when this thread is called
+				virtual U32 run();
+
+				/* Protected Class Members */
+				//Flag to tell the thread to die, since the pool is also by definition thread-safe (wierd, right), we use a integer under an atomic lock here.
+				volatile S32 killThreadFlag;
+				//The thread instance of the workerThread
+				ContinualThread *threadInst;
+				//The instance of the thread pool this belongs to
+				class WorkPoolBase *poolInst;
+				//The event object (if any), this thread is attached to
+				Event *workEvent;
+				//And the work task itself...
+				volatile Work *threadWork;
 		};
 
 		/*
-		ThreadedSingletonObject: A very special and unique thread class that defines a list of properties and parameters to allow singleton instances to be
-		 globally safe throughout the engine when working with multiple threads.
+		WorkPoolBase: Holds all instances of Work objects and their individual threads in a queue to be executed in order that they were added to the list of
+		 items to be done. However, this only defines some template instances, the actual class used by the engine is right below MutexLock.
 		*/
-		class ThreadedSingletonObject {
+		class WorkPoolBase {
+			public:
+				/* Constructor / Destructor */
+				//Destructor
+				virtual ~WorkPoolBase() { }
 
+				/* Public Class Methods */
+				//Allocate an instance of the WorkPoolBase for use
+				static WorkPoolBase *createInstance();
+				//Create the thread pool with the specified number of threads and properties
+				virtual bool createWithAmount(U32 amountOfThreads, ThreadBase::ThreadPriority p = ThreadBase::Normal, U32 stackSize = GALACTIC_THREAD_DEFAULT_STACKSIZE) = 0;
+				//Kill off any thread instances
+				virtual void cleanThreads() = 0;
+				//Add a work object to the pool
+				virtual void addWork(Work *w) = 0;
+				//Fetch the next task.
+				virtual Work *fetchNextTask(WorkerThread *toPool) = 0;
+				//Remove a work object from the pool
+				virtual bool removeWork(Work *w) = 0;
 		};
 
 		/*
 		MutexLock: A useful class to "lock" aspects of a class to be off limits to other threads while execution is in process in the current thread.
 		*/
 		class MutexLock {
+			public:
+				/* Constructor / Destructor */
+				//Creation Constructor
+				MutexLock(PlatformCriticalSection *cs);
+				//Destructor
+				~MutexLock();
 
+			private:
+				/* Private (Blocked) Constructors / Destructors */
+				//Default Constructor 
+				MutexLock();
+				//Copy Constructor
+				MutexLock(const MutexLock &);
+
+				/* Private (Blocked) Operators */
+				//Block the assignment operator
+				MutexLock& operator=(const MutexLock &) {
+					return *this;
+				}
+
+				/* Private Class Members */
+				//The critical section object used to perform the lock
+				PlatformCriticalSection *cSec;
+		};
+
+		/*
+		WorkPool: The primary thread management class in the engine. This class is responsible for storing lists of various events, threads, and instanced 
+		 objects that use the threading system throughout the engine.
+		*/
+		class WorkPool : public WorkPoolBase {
+			public:
+				/* Constructor / Destructor */
+				//Constructor
+				WorkPool();
+				//Destructor
+				virtual ~WorkPool() { }
+
+				/* Public Class Methods */
+				//Create the thread pool with the specified number of threads and properties
+				virtual bool createWithAmount(U32 amountOfThreads, ThreadBase::ThreadPriority p = ThreadBase::Normal, U32 stackSize = GALACTIC_THREAD_DEFAULT_STACKSIZE);
+				//Kill off any thread instances
+				virtual void cleanThreads();
+				//Add a work object to the pool
+				virtual void addWork(Work *w);
+				//Fetch the next task.
+				virtual Work *fetchNextTask(WorkerThread *toPool);
+				//Remove a work object from the pool
+				virtual bool removeWork(Work *w);
+
+			protected:
+				/* Protected Class Members */
+				//The critical section object attached to this pool.
+				PlatformCriticalSection *cSec;
+				//The destruction process has begun
+				bool isBeingDeleted;
+				//List of all of the thread objects being stored
+				DynArray<WorkerThread *> allThreadObjects;
+				//List of all of the work that needs to be done.
+				DynArray<Work *> jobsToDo;
+				//List of available threads to perform those jobsToDo
+				DynArray<WorkerThread *> openWorkerThreads;
 		};
 
 	};

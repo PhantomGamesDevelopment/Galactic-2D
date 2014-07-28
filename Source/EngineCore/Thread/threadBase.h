@@ -127,39 +127,6 @@ namespace Galactic {
 		};
 
 		/*
-		threadRegistry: A small and compact struct system used to register and store threads in a simple to access system.
-		*/
-		struct threadRegistry {
-			public:
-				/* Public Struct Members */
-				//add(): Add thread to registry
-				void add(U32 id, class ContinualThread *t);
-				//remove(): Remove a thread from the registry based on ID
-				void remove(U32 id);
-				//fetch(): Fetch the specified thread based on it's ID
-				class ContinualThread *fetch(U32 id);
-				//count(): Get the number of threads in the registry
-				S32 count();
-				//lock(): lock the current thread
-				void lock();
-				//unlock(): unlock the current thread
-				void unlock();
-				//reset(): reset the updated flag
-				void reset();
-				//isUpdated(): check if the registry is updated
-				bool isUpdated();
-
-			private:
-				/* Private Struct Members */
-				//The internal thread registry
-				Map<U32, class ContinualThread> tRegistry;
-				//The attached critical section object
-				PlatformCriticalSection cSec;
-				//Flag for the status of the registry
-				bool updated;
-		};
-
-		/*
 		ContinualThread: The main threading class of the engine, places all of the common threading concepts and methods into one easy
 		to deploy and use class.
 		*/
@@ -188,8 +155,6 @@ namespace Galactic {
 				virtual void setAffinityMask(U64 newMask) = 0;
 				//waitForCompletion(): Hold the calling function/method until the thread is complete
 				virtual void waitForCompletion() = 0;
-				//fetch the thread registry object
-				static threadRegistry &fetchRegistry();
 				//Returns a delegate for thread destruction
 				BasicMulticastDelegate &onDestroyed();
 
@@ -203,6 +168,42 @@ namespace Galactic {
 				/* Protected Class Members */
 				//Stored delegate method for the onDestroyed() callback
 				BasicMulticastDelegate onThreadDestroyedDelegate;
+		};
+
+		/*
+		threadRegistry: A singleton instance that stores all of the ContinualThread instances in a simple to use and access map that uses the direct
+		 instances as well as a provided ID.
+		*/
+		class threadRegistry {
+			public:
+				/* Public Class Methods */
+				//fetch the thread registry singleton instance
+				static threadRegistry &fetchInstance();
+				//add(): Add thread to registry
+				void add(U32 id, ContinualThread *t);
+				//remove(): Remove a thread from the registry based on ID
+				void remove(U32 id);
+				//fetch(): Fetch the specified thread based on it's ID
+				ContinualThread *fetch(U32 id);
+				//count(): Get the number of threads in the registry
+				S32 count();
+				//lock(): lock the current thread
+				void lock();
+				//unlock(): unlock the current thread
+				void unlock();
+				//reset(): reset the updated flag
+				void reset();
+				//isUpdated(): check if the registry is updated
+				bool isUpdated();
+
+			private:
+				/* Private Class Members */
+				//The internal thread registry
+				Map<U32, ContinualThread> tRegistry;
+				//The attached critical section object
+				PlatformCriticalSection cSec;
+				//Flag for the status of the registry
+				bool updated;
 		};
 
 	};
