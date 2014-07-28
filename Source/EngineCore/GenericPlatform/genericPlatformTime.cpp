@@ -57,7 +57,10 @@ namespace Galactic {
 			PlatformTime::sysTime(t);
 			//Convert to String
 			result = String::ToStr("%02d/%02d/%02d", t.months, t.dayNum, (t.years % 100));
-			dst = (UTF8 )result.c_str();
+			#pragma warning( push )
+			#pragma warning( disable : 4996 )
+				strcpy(dst, result.c_str());
+			#pragma warning( pop )
 		}
 
 		#if GALACTIC_USE_SYS_TIME == 1

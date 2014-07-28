@@ -19,6 +19,11 @@ namespace Galactic {
 		*/
 		class TSCounter {
 			public:	
+				/* 
+				Note: This definition block is here for the reason discussed in WinAtomics.h, Windows platforms below Windows Vista do not support
+				 Atomic Locking Functions that use 64-bit integers, this system therefore provides those platforms with a 32-bit framework that can
+				 function alongside the standard 64-bit version.
+				*/
 				#if (!defined(GALACTIC_WINDOWS) || WINVER >= 0x0600)
 					/* Constructor / Destructor */
 					//Default Constructor

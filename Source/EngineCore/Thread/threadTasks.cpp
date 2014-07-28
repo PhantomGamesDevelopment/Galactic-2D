@@ -1,9 +1,9 @@
 /**
 * Galactic 2D
 * (C) 2014 Phantom Games Development - All Rights Reserved
-* singleThreadBase.cpp
+* threadTasks.cpp
 *
-* Defines threading classes to be used when the engine is running in single-threaded mode
+* Defines classes and operations to wire together the threading classes defined in threadBase.h & singleThreadBase.h
 **/
 
 #include "../engineCore.h"
