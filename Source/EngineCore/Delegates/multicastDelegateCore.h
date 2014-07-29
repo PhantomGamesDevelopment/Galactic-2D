@@ -62,8 +62,7 @@ namespace Galactic {
 					if (!listNeedsCleaning || listLockCounter > 0) {
 						return;
 					}
-					for (S32 i = mcInstances.size(); i > 0; i--) {
-						DelegateInstance *iter = mcInstances[i];
+					for (DelegateInstance *iter = mcInstances.back(); iter != mcInstances.front(); iter--) {
 						//Start at the end of the list and clean out any spaces that are NULL.
 						if (iter == NULL || iter->canExpireMCDelegates()) {
 							mcInstances.erase((U32)i);
