@@ -137,6 +137,22 @@ namespace Galactic {
 			}
 		}
 
+		void SingleThreadedThreadManager::add(SingleThreadedContinualThread *t) {
+			if (t == NULL) {
+				GC_Error("ThreadManager::add(): Cannot add a NULL thread to the list.");
+				return;
+			}
+			threadInstances.pushToBack(t);
+		}
+
+		void SingleThreadedThreadManager::remove(SingleThreadedContinualThread *t) {
+			if (t == NULL) {
+				GC_Error("ThreadManager::remove(): Cannot remove a NULL thread from the list.");
+				return;
+			}
+			threadInstances.eraseSpecific(t);
+		}
+
 	};
 
 };
