@@ -33,7 +33,7 @@ namespace Galactic {
 				In numerous places we have to back out values where the BitCount doesn't match the bits used by the type. To safely back out
 				 the original value, we use a left shift of the original BitCount wrote.
 				*/ 
-				#define BackBitShift(x) ((1 << x) - 1)
+				#define BackBitShift(x) (CreateLevel1Mask(x) - 1)
 
 				public:
 					/* Public Class Methods */

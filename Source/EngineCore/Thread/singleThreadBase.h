@@ -69,7 +69,7 @@ namespace Galactic {
 
 				/* Public Class Methods */
 				//Create an instance of the thread
-				virtual bool create(UTF16 name, SingleThreadedObjThread *refObjThrd, bool delObjThrd_exit = false, bool delSelf_exit = false, U64 stackSize = 0, ThreadPriority p = Normal, U64 affinityMask = 0);
+				virtual bool create(UTF16 name, ObjectThread *refObjThrd, bool delObjThrd_exit = false, bool delSelf_exit = false, U64 stackSize = 0, ThreadPriority p = Normal, U64 affinityMask = 0);
 				//Run the thread and it's relevant task (Called once per instance of FrameTicker::tick())
 				void run();
 				//hold(): orders the thread to hold execution
@@ -77,7 +77,7 @@ namespace Galactic {
 				//resume(): orders the thread to resume execution
 				virtual void resume();
 				//kill(): deletes the thread, you can specify whether or not the thread should wait to die
-				virtual void kill(bool waitForCompletion = false);
+				virtual bool kill(bool waitForCompletion = false);
 				//getThreadID(): returns the thread's ID
 				virtual U32 getThreadID();
 				//getThreadName(): returns the thread's name
@@ -106,8 +106,7 @@ namespace Galactic {
 				//Should the thread delete the associated object thread when destroyed (Treat this instance as a strongReference)?
 				bool shouldDeleteObjThread;
 				//For single-threaded threads, we start the identification number "really really" high (2e16 - 1) for differentiation
-				static const U32 startIDAt = 65535;
-
+				static U32 startIDAt;
 		};
 
 		/*
@@ -129,7 +128,6 @@ namespace Galactic {
 				/* Private Class Members */
 				//The list containing the thread instances
 				DynArray<SingleThreadedContinualThread *> threadInstances;
-
 		};
 
 	};

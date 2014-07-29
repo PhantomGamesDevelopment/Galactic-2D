@@ -32,6 +32,7 @@ namespace Galactic {
 					//Highest: Declare the thread to have the highest priority in the system
 					Highest,
 					//Note: While Realtime is also a standard thread priority level, we don't actually need it in the engine, so it's ignored.
+					//Realtime,
 				};
 		};
 
@@ -144,7 +145,7 @@ namespace Galactic {
 				//resume(): orders the thread to resume execution
 				virtual void resume() = 0;
 				//kill(): deletes the thread, you can specify whether or not the thread should wait to die
-				virtual void kill(bool waitForCompletion = false) = 0;
+				virtual bool kill(bool waitForCompletion = false) = 0;
 				//getThreadID(): returns the thread's ID
 				virtual U32 getThreadID() = 0;
 				//getThreadName(): returns the thread's name

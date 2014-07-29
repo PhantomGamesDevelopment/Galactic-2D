@@ -21,6 +21,10 @@ namespace Galactic {
 
 		}
 
+		U64 GenericPlatformProcess::fetchAffinityMask(UTF16 name) {
+			return U64DEF(0xffffffffffffffff);
+		}
+
 	};
 
 };

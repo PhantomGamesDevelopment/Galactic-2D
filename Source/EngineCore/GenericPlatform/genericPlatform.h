@@ -179,6 +179,8 @@ namespace Galactic {
 				/* Misc Functions */
 				//Is this platform multithreaded?
 				static bool isMultithreaded();
+				//Fetch the affinity mask based on the name of the thread
+				static U64 fetchAffinityMask(UTF16 name);
 				//create a event object
 				static class Event *createEvent(bool manualReset = false);
 				//create a continual thread object

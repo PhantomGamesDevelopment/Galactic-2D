@@ -35,4 +35,12 @@
 //Force result to boolean
 #define FBOOL(x) !!x
 
+/* Trickery Functions, Asset Tools */
+//Create Level 1 64-Bit Mask
+#define CreateLevel1Mask(v1) (1 << v1)
+//Create Level 2 64-Bit Mask
+#define CreateLevel2Mask(v1, v2) ((1 << v1) + (1 << v2))
+//Create Level 3 64-Bit Mask
+#define CreateLevel3Mask(v1, v2, v3) ((1 << v1) + (1 << v2) + (1 << v3))
+
 #endif //GALACTIC_DEFINES
