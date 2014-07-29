@@ -159,7 +159,7 @@ namespace Galactic {
 				//The event object (if any), this thread is attached to
 				Event *workEvent;
 				//And the work task itself...
-				volatile Work *threadWork;
+				Work * volatile threadWork;
 		};
 
 		/*
