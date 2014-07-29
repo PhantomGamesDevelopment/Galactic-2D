@@ -79,6 +79,16 @@ namespace Galactic {
 					return false;
 				}
 				//Once we get past this step, we can start initializing our game's core systems.
+				//Load in the thread pool...
+				if (PlatformProcess::isMultithreaded()) {
+					G_ThreadPool = WorkPoolBase::createInstance();
+					//How many threads do we want in there?
+					S32 threadsToSpawn = PlatformOperations::numThreadsToSpawn();
+					if (!G_ThreadPool->createWithAmount(threadsToSpawn)) {
+						//Something went wrong, unfortunately, the console isn't initalized yet, so GC_Error can't be used here.
+						// ToDo: Add some kind of pre-init buffer for the console to push init messages on to.
+					}
+				}
 				//Load up the Genre Controller
 				managedSingleton<Galactic::Engine::Game::Genre>::createInstance();
 				//Load the Console and the Scripting Engine

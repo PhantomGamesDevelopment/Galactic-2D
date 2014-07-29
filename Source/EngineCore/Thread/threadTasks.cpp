@@ -12,6 +12,8 @@ namespace Galactic {
 
 	namespace Core {
 
+		WorkPoolBase *G_ThreadPool = NULL;
+
 		/*
 		TSCounter Class Definitions
 		*/

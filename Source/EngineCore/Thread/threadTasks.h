@@ -254,6 +254,9 @@ namespace Galactic {
 				DynArray<WorkerThread *> openWorkerThreads;
 		};
 
+		//Global Definition of the Thread Pool
+		extern WorkPoolBase *G_ThreadPool;
+
 	};
 
 };
