@@ -30,6 +30,7 @@ namespace Galactic {
 
 //Load up the tools
 #include "Tools/advTools.h"
+#include "Tools/strTools.h"
 #include "Tools/dynArray.h"
 #include "Tools/string.h"
 #include "Tools/mSingleton.h"

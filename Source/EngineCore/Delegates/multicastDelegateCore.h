@@ -65,7 +65,7 @@ namespace Galactic {
 					for (DelegateInstance *iter = mcInstances.back(); iter != mcInstances.front(); iter--) {
 						//Start at the end of the list and clean out any spaces that are NULL.
 						if (iter == NULL || iter->canExpireMCDelegates()) {
-							mcInstances.erase((U32)i);
+							mcInstances.eraseSpecific(iter);
 						}
 						//Compact the array
 						mcInstances.compact();

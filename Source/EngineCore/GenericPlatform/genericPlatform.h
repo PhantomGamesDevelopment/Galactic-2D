@@ -80,7 +80,7 @@ namespace Galactic {
 		};
 
 		//Forward declaration for platform specific version of processHandle
-		class pHandle;
+		class PlatformHandle;
 
 		/*
 		GenericPlatformProcess: Declares a set of methods that are platform specific. Most of these tend to be template functions and some are just
@@ -88,10 +88,13 @@ namespace Galactic {
 		*/
 		class GenericPlatformProcess {
 			public:
-				/* 
-				Special Note: Everything in this class is public, so there's no need for special separation comments. Y/w :) ~Phantom 
-				Instead I'll separate things by what they do as a process
+				/*
+				AffinityInfo: Declares a basic structure to store affinity data for the thread pool manager
 				*/
+				struct AffinityInfo {
+					UTF16 threadName;
+					U64 affinityMask;
+				};
 
 				/*
 				Semaphore: Declare a platform specific semaphore object
@@ -102,7 +105,7 @@ namespace Galactic {
 						//Constructor
 						Semaphore(const String &name);
 						//Destructor
-						virtual ~Semaphore();
+						virtual ~Semaphore() { }
 
 						/* Public Class Methods */
 						//acquire(): force the system to obtain the semaphore lock for the specified thread
@@ -112,7 +115,7 @@ namespace Galactic {
 						//tryAcquire(): Safer form of acquire, set the system to try to acquire the lock over a specified time
 						virtual bool tryAcquire(U64 nsToWait) = 0;
 						//getName(): Get the stored name on the object
-						UTF16 getName() const;
+						UTF16 getName() const { return semName; };
 
 					protected:
 						/* Protected Class Members */
@@ -152,27 +155,27 @@ namespace Galactic {
 
 				/* Process Functions */
 				//Launch a new process with the given parameters
-				static pHandle launchProcess(UTF16 path, UTF16 args, bool newWindow, bool minimized, bool hiddenProcess, U32 forceID, S32 threadPriority, UTF16 procWD);
+				static PlatformHandle launchProcess(UTF16 path, UTF16 args, bool newWindow, bool minimized, bool hiddenProcess, U32 forceID, S32 threadPriority, UTF16 procWD);
 				//Launch a processes with normal level access
 				static bool launchProcess(UTF16 path, UTF16 args, S32 *retCodePtr, String *stdOut, String *stdErr);
 				//Launch a process with admin access
 				static bool launchAdminProcess(UTF16 path, UTF16 args, S32 *retCodePtr);
 				//Check is the specified process is active
-				static bool activeProc(pHandle &proc);
+				static bool activeProc(PlatformHandle &proc);
 				//Duplicate of above, uses process id
 				static bool activeProc(U32 procID);
 				//Duplicate of above, uses process name
 				static bool activeProc(UTF16 procName);
 				//Assign a flag to the specified process that it must stop before the main process can also stop
-				static void forceMustStop(pHandle &proc);
+				static void forceMustStop(PlatformHandle &proc);
 				//Returns the name of the process if one is present
 				static UTF16 getProcName(U32 procID);
 				//Return a flag based on if the process has focus
 				static bool hasFocus();
 				//Get the return code from the specified process
-				static bool getReturnCode(pHandle &proc, S32 *retCodePtr);
+				static bool getReturnCode(PlatformHandle &proc, S32 *retCodePtr);
 				//Terminate the process, set the second flag to true to terminate all sub-processes as well
-				static void terminateProc(pHandle &proc, bool termSubProc = false);
+				static void terminateProc(PlatformHandle &proc, bool termSubProc = false);
 				//Switch the process into a standard deamon/service
 				static bool becomeServiceProcess();
 
@@ -194,6 +197,11 @@ namespace Galactic {
 					//Force the current thread to sleep for the specified time period, or set parameter 2 to true to sleep indefinitely
 					static void sleep(F64 seconds = 0.0f, bool sleepInfinite = false);
 				#endif
+
+			protected:
+				/* Protected Class Members */
+				//Affinity manager information
+				static AffinityInfo affinityInformation[GALACTIC_AFFINITY_MANAGER_THREADCOUNT];
 		};
 
 	};

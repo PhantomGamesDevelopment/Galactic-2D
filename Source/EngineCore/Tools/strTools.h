@@ -15,37 +15,21 @@ namespace Galactic {
 
 	namespace Core {
 
-		//String Tools...
-		// Used to do things with strings...
+		/*
+		StrTools: A Global instance of methods and operations to work with and manipulate strings and instances of strings.
+		*/
+		struct StrTools {
 
-		/**
-		getToken() - This allows you to pull a piece of a token deliminated string out.
-		EX: getToken("Str1\tStr2\tStr3", "\t", 1) == Str2
-		**/
-		UTF16 getToken(UTF16 str, UTF16 token, S32 index) {
-			UTF8 result = strtok(const_cast<UTF8>(str), token);
-			while(result != NULL) {
-				if(index-- < 0) {
-					return result;
-				}
-				result = strtok(NULL, token); //<--- First param NULL tells the function to use the existing string buffer.
+			//isWSpace(): Returns true if the specified character is a whitespace char.
+			SFIN bool isWSpace(C8 c) {
+				return (c == ' ' || c == '\t');
 			}
-			return NULL;
-		}
 
-		/**
-		getTokenCount() - Returns the amount of token deliminated strings exist in a parameter given
-		EX: getTokenCount("Str1\tStr2\tStr3", "\t") == 3
-		**/
-		S32 getTokenCount(UTF16 str, UTF16 token) {
-			S32 counter = 0;
-			UTF8 result = strtok(const_cast<UTF8>(str), token);
-			while(result != NULL) {
-				counter++;
-				result = strtok(NULL, token);
-			}
-			return counter;
-		}
+			//fetchCmdLineToken(): Fetches a portion of a string based on a token deliminator for the command line
+			// Note: Command line params are formatted as such: -param:"args"
+			static bool fetchCmdLineToken(UTF16 &str, String &result, bool useEscapeChars);
+
+		};
 
 	};
 

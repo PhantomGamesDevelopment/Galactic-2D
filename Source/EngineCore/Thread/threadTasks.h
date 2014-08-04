@@ -226,7 +226,7 @@ namespace Galactic {
 				//Constructor
 				WorkPool();
 				//Destructor
-				virtual ~WorkPool() { }
+				virtual ~WorkPool();
 
 				/* Public Class Methods */
 				//Create the thread pool with the specified number of threads and properties

@@ -19,16 +19,23 @@
 //
 #define GALACTIC_VERSION_NUMBER ((GALACTIC_VERSION_MAJOR * 1000) + (GALACTIC_VERSION_MINOR * 100) + GALACTIC_VERSION_REVISION)
 
-//GALACTIC_INDIE_BUILD:
+//GALACTIC_BINARY_BUILD:
 /**
 	This define is used to define wheter or not the engine builds in a simply binary only executable file.
 	If you have access to this file as part of a non-free license to G2D, you should define this as 0 and
 	then directly create your game classes through the engine itself, rather than building an external module
 
-	Defining GALACTIC_INDIE_BUILD allows usage of the -game tag, whereas setting this to 0 will override the tag
+	Defining GALACTIC_BINARY_BUILD allows usage of the -game tag, whereas setting this to 0 will override the tag
 	and simply load the game by finding a generic main.lua file.
 **/
-#define GALACTIC_INDIE_BUILD 1
+#define GALACTIC_BINARY_BUILD 1
+
+//GALACTIC_SCRIPTING_LANGUAGE
+/*
+	This define tells the engine which scripting module to load in the Console folder. Please don't touch this define unless you know what
+	you're doing as this controls a large amount of internal systems and functions.
+*/
+#define GALACTIC_SCRIPTING_LANGUAGE "LUA"
 
 //GALACTIC_SCRIPT_ENTRY
 /**
@@ -67,6 +74,14 @@
 	of 32K, or 2^15.
 */
 #define GALACTIC_THREAD_DEFAULT_STACKSIZE 32768
+
+//GALACTIC_AFFINITY_MANAGER_THREADCOUNT
+/*
+	This define is used on the platform module to declare how many threads will have their information for an affinity mask stored in the engine.
+	You should choose this value carefully depending on the definition of GALACTIC_MAXIMUM_WORKING_THREADS, as well as the platforms being targeted
+	as this module is only active on the Android platform. The default value for this is 32.
+*/
+#define GALACTIC_AFFINITY_MANAGER_THREADCOUNT 32
 
 //GALACTIC_USE_NETWORKING
 /**
