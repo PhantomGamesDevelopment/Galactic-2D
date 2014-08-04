@@ -120,6 +120,12 @@ namespace Galactic {
 			return false;
 		}
 
+		bool GenericPlatformProcess::isMultithreaded() {
+			//Note! While this bool return does control some form of multithread support in the engine, this is fully controlled by the definition
+			// of GALACTIC_DISABLE_MULTITHREADING in galacticSettings.h
+			return ProcessCommandLine::fetchInstance().hasParam("noMThreads");
+		}
+
 		U64 GenericPlatformProcess::fetchAffinityMask(UTF16 name) {
 			return U64DEF(0xffffffffffffffff);
 		}

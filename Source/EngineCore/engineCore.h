@@ -37,6 +37,7 @@ namespace Galactic {
 #include "Tools/map.h"
 
 //Load everything else we need.
+#include "Tools/commandLineParams.h"
 #include "Delegates/delegate.h"
 #include "Thread/threadBase.h"
 #include "Thread/singleThreadBase.h" 

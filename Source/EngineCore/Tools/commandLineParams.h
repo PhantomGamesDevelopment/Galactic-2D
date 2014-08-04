@@ -24,7 +24,7 @@ namespace Galactic {
 				//Default Constructor
 				ProcessCommandLine::ProcessCommandLine() { }
 				//Fetch the singleton instance of this class
-				ProcessCommandLine &fetchInstance() {
+				static ProcessCommandLine &fetchInstance() {
 					if (managedSingleton<ProcessCommandLine>::instance() == NULL) {
 						managedSingleton<ProcessCommandLine>::createInstance();
 					}
