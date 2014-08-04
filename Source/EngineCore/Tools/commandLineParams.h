@@ -38,6 +38,36 @@ namespace Galactic {
 				void append(UTF16 toAppend) {
 					strncat(cmdLine, toAppend, getArrayCount(cmdLine));
 				}
+				//Split the command line parameters into a dynArray of string token instances for individual parsing.
+				void splitToTokens(UTF16 cmdLineTxt, DynArray<String> &tokens) {
+					String nextTokenInst;
+					while (StrTools::fetchCmdLineToken(cmdLineTxt, nextTokenInst, false)) {
+						if (*(nextTokenInst.c_str()) == '-') {
+							tokens.pushToBack(nextTokenInst);
+						}
+					}
+				}
+				//Fetch the text stored in the command line
+				UTF16 fetch() {
+					return cmdLine;
+				}
+				//Test if a parameter exists in the command line
+				bool hasParam(UTF16 param) {
+					UTF16 start = fetch();
+					UTF16 inst = fetch();
+					if (*inst) {
+						while ((start = StrTools::find(start+1, param)) != NULL) {
+							if (start > inst && (start[-1] == '-')) {
+								UTF16 end = start + strlen(param);
+								if (end == NULL || *end == NULL || StrTools::isWSpace(*end)) {
+									//Got a match!
+									return true;
+								}
+							}
+						}
+					}
+					return false;
+				}
 
 			private:
 				/* Private Class Members */

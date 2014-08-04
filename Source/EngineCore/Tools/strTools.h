@@ -29,6 +29,23 @@ namespace Galactic {
 			// Note: Command line params are formatted as such: -param:"args"
 			static bool fetchCmdLineToken(UTF16 &str, String &result, bool useEscapeChars);
 
+			//find(): Find an instance of a string within another string
+			static UTF16 find(UTF16 str, UTF16 wantToFind) {
+				if (!str || !wantToFind) {
+					return NULL;
+				}
+				S32 findLength = strlen(wantToFind++) - 1;
+				C8 findChar = *wantToFind;
+				C8 currChar = *str++;
+				while (currChar) {
+					if (findChar == currChar && !strnicmp(str, wantToFind, findLength)) {
+						return str - 1;
+					}
+					currChar = *str++;
+				}
+				return NULL;
+			}
+
 		};
 
 	};
