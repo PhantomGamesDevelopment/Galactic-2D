@@ -187,7 +187,7 @@ namespace Galactic {
 				//create a event object
 				static class Event *createEvent(bool manualReset = false);
 				//create a continual thread object
-				static class ContinualThread createContThread();
+				static class ContinualThread *createContThread();
 				//attempt to open a semaphore object, set create=false to override an existing one. maxLocks=1 can be used to force the sem to act as a mutex
 				static Semaphore *openSemaphore(const String &name, bool create = true, U32 maxLocks = 1);
 				//delete a semaphore
