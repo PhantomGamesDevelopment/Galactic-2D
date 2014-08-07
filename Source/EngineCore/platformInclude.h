@@ -26,6 +26,7 @@
 //Load The Generic Platform
 #include "GenericPlatform/genericMemory.h"
 #include "GenericPlatform/genericPlatformOperations.h"
+#include "GenericPlatform/genericPlatformMath.h"
 #include "GenericPlatform/genericPlatformTime.h"
 #include "GenericPlatform/genericPlatform.h"
 #include "GenericPlatform/genericPlatformAtomics.h"

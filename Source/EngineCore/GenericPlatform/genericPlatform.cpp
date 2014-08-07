@@ -306,7 +306,7 @@ namespace Galactic {
 				}
 				else {
 					//Truncate the floating point seconds time to an integer...
-					X32 microSec = PlatformMath::TruncateToInteger(seconds);
+					X32 microSec = PlatformMath::TruncateToInteger(seconds * 1000000.0f);
 					if(microSec > 0) {
 						usleep(microSec);
 					}

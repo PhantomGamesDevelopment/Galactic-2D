@@ -18,6 +18,7 @@
 
 //Load the rest of our headers, notice how they match alongside genericPlatform includes.
 #include "WinMemory.h"
+#include "WinMath.h"
 #include "WinTime.h"
 #include "WinCriticalSection.h"
 #include "WinThread.h"
