@@ -18,6 +18,9 @@ namespace Galactic {
 
 		namespace Math {
 	
+			/*
+			Vector2F: A basic class for manipulating and working with 2D-Cartesian Space Vectors.
+			*/
 			class Vector2F {
 				public:
 					F64 x; // x-component
@@ -75,7 +78,7 @@ namespace Galactic {
 					}
 
 					// Vector Length
-					F64 length() const { return sqrt(pow(x, 2) + pow(y, 2)); }
+					F64 length() const { return PlatformMath::mSqrt(PlatformMath::mPow(x, 2) + PlatformMath::mPow(y, 2)); }
 
 					// Vector Dot Product
 					F64 dot(Vector2F &v) const { return ((x * v.x) + (y * v.y)); }
@@ -85,7 +88,7 @@ namespace Galactic {
 					F64 det(Vector2F &v) const { return cross(v); }
 
 					//Angle Between
-					F64 ang(Vector2F &v) const { return (atan2(v.y, v.x) - atan2(y, x)); }
+					F64 ang(Vector2F &v) const { return (PlatformMath::mATan2(v.y, v.x) - PlatformMath::mATan2(y, x)); }
 			};
 	
 			//Position Typedef

@@ -49,8 +49,9 @@ typedef const bool cbol;
 //Define Standard C++ Types
 
 typedef char C8;               //Character
-typedef float F32;             //Floating Point Number
-typedef double F64;            //Double 
+typedef float F32;             //32-bit Floating Point Number
+typedef double F64;            //64-bit Floating Point Number (Double) 
+//typedef long double F128;      //128-Bit Floating Point Numer (To-Do: Putting this here for the future)
 typedef char* UTF8;            //Character Pointer
 typedef const char* UTF16;     //Constant Character Pointer	
 //Define C-Style character types
@@ -70,6 +71,8 @@ typedef IntPointerType<S32, S64, sizeof(any)>::TargetType IntPointer;         //
 typedef IntPointerType<U32, U64, sizeof(any)>::TargetType UnsingedIntPointer; //Define platform pointer for U32/U64
 
 namespace Galactic {
+
+	/* NOTE: These are global min/max functions, for more specific ones, use PlatformMath::mMin() / PlatformMath::mMax() */
 
 	FINLINE S8 gMin(S8 a, S8 b) { return a > b ? b : a; }
 	FINLINE S8 gMax(S8 a, S8 b) { return a > b ? a : b; }
