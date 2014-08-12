@@ -36,8 +36,8 @@ namespace Galactic {
 			S32 PlatformMath::CeilUpToInt(F32 value) {
 				//Read the notes for RoundToInt() and FloorDownToInt(). The approach with the Ceil method is slightly different. Instead, we approach this
 				// as if we we're sending a decreased version of the number. The only problem here is by doing this, the value will now be negative instead
-				// of positive, therefore we need to flip the final result. We do this because adding will <almost> always result in a number 1 more than expected.
-				// See http://msdn.microsoft.com/en-us/library/ft91czdc.aspx
+				// of positive, therefore we need to flip the final result. We use this method because performing it on values with a point less than 0.5 will
+				// almost always end up with a number 1 less than what we expect. See http://msdn.microsoft.com/en-us/library/ft91czdc.aspx
 				
 				//Test: CeilUpToInt(2.9), Should get 3.0: 
 				//F32 sendNum = (-0.5 - (5.8)) = -6.3
