@@ -31,7 +31,7 @@ namespace Galactic {
 		};
 
 		/* Semaphore Class */
-		GenericPlatformProcess::Semaphore::Semaphore(const String &name) {
+		GenericPlatformProcess::GenericSemaphore::GenericSemaphore(const String &name) {
 			#pragma warning( push )
 			#pragma warning( disable : 4996 )
 				//strcpy_s is not cross-platform safe, but strcpy is and unlike silly MSVS says, this function is not 'depricated'.
@@ -49,7 +49,7 @@ namespace Galactic {
 			return "";
 		}
 
-		UTF16 GenericPlatformProcess::getAppSetDir() {
+		UTF16 GenericPlatformProcess::getAppSetDir(UTF16 append, bool forceUpdate) {
 			GC_Warn("getAppSetDir(): This method is not implemented on the generic platform.");
 			return "";
 		}

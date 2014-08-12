@@ -36,7 +36,7 @@ namespace Galactic {
 			// serves as a block-point by forcing a manual event reset.
 			if (!hasFired) {
 				GC_Warn("SingleThreadedEvent::wait(): Cannot apply wait to an event that has not fired.");
-				return;
+				return false;
 			}
 			//If there is no manual reset, then reset the event automatically... otherwise, we'll need a reset.
 			hasFired = shouldResetManually;

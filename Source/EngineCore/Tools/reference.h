@@ -533,8 +533,8 @@ namespace Galactic {
 						GC_Error("explicit StrongReference(): Cannot initialize a NULL instance to a StrongReference, consider using StrongReferencePtr instead.");
 						return;
 					}
-					//Cast to createStrongFromObject.
-					createStrongFromObject(this, object, object);
+					//Cast to makeRefPtr.
+					makeRefPtr(this, object, object);
 				}
 				//Copy Constructor
 				template <class objType> FINLINE StrongReference(const StrongReference<objType, m> &c) : obj(c.obj), ref(c.ref) {
@@ -569,8 +569,8 @@ namespace Galactic {
 						GC_Error("StrongReference(RawProxy<>()): Cannot initialize a NULL instance to a StrongReference, consider using StrongReferencePtr instead.");
 						return;
 					}
-					//Cast to createStrongFromObject.
-					createStrongFromObject(this, c.obj, c.obj);
+					//Cast to makeRefPtr.
+					makeRefPtr(this, c.obj, c.obj);
 				}
 
 				/* Public Class Methods */
@@ -658,8 +658,8 @@ namespace Galactic {
 				FINLINE StrongReferencePtr(PointerModes::Tags t = PointerModes::Null) : obj(NULL), ref() { }
 				//Explicit Creation Constructor
 				template <class objType> FINLINE explicit StrongReferencePtr(objType *object) : obj(object), ref(object) {
-					//Cast to createStrongFromObject.
-					createStrongFromObject(this, object, object);
+					//Cast to makeRefPtr.
+					makeRefPtr(this, object, object);
 				}
 				//Copy Constructor
 				template <class objType> FINLINE StrongReferencePtr(const StrongReferencePtr<objType, m> &c) : obj(c.obj), ref(c.ref) { }
@@ -686,8 +686,8 @@ namespace Galactic {
 				}
 				//Create from raw-pointer constructor
 				template <class objType> FINLINE StrongReferencePtr(const RawProxy<objType> &c) : obj(c.obj), ref(c.obj) {
-					//Cast to createStrongFromObject.
-					createStrongFromObject(this, c.obj, c.obj);
+					//Cast to makeRefPtr.
+					makeRefPtr(this, c.obj, c.obj);
 				}
 
 				/* Public Class Methods */
@@ -783,7 +783,7 @@ namespace Galactic {
 				template <class objType, PointerModes::TSMode mode> friend class StrongReferencePtr;
 				template <class objType, PointerModes::TSMode mode> friend class StrongReference;
 				template <class objType, PointerModes::TSMode mode> friend class WeakReferencePtr;
-				template <class objType, PointerModes::TSMode mode> friend class createStrongFromObj;
+				template <class objType, PointerModes::TSMode mode> friend class makeRefPtr;
 		};
 
 		/*

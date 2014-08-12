@@ -21,5 +21,6 @@
 #include "WinMath.h"
 #include "WinTime.h"
 #include "WinPlatform.h"
+#include "WinCriticalSection.h"
 #include "WinThread.h"
 #include "WinAtomics.h"

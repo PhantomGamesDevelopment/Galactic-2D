@@ -101,15 +101,15 @@ namespace Galactic {
 				};
 
 				/*
-				Semaphore: Declare a platform specific semaphore object
+				GenericSemaphore: Declare a platform specific semaphore object
 				*/
-				class Semaphore {
+				class GenericSemaphore {
 					public:
 						/* Constructor / Destructor */
 						//Constructor
-						Semaphore(const String &name);
+						GenericSemaphore(const String &name);
 						//Destructor
-						virtual ~Semaphore() { }
+						virtual ~GenericSemaphore() { }
 
 						/* Public Class Methods */
 						//acquire(): force the system to obtain the semaphore lock for the specified thread
@@ -127,13 +127,16 @@ namespace Galactic {
 						C8 semName[128];
 				};
 
+				//Forward dec for Platform Semaphore
+				class Semaphore;
+
 				/* General Platform Processing Information */
 				//Get the process ID
 				static U32 getProcID();
 				//Get the user directory
 				static UTF16 getUserDir();
 				//Get the application settings directory
-				static UTF16 getAppSetDir();
+				static UTF16 getAppSetDir(UTF16 append = "", bool forceUpdate = false);
 				//Get the user settings directory
 				static UTF16 getUserSetDir();
 				//Set the process affinity mask (called on the main thread)
