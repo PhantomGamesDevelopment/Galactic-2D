@@ -63,7 +63,7 @@ namespace Galactic {
 				//fetch(): get the stored Handle
 				FINLINE T fetch() const { return Handle; }
 				//valid(): returns if the handle is valid or not
-				FINLINE bool valid() const { return (Handle != Inv && Handle != NULL); }
+				FINLINE bool valid() const { return (Handle != inv && Handle != NULL); }
 				//close(): close the handle object
 				FINLINE bool close() { return valid(); }
 				//reset(): reset the handle object
@@ -72,6 +72,10 @@ namespace Galactic {
 				/* Operators */
 				//Assignment Operator
 				FINLINE processHandle &operator=(const processHandle &c) { Handle = c.Handle; }
+
+				/* Typedefs */
+				//The type of the HANDLE object.
+				typedef T hType;
 		
 			protected:
 				/* Protected Class Members */

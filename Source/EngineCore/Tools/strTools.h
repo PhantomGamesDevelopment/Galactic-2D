@@ -29,12 +29,15 @@ namespace Galactic {
 			// Note: Command line params are formatted as such: -param:"args"
 			static bool fetchCmdLineToken(UTF16 &str, String &result, bool useEscapeChars);
 
+			//strnicmp is one of those MSVS depricated thingies, however, it's fully safe for use still, so ignore the annoying C4996 warn.
+			#pragma warning( push )
+			#pragma warning( disable : 4996 )
 			//find(): Find an instance of a string within another string
 			static UTF16 find(UTF16 str, UTF16 wantToFind) {
 				if (!str || !wantToFind) {
 					return NULL;
 				}
-				S32 findLength = strlen(wantToFind++) - 1;
+				S32 findLength = (S32)strlen(wantToFind++) - 1;
 				C8 findChar = *wantToFind;
 				C8 currChar = *str++;
 				while (currChar) {
@@ -45,6 +48,7 @@ namespace Galactic {
 				}
 				return NULL;
 			}
+			#pragma warning( pop )
 
 		};
 

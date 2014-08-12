@@ -20,6 +20,6 @@
 #include "WinMemory.h"
 #include "WinMath.h"
 #include "WinTime.h"
-#include "WinCriticalSection.h"
+#include "WinPlatform.h"
 #include "WinThread.h"
 #include "WinAtomics.h"

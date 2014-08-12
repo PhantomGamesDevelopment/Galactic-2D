@@ -130,12 +130,14 @@ namespace Galactic {
 			~MapNode() { }
 			//Operators
 			//Setting Operator (Key Type).
-			void operator=(Key &src) {
+			MapNode &operator=(Key &src) {
 				first = src;
+				return this;
 			}
 			//Setting Operator (Map Type).
-			void operator=(T &src) {
+			MapNode &operator=(T &src) {
 				second = src;
+				return this;
 			}
 		};
 
@@ -174,12 +176,14 @@ namespace Galactic {
 				U32 maxSize();
 
 				//Returns the first MapNode based on a key, see find()
-				MapNode<Key, T> *at(const _keyType &src);
+				MapNode<Key, T> &at(const _keyType &src);
 
 				//Access operator
 				MapNode<Key, T> &operator[](U32 index);
 				//S32 definition of the Access operator
 				MapNode<Key, T> &operator[](S32 index) { return operator[]((U32)index); }
+				//Assignment Operator
+				Map &operator=(const Map &c);
 
 				//Insert a pair to the Map
 				void insert(_pRef &src);
@@ -243,7 +247,7 @@ namespace Galactic {
 			return container.capacity();
 		}
 
-		template <class Key, class T> MapNode<Key, T> *Map<Key, T>::at(const Key &src) {
+		template <class Key, class T> MapNode<Key, T> &Map<Key, T>::at(const Key &src) {
 			for(iterator it = begin(); it != end(); it++) {
 				if(it->first == src) {
 					return it;
@@ -254,6 +258,12 @@ namespace Galactic {
 
 		template <class Key, class T> MapNode<Key, T> &Map<Key, T>::operator[](U32 index) {
 			return container[index];
+		}
+
+		template <class Key, class T> Map<Key, T> &Map<Key, T>::operator=(const Map<Key, T> &c) {
+			container = c.container;
+
+			return this;
 		}
 
 		template <class Key, class T> void Map<Key, T>::insert(Pair<Key, T> &src) {

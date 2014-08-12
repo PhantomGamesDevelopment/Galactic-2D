@@ -153,12 +153,12 @@ namespace Galactic {
 		void threadRegistry::add(U32 id, ContinualThread *t) {
 			//Whenever we manipulate the registry, we need to lock the threads first.
 			lock();
-			if (tRegistry.at(id) == NULL) {
+			if (tRegistry.find(id) == NULL) {
 				//We need to add it...
 				tRegistry.insert(Pair<U32, ContinualThread *>(id, t));
 			}
 			else {
-				tRegistry.at(id)->second = t;
+				tRegistry.at(id) = t;
 			}
 			updated = true;
 			unlock();
@@ -172,7 +172,7 @@ namespace Galactic {
 		}
 
 		ContinualThread *threadRegistry::fetch(U32 id) {
-			return tRegistry.at(id)->second;
+			return tRegistry.at(id).second;
 		}
 
 		S32 threadRegistry::count() {
