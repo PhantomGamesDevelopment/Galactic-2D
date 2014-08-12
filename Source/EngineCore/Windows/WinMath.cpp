@@ -44,10 +44,6 @@ namespace Galactic {
 				//__mm_cvt_ss2si(_mm_set_ss(-6.3)) = -6.0
 				// -6.0 >> 1 = -3.0
 				// -1 * -3.0 = 3.0
-
-				//Now, consider if we used F32 sendNum = (2 * value) + 0.5: sendNum = 6.3
-				//__mm_cvt_ss2i(_mm_set_ss(6.3)) = 8.0
-				// 8.0 >> 1 = (4.0 != 3.0)
 				F32 sendNum = -0.5 - (2 * value);
 				return -(_mm_cvt_ss2si(_mm_set_ss(sendNum)) >> 1);
 			}
