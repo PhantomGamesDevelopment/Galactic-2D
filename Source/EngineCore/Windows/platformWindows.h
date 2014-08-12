@@ -9,6 +9,9 @@
 #ifndef PLATFORM_WINDOWS
 #define PLATFORM_WINDOWS
 
+	//Test for LLVM/CLang
+	#define GALACTIC_USING_LLVM defined(__clang__)
+
 	//Windows already defines CDECL, so undef it first.
 	#undef CDECL
 
@@ -50,10 +53,17 @@
 	#define CDECL __cdecl
 	//STDCALL: Standard Calling Convention
 	#define STDCALL __stdcall
-	//VS_ALIGN: Byte alignment property for MSVS
-	#define VS_ALIGN(x) __declspec(align(x))
-	//GNU_ALIGN: Byte alignment property for GNU GCC
-	#define GNU_ALIGN(x)
+	#if GALACTIC_USING_LLVM
+		//VS_ALIGN: Byte alignment property for MSVS
+		#define VS_ALIGN(x) 
+		//GNU_ALIGN: Byte alignment property for GNU GCC
+		#define GNU_ALIGN(x) __attribute__((aligned(n)))
+	#else
+		//VS_ALIGN: Byte alignment property for MSVS
+		#define VS_ALIGN(x) __declspec(align(x))
+		//GNU_ALIGN: Byte alignment property for GNU GCC
+		#define GNU_ALIGN(x)
+	#endif
 	//U64DEF: Macro for properly declaring and formatting 64-bit numerics
 	#define U64DEF(x) x
 
