@@ -24,5 +24,6 @@
 #define _aligned_free(trg) free(trg)
 
 //Load in the G2D platform files (see platformInclude.h for include order)
+#include "AndroidMath.h"
 #include "AndroidTime.h"
 #include "AndroidAtomics.h"
