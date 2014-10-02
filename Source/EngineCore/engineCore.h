@@ -35,6 +35,7 @@ namespace Galactic {
 #include "Tools/string.h"
 #include "Tools/mSingleton.h"
 #include "Tools/map.h"
+#include "Tools/filePath.h"
 
 //Load everything else we need.
 #include "Tools/commandLineParams.h"

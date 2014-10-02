@@ -160,7 +160,111 @@ namespace Galactic {
 		}
 
 		UTF16 PlatformProcess::getExeName(bool includeExtension) {
+			//Reference: http://msdn.microsoft.com/en-us/library/windows/desktop/ms683197(v=vs.85).aspx
+			static TCHAR execName[512], execNameExt[512];
+			if (!execName[0]) {
+				//Fetch the path.
+				if (GetModuleFileName(hInstance, execName, getArrayCount(execName)) != 0) {
+					String exeName, exeNameExt;
+					FilePath execPath((UTF16)execName);
+					exeName = execPath.getFilePathMinusExt();
+					exeNameExt = execPath.getFullPath();
+			        //Convert to TCHAR
+					_tcscpy_s(execName, sizeof(execName), (WCHAR *)exeName.c_str());
+					_tcscpy_s(execNameExt, sizeof(execNameExt), (WCHAR *)exeNameExt.c_str());
+				}
+				else {
+					Memory::gmemset(execName, 0, sizeof(execName));
+					Memory::gmemset(execNameExt, 0, sizeof(execNameExt));
+				}
+			}
+			return includeExtension ? ((UTF16)execNameExt) : ((UTF16)execName);
+		}
 
+		any PlatformProcess::getLibHandle(UTF16 filePath) {
+			if (!filePath) {
+				GC_CError("PlatformProcess::getLibHandle() - Missing path parameter");
+				return NULL;
+			}
+			//For ::LoadLibraryW we need to make sure that the error boxes are turned off to not "potentially kill" the process if it fails.
+			// 0x8000 = SEM_NOOPENFILEERRORBOX, http://msdn.microsoft.com/en-us/library/windows/desktop/ms680621(v=vs.85).aspx
+			::SetErrorMode(0x8000);
+			return ::LoadLibraryW((const TCHAR *)filePath);
+		}
+
+		void PlatformProcess::freeLibHandle(any handle) {
+			//This function has a built in error check for NULL, so no further calls are needed here.
+			::FreeLibrary((HMODULE)handle);
+		}
+
+		any PlatformProcess::fetchFunction(any handle, UTF16 procName) {
+			//Both of these need to be checked for NULL
+			if (!handle) {
+				GC_CError("PlatformProcess::fetchFunction() - Missing .DLL Handle Call");
+				return NULL;
+			}
+			if (!procName) {
+				GC_CError("PlatformProcess::fetchFunction() - Missing .DLL function name to call");
+				return NULL;
+			}
+			//References: http://msdn.microsoft.com/en-us/library/windows/desktop/ms683212(v=vs.85).aspx, http://msdn.microsoft.com/en-us/library/64tkc9y5.aspx
+			//NOTE! 'procName' must be a ANSI compliant constant character array, IE: You MUST convert to UTF16 prior to sending it to this function.
+			// Posible To-Do: Enforce 'explicit' on procName, or do a static_cast<UTF16>() on the character to make sure it's compliant. Will look into this later.
+			return (any)::GetProcAddress((HMODULE)handle, procName);
+		}
+
+		UTF16 PlatformProcess::getLibExtension() {
+			//Note: This doesn't handle files with extension of .dll the same. You might want to strupr / strlwr all file extensions before sending it here.
+			return ".DLL";
+		}
+
+		BinaryVersion PlatformProcess::fetchVersion(UTF16 filePath) {
+			if (!filePath) {
+				GC_Error("PlatformProcess::fetchVersion() - Missing file path.");
+				return BinaryVersion(0, 0, 0, 0);
+			}
+			/* References: 
+			* http://msdn.microsoft.com/en-us/library/windows/desktop/ms647005(v=vs.85).aspx, 
+			* http://msdn.microsoft.com/en-us/library/windows/desktop/ms647003(v=vs.85).aspx, 
+			* http://msdn.microsoft.com/en-us/library/windows/desktop/ms647464(v=vs.85).aspx,
+			* http://stackoverflow.com/questions/940707/how-do-i-programatically-get-the-version-of-a-dll-or-exe-file
+			* Basically, the order to use is GetFileVersionInfoSize, GetFileVersionInfo, VerQueryValue
+			*/
+
+			//Fetch the size first, if the call fails, return with an error.
+			::DWORD versionInfoSize = GetFileVersionInfoSize((const TCHAR *)filePath, NULL);
+			if (versionInfoSize == 0) {
+				GC_Error("PlatformProcess::fetchVersion() - Failed to fetch version of file %s, size of information is 0.", filePath);
+				return BinaryVersion(0, 0, 0, 0);
+			}
+			//Now fetch the info structure
+			U8 *versionInfo = new U8[versionInfoSize];
+			if (GetFileVersionInfo((const TCHAR *)filePath, NULL, versionInfoSize, versionInfo) == 0) {
+				GC_Error("PlatformProcess::fetchVersion() - Failed to fetch version of file %s, call to getFileVersionInfo failed.", filePath);
+				delete[] versionInfo;
+				return BinaryVersion(0, 0, 0, 0);
+			}
+			//Try to pull the version out now...
+			U32 VS_FFISize = 0;
+			VS_FIXEDFILEINFO *fileInfoStruct = NULL;
+			if (VerQueryValue(versionInfo, TEXT("\\"), (LPVOID*)&fileInfoStruct, &VS_FFISize) == 0) {
+				GC_Error("PlatformProcess::fetchVersion() - Failed to fetch version of file %s, call to VerQueryValue failed.", filePath);
+				delete[] versionInfo;
+				return BinaryVersion(0, 0, 0, 0);
+			}
+			if (VS_FFISize) {
+				S32 vers = (fileInfoStruct->dwProductVersionMS >> 16) & 0xffff, 
+					major = (fileInfoStruct->dwProductVersionMS >> 0) & 0xffff, 
+					minor = (fileInfoStruct->dwProductVersionLS >> 16) & 0xffff, 
+					rev = (fileInfoStruct->dwProductVersionLS >> 0) & 0xffff;
+				delete[] versionInfo;
+				return BinaryVersion(vers, major, minor, rev);
+			}
+			else {
+				GC_Error("PlatformProcess::fetchVersion() - Failed to fetch version of file %s, VS_FFISize is 0.", filePath);
+				delete[] versionInfo;
+				return BinaryVersion(0, 0, 0, 0);
+			}
 		}
 
 	};

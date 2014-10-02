@@ -12,7 +12,6 @@
 
 #include "../engineCore.h"
 #include "fileBase.h"
-#include "filePath.h"
 
 namespace Galactic {
 

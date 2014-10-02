@@ -7,7 +7,7 @@
 **/
 
 // Instance of our application
-//extern "C" HINSTANCE hInstance;
+extern "C" HINSTANCE hInstance;
 
 // Settings and C++ libs that are windows specific.
 #include <intrin.h>
