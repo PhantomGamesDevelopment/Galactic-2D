@@ -38,7 +38,7 @@ namespace Galactic {
 
 //Load everything else we need.
 #include "Tools/commandLineParams.h"
-#include "Delegates/delegate.h"
+#include "Delegates/easydelegate.hpp"
 #include "Thread/threadBase.h"
 #include "Thread/singleThreadBase.h" 
 #include "Thread/threadTasks.h"

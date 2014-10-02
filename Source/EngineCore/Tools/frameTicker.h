@@ -9,14 +9,15 @@
 #ifndef GALACTIC_CORE_TOOLS_FRAMETICKER
 #define GALACTIC_CORE_TOOLS_FRAMETICKER
 
-#include "../Delegates/delegate.h"
+#include "../Delegates/easydelegate.hpp"
 
 namespace Galactic {
 
 	namespace Core {
 
 		//Initialize the ticker delegate class instance. Returns a boolean value, and accepts F64 dT as a parameter.
-		GALACTIC_INIT_SC_DELEGATE_ReturnType_OneParam(GalacticFrameTickerDelegate, bool, F64);
+		//GALACTIC_INIT_SC_DELEGATE_ReturnType_OneParam(GalacticFrameTickerDelegate, bool, F64);
+		typedef DelegateSet<bool, F64> GalacticFrameTickerDelegate;
 
 		/*
 		struct TickerInstance: Stores all of the information for the individual ticker.
@@ -31,10 +32,11 @@ namespace Galactic {
 			/* Stuct Methods */
 			//Execute the event, returns true if the event was executed.
 			bool exec(F64 dt) {
-				if (tickerDelegate.bound()) {
-					return tickerDelegate.exec(dt);
-				}
-				return false;
+				//if (tickerDelegate.bound()) {
+				//return tickerDelegate.exec(dt);
+				//}
+				//return false;
+				return tickerDelegate.invoke(dt);
 			}
 
 			/* Struct Members */
