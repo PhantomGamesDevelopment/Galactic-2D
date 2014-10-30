@@ -102,7 +102,7 @@
 
 					/* Process Functions */
 					//Launch a new process with the given parameters
-					static PlatformHandle launchProcess(UTF16 path, UTF16 args, bool newWindow, bool minimized, bool hiddenProcess, U32 forceID, S32 threadPriority, UTF16 procWD);
+					static PlatformHandle launchProcess(UTF16 path, UTF16 args, bool newWindow, bool minimized, bool hiddenProcess, U32 *resID, S32 threadPriority, UTF16 procWD, any ioWrite);
 					//Launch a processes with normal level access
 					static bool launchProcess(UTF16 path, UTF16 args, S32 *retCodePtr, String *stdOut, String *stdErr);
 					//Launch a process with admin access
@@ -126,6 +126,14 @@
 					//Switch the process into a standard deamon/service
 					static bool becomeServiceProcess();
 
+					/* Handle Reading Functions */
+					//Spawn a handle read instance
+					static bool spawnHandleIO(any &readerHandle, any& writerHandle);
+					//Read from a handle
+					static String readHandle(any handleIO);
+					//Close a handle reader
+					static void closeHandleIO(any readIO, any writeIO);
+
 					/* Misc Functions */
 					//Is this platform multithreaded?
 					static bool isMultithreaded();
@@ -141,6 +149,9 @@
 					static bool killSemaphore(Semaphore *trg);
 					//Force the current thread to sleep for the specified time period, or set parameter 2 to true to sleep indefinitely
 					static void sleep(F64 seconds = 0.0f, bool sleepInfinite = false);
+
+				protected:
+					static void readFromHandle(S32 handleCount, String *output[], HANDLE IOHandles[]);
 			};
 
 		};

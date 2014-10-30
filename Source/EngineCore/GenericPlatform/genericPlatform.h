@@ -162,7 +162,7 @@ namespace Galactic {
 
 				/* Process Functions */
 				//Launch a new process with the given parameters
-				static PlatformHandle launchProcess(UTF16 path, UTF16 args, bool newWindow, bool minimized, bool hiddenProcess, U32 forceID, S32 threadPriority, UTF16 procWD);
+				static PlatformHandle launchProcess(UTF16 path, UTF16 args, bool newWindow, bool minimized, bool hiddenProcess, U32 forceID, S32 threadPriority, UTF16 procWD, any ioWrite);
 				//Launch a processes with normal level access
 				static bool launchProcess(UTF16 path, UTF16 args, S32 *retCodePtr, String *stdOut, String *stdErr);
 				//Launch a process with admin access
@@ -185,6 +185,14 @@ namespace Galactic {
 				static void terminateProc(PlatformHandle &proc, bool termSubProc = false);
 				//Switch the process into a standard deamon/service
 				static bool becomeServiceProcess();
+
+				/* Handle Reading Functions */
+				//Spawn a handle read instance
+				static bool spawnHandleIO(any &readerHandle, any& writerHandle);
+				//Read from a handle
+				static String readHandle(any handleIO);
+				//Close a handle reader
+				static void closeHandleIO(any readIO, any writeIO);
 
 				/* Misc Functions */
 				//Is this platform multithreaded?

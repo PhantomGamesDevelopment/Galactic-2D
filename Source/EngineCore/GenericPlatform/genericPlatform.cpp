@@ -102,7 +102,7 @@ namespace Galactic {
 			return BinaryVersion(0, 0, 0, 0);
 		}
 
-		PlatformHandle GenericPlatformProcess::launchProcess(UTF16 path, UTF16 args, bool newWindow, bool minimized, bool hiddenProcess, U32 forceID, S32 threadPriority, UTF16 procWD) {
+		PlatformHandle GenericPlatformProcess::launchProcess(UTF16 path, UTF16 args, bool newWindow, bool minimized, bool hiddenProcess, U32 forceID, S32 threadPriority, UTF16 procWD, any ioWrite) {
 			GC_Warn("launchProcess(): This method is not implemented on the generic platform.");
 			return PlatformHandle();
 		}
@@ -157,6 +157,20 @@ namespace Galactic {
 		bool GenericPlatformProcess::becomeServiceProcess() {
 			GC_Warn("becomeServiceProcess(): This method is not implemented on the generic platform.");
 			return false;
+		}
+
+		bool GenericPlatformProcess::spawnHandleIO(any &readerHandle, any& writerHandle) {
+			GC_Warn("spawnHandleIO(): This method is not implemented on the generic platform.");
+			return false;
+		}
+
+		String GenericPlatformProcess::readHandle(any handleIO) {
+			GC_Warn("readHandle(): This method is not implemented on the generic platform.");
+			return "";
+		}
+
+		void GenericPlatformProcess::closeHandleIO(any readIO, any writeIO) {
+			GC_Warn("spawnHandleIO(): This method is not implemented on the generic platform.");
 		}
 
 		bool GenericPlatformProcess::isMultithreaded() {
