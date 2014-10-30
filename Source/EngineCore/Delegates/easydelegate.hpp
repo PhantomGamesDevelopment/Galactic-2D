@@ -327,7 +327,7 @@ namespace Galactic {
 								delete mDelegateVector[iteration];
 							}
 							else if (out) {
-								out->pushToBack(mDelegateVector[iteration]);
+								out->push_back(mDelegateVector[iteration]);
 							}
 							mDelegateVector.erase(mDelegateVector.begin() + iteration);
 							currentDelegateCount--;
@@ -357,7 +357,7 @@ namespace Galactic {
 								delete mDelegateVector[iteration];
 							}
 							else if (out) {
-								out->pushToBack(mDelegateVector[iteration]);
+								out->push_back(mDelegateVector[iteration]);
 							}
 							mDelegateVector.erase(mDelegateVector.begin() + iteration);
 							iteration--;
@@ -385,7 +385,7 @@ namespace Galactic {
 								delete mDelegateVector[iteration];
 							}
 							else if (out) {
-								out->pushToBack(mDelegateVector[iteration]);
+								out->push_back(mDelegateVector[iteration]);
 							}
 							mDelegateVector.erase(mDelegateVector.begin() + iteration);
 							iteration--;
@@ -448,7 +448,7 @@ namespace Galactic {
 				 */
 				void invoke(std::vector<returnType> &out, parameters... params) const {
 					for (typename DynArray<DelegateSet::DelegateBaseType *>::const_iterator it = mDelegateVector.begin(); it != mDelegateVector.end(); it++) {
-						out.pushToBack((*it)->invoke(params...));
+						out.push_back((*it)->invoke(params...));
 					}
 				}
 
