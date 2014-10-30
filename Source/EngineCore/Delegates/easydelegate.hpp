@@ -1,7 +1,7 @@
 /**
  *  @file easydelegate.hpp
- *  @version 1.1
- *  @date 9/25/2014
+ *  @version 1.2
+ *  @date 10/30/2014
  *  @author <a href="https://github.com/Ragora">Robert MacGregor</a>
  *  @brief Portable delegate system that should work on any C++11 compliant compiler.
  *  @details EasyDelegate is a library that exposes an easy and flexible delegate system with
@@ -20,16 +20,17 @@
  *  where sizeof(size_t) is equivalent to sizeof(largest integer type), which has been true for GCC
  *  and MSVS on Linux and Windows systems.
  *
- *  @copyright This software is licensed under the Lesser General Public License version 3.
- *  Please refer to GPL.txt and LGPL.txt for more information.
+ *  @copyright This software is licensed under the MIT License.
+ *  Please refer to LICENSE.txt for more information.
  *  @example ex_delegateset.cpp
+ *
+ *  @implementation notes: I've adjusted some of the core functioning of the system, removing the cached delegates (didn't need them), and adjusting references
+ *   to STD::X with our own engine classes for consistency. There's still a few STL references left that will be removed in a future update.
  */
 
-//Phantom139: Removed <vector>, <tuple>, we have engine classes to handle these.
+//Phantom139: Removed <vector>, we have engine classes to handle these.
 #include <stdexcept>    // Standard exception types
 #include <assert.h>     // assert(expr)
-//#include <vector>       // std::vector<type>
-#include <tuple>        // std::tuple<...>
 
 #ifndef _INCLUDE_EASYDELEGATE_HPP_
 #define _INCLUDE_EASYDELEGATE_HPP_
@@ -270,12 +271,12 @@ namespace Galactic {
 				 *  @param delegateInstance The delegate instance to the pushed onto the set.
 				 */
 				void push_back(DelegateSet::DelegateBaseType *delegateInstance) { 
-					mDelegateVector.push_back(delegateInstance); 
+					mDelegateVector.pushToBack(delegateInstance);
 				}
 
 				//! Alternate to push_back that looks a bit prettier in source.
 				void operator +=(DelegateSet::DelegateBaseType *delegateInstance) { 
-					mDelegateVector.push_back(delegateInstance); 
+					mDelegateVector.pushToBack(delegateInstance);
 				}
 
 				/**
@@ -326,7 +327,7 @@ namespace Galactic {
 								delete mDelegateVector[iteration];
 							}
 							else if (out) {
-								out->push_back(mDelegateVector[iteration]);
+								out->pushToBack(mDelegateVector[iteration]);
 							}
 							mDelegateVector.erase(mDelegateVector.begin() + iteration);
 							currentDelegateCount--;
@@ -356,7 +357,7 @@ namespace Galactic {
 								delete mDelegateVector[iteration];
 							}
 							else if (out) {
-								out->push_back(mDelegateVector[iteration]);
+								out->pushToBack(mDelegateVector[iteration]);
 							}
 							mDelegateVector.erase(mDelegateVector.begin() + iteration);
 							iteration--;
@@ -384,7 +385,7 @@ namespace Galactic {
 								delete mDelegateVector[iteration];
 							}
 							else if (out) {
-								out->push_back(mDelegateVector[iteration]);
+								out->pushToBack(mDelegateVector[iteration]);
 							}
 							mDelegateVector.erase(mDelegateVector.begin() + iteration);
 							iteration--;
@@ -447,7 +448,7 @@ namespace Galactic {
 				 */
 				void invoke(std::vector<returnType> &out, parameters... params) const {
 					for (typename DynArray<DelegateSet::DelegateBaseType *>::const_iterator it = mDelegateVector.begin(); it != mDelegateVector.end(); it++) {
-						out.push_back((*it)->invoke(params...));
+						out.pushToBack((*it)->invoke(params...));
 					}
 				}
 
@@ -501,123 +502,6 @@ namespace Galactic {
 			private:
 				//! Internal vector storing the StaticDelegate instances.
 				DynArray<DelegateSet::DelegateBaseType *> mDelegateVector;
-		};
-
-
-		// Taken from the chosen answer of
-		// http://stackoverflow.com/questions/7858817/unpacking-a-tuple-to-call-a-matching-function-pointer
-		template<S32 ...> struct seq {};
-		template<S32 N, S32 ...S> struct gens : gens<N - 1, N - 1, S...> {};
-		template<S32 ...S> struct gens<0, S...>{ typedef seq<S...> type; };
-
-		/**
-		 *  @brief A type whose purpose is to provide deferred calling capabilities, as the name applies.
-		 */
-		class GenericCachedDelegate : public GenericDelegate {
-			public:
-				/**
-				 *  @brief Constructor accepting a GenericDelegate pointer.
-				 *  @param delegate A pointer to the GenericDelegate to be stored on the CachedDelegate.
-				 */
-				GenericCachedDelegate(GenericDelegate *delegate) : GenericDelegate(delegate->mIsMemberDelegate, true) {
-
-				}
-
-				/**
-				 *  @brief Dispatches the GenericCachedDelegate, ignoring the return value.
-				 *  @details This behaves exactly as the dispatch method available on CachedDelegate
-				 *  types except it does not care about the return value of the invoked delegate. You
-				 *  have to cast to a CachedDelegate with the proper function signature in order to
-				 *  dispatch it and get a return value.
-				 */
-				virtual void generic_dispatch(void) = 0;
-		};
-
-		/**
-		 *  @brief A delegate type with which you can perform deferred calls.
-		 *  @details This is essentially just a wrapper for either a StaticDelegate or MemberDelegate
-		 *  instance but it caches any arguments for later invocation.
-		 */
-		template <typename returnType, typename... parameters> class CachedDelegate : public GenericCachedDelegate {
-			// Public Methods
-			public:
-				/**
-				 *  @brief Constructor accepting a delegate instance and function call parameters.
-				 *  @param delegate A pointer to the delegate instance that this CachedDelegate is supposed to invoke.
-				 *  @param params Anything; these parameters depend on the function signature defined in the template.
-				 */
-				CachedDelegate(DelegateBase<returnType, parameters...> *delegate, parameters... params) : GenericCachedDelegate(delegate), mDelegate(delegate), mParameters(params...) {
-
-				}
-
-				/**
-				 *  @brief Standard destructor.
-				 *  @note This deletes the stored delegate instance as well, so the deletion of
-				 *  any CachedDelegate types will invalidate the delegate it was calling.
-				 */
-				~CachedDelegate(void) { 
-					delete mDelegate; 
-					mDelegate = NULL; 
-				}
-
-				/**
-				 *  @brief Dispatches the CachedDelegate.
-				 *  @details This is equivalent to the invoke() method on all other delegate
-				 *  types except the parameters were cached at creation. Said cached parameters
-				 *  will be passed in automatically upon calling this, so it is completely safe
-				 *  to store.
-				 *  @return Anything; it depends on the function signature defined in the template.
-				 */
-				returnType dispatch(void) {
-					return performCachedCall(typename gens<sizeof...(parameters)>::type());
-				}
-
-				/**
-				 *  @brief Dispatches the CachedDelegate, ignoring the return value.
-				 *  @details This behaves exactly as the dispatch method above except it does not
-				 *  care about the return of the called function. This method is also callable on
-				 *  the CachedDelegateBase type, unlike the normal dispatch method.
-				 */
-				void generic_dispatch(void) { 
-					dispatch(); 
-				}
-
-				/**
-				 *  @brief Gets the internally invoked delegate.
-				 *  @return A pointer to the internally invoked delegate.
-				 */
-				const DelegateBase<returnType, parameters...> *get_delegate(void) { 
-					return mDelegate; 
-				}
-
-				// Private Methods
-			private:
-				//! Internal templated method to invoke the stored delegate instance.
-				template<S32 ...S> returnType performCachedCall(seq<S...>) {
-					assert(mDelegate);
-
-					if (!mDelegate) {
-						//Phantom139: (To-Do) Remove STL Reference
-						throw std::runtime_error("Bad CachedDelegate mDelegate pointer!");
-					}
-
-					return mDelegate->invoke(std::get<S>(mParameters) ...);
-				}
-
-				// Public Members
-			public:
-				//! Helper typedef to a StaticDelegate.
-				typedef StaticDelegate<returnType, parameters...> StaticDelegateType;
-				template <typename classType>
-				//! Helper typedef to a MemberDelegate.
-				using MemberDelegateType = MemberDelegate<classType, returnType, parameters...>;
-
-				// Private Members
-			private:
-				//! Internal std::tuple that is utilized to cache the parameter list.
-				const std::tuple<parameters...> mParameters;
-				//! Pointer to the internally invoked delegate instance.
-				DelegateBase<returnType, parameters...> *mDelegate;
 		};
 
 		/**
