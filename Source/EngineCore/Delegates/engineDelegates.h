@@ -28,10 +28,18 @@
 
 #include "easydelegate.hpp"
 
-#define INIT_DELEGATE(Name) 
-#define INIT_MULTICAST_DELEGATE(Name)
+namespace Galactic {
 
-INIT_DELEGATE(BasicDelegate);
-INIT_MULTICAST_DELEGATE(BasicMulticastDelegate);
+	namespace Core {
+
+		#define INIT_DELEGATE(Name) StaticDelegate<void> Name() {};
+		#define INIT_MULTICAST_DELEGATE(Name) DelegateSet<void> Name() {};
+
+		INIT_DELEGATE(BasicDelegate);
+		INIT_MULTICAST_DELEGATE(BasicMulticastDelegate);
+
+	};
+
+};
 
 #endif //GALACTIC_ENGINECORE_DELEGATECORE
