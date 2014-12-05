@@ -1,9 +1,26 @@
 /**
 * Galactic 2D
-* (C) 2014 Phantom Games Development - All Rights Reserved
 * WinPlatform.cpp
-*
 * Defines the PlatformProcess, Semaphore, PlatformHandle, and BinaryVersion classes for the Windows Platform
+* (C) 2014 Phantom Games Development - All Rights Reserved
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+* THE SOFTWARE.
 **/
 
 #include "../engineCore.h"
@@ -12,6 +29,7 @@
 #include <shlobj.h>
 #include <LM.h>
 #include <tlhelp32.h>
+#include "WinThreadClasses.h"
 
 #ifdef GALACTIC_WINDOWS	
 
@@ -539,6 +557,74 @@ namespace Galactic {
 			return false;
 		}
 
+		bool PlatformProcess::spawnHandleIO(any &readerHandle, any& writerHandle) {
+			SECURITY_ATTRIBUTES sAttr;
+			sAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
+			sAttr.bInheritHandle = true;
+			sAttr.lpSecurityDescriptor = NULL;
+			//Attempt to create the instance
+			if (!(::CreatePipe(&readerHandle, &writerHandle, &sAttr, 0))) {
+				GC_Error("PlatformProcess::spawnHandleIO(): Failed to spawn handle reading (pipe) instances.");
+				return false;
+			}
+			//Apply some properties to the reader IO handle.
+			if (!(::SetHandleInformation(readerHandle, HANDLE_FLAG_INHERIT, 0))) {
+				GC_Error("PlatformProcess::spawnHandleIO(): Failed to apply handle properties to the reading IO handle.");
+				return false;
+			}
+			return true;
+		}
+
+		String PlatformProcess::readHandle(any handleIO) {
+			U32 bytesToRead = 0;
+			U32 amountRead = 0;
+			String result;
+			UTX8ToChar converter;
+			TCHAR *convertedString;
+			//Try to read the handle.
+			if (::PeekNamedPipe(handleIO, NULL, 0, NULL, (::DWORD *)&bytesToRead, NULL)) {
+				//If there's something to read, proceed.
+				if (bytesToRead > 0) {
+					UTX8 buffer = new U8[bytesToRead + 1];
+					//Try to read the handle now.
+					if (::ReadFile(handleIO, buffer, bytesToRead, (::DWORD *)&amountRead, NULL)) {
+						if (amountRead > 0) {
+							buffer[amountRead] = '\0';
+							converter.fetch(convertedString, (UTF16)buffer, strlen((UTF16)buffer));
+							result += String::ToStr("%s", (UTF16)convertedString);
+						}
+					}
+					delete[] buffer;
+				}
+			}
+			return result;
+		}
+
+		void PlatformProcess::closeHandleIO(any readIO, any writeIO) {
+			if (readIO != NULL && readIO != INVALID_HANDLE_VALUE) {
+				::CloseHandle(readIO);
+			}
+			if (writeIO != NULL && writeIO != INVALID_HANDLE_VALUE) {
+				::CloseHandle(writeIO);
+			}
+		}
+
+		Event *PlatformProcess::createEvent(bool manualReset) {
+			Event *eventObj = NULL;
+			//Check for multi-thread support
+			if (PlatformProcess::isMultithreaded()) {
+				eventObj = new PlatformEvent();
+			}
+			else {
+				eventObj = new SingleThreadedEvent();
+			}
+			//Try to init the instance, fail if it does.
+			if (!eventObj->init(manualReset)) {
+				SendToHell(eventObj);
+				GC_Error("PlatformProcess::createEvent(): Failed to initialize platform event object.");
+			}
+			return eventObj;
+		}
 	};
 
 };

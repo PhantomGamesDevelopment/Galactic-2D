@@ -43,4 +43,8 @@
 //Create Level 3 64-Bit Mask
 #define CreateLevel3Mask(v1, v2, v3) ((1 << v1) + (1 << v2) + (1 << v3))
 
+/* Application based defines */
+//Unknown bits are converted to this character to prevent crashing due to invalid string literals
+#define BadLiteralConvert '?'
+
 #endif //GALACTIC_DEFINES

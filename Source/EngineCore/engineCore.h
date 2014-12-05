@@ -31,6 +31,7 @@ namespace Galactic {
 //Load up the tools
 #include "Tools/advTools.h"
 #include "Tools/strTools.h"
+#include "Tools/charTools.h"
 #include "Tools/dynArray.h"
 #include "Tools/string.h"
 #include "Tools/mSingleton.h"
@@ -39,7 +40,7 @@ namespace Galactic {
 
 //Load everything else we need.
 #include "Tools/commandLineParams.h"
-#include "Delegates/easydelegate.hpp"
+#include "Delegates/engineDeleages.hpp"
 #include "Thread/threadBase.h"
 #include "Thread/singleThreadBase.h" 
 #include "Thread/threadTasks.h"
