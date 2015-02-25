@@ -1,7 +1,7 @@
 /**
 * Galactic 2D
-* Source/EngineCore/Delegates/engineDelegates.h
-* Wraps the easydelegtate system into engine usable formats
+* Source/EngineCore/Windows/loadPlatform.h
+* Loads up all of the necessary platform headers and our files
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,23 +23,21 @@
 * THE SOFTWARE.
 **/
 
-#ifndef GALACTIC_ENGINECORE_DELEGATECORE
-#define GALACTIC_ENGINECORE_DELEGATECORE
+// Instance of our application
+extern "C" HINSTANCE hInstance;
 
-#include "easydelegate.hpp"
+// Settings and C++ libs that are windows specific.
+#include <intrin.h>
+#include <tchar.h>
 
-namespace Galactic {
+//load Windows.h now
+#include "loadWinH.h"
 
-	namespace Core {
-
-		#define INIT_DELEGATE(Name) StaticDelegate<void> Name() {};
-		#define INIT_MULTICAST_DELEGATE(Name) DelegateSet<void> Name() {};
-
-		INIT_DELEGATE(BasicDelegate);
-		INIT_MULTICAST_DELEGATE(BasicMulticastDelegate);
-
-	};
-
-};
-
-#endif //GALACTIC_ENGINECORE_DELEGATECORE
+//Load the rest of our headers, notice how they match alongside genericPlatform includes.
+#include "memory.h"
+#include "math.h"
+#include "time.h"
+#include "platformFunctions.h"
+#include "threadUtilityClasses.h"
+#include "thread.h"
+#include "atomics.h"

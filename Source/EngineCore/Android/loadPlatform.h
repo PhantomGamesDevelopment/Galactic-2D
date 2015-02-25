@@ -1,7 +1,7 @@
 /**
 * Galactic 2D
-* Source/EngineCore/Delegates/engineDelegates.h
-* Wraps the easydelegtate system into engine usable formats
+* Source/EngineCore/Android/loadPlatform.h
+* Loads up all of the necessary platform headers and our files
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,23 +23,24 @@
 * THE SOFTWARE.
 **/
 
-#ifndef GALACTIC_ENGINECORE_DELEGATECORE
-#define GALACTIC_ENGINECORE_DELEGATECORE
+//Load up out android libs for G2D.
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <ctype.h>
+#include <wctype.h>
+#include <pthread.h>
+#include <limits.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <utime.h>
 
-#include "easydelegate.hpp"
+//Android platforms don't apparently define these, and we need to ensure alignment to 16 bytes (see http://stackoverflow.com/questions/5208356/memory-alignment-on-iphone-and-android)
+#define _aligned_malloc(size, memAlign) malloc(size)
+#define _aligned_realloc(trg, size, memAlign) realloc(trg, size)
+#define _aligned_free(trg) free(trg)
 
-namespace Galactic {
-
-	namespace Core {
-
-		#define INIT_DELEGATE(Name) StaticDelegate<void> Name() {};
-		#define INIT_MULTICAST_DELEGATE(Name) DelegateSet<void> Name() {};
-
-		INIT_DELEGATE(BasicDelegate);
-		INIT_MULTICAST_DELEGATE(BasicMulticastDelegate);
-
-	};
-
-};
-
-#endif //GALACTIC_ENGINECORE_DELEGATECORE
+//Load in the G2D platform files (see platformInclude.h for include order)
+#include "math.h"
+#include "time.h"
+#include "atomics.h"

@@ -1,7 +1,7 @@
 /**
 * Galactic 2D
-* Source/EngineCore/Delegates/engineDelegates.h
-* Wraps the easydelegtate system into engine usable formats
+* Source/EngineCore/GenericPlatform/atomics.h
+* Defines the PlatformAtomics class for the engine
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,23 +23,30 @@
 * THE SOFTWARE.
 **/
 
-#ifndef GALACTIC_ENGINECORE_DELEGATECORE
-#define GALACTIC_ENGINECORE_DELEGATECORE
-
-#include "easydelegate.hpp"
+#ifndef GALACTIC_PLATFORM_GENERIC_ATOMICS
+#define GALACTIC_PLATFORM_GENERIC_ATOMICS
 
 namespace Galactic {
 
 	namespace Core {
 
-		#define INIT_DELEGATE(Name) StaticDelegate<void> Name() {};
-		#define INIT_MULTICAST_DELEGATE(Name) DelegateSet<void> Name() {};
-
-		INIT_DELEGATE(BasicDelegate);
-		INIT_MULTICAST_DELEGATE(BasicMulticastDelegate);
+		/*
+		S128: Internal representation of a 128-bit integer (IE: cross platform _int128), uses two S64's to accomplish this.
+		 We force the alignment to 16-byte boundaries to meet requirements on most processers today
+		*/
+		struct VS_ALIGN(16) S128 {
+			/* Struct Methods */
+			//Default Constructor
+			S128(S64 l, S64 h) : low(l), high(h) { }
+			/* Struct Members */
+			//The low part of the integer
+			S64 low;
+			//The high part of the integer
+			S64 high;
+		} GNU_ALIGN(16);
 
 	};
 
 };
 
-#endif //GALACTIC_ENGINECORE_DELEGATECORE
+#endif //GALACTIC_PLATFORM_GENERIC_ATOMICS

@@ -1,16 +1,33 @@
 /**
 * Galactic 2D
-* (C) 2014 Phantom Games Development - All Rights Reserved
-* allocaterOverloads.h
+* Source/EngineCore/allocaterOverloads.h
+* Loads additional memory overloading classes to be used by the engine
+* (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
-* Loads the specific allocater classes. These are the allocater classes that are actually used by the memory system.
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+* THE SOFTWARE.
 **/
 
 #ifndef GALACTIC_PLATFORM_ALLOCATEROVERLOADS
 #define GALACTIC_PLATFORM_ALLOCATEROVERLOADS
 
 #include "platformMemory.h"
-#include "../Internal/Tools/advTools.h"
+#include "Tools/advTools.h"
 
 namespace Galactic {
 

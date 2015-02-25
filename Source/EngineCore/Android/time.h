@@ -1,7 +1,7 @@
 /**
 * Galactic 2D
-* Source/EngineCore/Delegates/engineDelegates.h
-* Wraps the easydelegtate system into engine usable formats
+* Source/EngineCore/Android/time.h
+* Defines necessary time related classes for this class.
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,23 +23,27 @@
 * THE SOFTWARE.
 **/
 
-#ifndef GALACTIC_ENGINECORE_DELEGATECORE
-#define GALACTIC_ENGINECORE_DELEGATECORE
+#ifdef GALACTIC_ANDROID
 
-#include "easydelegate.hpp"
+	#ifndef GALACTIC_PLATFORM_ANDROID_PLATFORMTIME
+	#define GALACTIC_PLATFORM_ANDROID_PLATFORMTIME
 
-namespace Galactic {
+	namespace Galactic {
 
-	namespace Core {
+		namespace Core {
 
-		#define INIT_DELEGATE(Name) StaticDelegate<void> Name() {};
-		#define INIT_MULTICAST_DELEGATE(Name) DelegateSet<void> Name() {};
+			/*
+			PlatformTime: Defines a list of methods and members for calculating system time parameters for Android platforms. For the time being, we should
+			 be safe using SysTime for android, however, it's possible that not all android devices support it. Possible inspection topic for later...
+			*/
+			class PlatformTime : public GenericPlatformTime {
 
-		INIT_DELEGATE(BasicDelegate);
-		INIT_MULTICAST_DELEGATE(BasicMulticastDelegate);
+			};
+
+		};
 
 	};
 
-};
+	#endif //GALACTIC_PLATFORM_ANDROID_PLATFORMTIME
 
-#endif //GALACTIC_ENGINECORE_DELEGATECORE
+#endif //GALACTIC_ANDROID

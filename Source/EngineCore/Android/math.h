@@ -1,7 +1,7 @@
 /**
 * Galactic 2D
-* Source/EngineCore/Delegates/engineDelegates.h
-* Wraps the easydelegtate system into engine usable formats
+* Source/EngineCore/Android/math.h
+* Defines the platform specific math class and functions
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,23 +23,26 @@
 * THE SOFTWARE.
 **/
 
-#ifndef GALACTIC_ENGINECORE_DELEGATECORE
-#define GALACTIC_ENGINECORE_DELEGATECORE
+#ifdef GALACTIC_ANDROID
 
-#include "easydelegate.hpp"
+	#ifndef GALACTIC_PLATFORM_ANDROID_PLATFORMMATH
+	#define GALACTIC_PLATFORM_ANDROID_PLATFORMMATH
 
-namespace Galactic {
+	namespace Galactic {
 
-	namespace Core {
+		namespace Core {
 
-		#define INIT_DELEGATE(Name) StaticDelegate<void> Name() {};
-		#define INIT_MULTICAST_DELEGATE(Name) DelegateSet<void> Name() {};
+			/*
+			PlatformMath: Wrapper functions and methods to convert Android Math functions into a standardized list that the engine may use.
+			*/
+			class PlatformMath : public GenericPlatformMath {
+				//Nothing special here folks!
+			};
 
-		INIT_DELEGATE(BasicDelegate);
-		INIT_MULTICAST_DELEGATE(BasicMulticastDelegate);
+		};
 
 	};
 
-};
+	#endif //GALACTIC_PLATFORM_ANDROID_PLATFORMMATH
 
-#endif //GALACTIC_ENGINECORE_DELEGATECORE
+#endif //GALACTIC_ANDROID

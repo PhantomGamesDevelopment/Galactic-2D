@@ -1,7 +1,7 @@
 /**
 * Galactic 2D
-* Source/EngineCore/Delegates/engineDelegates.h
-* Wraps the easydelegtate system into engine usable formats
+* Source/EngineCore/Mac/time.cpp
+* Defines necessary time related classes for this class.
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,23 +23,38 @@
 * THE SOFTWARE.
 **/
 
-#ifndef GALACTIC_ENGINECORE_DELEGATECORE
-#define GALACTIC_ENGINECORE_DELEGATECORE
+#include "../engineCore.h"
 
-#include "easydelegate.hpp"
+#ifdef GALACTIC_MAC
 
-namespace Galactic {
+	namespace Galactic {
 
-	namespace Core {
+		namespace Core {
 
-		#define INIT_DELEGATE(Name) StaticDelegate<void> Name() {};
-		#define INIT_MULTICAST_DELEGATE(Name) DelegateSet<void> Name() {};
+			F64 PlatformTime::init() {
+				//Info on Absolute Time Here: http://stackoverflow.com/questions/1450737/what-is-mach-absolute-time-based-on-on-iphone
+				mach_timebase_info_data_t absTimeInfo;
+				if (mach_timebase_info(&absTimeInfo) != 0) {
+					//Something went wrong...
+					GC_Error("PlatformTime::init(): Failed to initialize timebase information...");
+					return 0;
+				}
+				timePerCycle = (0.000000001) * (F64)absTimeInfo.numer / (F64)absTimeInfo.denom;
+				return PlatformTime::fetchSeconds();
+			}
 
-		INIT_DELEGATE(BasicDelegate);
-		INIT_MULTICAST_DELEGATE(BasicMulticastDelegate);
+			F64 PlatformTime::fetchSeconds() {
+				//We want to start by calculating the absolute time (or number of CPU cycles), then multiply by timePerCycle.
+				U64 absTime = mach_absolute_time();
+				return F64(absTime * timePerCycle);
+			}
+
+			U64 PlatformTime::fetchCycles() {
+				return mach_absolute_time();
+			}
+
+		};
 
 	};
 
-};
-
-#endif //GALACTIC_ENGINECORE_DELEGATECORE
+#endif //GALACTIC_MAC

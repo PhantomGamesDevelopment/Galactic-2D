@@ -567,7 +567,7 @@ namespace Galactic {
 		template <class T> bool DynArray<T>::resize(U32 count) {
 			any *arrayObjPtr = (any *) &arrayObj;
 
-			X32 VectorBlockSize = 16; //Resize 16 blocks at a time. Adjust as necessary, the larger this number, the less calls to resize, but the more space used, ect.
+			X32 VectorBlockSize = GALACTIC_DYNARRAY_RESIZE_BLOCK_SIZE;
 			if(count > 0) {
 				U32 arrayObjBlocks = count / VectorBlockSize;
 				if(count % VectorBlockSize) {

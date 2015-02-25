@@ -1,9 +1,26 @@
 /**
 * Galactic 2D
-* (C) 2014 Phantom Games Development - All Rights Reserved
-* platform.h
+* Source/EngineCore/platform.h
+* Platform detection and initialization
+* (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
-* Loads up everything needed that is platform specific for Galactic 2D.
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+* THE SOFTWARE.
 **/
 
 #ifndef GALACTIC_PLATFORM
@@ -40,15 +57,19 @@
   Load in the platform header file
 */
 #ifdef GALACTIC_WINDOWS
-	#include "Windows/platformWindows.h"
+	#include "Windows/platformCore.h"
 #elif GALACTIC_ANDROID
-	#include "Android/platformAndroid.h"
+	#error "Android is currently unsupported on G2D, This is a planned RC2 update"
+	#include "Android/platformCore.h"
 #elif GALACTIC_IPHONE
-	#include "IPhone/platformIOS.h"
+	#error "IPhone is currently unsupported on G2D, This is a planned RC2 update"
+	#include "IPhone/platformCore.h"
 #elif GALACTIC_MAC
-	#include "Mac/platformMac.h"
+	#error "Mac is currently unsupported on G2D, This is a planned RC2 update"
+	#include "Mac/platformCore.h"
 #elif GALACTIC_LINUX
-	#include "Linux/platformLinux.h"
+	#error "Linux is currently unsupported on G2D, This is a planned RC2 update"
+	#include "Linux/platformCore.h"
 #else
 	#error "Unknown platform detected, cancelling build"
 #endif

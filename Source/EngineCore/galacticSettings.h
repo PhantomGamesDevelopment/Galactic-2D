@@ -1,9 +1,26 @@
 /**
 * Galactic 2D
-* (C) 2014 Phantom Games Development - All Rights Reserved
-* galacticSettings.h
+* Source/EngineCore/galacticSettings.h
+* Global engine settings and definitions
+* (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
-* Settings and definitions for the Galactic 2D Engine
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+* THE SOFTWARE.
 **/
 
 //GALACTIC_VERSION_MAJOR, GALACTIC_VERSION_MINOR, GALACTIC_VERSION_REVISION, GALACTIC_VERSION_NUMBER
@@ -22,8 +39,8 @@
 //GALACTIC_BINARY_BUILD:
 /**
 	This define is used to define wheter or not the engine builds in a simply binary only executable file.
-	If you have access to this file as part of a non-free license to G2D, you should define this as 0 and
-	then directly create your game classes through the engine itself, rather than building an external module
+	If you have access to this file, you should define this as 0 and then directly create your game classes 
+	through the engine itself, rather than building an external module
 
 	Defining GALACTIC_BINARY_BUILD allows usage of the -game tag, whereas setting this to 0 will override the tag
 	and simply load the game by finding a generic main.lua file.
@@ -43,6 +60,15 @@
 	side of the engine. By default this is Main.lua.
 **/
 #define GALACTIC_SCRIPT_ENTRY "Main.lua"
+
+//GALACTIC_DYNARRAY_RESIZE_BLOCK_SIZE
+/**
+	This define controls the amount of blocks to resize a dynamically allocated array DynArray<X> by whenever it needs to expand it's bounds. Ideally, you
+	should pick a divisible byte factor of 2, that isn't too small, but not too large. Smaller values will increase size precision at the cost of performance
+	and larger values will occupy more memory, but give you increased performance. You should factor the requirements of your program when choosing this value.
+	By default, we choose a "mid-Range" to smaller value of 16 here.
+**/
+#define GALACTIC_DYNARRAY_RESIZE_BLOCK_SIZE 16
 
 //GALACTIC_DISABLE_MULTITHREADING
 /**

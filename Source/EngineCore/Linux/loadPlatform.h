@@ -1,7 +1,7 @@
 /**
 * Galactic 2D
-* Source/EngineCore/Delegates/engineDelegates.h
-* Wraps the easydelegtate system into engine usable formats
+* Source/EngineCore/Linux/loadPlatform.h
+* Loads up all of the necessary platform headers and our files
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,23 +23,42 @@
 * THE SOFTWARE.
 **/
 
-#ifndef GALACTIC_ENGINECORE_DELEGATECORE
-#define GALACTIC_ENGINECORE_DELEGATECORE
+//Load up our linux libs for G2D.
+#include <string.h>
+#include <alloca.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <float.h>
+#include <ctype.h>
+#include <stdarg.h>
+#include <stdint.h>
+#include <limits.h>
+#include <sys/time.h>
+#include <math.h>
+#include <wchar.h>
+#include <wctype.h>
+#include <errno.h>
+#include <unistd.h>
+#include <pthread.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <pwd.h>
+#include <fcntl.h>
+#include <dirent.h>
+#include <dlfcn.h>
+#include <utime.h>
+#include <execinfo.h>
+#include <signal.h>
+#include <sys/sysctl.h>
+#include <sys/utsname.h>
+#include <libgen.h>
 
-#include "easydelegate.hpp"
+//If we're running on a 64 bit linux platform, load in <xmmintrin.h>
+#ifdef __x86_64__
+	#include <xmmintrin.h>
+#endif 
 
-namespace Galactic {
-
-	namespace Core {
-
-		#define INIT_DELEGATE(Name) StaticDelegate<void> Name() {};
-		#define INIT_MULTICAST_DELEGATE(Name) DelegateSet<void> Name() {};
-
-		INIT_DELEGATE(BasicDelegate);
-		INIT_MULTICAST_DELEGATE(BasicMulticastDelegate);
-
-	};
-
-};
-
-#endif //GALACTIC_ENGINECORE_DELEGATECORE
+//Load in the G2D platform files (see platformInclude.h for include order)
+#include "math.h"
+#include "time.h"
+#include "atomics.h"

@@ -1,7 +1,7 @@
 /**
 * Galactic 2D
-* Source/EngineCore/Delegates/engineDelegates.h
-* Wraps the easydelegtate system into engine usable formats
+* Source/EngineCore/IPhone/time.h
+* Defines necessary time related classes for this class.
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,23 +23,33 @@
 * THE SOFTWARE.
 **/
 
-#ifndef GALACTIC_ENGINECORE_DELEGATECORE
-#define GALACTIC_ENGINECORE_DELEGATECORE
+#ifdef GALACTIC_IPHONE
 
-#include "easydelegate.hpp"
+	#ifndef GALACTIC_PLATFORM_IOS_PLATFORMTIME
+	#define GALACTIC_PLATFORM_IOS_PLATFORMTIME
 
-namespace Galactic {
+	namespace Galactic {
 
-	namespace Core {
+		namespace Core {
 
-		#define INIT_DELEGATE(Name) StaticDelegate<void> Name() {};
-		#define INIT_MULTICAST_DELEGATE(Name) DelegateSet<void> Name() {};
+			/*
+			PlatformTime: Defines a list of methods and members for calculating system time parameters for IPhone platforms.
+			*/
+			class PlatformTime : public GenericPlatformTime {
+				public:
+					/* Public Class Methods */
+					//Initialize the class, fetch timePerCycle and return a numerical parameter for current time
+					static F64 init();
+					//Fetch the current seconds
+					SFIN F64 fetchSeconds();
+					//Fetch the amount of cycles that have passed
+					SFIN U64 fetchCycles();
+			};
 
-		INIT_DELEGATE(BasicDelegate);
-		INIT_MULTICAST_DELEGATE(BasicMulticastDelegate);
+		};
 
 	};
 
-};
+	#endif //GALACTIC_PLATFORM_IOS_PLATFORMTIME
 
-#endif //GALACTIC_ENGINECORE_DELEGATECORE
+#endif //GALACTIC_IPHONE
