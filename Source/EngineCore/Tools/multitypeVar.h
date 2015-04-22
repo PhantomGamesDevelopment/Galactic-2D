@@ -154,11 +154,11 @@ namespace Galactic {
 			//Fetch method, for variable one
 			T1 fetchW() { return w; }
 			//Fetch method, for variable two
-			T1 fetchX() { return x; }
+			T2 fetchX() { return x; }
 			//Fetch method, for variable three
-			T2 fetchY() { return y; }
+			T3 fetchY() { return y; }
 			//Fetch method, for variable four
-			T3 fetchZ() { return z; }
+			T4 fetchZ() { return z; }
 			//Set method, defined as pure virtual for individual implementation
 			virtual void set(T1 x1, T2 x2, T3 x3, T4 x4) = 0;
 			//Swap elements of FourVarCont
