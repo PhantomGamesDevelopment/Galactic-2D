@@ -34,7 +34,7 @@ namespace Galactic {
 
 		//Initialize the ticker delegate class instance. Returns a boolean value, and accepts F64 dT as a parameter.
 		//GALACTIC_INIT_SC_DELEGATE_ReturnType_OneParam(GalacticFrameTickerDelegate, bool, F64);
-		typedef DelegateSet<bool, F64> GalacticFrameTickerDelegate;
+		typedef StaticDelegate<bool, F64> GalacticFrameTickerDelegate;
 
 		/*
 		struct TickerInstance: Stores all of the information for the individual ticker.
@@ -42,17 +42,14 @@ namespace Galactic {
 		struct TickerInstance {
 			/* Struct Constructor */
 			//Default Constructor
-			TickerInstance() {}
+			TickerInstance() : nextExecTime(0), deltaTime(0), tickerDelegate(NULL) { }
 			//Copy Constructor
 			TickerInstance(F64 net, F64 dt, const GalacticFrameTickerDelegate &c) : nextExecTime(net), deltaTime(dt), tickerDelegate(c) { }
 
 			/* Stuct Methods */
 			//Execute the event, returns true if the event was executed.
 			bool exec(F64 dt) {
-				//if (tickerDelegate.bound()) {
-				//return tickerDelegate.exec(dt);
-				//}
-				//return false;
+				//TODO: Update easydelegate.hpp to include a simple isBound() method for mProcAddress to ensure this is set.
 				return tickerDelegate.invoke(dt);
 			}
 
