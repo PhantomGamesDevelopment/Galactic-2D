@@ -46,6 +46,7 @@ namespace Galactic {
 #include "platformInclude.h"
 
 //Load up the tools
+#include "Tools/multitypeVar.h"
 #include "Tools/advTools.h"
 #include "Tools/strTools.h"
 #include "Tools/charTools.h"

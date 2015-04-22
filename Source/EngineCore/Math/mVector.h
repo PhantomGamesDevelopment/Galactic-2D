@@ -38,49 +38,41 @@ namespace Galactic {
 			/*
 			Vector2F: A basic class for manipulating and working with 2D-Cartesian Space Vectors.
 			*/
-			class Vector2F {
+			class Vector2F : public TwoVarCont<F64, F64> {
 				public:
-					F64 x; // x-component
-					F64 y; // y-component
-
-					Vector2F::Vector2F(F64 iX = 0.0f, F64 iY = 0.0f) {
-						x = iX;
-						y = iY;
+					//Set method
+					void Vector2F::set(F64 x1, F64 x2) {
+						x = x1;
+						y = x2;
 					}
+
 					/* Operators */
 					// Vector Addition Operator
-					Vector2F operator+(Vector2F &v) {
-						return Vector2F(x + v.x, y + v.y);
+					Vector2F &operator+(Vector2F &v) {		
+						Vector2F v;
+						v.set(x + v.x, y + v.y);
+						return v;
 					}
 				
 					//Vector Subtraction Operator
-					Vector2F operator-(Vector2F &v) {
-						return Vector2F(x - v.x, y - v.y);
+					Vector2F &operator-(Vector2F &v) {
+						Vector2F v;
+						v.set(x - v.x, y - v.y);
+						return v;
 					}
 
 					//Vector Multiplication
-					Vector2F operator*(Vector2F &v) {
-						return Vector2F(x * v.x, y * v.y);
+					Vector2F &operator*(Vector2F &v) {
+						Vector2F v;
+						v.set(x * v.x, y * v.y);
+						return v;
 					}
 
 					//Vector Scaling
-					Vector2F operator*(F64 s) {
-						return Vector2F(x * s, y * s);
-					}
-
-					//Copy
-					Vector2F operator=(Vector2F &v) {
-						return Vector2F(v.x, v.y);
-					}
-
-					//Equality
-					bool operator==(Vector2F &v) {
-						return (x == v.x && y == v.y);
-					}
-
-					//Inequality
-					bool operator!=(Vector2F &v) {
-						return (x != v.x || y != v.y);
+					Vector2F &operator*(F64 s) {
+						Vector2F v;
+						v.set(x * s, y * s);
+						return v;
 					}
 
 					/* Additional Functions */
@@ -110,8 +102,9 @@ namespace Galactic {
 	
 			//Position Typedef
 			typedef Vector2F Position2;
-		};
 
+		};
+		
 	};
 
 };

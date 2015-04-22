@@ -97,6 +97,37 @@
 						}
 						return NULL; 
 					}
+					//Run this instance
+					U32 run();
+					//Set the thread name
+					static void setThreadName(U32 tID, String newName) {
+						//Windows uses a very specific format for naming threads, and they're only visible for debugging purposes
+						struct THREAD_INFO {
+							//Type Flag, for thread name setting this must be 0x1000
+							U32 dwType;
+							//The name that we're going to set
+							LPCSTR szName;
+							//The Thread's ID number
+							U32 dwThreadID;
+							//Flags that are currently not being used, potential for future versions of windows?
+							U32 dwFlags;
+						};
+						//Create our naming info...
+						THREAD_INFO info;
+						info.dwType = 0x1000;
+						info.szName = (LPCSTR)newName.c_str();
+						info.dwThreadID = tID;
+						info.dwFlags = 0;
+						//Try to set the name... The code to use for this is provided by http://msdn.microsoft.com/en-us/library/xcb2z8hs.aspx
+						__try {
+							::DWORD nNumArgs = sizeof(THREAD_INFO) / sizeof(ULONG_PTR);
+							const ULONG_PTR *nArgs = ((ULONG_PTR *)&info);
+							RaiseException(0x406D1388, 0, nNumArgs, nArgs);
+						}
+						__except(EXCEPTION_EXECUTE_HANDLER) {
+							//Failed... do nothing.
+						}
+					}
 
 					/* Private Class Members */
 					//The thread handle object
