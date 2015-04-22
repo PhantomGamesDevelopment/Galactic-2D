@@ -2,7 +2,7 @@
 * Galactic 2D
 * Source/EngineCore/Thread/pThreadContinual.cpp
 * Defines the PContinualThread class for the actual PThread instances in the engine
-* (C) 2014 Phantom Games Development - All Rights Reserved
+* (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal

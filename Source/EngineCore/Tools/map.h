@@ -1,11 +1,26 @@
 /**
 * Galactic 2D
-* (C) 2014 Phantom Games Development - All Rights Reserved
-* map.h
+* Source/EngineCore/Tools/map.h
+* Defines some standard C++ multi-type data pairing & mapping classes
+* (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
-* Defines a Data Map class similar to the one defined in the Standard Template Library (std::map). This class
-*  allows you to define a list of elements with a key and a element associated with it (Double Associated Array).
-*  This header file also includes a basic form of the std::pair class (Pair) to be used alongside the Map class.
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+* THE SOFTWARE.
 **/
 
 #ifndef GALACTIC_INTERNAL_MAP

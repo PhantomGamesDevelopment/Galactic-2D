@@ -2,7 +2,7 @@
 * Galactic 2D
 * GLCore.h
 * The wrapper header which is initialized from the engine core to load in all of the correct OGL libs
-* (C) 2014 Phantom Games Development - All Rights Reserved
+* (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal

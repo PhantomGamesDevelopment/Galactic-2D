@@ -1,12 +1,29 @@
 /**
 * Galactic 2D
-* (C) 2014 Phantom Games Development - All Rights Reserved
-* reference.h
+* Source/EngineCore/Tools/reference.h
+* Defines a list of standard & advanced pointer reference templates
+* (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
-* Defines a set of reference classes used to define deletion properties. I'm using the same concept here as applied by the Torque Game Engine. Essentially
-*  this class creates a set of special class "flags" that specify if an object can safely be deleted without affecting other engine objects that may need
-*  it. One of the special features implemented here is the ability to use thread-safety in our pointer classes to allow for better data syncronization.
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
 *
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+* THE SOFTWARE.
+**/
+
+/**
 * References:
 * http://www.boost.org/doc/libs/1_55_0/libs/smart_ptr/shared_ptr.htm (Heavily Used)
 * http://stackoverflow.com/questions/5370938/weak-strong-reference-pointer-relationship
