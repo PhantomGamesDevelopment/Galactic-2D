@@ -87,6 +87,30 @@
 			class PlatformContinualThread : public ContinualThread {
 				public:
 					/* Public Class Methods */
+					//Default Constructor
+					PlatformContinualThread() :
+						threadObj(NULL),
+						objThread(NULL),
+						initValidation(NULL),
+						createValidation(NULL),
+						threadID(0),
+						threadAffinityMask(0),
+						threadName(),
+						enginePriority(Normal),
+						shouldDeleteSelf(false),
+						shouldDeleteObjThread(false),
+						tsSelfDeleteCtr(0) { }
+
+					//Destructor
+					~PlatformContinualThread() {
+						if (threadObj != NULL) {
+							//If there's a thread running, stop it dead.
+							kill(true);
+						}
+						//Cleanup tasks
+						threadRegistry::fetchInstance().remove(threadID);
+						SendToPitsOfHell(createValidation);
+					}
 
 				private:
 					/* Private Class Methods */
