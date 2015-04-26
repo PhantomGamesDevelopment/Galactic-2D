@@ -111,7 +111,7 @@ namespace Galactic {
 				//Remove a TickerInstance from the list.
 				void removeTickerInstance(const GalacticFrameTickerDelegate &dele) {
 					for (S32 i = 0; i < tickerList.size(); i++) {
-						if (tickerList[i].tickerDelegate == dele) {
+						if (&tickerList[i].tickerDelegate == &dele) {
 							tickerList.erase((U32)i);
 						}
 					}
