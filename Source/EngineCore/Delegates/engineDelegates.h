@@ -32,11 +32,8 @@ namespace Galactic {
 
 	namespace Core {
 
-		#define INIT_DELEGATE(Name) StaticDelegate<void> Name() {};
-		#define INIT_MULTICAST_DELEGATE(Name) DelegateSet<void> Name() {};
-
-		INIT_DELEGATE(BasicDelegate);
-		INIT_MULTICAST_DELEGATE(BasicMulticastDelegate);
+		typedef StaticDelegate<void> BasicDelegate;
+		typedef DelegateSet<void> BasicMulticastDelegate;
 
 	};
 

@@ -114,6 +114,10 @@ namespace Galactic {
 		/*
 		ContinualThread Class Definitions
 		*/
+		ContinualThread::~ContinualThread() {
+			onThreadDestroyedDelegate.invoke();
+		}
+
 		ContinualThread *ContinualThread::init(UTF16 name, ObjectThread *refObjThrd, bool delObjThrd_exit, bool delSelf_exit, U64 stackSize, ThreadPriority p, U64 affinityMask) {
 			if (refObjThrd == NULL) {
 				GC_Error("ContinualThread::init(): Cannot send a NULL reference thread to this method.");
