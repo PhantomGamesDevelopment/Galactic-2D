@@ -130,7 +130,7 @@ namespace Galactic {
 		}
 
 		bool GenericPlatformProcess::launchAdminProcess(UTF16 path, UTF16 args, S32 *retCodePtr) {
-			return PlatformProcess::launchProcess(path, args, retCodePtr);
+			return PlatformProcess::launchProcess(path, args, retCodePtr, NULL, NULL);
 		}
 
 		bool GenericPlatformProcess::activeProc(PlatformHandle &proc) {

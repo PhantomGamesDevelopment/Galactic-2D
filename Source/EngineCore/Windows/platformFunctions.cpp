@@ -625,6 +625,39 @@ namespace Galactic {
 			}
 			return eventObj;
 		}
+
+		ContinualThread *PlatformProcess::createContThread() {
+			return new PlatformContinualThread();
+		}
+
+		PlatformProcess::Semaphore *PlatformProcess::openSemaphore(const String &name, bool create = true, U32 maxLocks = 1) {
+			HANDLE semObj = NULL;
+			if (create) {
+				semObj = CreateSemaphore(NULL, maxLocks, maxLocks, (LPCWSTR)name.c_str());
+				if (semObj == NULL) {
+					GC_Error("PlatformProcess::openSemaphore(): Failed to create a semaphore object instance.");
+					return NULL;
+				}
+			}
+			else {
+				::DWORD dwDesiredAccess = SYNCHRONIZE | SEMAPHORE_MODIFY_STATE;
+				semObj = OpenSemaphore(dwDesiredAccess, false, (LPCWSTR)name.c_str());
+				if (semObj == NULL) {
+					GC_Error("PlatformProcess::openSemaphore(): Failed to open a semaphore object instance.");
+					return NULL;
+				}
+			}
+			return new Semaphore(name, semObj);
+		}
+
+		bool PlatformProcess::killSemaphore(Semaphore *trg) {
+			if (!trg) {
+				GC_Error("PlatformProcess::killSemaphore(): Cannot provide NULL to this function.");
+				return false;
+			}
+			
+		}
+
 	};
 
 };
