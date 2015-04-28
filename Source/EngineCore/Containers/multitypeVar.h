@@ -1,6 +1,6 @@
 /**
 * Galactic 2D
-* Source/EngineCore/Tools/multitypeVar.h
+* Source/EngineCore/Containers/multitypeVar.h
 * Defines template classes for using multiple type variable instances
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *

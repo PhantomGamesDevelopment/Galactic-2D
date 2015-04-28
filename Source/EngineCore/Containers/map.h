@@ -1,6 +1,6 @@
 /**
 * Galactic 2D
-* Source/EngineCore/Tools/map.h
+* Source/EngineCore/Containers/map.h
 * Defines some standard C++ multi-type data pairing & mapping classes
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *

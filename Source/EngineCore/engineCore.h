@@ -46,14 +46,14 @@ namespace Galactic {
 #include "platformInclude.h"
 
 //Load up the tools
-#include "Tools/multitypeVar.h"
+#include "Containers/multitypeVar.h"
 #include "Tools/advTools.h"
 #include "Tools/strTools.h"
 #include "Tools/charTools.h"
-#include "Tools/dynArray.h"
+#include "Containers/dynArray.h"
 #include "Tools/string.h"
-#include "Tools/mSingleton.h"
-#include "Tools/map.h"
+#include "Containers/mSingleton.h"
+#include "Containers/map.h"
 #include "Tools/filePath.h"
 
 //Load everything else we need.
@@ -62,7 +62,7 @@ namespace Galactic {
 #include "Thread/threadBase.h"
 #include "Thread/singleThreadBase.h" 
 #include "Thread/threadTasks.h"
-#include "Tools/frameTicker.h"
+#include "Containers/frameTicker.h"
 
 //Give the user a using namespace override so they don't need to use ::Galactic::Core::X in all of their files.
 using namespace Galactic::Core;

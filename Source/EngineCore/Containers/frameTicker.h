@@ -1,6 +1,6 @@
 /**
 * Galactic 2D
-* Source/EngineCore/Tools/frameTicker.h
+* Source/EngineCore/Containers/frameTicker.h
 * Standard engine class for managing engine "ticks"
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *

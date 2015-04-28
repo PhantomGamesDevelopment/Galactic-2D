@@ -1,6 +1,6 @@
 /**
 * Galactic 2D
-* Source/EngineCore/Tools/mSingleton.h
+* Source/EngineCore/Containers/mSingleton.h
 * Defines a class instance to define a managed singleton instance
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *

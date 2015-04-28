@@ -1,6 +1,6 @@
 /**
 * Galactic 2D
-* Source/EngineCore/Tools/dynArray.h
+* Source/EngineCore/Containers/dynArray.h
 * Defines a dynamically allocated array instance, more commonly refered to as a Vector
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
