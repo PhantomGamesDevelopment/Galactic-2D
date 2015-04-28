@@ -1,7 +1,7 @@
 /**
 * Galactic 2D
 * Source/EngineCore/Math/mVector.h
-* Definitions for the Vector2F class
+* Definitions for the Vector2I/Vector2F classes
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,84 +26,145 @@
 #ifndef GALACTIC_INTERNAL_VECTOR
 #define GALACTIC_INTERNAL_VECTOR
 
-#include "../platform.h"
-#include "../../Console/console.h"
-
 namespace Galactic {
 
 	namespace Core {
 
-		namespace Math {
-	
-			/*
-			Vector2F: A basic class for manipulating and working with 2D-Cartesian Space Vectors.
-			*/
-			class Vector2F : public TwoVarCont<F64, F64> {
-				public:
-					//Set method
-					void Vector2F::set(F64 x1, F64 x2) {
-						x = x1;
-						y = x2;
-					}
+		/*
+		Vector2I: A basic class for manipulating and working with 2D-Cartesian Space Vectors.
+		*/
+		class Vector2I : public TwoVarCont<S32, S32> {
+		public:
+			//Set method
+			void Vector2I::set(S32 x1, S32 x2) {
+				x = x1;
+				y = x2;
+			}
 
-					/* Operators */
-					// Vector Addition Operator
-					Vector2F &operator+(Vector2F &v) {		
-						Vector2F v;
-						v.set(x + v.x, y + v.y);
-						return v;
-					}
-				
-					//Vector Subtraction Operator
-					Vector2F &operator-(Vector2F &v) {
-						Vector2F v;
-						v.set(x - v.x, y - v.y);
-						return v;
-					}
+			/* Operators */
+			// Vector Addition Operator
+			Vector2I &operator+(Vector2I &v) {
+				Vector2I v;
+				v.set(x + v.x, y + v.y);
+				return v;
+			}
 
-					//Vector Multiplication
-					Vector2F &operator*(Vector2F &v) {
-						Vector2F v;
-						v.set(x * v.x, y * v.y);
-						return v;
-					}
+			//Vector Subtraction Operator
+			Vector2I &operator-(Vector2I &v) {
+				Vector2I v;
+				v.set(x - v.x, y - v.y);
+				return v;
+			}
 
-					//Vector Scaling
-					Vector2F &operator*(F64 s) {
-						Vector2F v;
-						v.set(x * s, y * s);
-						return v;
-					}
+			//Vector Multiplication
+			Vector2I &operator*(Vector2I &v) {
+				Vector2I v;
+				v.set(x * v.x, y * v.y);
+				return v;
+			}
 
-					/* Additional Functions */
-					// Vector Normalize
-					void normalize() {
-						if(length() == 0) {
-							GC_Error("Cannot Normalize a vector with 0 length");
-							return;
-						}
-						x /= length();
-						y /= length();
-					}
+			//Vector Scaling
+			Vector2I &operator*(F64 s) {
+				Vector2I v;
+				v.set(x * s, y * s);
+				return v;
+			}
 
-					// Vector Length
-					F64 length() const { return PlatformMath::mSqrt(PlatformMath::mPow(x, 2) + PlatformMath::mPow(y, 2)); }
+			/* Additional Functions */
+			// Vector Normalize
+			void normalize() {
+				if (length() == 0) {
+					GC_Error("Cannot Normalize a vector with 0 length");
+					return;
+				}
+				x /= length();
+				y /= length();
+			}
 
-					// Vector Dot Product
-					F64 dot(Vector2F &v) const { return ((x * v.x) + (y * v.y)); }
+			// Vector Length
+			F64 length() const { return PlatformMath::mSqrt(PlatformMath::mPow((F64)x, 2) + PlatformMath::mPow((F64)y, 2)); }
 
-					// Vector Cross Product (IE: 2D Determinant), 2D Vector Cross Product returns a Scalar
-					F64 cross(Vector2F &v) const { return((x * v.y) - (y * v.x)); }
-					F64 det(Vector2F &v) const { return cross(v); }
+			// Vector Dot Product
+			F64 dot(Vector2I &v) const { return ((x * v.x) + (y * v.y)); }
 
-					//Angle Between
-					F64 ang(Vector2F &v) const { return (PlatformMath::mATan2(v.y, v.x) - PlatformMath::mATan2(y, x)); }
-			};
-	
-			//Position Typedef
-			typedef Vector2F Position2;
+			// Vector Cross Product (IE: 2D Determinant), 2D Vector Cross Product returns a Scalar
+			F64 cross(Vector2I &v) const { return((x * v.y) - (y * v.x)); }
+			F64 det(Vector2I &v) const { return cross(v); }
 
+			//Angle Between
+			F64 ang(Vector2I &v) const { return (PlatformMath::mATan2((F64)v.y, (F64)v.x) - PlatformMath::mATan2((F64)y, (F64)x)); }
 		};
+	
+		/*
+		Vector2F: A basic class for manipulating and working with 2D-Cartesian Space Vectors.
+		*/
+		class Vector2F : public TwoVarCont<F64, F64> {
+			public:
+				//Set method
+				void Vector2F::set(F64 x1, F64 x2) {
+					x = x1;
+					y = x2;
+				}
+
+				/* Operators */
+				// Vector Addition Operator
+				Vector2F &operator+(Vector2F &v) {		
+					Vector2F v;
+					v.set(x + v.x, y + v.y);
+					return v;
+				}
+				
+				//Vector Subtraction Operator
+				Vector2F &operator-(Vector2F &v) {
+					Vector2F v;
+					v.set(x - v.x, y - v.y);
+					return v;
+				}
+
+				//Vector Multiplication
+				Vector2F &operator*(Vector2F &v) {
+					Vector2F v;
+					v.set(x * v.x, y * v.y);
+					return v;
+				}
+
+				//Vector Scaling
+				Vector2F &operator*(F64 s) {
+					Vector2F v;
+					v.set(x * s, y * s);
+					return v;
+				}
+
+				/* Additional Functions */
+				// Vector Normalize
+				void normalize() {
+					if(length() == 0) {
+						GC_Error("Cannot Normalize a vector with 0 length");
+						return;
+					}
+					x /= length();
+					y /= length();
+				}
+
+				// Vector Length
+				F64 length() const { return PlatformMath::mSqrt(PlatformMath::mPow(x, 2) + PlatformMath::mPow(y, 2)); }
+
+				// Vector Dot Product
+				F64 dot(Vector2F &v) const { return ((x * v.x) + (y * v.y)); }
+
+				// Vector Cross Product (IE: 2D Determinant), 2D Vector Cross Product returns a Scalar
+				F64 cross(Vector2F &v) const { return((x * v.y) - (y * v.x)); }
+				F64 det(Vector2F &v) const { return cross(v); }
+
+				//Angle Between
+				F64 ang(Vector2F &v) const { return (PlatformMath::mATan2(v.y, v.x) - PlatformMath::mATan2(y, x)); }
+		};
+	
+		//Position Typedefs
+		//Position2I: Two point position using integer values
+		typedef Vector2I Position2I;
+		//Position2F: Two point position using floating point values
+		typedef Vector2F Position2F;
 		
 	};
 
