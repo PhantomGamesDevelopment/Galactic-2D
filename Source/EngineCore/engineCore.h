@@ -64,7 +64,7 @@ namespace Galactic {
 #include "Thread/threadTasks.h"
 #include "Math/math.h"
 #include "Containers/frameTicker.h"
-#include "GenericPlatform/cursor.h"
+#include "Tools/cursor.h"
 
 //Give the user a using namespace override so they don't need to use ::Galactic::Core::X in all of their files.
 using namespace Galactic::Core;

@@ -1,6 +1,6 @@
 /**
 * Galactic 2D
-* Source/EngineCore/GenericPlatform/cursor.h
+* Source/EngineCore/Tools/cursor.h
 * Defines a standard function set for working with the mouse instance
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
@@ -23,8 +23,8 @@
 * THE SOFTWARE.
 **/
 
-#ifndef GALACTIC_PLATFORM_GENERIC_CURSORDEC
-#define GALACTIC_PLATFORM_GENERIC_CURSORDEC
+#ifndef GALACTIC_INTERNAL_CURSORDEC
+#define GALACTIC_INTERNAL_CURSORDEC
 
 namespace Galactic {
 
@@ -61,9 +61,9 @@ namespace Galactic {
 		};
 
 		/* 
-		GenericCursor: Standard definition of the platform independant mouse cursor class
+		Cursor: Standard definition of the platform independant mouse cursor class
 		*/
-		class GenericCursor {
+		class Cursor {
 			public:
 				/* Public Class Methods */
 				//Make the cursor visible
@@ -86,4 +86,4 @@ namespace Galactic {
 
 };
 
-#endif //GALACTIC_PLATFORM_GENERIC_CURSORDEC
+#endif //GALACTIC_INTERNAL_CURSORDEC
