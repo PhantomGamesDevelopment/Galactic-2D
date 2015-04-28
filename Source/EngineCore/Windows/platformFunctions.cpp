@@ -650,12 +650,50 @@ namespace Galactic {
 			return new Semaphore(name, semObj);
 		}
 
-		bool PlatformProcess::killSemaphore(Semaphore *trg) {
+		bool PlatformProcess::killSemaphore(GenericSemaphore *trg) {
 			if (!trg) {
 				GC_Error("PlatformProcess::killSemaphore(): Cannot provide NULL to this function.");
 				return false;
 			}
-			
+			//Cast the semaphore instance to a windows version, and validate it.
+			Semaphore *wSem = static_cast<Semaphore *>(trg);
+			if (!wSem) {
+				GC_Error("PlatformProcess::killSemaphore(): Failed to convert to a windows-typed semaphore object instance.");
+				return false;
+			}
+			HANDLE semObject = wSem->fetch();
+			if (!semObject) {
+				GC_Error("PlatformProcess::killSemaphore(): Failed to fetch a windows HANDLE instance for the specified semaphore object.");
+				return false;
+			}
+			//Close it.
+			if (!CloseHandle(semObject)) {
+				GC_Error("PlatformProcess::killSemaphore(): Failed to close specified semaphore instance.");
+				return false;
+			}
+			SendToPitsOfHell(wSem);
+			return true;
+		}
+
+		void PlatformProcess::sleep(F64 seconds = 0.0f, bool sleepInfinite = false) {
+			if (sleepInfinite) {
+				if (!isMultithreaded()) {
+					GC_Error("PlatformProcess::sleep(): Cannot sleep indefinitely without being multithreaded.");
+					return;
+				}
+				::Sleep(INFINITE);
+			}
+			else {
+				::Sleep((::DWORD)(seconds * 1000.0));
+			}
+		}
+
+		void PlatformProcess::readFromHandle(S32 handleCount, String *output[], HANDLE IOHandles[]) {
+			for (S32 i = 0; i < handleCount; i++) {
+				if (IOHandles[i] && output[i]) {
+					*output[i] += readHandle(IOHandles[i]);
+				}
+			}
 		}
 
 	};

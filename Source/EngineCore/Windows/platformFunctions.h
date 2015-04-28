@@ -159,7 +159,7 @@
 					//attempt to open a semaphore object, set create=false to override an existing one. maxLocks=1 can be used to force the sem to act as a mutex
 					static Semaphore *openSemaphore(const String &name, bool create = true, U32 maxLocks = 1);
 					//delete a semaphore
-					static bool killSemaphore(Semaphore *trg);
+					static bool killSemaphore(GenericSemaphore *trg);
 					//Force the current thread to sleep for the specified time period, or set parameter 2 to true to sleep indefinitely
 					static void sleep(F64 seconds = 0.0f, bool sleepInfinite = false);
 
