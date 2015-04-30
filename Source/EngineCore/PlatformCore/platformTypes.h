@@ -1,6 +1,6 @@
 /**
 * Galactic 2D
-* Source/EngineCore/platformTypes.h
+* Source/EngineCore/PlatformCore/platformTypes.h
 * Global engine typedefs and declarations
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *

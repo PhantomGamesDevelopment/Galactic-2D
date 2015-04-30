@@ -1,6 +1,6 @@
 /**
 * Galactic 2D
-* Source/EngineCore/platform.h
+* Source/EngineCore/PlatformCore/platform.h
 * Platform detection and initialization
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
@@ -57,19 +57,19 @@
   Load in the platform header file
 */
 #ifdef GALACTIC_WINDOWS
-	#include "Windows/platformCore.h"
+	#include "../Windows/platformCore.h"
 #elif GALACTIC_ANDROID
 	#error "Android is currently unsupported on G2D, This is a planned RC2 update"
-	#include "Android/platformCore.h"
+	#include "../Android/platformCore.h"
 #elif GALACTIC_IPHONE
 	#error "IPhone is currently unsupported on G2D, This is a planned RC2 update"
-	#include "IPhone/platformCore.h"
+	#include "../IPhone/platformCore.h"
 #elif GALACTIC_MAC
 	#error "Mac is currently unsupported on G2D, This is a planned RC2 update"
-	#include "Mac/platformCore.h"
+	#include "../Mac/platformCore.h"
 #elif GALACTIC_LINUX
 	#error "Linux is currently unsupported on G2D, This is a planned RC2 update"
-	#include "Linux/platformCore.h"
+	#include "../Linux/platformCore.h"
 #else
 	#error "Unknown platform detected, cancelling build"
 #endif

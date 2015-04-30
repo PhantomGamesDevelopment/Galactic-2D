@@ -1,6 +1,6 @@
 /**
 * Galactic 2D
-* Source/EngineCore/platformMemory.cpp
+* Source/EngineCore/PlatformCore/platformMemory.cpp
 * Cross-Platform memory manipulation wrapper
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
@@ -33,7 +33,7 @@ namespace Galactic {
 			if (!_GAllocater) {
 				_GAllocater = PlatformMemory::Allocater();
 				if (!_GAllocater) {
-					GC_CError("[engineCore/platformMemory.cpp] createAllocater(%s) - Critical Error: Failed to initialize platform memory allocater.", srcFunc);
+					GC_CError("[engineCore/PlatformCore/platformMemory.cpp] createAllocater(%s) - Critical Error: Failed to initialize platform memory allocater.", srcFunc);
 					return false;
 				}
 			}

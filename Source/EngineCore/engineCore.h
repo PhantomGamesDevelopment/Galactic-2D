@@ -28,11 +28,11 @@
 
 //Load the engine settings first.
 #include "galacticSettings.h"
-#include "defines.h"
+#include "PlatformCore/defines.h"
 
 //Load up the engine files now.
-#include "platform.h"
-#include "platformTypes.h"
+#include "PlatformCore/platform.h"
+#include "PlatformCore/platformTypes.h"
 
 //Forward Decs for Generic Platform (ToDo: Find a better order of execution)
 namespace Galactic {
@@ -43,7 +43,7 @@ namespace Galactic {
 	}
 }
 
-#include "platformInclude.h"
+#include "PlatformCore/platformInclude.h"
 
 //Load up the tools
 #include "Containers/multitypeVar.h"
@@ -58,12 +58,15 @@ namespace Galactic {
 
 //Load everything else we need.
 #include "Tools/commandLineParams.h"
+#include "Tools/reference.h"
 #include "Delegates/engineDelegates.h"
 #include "Thread/threadBase.h"
 #include "Thread/singleThreadBase.h" 
 #include "Thread/threadTasks.h"
 #include "Math/math.h"
 #include "Containers/frameTicker.h"
+#include "GenericPlatform/window.h"
+#include "GenericPlatform/application.h"
 #include "Tools/cursor.h"
 
 //Give the user a using namespace override so they don't need to use ::Galactic::Core::X in all of their files.

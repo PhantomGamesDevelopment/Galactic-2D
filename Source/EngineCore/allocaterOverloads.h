@@ -26,7 +26,7 @@
 #ifndef GALACTIC_PLATFORM_ALLOCATEROVERLOADS
 #define GALACTIC_PLATFORM_ALLOCATEROVERLOADS
 
-#include "platformMemory.h"
+#include "PlatformCore/platformMemory.h"
 #include "Tools/advTools.h"
 
 namespace Galactic {

@@ -1,6 +1,6 @@
 /**
 * Galactic 2D
-* Source/EngineCore/platformMemory.h
+* Source/EngineCore/PlatformCore/platformMemory.h
 * Cross-Platform memory manipulation wrapper
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
@@ -25,8 +25,6 @@
 
 #ifndef GALACTIC_PLATFORM_GENERICMEMORY
 #define GALACTIC_PLATFORM_GENERICMEMORY
-
-#include "../Console/console.h"
 
 namespace Galactic {
 

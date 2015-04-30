@@ -1,6 +1,6 @@
 /**
 * Galactic 2D
-* Source/EngineCore/platformInclude.h
+* Source/EngineCore/PlatformCore/platformInclude.h
 * Global header loading and platform load fork
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
@@ -41,24 +41,24 @@
 #include "platformMemory.h"
 
 //Load The Generic Platform
-#include "GenericPlatform/memory.h"
-#include "GenericPlatform/platformOperations.h"
-#include "GenericPlatform/math.h"
-#include "GenericPlatform/time.h"
-#include "GenericPlatform/platformFunctions.h"
-#include "GenericPlatform/atomics.h"
+#include "../GenericPlatform/memory.h"
+#include "../GenericPlatform/platformOperations.h"
+#include "../GenericPlatform/math.h"
+#include "../GenericPlatform/time.h"
+#include "../GenericPlatform/platformFunctions.h"
+#include "../GenericPlatform/atomics.h"
 
 //Load Our Platform
 #ifdef GALACTIC_WINDOWS
-	#include "Windows/loadPlatform.h"
+	#include "../Windows/loadPlatform.h"
 #elif GALACTIC_ANDROID
-	#include "Android/loadPlatform.h"
+	#include "../Android/loadPlatform.h"
 #elif GALACTIC_IPHONE
-	#include "IPhone/loadPlatform.h"
+	#include "../IPhone/loadPlatform.h"
 #elif GALACTIC_MAC
-	#include "Mac/loadPlatform.h"
+	#include "../Mac/loadPlatform.h"
 #elif GALACTIC_LINUX
-	#include "Linux/loadPlatform.h"
+	#include "../Linux/loadPlatform.h"
 #endif
 
 #endif //GALACTIC_PLATFORM_INCLUDE

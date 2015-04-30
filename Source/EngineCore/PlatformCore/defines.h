@@ -1,6 +1,6 @@
 /**
 * Galactic 2D
-* Source/EngineCore/defines.h
+* Source/EngineCore/PlatformCore/defines.h
 * Engine macros and inline functions
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *

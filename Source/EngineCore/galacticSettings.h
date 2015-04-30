@@ -123,8 +123,11 @@
 /** 
 	This define will allow use of the -mod tag as a command line argument, By default when the
 	-mod tag is used, the game will look for the directory named X (-mod 'X') and load main.lua
-	in the folder. Usage of .DLL's for modifications is currently not allowed as that would allow core game
-	mechanics and even "spin-off" titles to be created without proper licensing.
+	in the folder. Usage of .DLL's for modifications is not permitted as it would likely interfere
+	with any licensing as set up by the individual developers.
+
+	If you're interested in allowing modders the ability to load in .DLLs with their modifications, then
+	have a go at the mod loading code in GalacticMain()
 **/
 #define GALACTIC_ALLOW_MODS 1
 
