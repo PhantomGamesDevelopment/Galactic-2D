@@ -26,9 +26,10 @@
 #ifndef GALACTIC_PLATFORMTYPES
 #define GALACTIC_PLATFORMTYPES
 
-/*
-Including the platform module first defines all of the engine's data types.
-*/
+/* Data Type Declaration */
+template<typename T> struct type_name {
+	static const char* tName() { return "UNDEFINED"; }
+};
 
 template<typename IT32, typename IT64, int sizeOfVoid> struct IntPointerType {
 	// Template... Define Nothin!
@@ -87,6 +88,30 @@ typedef const void *& cAnyRef; //Constant Pointer reference to any type
 typedef IntPointerType<S32, S64, sizeof(any)>::TargetType IntPointer;         //Define platform pointer for S32/S64
 typedef IntPointerType<U32, U64, sizeof(any)>::TargetType UnsingedIntPointer; //Define platform pointer for U32/U64
 
+//Declare Standard Typenames to Console (This is primarily used for template classes)
+DECL_TYPE_NAME(S8);
+DECL_TYPE_NAME(U8);
+DECL_TYPE_NAME(S16);
+DECL_TYPE_NAME(U16);
+DECL_TYPE_NAME(S32);
+DECL_TYPE_NAME(U32);
+DECL_TYPE_NAME(S64);
+DECL_TYPE_NAME(U64);
+DECL_TYPE_NAME(X8);
+DECL_TYPE_NAME(Z8);
+DECL_TYPE_NAME(X16);
+DECL_TYPE_NAME(Z16);
+DECL_TYPE_NAME(X32);
+DECL_TYPE_NAME(Z32);
+DECL_TYPE_NAME(cbol);
+DECL_TYPE_NAME(C8);
+DECL_TYPE_NAME(F32);
+DECL_TYPE_NAME(F64);
+DECL_TYPE_NAME(UTF8);
+DECL_TYPE_NAME(UTF16);
+DECL_TYPE_NAME(UTX8);
+DECL_TYPE_NAME(UTX16);
+
 namespace Galactic {
 
 	/* NOTE: These are global min/max functions, for more specific ones, use PlatformMath::mMin() / PlatformMath::mMax() */
@@ -107,6 +132,11 @@ namespace Galactic {
 	FINLINE S64 gMax(S64 a, S64 b) { return a > b ? a : b; }
 	FINLINE U64 gMin(U64 a, U64 b) { return a > b ? b : a; }
 	FINLINE U64 gMax(U64 a, U64 b) { return a > b ? a : b; }
+
+	template <typename T> FINLINE bool isFloatType(T v) {
+		return (strcmp(type_name<T>::tName(), "float") == 0 || strcmp(type_name<T>::tName(), "double") == 0
+			|| strcmp(type_name<T>::tName(), "F32") == 0 || strcmp(type_name<T>::tName(), "F64") == 0);
+	}
 
 };
 

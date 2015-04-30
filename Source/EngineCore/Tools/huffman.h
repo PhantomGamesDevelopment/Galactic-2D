@@ -27,7 +27,7 @@
 #define GALACTIC_INTERNAL_HUFFMAN
 
 #include "../engineCore.h"
-#include "map.h"
+#include "../Containers/map.h"
 #include "../Stream/bitStream.h"
 
 namespace Galactic {

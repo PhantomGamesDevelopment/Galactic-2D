@@ -28,11 +28,11 @@
 
 //Load the engine settings first.
 #include "galacticSettings.h"
+#include "defines.h"
 
 //Load up the engine files now.
 #include "platform.h"
 #include "platformTypes.h"
-#include "defines.h"
 
 //Forward Decs for Generic Platform (ToDo: Find a better order of execution)
 namespace Galactic {
