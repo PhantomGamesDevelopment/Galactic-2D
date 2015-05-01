@@ -41,7 +41,7 @@ namespace Galactic {
 				//Default (empty) Constructor
 				TwoVarCont() : x(), y() { }
 				//Assignment Constructor
-				TwoVarCont(T1 x1, T2 x2) : x(x1), y(x2) { }
+				virtual TwoVarCont(T1 x1, T2 x2) = 0;
 				//Default Destructor
 				virtual ~TwoVarCont() { }
 				//Fetch method, for variable one
@@ -91,7 +91,7 @@ namespace Galactic {
 			//Default (empty) Constructor
 			ThreeVarCont() : x(), y(), z() { }
 			//Assignment Constructor
-			ThreeVarCont(T1 x1, T2 x2, T3 x3) : x(x1), y(x2), z(x3) { }
+			virtual ThreeVarCont(T1 x1, T2 x2, T3 x3) = 0;
 			//Default Destructor
 			virtual ~ThreeVarCont() { }
 			//Fetch method, for variable one
@@ -148,7 +148,7 @@ namespace Galactic {
 			//Default (empty) Constructor
 			FourVarCont() : w(), x(), y(), z() { }
 			//Assignment Constructor
-			FourVarCont(T1 x1, T2 x2, T3 x3, T4 x4) : w(x1), x(x2), y(x3), z(x4) { }
+			virtual FourVarCont(T1 x1, T2 x2, T3 x3, T4 x4) = 0;
 			//Default Destructor
 			virtual ~FourVarCont() { }
 			//Fetch method, for variable one
