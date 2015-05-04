@@ -1,4 +1,0 @@
-This is the Generic Platform module.
-
-This module defines flags and settings for a non-declared platform and is also used to template out
-all of our platform specific classes and operations as they all base from the same set of codes.

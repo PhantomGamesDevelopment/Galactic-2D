@@ -47,6 +47,7 @@ namespace Galactic {
 
 //Load up the tools
 #include "Containers/multitypeVar.h"
+#include "Tools/endian.h"
 #include "Tools/advTools.h"
 #include "Tools/strTools.h"
 #include "Tools/charTools.h"
@@ -67,7 +68,7 @@ namespace Galactic {
 #include "Containers/frameTicker.h"
 #include "GenericPlatform/window.h"
 #include "GenericPlatform/application.h"
-#include "Tools/cursor.h"
+#include "GenericPlatform/Input/cursor.h"
 
 //Give the user a using namespace override so they don't need to use ::Galactic::Core::X in all of their files.
 using namespace Galactic::Core;

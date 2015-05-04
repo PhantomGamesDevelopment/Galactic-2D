@@ -520,6 +520,10 @@ namespace Galactic {
 				#undef GALACTIC_CREATESTRONGFROMOBJ_UPDATEWEAKREFERENCES_INTERNALCALL
 			}
 		}
+
+		template <class objType> FINLINE RawProxy<objType> MakeRefPtr(objType *obj) {
+			return RawProxy<objType>(obj);
+		}
 		
 		FINLINE void MakeRefPtr(...) {
 			//ToDo: Throw some kind of assert here for invalid creation?

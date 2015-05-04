@@ -26,7 +26,7 @@
 #ifndef GALACTIC_INTERNAL_FILES_PATH
 #define GALACTIC_INTERNAL_FILES_PATH
 
-#include "../platform.h"
+#include "../PlatformCore/platform.h"
 #include "../Tools/string.h"
 
 namespace Galactic {

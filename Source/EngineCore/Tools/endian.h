@@ -26,8 +26,6 @@
 #ifndef GALACTIC_PLATFORM_ENDIAN
 #define GALACTIC_PLATFORM_ENDIAN
 
-#include "platform.h"
-
 namespace Galactic {
 
 	namespace Core {

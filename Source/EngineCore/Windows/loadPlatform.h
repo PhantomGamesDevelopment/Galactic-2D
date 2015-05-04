@@ -39,5 +39,4 @@ extern "C" HINSTANCE hInstance;
 #include "time.h"
 #include "platformFunctions.h"
 #include "threadUtilityClasses.h"
-#include "thread.h"
 #include "atomics.h"

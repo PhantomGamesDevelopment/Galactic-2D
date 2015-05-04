@@ -30,6 +30,12 @@ namespace Galactic {
 
 	namespace Core {
 
+		/* Forward Declarations for Application Class Requirements */
+		//Forward Declaration for TextInputSystem
+		class TextInputSystem;
+		//Forward Declaration for GenericForceFeedback
+		class GenericForceFeedback;
+
 		/*
 		WindowActivationTypes: Defines a list of common activiation/deactivation commands that can be sent from the application
 		*/
@@ -240,7 +246,7 @@ namespace Galactic {
 		};
 
 		/*
-		ApplicationMessageHandler: Proxy for catching and pushing application messages around the engine
+		ApplicationMessageHandler: Proxy for catching and pushing application message callback functions around the engine
 		*/
 		class ApplicationMessageHandler {
 			//Shortcut to the strong reference pointer of the application window instance
@@ -321,16 +327,229 @@ namespace Galactic {
 					return DropEventTypes::None;
 				}
 
-				/* User Input Messages */
+				/* Keyboard Input Messages */
+				//Callback to be triggered when a key is pressed
+				virtual bool onKeyPressed(X32 keyCode, Z32 charCode, cbol repeated) {
+					return false;
+				}
+				//Callback to be triggered when a key is released
+				virtual bool onKeyReleased(X32 keyCode, Z32 charCode, cbol repeated) {
+					return false;
+				}
+				//Callback to be triggered for each individual keyboard character press
+				virtual bool onKeyCharacter(const C8 character, cbol repeated) {
+					return false;
+				}
+
+				/* Mouse Input Messages */
+				//Callback to be triggered when the mouse is pressed
+				virtual bool onMousePressed(windowRef wRef, const MouseButtonTypes mBtn) {
+					return false;
+				}
+				//Callback to be triggered when the mouse is released
+				virtual bool onMouseReleased(const MouseButtonTypes mBtn) {
+					return false;
+				}
+				//Callback to be triggered when the mouse moves
+				virtual bool onMouseMove() {
+					return false;
+				}
+				//Callback to be triggered when the mouse moves with position information
+				virtual bool onMouseUpdatePosition(X32 x, X32 y) {
+					return false;
+				}
+				//Callback to be triggered when the cursor changes
+				virtual bool onCursorUpdate() {
+					return false;
+				}
+				//Callback to be triggered when the mouse is double-clicked
+				virtual bool onMouseDoubleClick(windowRef wRef, const MouseButtonTypes mBtn) {
+					return false;
+				}
+				//Callback to be triggered when the mouse wheel is moved
+				virtual bool onMouseWheelMove(const F32 dM) {
+					return false;
+				}
+
+				/* Controller Input Messages */
+				//Callback to be triggered when a controller button is pressed
+				virtual bool onControllerPressed(ControllerButtonTypes cBtn, S32 controllerID, cbol repeatd) {
+					return false;
+				}
+				//Callback to be triggered when a controller button is released
+				virtual bool onControllerReleased(ControllerButtonTypes cBtn, S32 controllerID, cbol repeatd) {
+					return false;
+				}
+				//Callback to be triggered when a controller's analog stick is updated
+				virtual bool onControllerAnalogUpdate(ControllerButtonTypes cBtn, S32 controllerID, F32 dM) {
+					return false;
+				}
+
+				/* Phone Gesture Messages */
+				//Standard callback when a gesture event begins
+				virtual void onBeginGestureEvent() {
+				}
+				//Standard callback when a gesture event ends
+				virtual void onEndGestureEvent() {
+				}
+				//Callback to be triggered when the user touches the device to start a gesture event
+				virtual bool onTouchInputGesture(GestureEventTypes gType, const Position2F &dM, F32 dW) {
+					return false;
+				}
+				//Callback to be triggered when the user moves the input of a touch event gesture
+				virtual bool onTouchInputMove(const Position2F &pos, S32 eventIndex, S32 controllerID) {
+					return false;
+				}
+				//Callback to be triggered when the user begins a touch input event
+				virtual bool onTouchInputBegin(windowRef wRef, const Position2F &pos, S32 eventIndex, S32 controlerID) {
+					return false;
+				}
+				//Callback to be triggered when the user ends a touch input event
+				virtual bool onTouchInputEnd(const Position2F &pos, S32 eventIndex, S32 controllerID) {
+					return false;
+				}
+				//Callback to be triggered when the device detects movement and needs to update based on the movement
+				virtual bool onDeviceMoveUpdate(const Vector3F &tilt, const Vector3F &rotation, const Vector3F &gravity, const Vector3F &acceletation, S32 controllerID) {
+					return false;
+				}
+
+		};
+
+		/*
+		ViewingDeviceInformation: Storage structure for obtained information about the client viewing area as used by the application
+		*/
+		struct ViewingDeviceInformation {
+			/* Struct Members */
+			//Is this monitor/TV the primary viewing device?
+			bool isPrimaryDevice;
+			//The native width of the viewing device (In Pixels), used for safe area calculations
+			S32 deviceWidth;
+			//The native height of the viewing device (In Pixels), used for safe area calculations
+			S32 deviceHeight;
+			//The name of this particular device
+			String deviceName;
+			//The string identifier of the decive
+			String deviceID;
+		};
+
+		/*
+		ViewingDeviceMetrics: Storage structure for obtaining important information as it pertains to viewing area size and safe-area
+		*/
+		struct ViewingDeviceMetrics {
+			/* Struct Methods */
+			//Constructor
+			ViewingDeviceMetrics() :
+				absoluteSafeArea(0.0f, 0.0f),
+				relativeSafeArea(0.0f, 0.0f) { }
+
+			/* Struct Members */
+			//The display area's width
+			S32 displayWidth;
+			//The display area's height
+			S32 displayHeight;
+			//The 'Working Area' of this device, this is the area of the screen not covered by OS bars (Taskbar, Etc)
+			RectangleI workingArea;
+			//The 'Virtual Area' of this device, this is the full screen size
+			RectangleI virtualArea;
+			//The absolute safe area of this device, this is the limits of the available space on the screen
+			Vector2F absoluteSafeArea;
+			//The relative safe area of this device, if there is "spill" over from rendering, this area can be used. (Mainly for PCs)
+			Vector2F relativeSafeArea;
+			//Information on ALL connected physical monitor devices, this is only used on PCs at the moment (Consoles don't allow multiple monitors)
+			DynArray<ViewingDeviceInformation> physicalMonitorInformation;
 		};
 
 		/*
 		ApplicationModifierKeyState: Proxy for catching information about standard modifier keys (Shift, Ctrl, Etc)
 		*/
+		class ApplicationModifierKeyState {
+			public:
+				/* Public Class Methods */
+				//Constructor
+				ApplicationModifierKeyState(cbol isRightShiftDown, cbol isRightCtrlDown, cbol isRightAltDown, cbol isLeftShiftDown, cbol isLeftCtrlDown, cbol isLeftAltDown) :
+					rightShiftDown(isRightShiftDown),
+					rightCtrlDown(isRightCtrlDown),
+					rightAltDown(isRightAltDown), 
+					leftShiftDown(isLeftShiftDown),
+					leftCtrlDown(isLeftCtrlDown),
+					leftAltDown(isLeftAltDown) { }
+
+				//Is one of the two shift keys being held down?
+				bool isShiftDown() const {
+					return rightShiftDown || leftShiftDown;
+				}
+				//Is one of the two control keys being held down?
+				bool isCtrlDown() const {
+					return rightCtrlDown || leftCtrlDown;
+				}
+				//Is one of the two alternate keys being held down?
+				bool isAltDown() const {
+					return rightAltDown || leftAltDown;
+				}
+				//Is the right shift key being held down?
+				bool isRightShiftDown() const {
+					return rightShiftDown;
+				}
+				//Is the right control key being held down?
+				bool isRightCtrlDown() const {
+					return rightCtrlDown;
+				}
+				//Is the right alternate key being held down?
+				bool isRightAltDown() const {
+					return rightAltDown;
+				}
+				//Is the left shift key being held down?
+				bool isLeftShiftDown() const {
+					return leftShiftDown;
+				}
+				//Is the left control key being held down?
+				bool isLeftCtrlDown() const {
+					return leftCtrlDown;
+				}
+				//Is the left alternate key being held down?
+				bool isLeftAltDown() const {
+					return leftAltDown;
+				}
+
+			private:
+				/* Private Class Members */
+				//Is the right shift button down?
+				bool rightShiftDown;
+				//Is the right control button down?
+				bool rightCtrlDown;
+				//Is the right alternate button down?
+				bool rightAltDown;
+				//Is the left shift button down?
+				bool leftShiftDown;
+				//Is the left control button down?
+				bool leftCtrlDown;
+				//Is the left alternate button down?
+				bool leftAltDown;
+		};
 
 		/*
 		Application: Standard set of functions and operations as used by the application instance
 		*/
+		class Application {
+			public:
+				/* Public Class Methods */
+				//Constructor
+				Application(const StrongReferencePtr<Cursor> &cursorObj) :
+					appCursor(cursorObj),
+					appMessageHandler(MakeRefPtr(new ApplicationMessageHandler())) { }
+				//Destructor
+				virtual ~Application() { }
+
+				/* Public Class Members */
+				//Strong reference to the cursor instance which controlls this application
+				const StrongReferencePtr<Cursor> appCursor;
+
+			protected:
+				/* Protected Class Members */
+				//Strong reference to the application message proxy system
+				const StrongReferencePtr<ApplicationMessageHandler> appMessageHandler;
+
+		};
 
 	};
 

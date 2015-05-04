@@ -26,7 +26,7 @@
 #ifndef GALACTIC_INTERNAL_RECTANGLE
 #define GALACTIC_INTERNAL_RECTANGLE
 
-#include "../platform.h"
+#include "../PlatformCore/platform.h"
 
 namespace Galactic {
 
