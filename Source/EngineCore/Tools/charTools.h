@@ -26,8 +26,6 @@
 #ifndef GALACTIC_INTERNAL_CHARACTER_TOOLS
 #define GALACTIC_INTERNAL_CHARACTER_TOOLS
 
-#include "../engineCore.h"
-
 namespace Galactic {
 
 	namespace Core {
@@ -202,6 +200,63 @@ namespace Galactic {
 						*dest++ = converted;
 					}
 				}
+
+		};
+
+		/*
+		CharTools: A global set of tools and functions available to help work with single character instances
+		*/
+		struct CharTools {
+
+			//isWSpace(): Returns true if the specified character is a whitespace char.
+			SFIN bool isWSpace(C8 c) {
+				return (c == ' ' || c == '\t');
+			}
+
+			//isAlpha(): Returns true if the specified character is an alphabetical character
+			SFIN bool isAlpha(C8 c) {
+				return FBOOL(::isalpha(c) != 0);
+			}
+
+			//isDigit(): Returns true if the specified character is a number
+			SFIN bool isDigit(C8 c) {
+				return FBOOL(c >= '0' && c <= '9');
+			}
+
+			//isAlnum(): Returns true if the specified character is an alpha-numeric character
+			SFIN bool isAlnum(C8 c) {
+				return FBOOL(isAlpha(c) || isDigit(c));
+			}
+
+			//isHex(): Returns true if the specified character is a hexidecimal digit
+			SFIN bool isHex(C8 c) {
+				return FBOOL((isDigit(c)) || ((c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')));
+			}
+
+			//toUpper(): Convert the specified character to uppercase
+			SFIN C8 toUpper(C8 c) {
+				return ::toupper(c);
+			}
+
+			//toLower(): Convert the specified character to lowercase
+			SFIN C8 toLower(C8 c) {
+				return ::tolower(c);
+			}
+
+			//hexToDigit(): Convert a single hexadecimal digit character to it's numerical counterpart.
+			SFIN S32 hexToDigit(C8 hexChar) {
+				S32 result = 0;
+				if (hexChar > '0' && hexChar < '9') {
+					result = (S32)(hexChar - '0');
+				}
+				else if (hexChar > 'a' && hexChar < 'f') {
+					result = (S32)((hexChar + 10) - 'a');
+				}
+				else if (hexChar > 'A' && hexChar < 'F') {
+					result = (S32)((hexChar + 10) - 'A');
+				}
+				return result;
+			}
 
 		};
 

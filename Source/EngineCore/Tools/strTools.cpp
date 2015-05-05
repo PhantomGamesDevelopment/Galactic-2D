@@ -33,7 +33,7 @@ namespace Galactic {
 			//Empty the result out (since this is a cummulative function), then skip over anything that is whitespace
 			result.clear();
 			bool isInQuote = false;
-			while (isWSpace(*str)) {
+			while (CharTools::isWSpace(*str)) {
 				str++;
 			}
 			//First thing we're looking for here is the instance of the " char
@@ -60,7 +60,7 @@ namespace Galactic {
 				//Note: There's probably a better loop option than this out there, but for now, we should be fine.
 				while (true) {
 					C8 currentChar = *str;
-					if (currentChar == NULL || (isWSpace(currentChar) && !isInQuote)) {
+					if (currentChar == NULL || (CharTools::isWSpace(currentChar) && !isInQuote)) {
 						//This isn't part of a token, goodbye!
 						break;
 					}
