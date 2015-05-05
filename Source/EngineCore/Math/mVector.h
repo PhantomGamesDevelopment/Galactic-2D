@@ -36,6 +36,10 @@ namespace Galactic {
 		class Vector2I : public TwoVarCont<S32, S32> {
 			public:
 				//Constructor
+				Vector2I::Vector2I() {
+					set(0, 0);
+				}
+				//Constructor
 				Vector2I::Vector2I(S32 x1, S32 x2) {
 					set(x1, x2);
 				}
@@ -98,6 +102,10 @@ namespace Galactic {
 		class Vector2F : public TwoVarCont<F64, F64> {
 			public:
 				//Constructor
+				Vector2F::Vector2F() {
+					set(0.0f, 0.0f);
+				}
+				//Constructor
 				Vector2F::Vector2F(F64 x1, F64 x2) {
 					set(x1, x2);
 				}
@@ -158,6 +166,10 @@ namespace Galactic {
 		*/
 		class Vector3F : public ThreeVarCont<F64, F64, F64> {
 			public:
+				//Constructor
+				Vector3F::Vector3F() {
+					set(0.0f, 0.0f, 0.0f);
+				}
 				//Constructor
 				Vector3F::Vector3F(F64 x1, F64 x2, F64 x3) {
 					set(x1, x2, x3);

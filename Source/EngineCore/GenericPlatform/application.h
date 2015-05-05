@@ -250,7 +250,8 @@ namespace Galactic {
 		*/
 		class ApplicationMessageHandler {
 			//Shortcut to the strong reference pointer of the application window instance
-			typedef const StrongReferencePtr<Window> &windowRef;
+			typedef const StrongReferencePtr<Window> &windowRefPtr;
+			typedef const StrongReference<Window> &windowRef;
 
 			public:
 				/* Public Class Methods */
@@ -264,7 +265,7 @@ namespace Galactic {
 
 				/* Window Related Messages */
 				//Should this application process user input messages?
-				virtual bool shouldProcessUserInputMessages(windowRef wRef) const {
+				virtual bool shouldProcessUserInputMessages(windowRefPtr wRef) const {
 					return false;
 				}
 				//Callback function when a Window Paint command is triggered by the OS
@@ -308,14 +309,14 @@ namespace Galactic {
 
 				/* Drag and Drop Messages */
 				//Standard callback when the drag event moves over a window
-				virtual DropEventTypes onDragEnterWindow(windowRef wRef) {
+				virtual DropEventTypes onDragEnterWindow(windowRefPtr wRef) {
 					return DropEventTypes::None;
 				}
 				//Standard callback when the drag event leaves a window
-				virtual void onDragLeaveWindow(windowRef wRef) {
+				virtual void onDragLeaveWindow(windowRefPtr wRef) {
 				}
 				//Callback function to be triggered when the drop event is triggered
-				virtual DropEventTypes onDragEventDrop(windowRef wRef) {
+				virtual DropEventTypes onDragEventDrop(windowRefPtr wRef) {
 					return DropEventTypes::None;
 				}
 				//Callback when a drag event enters text
@@ -343,7 +344,7 @@ namespace Galactic {
 
 				/* Mouse Input Messages */
 				//Callback to be triggered when the mouse is pressed
-				virtual bool onMousePressed(windowRef wRef, const MouseButtonTypes mBtn) {
+				virtual bool onMousePressed(windowRefPtr wRef, const MouseButtonTypes mBtn) {
 					return false;
 				}
 				//Callback to be triggered when the mouse is released
@@ -363,7 +364,7 @@ namespace Galactic {
 					return false;
 				}
 				//Callback to be triggered when the mouse is double-clicked
-				virtual bool onMouseDoubleClick(windowRef wRef, const MouseButtonTypes mBtn) {
+				virtual bool onMouseDoubleClick(windowRefPtr wRef, const MouseButtonTypes mBtn) {
 					return false;
 				}
 				//Callback to be triggered when the mouse wheel is moved
@@ -401,7 +402,7 @@ namespace Galactic {
 					return false;
 				}
 				//Callback to be triggered when the user begins a touch input event
-				virtual bool onTouchInputBegin(windowRef wRef, const Position2F &pos, S32 eventIndex, S32 controlerID) {
+				virtual bool onTouchInputBegin(windowRefPtr wRef, const Position2F &pos, S32 eventIndex, S32 controlerID) {
 					return false;
 				}
 				//Callback to be triggered when the user ends a touch input event
@@ -539,6 +540,61 @@ namespace Galactic {
 					appMessageHandler(MakeRefPtr(new ApplicationMessageHandler())) { }
 				//Destructor
 				virtual ~Application() { }
+				//Standard running engine class time move method 
+				virtual void tick(const F32 dt) { }
+				//Destroy this application instance
+				virtual void destroyApplication() { }
+				//Create a window instance for the application
+				virtual StrongReference<Window> createWindow() {
+					return MakeRefPtr(new Window());
+				}
+				//Initialize a window instance as needed by the application
+				virtual void initWindow(const StrongReference<Window> &wndRef, const StrongReference<WindowProperties> &wProps, const StrongReferencePtr<Window> &parentWnd, cbol showNow) {}
+				//Pump all of the OS messages through the application
+				virtual void pumpMessages(const F32 dt) { }
+				//Process all events currently being held off for this tick cycle
+				virtual void processHeldEvents(const F32 dt) { }
+				//Poll up user input device states as needed for the game instance
+				virtual void pollInputDeviceState(const F32 dt) { }
+				//Set the application's message handler object
+				virtual void setAppMessageHandler(const StrongReference<ApplicationMessageHandler> &mhRef) {
+					appMessageHandler = mhRef;
+				}
+				//Generic Proxy to OS SetCapture function for mouse input
+				virtual void setCapture(const StrongReferencePtr<Window> &wndRef) { }
+				//Fetch the OS capture object
+				virtual any getCapture() const { 
+					return NULL; 
+				}
+				//Set High Precision Mouse Input mode 
+				virtual void setHPMouseMode(const StrongReferencePtr<Window> &wndRef, bool toggleFlag) { }
+				//Check the status of High Precision mouse input
+				virtual bool usingHPMouseMode() const {
+					return false;
+				}
+				//Fetch the working area
+				virtual RectangleI getWorkingArea(const RectangleI &cRef) const {
+					RectangleI out(0, 0, 0, 0);
+					return out;
+				}
+				//Fetch the status of the modifier keys
+				virtual ApplicationModifierKeyState getModKeyState() const {
+					return ApplicationModifierKeyState(false, false, false, false, false, false);
+				}
+				//Fetch the viewing device metrics
+				virtual void fetchViewingMetrics(ViewingDeviceMetrics &metrics) const { }
+				//Calculate the position of a popup window
+				virtual bool calculatePopupWindowPos(const RectangleI &anchorPos, const Vector2F &sizeVec, const Position2F *calculatedPos, const PopUpOrientationType oType) { 
+					return false;
+				}
+				//Fetch the text input class instance for this application
+				virtual TextInputSystem *getTextInputSystem() {
+					return NULL;
+				}
+				//Fetch the force feedback class instance for this application
+				virtual GenericForceFeedback *getForceFeedbackSystem() {
+					return NULL;
+				}
 
 				/* Public Class Members */
 				//Strong reference to the cursor instance which controlls this application
@@ -547,7 +603,7 @@ namespace Galactic {
 			protected:
 				/* Protected Class Members */
 				//Strong reference to the application message proxy system
-				const StrongReferencePtr<ApplicationMessageHandler> appMessageHandler;
+				StrongReference<ApplicationMessageHandler> appMessageHandler;
 
 		};
 
