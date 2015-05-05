@@ -109,6 +109,12 @@ namespace Galactic {
 				static void pasteFromClipboard(String &trgStr);
 				//Open a message box with the specified options
 				static MBDefs::MBReturnType OpenPlatformMB(MBDefs::MBTypes mbType, UTF16 mbText, UTF16 mbCaption);
+				//Pump OS Messages
+				SFIN void pumpMessages(bool fromMainLoop);
+				//Fetch the mapping of a specified key from the code
+				SFIN U32 getMappedKey(U16 *keyCodes, U32 maxMaps, String *keyNames);
+				//Fetch the mapping of a specified key from a character
+				SFIN U32 getMappedChar(U16 *keyCodes, U32 maxMaps, String *keyNames);
 
 			private:
 				/* Private Class Methods */

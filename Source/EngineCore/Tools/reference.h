@@ -34,9 +34,6 @@
 #ifndef GALACTIC_INTERNAL_REFERENCE
 #define GALACTIC_INTERNAL_REFERENCE
 
-#include "../engineCore.h"
-#include "../../Console/console.h"
-
 namespace Galactic {
 
 	namespace Core {
