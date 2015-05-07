@@ -24,7 +24,6 @@
 **/
 
 #include "console.h"
-#include "logging.h"
 
 namespace Galactic {
 

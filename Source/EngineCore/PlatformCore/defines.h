@@ -38,16 +38,6 @@
 //SendToGatesOfHeaven(): Send pointers and objects to the gates of memory heaven, I guess they aren't quite... dead... yet.
 #define SendToGatesOfHeaven(x) free(x);
 
-/* Console Messaging Shortcuts */
-//Print shortut
-#define GC_Print(x, ...) ::Galactic::Console::print(x, __VA_ARGS__)
-//Warn shortut
-#define GC_Warn(x, ...) ::Galactic::Console::warn(x, __VA_ARGS__)
-//Error shortut
-#define GC_Error(x, ...) ::Galactic::Console::error(x, __VA_ARGS__)
-//CError shortut
-#define GC_CError(x, ...) ::Galactic::Console::cerr(x, __VA_ARGS__)
-
 /* Data Type Naming */
 #define DECL_TYPE_NAME(x) template<> struct type_name<x> { static const char* tName() {return #x;} }
 

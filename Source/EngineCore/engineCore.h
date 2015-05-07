@@ -29,8 +29,7 @@
 //Load the engine settings first.
 #include "galacticSettings.h"
 #include "PlatformCore/defines.h"
-
-//Load up the engine files now.
+//Load in the standard platform
 #include "PlatformCore/platform.h"
 #include "PlatformCore/platformTypes.h"
 
@@ -42,6 +41,9 @@ namespace Galactic {
 		template <typename T> class DynArray;
 	}
 }
+
+//Load up the console.
+#include "../Console/console.h"
 
 #include "PlatformCore/platformInclude.h"
 

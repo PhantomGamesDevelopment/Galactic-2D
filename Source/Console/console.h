@@ -23,10 +23,20 @@
 * THE SOFTWARE.
 **/
 
+#include "logging.h"
+
 #ifndef GALACTIC_CONSOLE
 #define GALACTIC_CONSOLE
 
-#include "../EngineCore/engineCore.h"
+/* Console Messaging Shortcuts */
+//Print shortut
+#define GC_Print(x, ...) ::Galactic::Console::print(x, __VA_ARGS__)
+//Warn shortut
+#define GC_Warn(x, ...) ::Galactic::Console::warn(x, __VA_ARGS__)
+//Error shortut
+#define GC_Error(x, ...) ::Galactic::Console::error(x, __VA_ARGS__)
+//CError shortut
+#define GC_CError(x, ...) ::Galactic::Console::cerr(x, __VA_ARGS__)
 
 namespace Galactic {
 

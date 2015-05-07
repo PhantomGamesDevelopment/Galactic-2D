@@ -26,8 +26,6 @@
 #ifndef GALACTIC_CONSOLE_LOGGING
 #define GALACTIC_CONSOLE_LOGGING
 
-#include "../EngineCore/Tools/string.h"
-
 namespace Galactic {
 
 	namespace Console {
