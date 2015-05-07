@@ -52,6 +52,47 @@ namespace Galactic {
 		class galacticGUID {
 			public:
 				/* Public Class Methods */
+				//Default (Empty) Constructor
+				galacticGUID() : A(0), B(0), C(0), D(0) { }
+				//Assignment Constructor
+				galacticGUID(U32 inA, U32 inB, U32 inC, U32 inD) : A(inA), B(inB), C(inC), D(inD) { }
+				//Copy Constructor
+				galacticGUID(const galacticGUID &c) : A(c.A), B(c.B), C(c.C), D(c.D) { }
+
+				//Create a new GUID (Fork to platform to handle)
+				static galacticGUID createGUID();
+				//Equality Operator
+				friend bool operator==(const galacticGUID &a, const galacticGUID &b) {
+					return ((a.A == b.A) && (a.B == b.B) && (a.C == b.C) && (a.D == b.D));
+				}
+				//Inequality Operator
+				friend bool operator!=(const galacticGUID &a, const galacticGUID &b) {
+					return !(a == b);
+				}
+				//Component Access Operator
+				U32& operator[](S32 index);
+				//Component Access Operator (Read Only)
+				Z32& operator[](S32 index) const;
+				//Right shift operator (guid to string)
+				String &operator>>(String inStr);
+				//Left shift operator (guid from string)
+				galacticGUID &operator<<(String inStr);
+				//Place the GUID into a string (define the format)
+				String toStr(guidFormatTypes t = NumericalString) const;
+				//Is this GUID valid?
+				bool valid() const {
+					return ((A | B | C | D) != 0);
+				}
+				//Empty the GUID (invalidate it)
+				void empty() {
+					A = B = C = D = 0;
+				}
+				//Is the string in the correct format for the specified?
+				static bool isInCorrectFormat(String &inStr, guidFormatTypes inFormat);
+				//Convert a string to GUID
+				static bool strToGUID(String &inStr, galacticGUID &outGuid);
+				//Convert a string to GUID using the specified format
+				static bool strToGUID(String &inStr, galacticGUID &outGuid, guidFormatTypes inFormat);
 
 				/* Public Class Members */
 				//First component

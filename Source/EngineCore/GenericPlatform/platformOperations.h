@@ -32,6 +32,13 @@ namespace Galactic {
 
 	namespace Core {
 
+		//MAPKEY_fetchStandardKeyMap(): Macro shortcut to add a key mapping to the list, used by function GenericPlatformOperations::fetchStandardKeyMap()
+		#define MAPKEY_fetchStandardKeyMap(name, code) if(totalMaps < maxMaps) {\
+			keyCodes[totalMaps] = code; \
+			keyNames[totalMaps] = name; \
+			totalMaps++; \
+			}
+
 		/*
 		MBDefs: A struct used to declare some properties used by message box operations
 		*/
@@ -107,6 +114,8 @@ namespace Galactic {
 				static void copyToClipboard(UTF16 text);
 				//Paste text from the clipboard into the specified string.
 				static void pasteFromClipboard(String &trgStr);
+				//Create a GUID
+				static void createGUID(galacticGUID &inGuid);
 				//Open a message box with the specified options
 				static MBDefs::MBReturnType OpenPlatformMB(MBDefs::MBTypes mbType, UTF16 mbText, UTF16 mbCaption);
 				//Pump OS Messages
@@ -115,6 +124,11 @@ namespace Galactic {
 				SFIN U32 getMappedKey(U16 *keyCodes, U32 maxMaps, String *keyNames);
 				//Fetch the mapping of a specified key from a character
 				SFIN U32 getMappedChar(U16 *keyCodes, U32 maxMaps, String *keyNames);
+
+			protected:
+				/* Protected Class Methods */
+				//Get the standard named key mapping for the specified instance, overriden by individual OSs to handle individual instancing
+				static U32 fetchStandardKeyMap(U16 *keyCodes, U32 maxMaps, String *keyNames, bool mapUppercase, bool mapLowercase);
 
 			private:
 				/* Private Class Methods */

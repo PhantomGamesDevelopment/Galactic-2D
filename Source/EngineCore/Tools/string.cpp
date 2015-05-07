@@ -238,7 +238,7 @@ namespace Galactic {
 				//Allows length defining a la: new (length) StringData(x)
 				any operator new(size_t size, U32 len) {
 					if(len == 0) {
-						Galactic::Console::error("StringData::StringData(): Cannot create a String of length 0, use StringData::emptyStrRef()");
+						GC_Error("StringData::StringData(): Cannot create a String of length 0, use StringData::emptyStrRef()");
 						return NULL;
 					}
 					StringData *data = reinterpret_cast<StringData *>(malloc(size + len * sizeof(UTF8)));
@@ -250,7 +250,7 @@ namespace Galactic {
 				void operator delete(any ptr, U32 len) {
 					StringData* sub = static_cast<StringData *>(ptr);
 					if(sub->refCount != 0) {
-						Galactic::Console::error("StringData::delete() - Attempting to delete a String containing multiple references attached (%i).", sub->refCount);
+						GC_Error("StringData::delete() - Attempting to delete a String containing multiple references attached (%i).", sub->refCount);
 						return;
 					}
 					SendToGatesOfHeaven(ptr);
@@ -259,7 +259,7 @@ namespace Galactic {
 				void operator delete(any ptr) {
 					StringData* sub = static_cast<StringData *>(ptr);
 					if(sub->refCount != 0) {
-						Galactic::Console::error("StringData::delete() - Attempting to delete a String containing multiple references attached (%i).", sub->refCount);
+						GC_Error("StringData::delete() - Attempting to delete a String containing multiple references attached (%i).", sub->refCount);
 						return;
 					}
 					SendToGatesOfHeaven(ptr);
@@ -342,7 +342,7 @@ namespace Galactic {
 
 		S32 String::compare(UTF16 str, U32 len, U32 mode) const {
 			if(!str) {
-				Galactic::Console::error("String::compare(NULL, %i, %i): Cannot use compare on the target string. It contains a NULL Ptr.", len, mode);
+				GC_Error("String::compare(NULL, %i, %i): Cannot use compare on the target string. It contains a NULL Ptr.", len, mode);
 				return -1;
 			}
 			UTF16 s1 = _str->utf16();
@@ -546,12 +546,12 @@ namespace Galactic {
 
 		String &String::insert(U32 position, UTF16 str) {
 			if(!str) {
-				Galactic::Console::error("String::insert(%i, NULL): Cannot insert NULL Ptr references into a String", position);
+				GC_Error("String::insert(%i, NULL): Cannot insert NULL Ptr references into a String", position);
 				return *this;
 			}
 			U32 len[3] = { (U32)strlen(str), length(), (U32)strlen(str) + length() }; 
 			if(position > len[1]) {
-				Galactic::Console::error("String::insert(%i, %s): The specified position is outside of the String bounds", position, str);
+				GC_Error("String::insert(%i, %s): The specified position is outside of the String bounds", position, str);
 				return *this;
 			}
 			//Create the new string
@@ -576,11 +576,11 @@ namespace Galactic {
 
 		String &String::erase(U32 position, U32 len) {
 			if(!len) {
-				Galactic::Console::error("String::erase(%i, %i): Cannot erase 0 length from the string.", position, len);
+				GC_Error("String::erase(%i, %i): Cannot erase 0 length from the string.", position, len);
 				return *this;
 			}
 			if((position + len) > length()) {
-				Galactic::Console::error("String::erase(%i, %i): The specified values lie outside of the String's Length [%i]", position, len, length());
+				GC_Error("String::erase(%i, %i): The specified values lie outside of the String's Length [%i]", position, len, length());
 				return *this;
 			}
 			U32 cLen = length();
@@ -662,11 +662,11 @@ namespace Galactic {
 
 		String &String::replace(U32 startPos, U32 len, strRef str) {
 			if(len == 0) {
-				Galactic::Console::error("String::replace(%i, [%i], X): Cannot use replace operation with len == 0.", startPos, len);
+				GC_Error("String::replace(%i, [%i], X): Cannot use replace operation with len == 0.", startPos, len);
 				return *this;				
 			}
 			if((startPos + len) > length()) {
-				Galactic::Console::error("String::replace(%i, %i, X): Specified start position and length are outside string bounds.", startPos, len);
+				GC_Error("String::replace(%i, %i, X): Specified start position and length are outside string bounds.", startPos, len);
 				return *this;				
 			}
 
@@ -722,7 +722,7 @@ namespace Galactic {
 
 		String String::substr(U32 startPosition, U32 len) const {
 			if(startPosition > length()) {
-				Galactic::Console::error("String::substr(%i, %i): The requested starting position is outside of the String Length [%i]", startPosition, len, length());
+				GC_Error("String::substr(%i, %i): The requested starting position is outside of the String Length [%i]", startPosition, len, length());
 				return String("");
 			}
 			if(len == -1) {
@@ -730,7 +730,7 @@ namespace Galactic {
 				len = length() - startPosition;
 			}
 			if(len + startPosition > length()) {
-				Galactic::Console::error("String::substr(%i, %i): The requested position & length lie outside of the String Length [%i]", startPosition, len, length());
+				GC_Error("String::substr(%i, %i): The requested position & length lie outside of the String Length [%i]", startPosition, len, length());
 				return String("");
 			}
 			StringData *subst;
@@ -789,7 +789,7 @@ namespace Galactic {
 
 		String String::ToStr(UTF16 format, ...) {
 			if(!format) {
-				Galactic::Console::error("String::ToStr(NULL, ...): Cannot convert NULL type to a String.");
+				GC_Error("String::ToStr(NULL, ...): Cannot convert NULL type to a String.");
 				return StringData::emptyStrRef();
 			}
 			va_list args;
@@ -977,7 +977,7 @@ namespace Galactic {
 
 		String operator+(strRef s, UTF16 str) {
 			if(!str) {
-				Galactic::Console::error("String::operator+(strRef, UTF16): The secondary argument (UTF16) is a NULL ptr, breaking operation.");
+				GC_Error("String::operator+(strRef, UTF16): The secondary argument (UTF16) is a NULL ptr, breaking operation.");
 				return s;
 			}
 			if(s.empty()) {
@@ -1000,7 +1000,7 @@ namespace Galactic {
 
 		String operator+(UTF16 str, strRef s) {
 			if(!str) {
-				Galactic::Console::error("String::operator+(UTF16, strRef): The primary argument (UTF16) is a NULL ptr, breaking operation.");
+				GC_Error("String::operator+(UTF16, strRef): The primary argument (UTF16) is a NULL ptr, breaking operation.");
 				return s;
 			}
 			if(s.empty()) {

@@ -73,6 +73,15 @@ namespace Galactic {
 			trgStr = String::emptyStrRef;
 		}
 
+		void GenericPlatformOperations::createGUID(galacticGUID &inGuid) {
+			TimeVars tV;
+			PlatformTime::sysTime(tV);
+			inGuid = galacticGUID(tV.dayNum | (tV.hours << 16), 
+				tV.hours | (tV.minutes << 16), 
+				tV.minutes | (tV.seconds << 16), 
+				tV.miliseconds ^ PlatformTime::fetchCycles());
+		}
+
 		MBDefs::MBReturnType GenericPlatformOperations::OpenPlatformMB(MBDefs::MBTypes mbType, UTF16 mbText, UTF16 mbCaption) {
 			GC_Warn("OpenPlatformMB() is not implemented on the generic platform, returning relevant negative type (If Possible).");
 			switch (mbType) {
@@ -96,6 +105,108 @@ namespace Galactic {
 					GC_Error("OpenPlatformMB(): Unidentified dialog type sent to command, breaking.");
 					return MBDefs::MBReturnType::RetCancel;
 			}
+		}
+
+		void GenericPlatformOperations::pumpMessages(bool fromMainLoop) {
+			//Stub Function...
+		}
+
+		U32 GenericPlatformOperations::getMappedKey(U16 *keyCodes, U32 maxMaps, String *keyNames) {
+			GC_Warn("getMappedKey() is not implemented on the generic platform.");
+			return 0;
+		}
+
+		U32 GenericPlatformOperations::getMappedChar(U16 *keyCodes, U32 maxMaps, String *keyNames) {
+			GC_Warn("getMappedChar() is not implemented on the generic platform.");
+			return 0;
+		}
+
+		U32 GenericPlatformOperations::fetchStandardKeyMap(U16 *keyCodes, U32 maxMaps, String *keyNames, bool mapUppercase, bool mapLowercase) {
+			U32 totalMaps = 0;
+			/* Map Numerical Keys */
+			MAPKEY_fetchStandardKeyMap("Zero", '0');
+			MAPKEY_fetchStandardKeyMap("One", '1');
+			MAPKEY_fetchStandardKeyMap("Two", '2');
+			MAPKEY_fetchStandardKeyMap("Three", '3');
+			MAPKEY_fetchStandardKeyMap("Four", '4');
+			MAPKEY_fetchStandardKeyMap("Five", '5');
+			MAPKEY_fetchStandardKeyMap("Six", '6');
+			MAPKEY_fetchStandardKeyMap("Seven", '7');
+			MAPKEY_fetchStandardKeyMap("Eight", '8');
+			MAPKEY_fetchStandardKeyMap("Nine", '9');
+			/* Map Other Standard Keys */
+			MAPKEY_fetchStandardKeyMap("Tilde", '`');
+			MAPKEY_fetchStandardKeyMap("Underscore", '-');
+			MAPKEY_fetchStandardKeyMap("Equals", '=');
+			MAPKEY_fetchStandardKeyMap("Left Bracket", '[');
+			MAPKEY_fetchStandardKeyMap("Right Bracket", ']');
+			MAPKEY_fetchStandardKeyMap("Backslash", '\\'); //<- Don't forget that '\' is an escape sequence terminator...
+			MAPKEY_fetchStandardKeyMap("Semicolon", ';');
+			MAPKEY_fetchStandardKeyMap("Quote", '\''); //<- The ' character requres a terminator sequence...
+			MAPKEY_fetchStandardKeyMap("Comma", ',');
+			MAPKEY_fetchStandardKeyMap("Period", '.');
+			MAPKEY_fetchStandardKeyMap("Slash", '/');
+			MAPKEY_fetchStandardKeyMap("Spacebar", ' ');
+			/* Map Characters */
+			//Do we need to map the uppercase letters?
+			if (mapUppercase) {
+				MAPKEY_fetchStandardKeyMap("A", 'A');
+				MAPKEY_fetchStandardKeyMap("B", 'B');
+				MAPKEY_fetchStandardKeyMap("C", 'C');
+				MAPKEY_fetchStandardKeyMap("D", 'D');
+				MAPKEY_fetchStandardKeyMap("E", 'E');
+				MAPKEY_fetchStandardKeyMap("F", 'F');
+				MAPKEY_fetchStandardKeyMap("G", 'G');
+				MAPKEY_fetchStandardKeyMap("H", 'H');
+				MAPKEY_fetchStandardKeyMap("I", 'I');
+				MAPKEY_fetchStandardKeyMap("J", 'J');
+				MAPKEY_fetchStandardKeyMap("K", 'K');
+				MAPKEY_fetchStandardKeyMap("L", 'L');
+				MAPKEY_fetchStandardKeyMap("M", 'M');
+				MAPKEY_fetchStandardKeyMap("N", 'N');
+				MAPKEY_fetchStandardKeyMap("O", 'O');
+				MAPKEY_fetchStandardKeyMap("P", 'P');
+				MAPKEY_fetchStandardKeyMap("Q", 'Q');
+				MAPKEY_fetchStandardKeyMap("R", 'R');
+				MAPKEY_fetchStandardKeyMap("S", 'S');
+				MAPKEY_fetchStandardKeyMap("T", 'T');
+				MAPKEY_fetchStandardKeyMap("U", 'U');
+				MAPKEY_fetchStandardKeyMap("V", 'V');
+				MAPKEY_fetchStandardKeyMap("W", 'W');
+				MAPKEY_fetchStandardKeyMap("X", 'X');
+				MAPKEY_fetchStandardKeyMap("Y", 'Y');
+				MAPKEY_fetchStandardKeyMap("Z", 'Z');
+			}
+			//Do we need to map the lowercase letters?
+			if (mapLowercase) {
+				MAPKEY_fetchStandardKeyMap("a", 'a');
+				MAPKEY_fetchStandardKeyMap("b", 'b');
+				MAPKEY_fetchStandardKeyMap("c", 'c');
+				MAPKEY_fetchStandardKeyMap("d", 'd');
+				MAPKEY_fetchStandardKeyMap("e", 'e');
+				MAPKEY_fetchStandardKeyMap("f", 'f');
+				MAPKEY_fetchStandardKeyMap("g", 'g');
+				MAPKEY_fetchStandardKeyMap("h", 'h');
+				MAPKEY_fetchStandardKeyMap("i", 'i');
+				MAPKEY_fetchStandardKeyMap("j", 'j');
+				MAPKEY_fetchStandardKeyMap("k", 'k');
+				MAPKEY_fetchStandardKeyMap("l", 'l');
+				MAPKEY_fetchStandardKeyMap("m", 'm');
+				MAPKEY_fetchStandardKeyMap("n", 'n');
+				MAPKEY_fetchStandardKeyMap("o", 'o');
+				MAPKEY_fetchStandardKeyMap("p", 'p');
+				MAPKEY_fetchStandardKeyMap("q", 'q');
+				MAPKEY_fetchStandardKeyMap("r", 'r');
+				MAPKEY_fetchStandardKeyMap("s", 's');
+				MAPKEY_fetchStandardKeyMap("t", 't');
+				MAPKEY_fetchStandardKeyMap("u", 'u');
+				MAPKEY_fetchStandardKeyMap("v", 'v');
+				MAPKEY_fetchStandardKeyMap("w", 'w');
+				MAPKEY_fetchStandardKeyMap("x", 'x');
+				MAPKEY_fetchStandardKeyMap("y", 'y');
+				MAPKEY_fetchStandardKeyMap("z", 'z');
+			}
+			return totalMaps;
 		}
 
 		void GenericPlatformOperations::preInit() {
