@@ -23,6 +23,7 @@
 * THE SOFTWARE.
 **/
 
+#include "../EngineCore/engineCore.h"
 #include "logging.h"
 
 namespace Galactic {

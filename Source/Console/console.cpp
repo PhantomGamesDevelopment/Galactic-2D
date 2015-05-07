@@ -23,7 +23,7 @@
 * THE SOFTWARE.
 **/
 
-#include "console.h"
+#include "../EngineCore/engineCore.h"
 
 namespace Galactic {
 
