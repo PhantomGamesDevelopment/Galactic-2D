@@ -547,12 +547,12 @@ namespace Galactic {
 		String &String::insert(U32 position, UTF16 str) {
 			if(!str) {
 				GC_Error("String::insert(%i, NULL): Cannot insert NULL Ptr references into a String", position);
-				return *this;
+				THISREF();
 			}
 			U32 len[3] = { (U32)strlen(str), length(), (U32)strlen(str) + length() }; 
 			if(position > len[1]) {
 				GC_Error("String::insert(%i, %s): The specified position is outside of the String bounds", position, str);
-				return *this;
+				THISREF();
 			}
 			//Create the new string
 			StringData *newStr;
@@ -567,7 +567,7 @@ namespace Galactic {
 			}
 			_str->killRef();
 			_str = newStr;
-			return *this;
+			THISREF();
 		}
 
 		String &String::insert(U32 position, strRef ref) {
@@ -577,11 +577,11 @@ namespace Galactic {
 		String &String::erase(U32 position, U32 len) {
 			if(!len) {
 				GC_Error("String::erase(%i, %i): Cannot erase 0 length from the string.", position, len);
-				return *this;
+				THISREF();
 			}
 			if((position + len) > length()) {
 				GC_Error("String::erase(%i, %i): The specified values lie outside of the String's Length [%i]", position, len, length());
-				return *this;
+				THISREF();
 			}
 			U32 cLen = length();
 			U32 nLen = cLen - len;
@@ -599,7 +599,7 @@ namespace Galactic {
 			}
 			_str->killRef();
 			_str = newStr;
-			return *this;
+			THISREF();
 		}
 
 		String &String::replace(strRef search, strRef replace) {
@@ -619,7 +619,7 @@ namespace Galactic {
 			}while(findRes != NOTFOUND);
 			//Test if we have entires to replace
 			if(found_indicies.isEmpty()) {
-				return *this;
+				THISREF();
 			}
 			//And start the replacing
 			U32 newSize = size() - (found_indicies.size() * lenSrc) + (found_indicies.size() * lenRep);
@@ -657,17 +657,17 @@ namespace Galactic {
 			}
 			_str->killRef();
 			_str = newStr;
-			return *this;
+			THISREF();
 		}
 
 		String &String::replace(U32 startPos, U32 len, strRef str) {
 			if(len == 0) {
 				GC_Error("String::replace(%i, [%i], X): Cannot use replace operation with len == 0.", startPos, len);
-				return *this;				
+				THISREF();				
 			}
 			if((startPos + len) > length()) {
 				GC_Error("String::replace(%i, %i, X): Specified start position and length are outside string bounds.", startPos, len);
-				return *this;				
+				THISREF();				
 			}
 
 			U32 lenV[3] = { length(), str.length(), (length() - len + str.length()) };
@@ -685,12 +685,12 @@ namespace Galactic {
 			_str->killRef();
 			_str = strDat;
 
-			return *this;
+			THISREF();
 		}
 
 		String String::trim() const {
 			if(empty()) {
-				return *this;
+				THISREF();
 			}
 			//Start trimming at the beginning
 			UTF16 begin = _str->utf16();
@@ -707,7 +707,7 @@ namespace Galactic {
 			//Length Test
 			SIZE_T len = end - begin;
 			if((U32)len == length()) {
-				return *this;
+				THISREF();
 			}
 			//Build the new string
 			StringData *strDat;
@@ -846,7 +846,7 @@ namespace Galactic {
 			_str->utf8()[0] = c;
 			_str->utf8()[1] = '\0';
 
-			return *this;
+			THISREF();
 		}
 
 		String& String::operator+=(C8 c) {
@@ -859,14 +859,14 @@ namespace Galactic {
 			_str->killRef();
 			_str = newStr;
 
-			return *this;
+			THISREF();
 		}
 
 		String& String::operator=(UTF16 str) {
 			if(_str->utf16() == str) {
 				//If the string we're assigning to is the one we already have, then stop the function here.
 				// This prevents the string data reference from being deleted when we actually still need it.
-				return *this;
+				THISREF();
 			}
 
 			_str->killRef();
@@ -878,13 +878,13 @@ namespace Galactic {
 			else {
 				_str = StringData::emptyStrRef();
 			}
-			return *this;
+			THISREF();
 		}
 
 		String& String::operator+=(UTF16 str) {
 			if(str == NULL && !*str) {
 				//If there's nothing to add, just stop.
-				return *this;
+				THISREF();
 			}
 			//Three length values to calculate for.
 			U32 length[3] = { _str->getLength(), (U32)strlen(str), _str->getLength() + (U32)strlen(str) };
@@ -900,20 +900,20 @@ namespace Galactic {
 			}
 			_str->killRef();
 			_str = newStr;
-			return *this;
+			THISREF();
 		}
 
 		String& String::operator=(strRef ref) {
 			ref._str->addRef();
 			_str->killRef();
 			_str = ref._str;
-			return *this;
+			THISREF();
 		}
 
 		String& String::operator+=(strRef ref) {
 			if(ref.empty()) {
 				//If the string we're adding from is empty, stop here.
-				return *this;
+				THISREF();
 			}
 			//Three length values to calculate for.
 			U32 len[3] = { _str->getLength(), ref._str->getLength(), _str->getLength() + ref._str->getLength() };
@@ -929,7 +929,7 @@ namespace Galactic {
 			}
 			_str->killRef();
 			_str = newStr;
-			return *this;
+			THISREF();
 		}
 
 		String operator+(strRef s1, strRef s2) {

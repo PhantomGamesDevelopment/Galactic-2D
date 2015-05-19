@@ -360,7 +360,7 @@ namespace Galactic {
 			__split(file);
 			filePathDirty = true;
 			fileNameDirty = true;
-			return *this;
+			THISREF();
 		}
 
 		bool FilePath::operator==(pathRef f) const {

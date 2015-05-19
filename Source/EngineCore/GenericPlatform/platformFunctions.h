@@ -49,7 +49,7 @@ namespace Galactic {
 
 				/* Operators */
 				//Assignment Operator
-				BinaryVersion &operator=(const BinaryVersion &c) { Version = c.Version; Major = c.Major; Minor = c.Minor; Revision = c.Revision; return *this; }
+				BinaryVersion &operator=(const BinaryVersion &c) { Version = c.Version; Major = c.Major; Minor = c.Minor; Revision = c.Revision; THISREF(); }
 				//Equality Operator
 				bool operator==(const BinaryVersion &c) { return (Version == c.Version && Major == c.Major && Minor == c.Minor && Revision == c.Revision); }
 

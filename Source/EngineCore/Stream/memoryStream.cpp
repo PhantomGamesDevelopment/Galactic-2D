@@ -1,7 +1,7 @@
 /**
 * Galactic 2D
-* Source/EngineCore/Math/math.h
-* Loads in all of the engine's math classes and instances
+* Source/EngineCore/Stream/memoryStream.cpp
+* Definitions for the memory stream read and write classes
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,7 +23,43 @@
 * THE SOFTWARE.
 **/
 
-//Load in all of our math headers
-#include "mLimits.h"
-#include "mVector.h"
-#include "mRect.h"
+#include "../engineCore.h"
+
+namespace Galactic {
+
+	namespace Core {
+
+		/*
+		MemoryStream Definitions
+		*/
+
+		S64 MemoryStream::tell() {
+			return cOffset;
+		}
+
+		void MemoryStream::seek(S64 inPos) {
+			cOffset = inPos;
+		}
+
+		/*
+		MemoryWriter Definitions
+		*/
+
+		MemoryWriter::MemoryWriter(DynArray<U8> &refMem, bool isPersistent = false, bool setOffset = false) :
+			MemoryStream(), memory(refMem) {
+			strIsSaving = true;
+			shouldSaveToPersistent = isPersistent;
+			if (setOffset) {
+				cOffset = memory.size();
+			}
+		}
+
+		/*
+		MemoryReader Definitions
+		*/
+
+
+
+	};
+
+};

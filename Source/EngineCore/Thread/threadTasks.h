@@ -225,7 +225,7 @@ namespace Galactic {
 				/* Private (Blocked) Operators */
 				//Block the assignment operator
 				MutexLock& operator=(const MutexLock &) {
-					return *this;
+					THISREF();
 				}
 
 				/* Private Class Members */

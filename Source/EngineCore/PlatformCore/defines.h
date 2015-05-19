@@ -41,6 +41,9 @@
 /* Data Type Naming */
 #define DECL_TYPE_NAME(x) template<> struct type_name<x> { static const char* tName() {return #x;} }
 
+//Fetch this class instance in reference form
+#define THISREF() return *this
+
 /* Type Forcing */
 //Force result to boolean
 #define FBOOL(x) !!x

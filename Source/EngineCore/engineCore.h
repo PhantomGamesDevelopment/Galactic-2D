@@ -61,6 +61,7 @@ namespace Galactic {
 
 //Load everything else we need.
 #include "Tools/commandLineParams.h"
+#include "Stream/stream.h"
 #include "Tools/reference.h"
 #include "Delegates/engineDelegates.h"
 #include "Thread/threadBase.h"
@@ -68,6 +69,7 @@ namespace Galactic {
 #include "Thread/threadTasks.h"
 #include "Tools/guid.h"
 #include "Math/math.h"
+#include "Stream/memoryStream.h"
 #include "Containers/frameTicker.h"
 #include "GenericPlatform/window.h"
 #include "GenericPlatform/application.h"

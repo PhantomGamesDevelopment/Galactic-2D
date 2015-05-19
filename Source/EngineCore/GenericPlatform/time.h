@@ -53,7 +53,7 @@ namespace Galactic {
 				lastCPUCyclePerc += c.lastCPUCyclePerc;
 				lastCPUCyclePerc_Relative += c.lastCPUCyclePerc_Relative;
 
-				return *this;
+				THISREF();
 			}
 
 			// How much CPU usage has occured since the last call to CPUTimeInfo?

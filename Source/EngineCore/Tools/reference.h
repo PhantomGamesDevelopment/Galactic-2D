@@ -383,7 +383,7 @@ namespace Galactic {
 					}
 					controller = newController;
 				}
-				return *this;
+				THISREF();
 			}
 
 		private:
@@ -448,7 +448,7 @@ namespace Galactic {
 						}
 						controller = newController;
 					}
-					return *this;
+					THISREF();
 				}
 				//Assignment operator (Assign from strong)
 				FINLINE WeakObject& operator=(const StrongObject &c) {
@@ -462,7 +462,7 @@ namespace Galactic {
 						}
 						controller = newController;
 					}
-					return *this;
+					THISREF();
 				}
 
 			private:
@@ -610,17 +610,17 @@ namespace Galactic {
 				FINLINE StrongReference& operator=(const StrongReference &c) {
 					obj = c.obj;
 					ref = c.ref;
-					return *this;
+					THISREF();
 				}
 				//Assignment Operator (From RawProxy)
 				template <class objType> FINLINE StrongReference& operator=(const RawProxy<objType> &c) {
 					if (c.obj == NULL) {
 						GC_Error("StrongReference=(RawProxy<>): Cannot apply a NULL Proxy to a StrongReference.");
-						return *this;
+						THISREF();
 					}
 					//Instance a new StrongReference
 					*this = StrongReference<objType, m>(c.obj);
-					return *this;
+					THISREF();
 				}
 				//Dereference Operator
 				FINLINE T& operator*() const {
@@ -743,26 +743,26 @@ namespace Galactic {
 				FINLINE StrongReferencePtr& operator=(const StrongReferencePtr &c) {
 					obj = c.obj;
 					ref = c.ref;
-					return *this;
+					THISREF();
 				}
 				//Assignment Operator (From RawProxy)
 				template <class objType> FINLINE StrongReferencePtr& operator=(const RawProxy<objType> &c) {
 					//Instance a new StrongReferencePtr
 					*this = StrongReferencePtr<objType, m>(c.obj);
-					return *this;
+					THISREF();
 				}
 				//Assignment Operator (Assign object directly)
 				FINLINE StrongReferencePtr& operator=(T* newObj) {
 					*this = StrongReferencePtr<T, m>(newObj);
-					return *this;
+					THISREF();
 				}
 				//Assign to Null
 				FINLINE StrongReferencePtr& operator=(PointerModes::Tags t) {
 					if (t != PointerModes::Null) {
-						return *this;
+						THISREF();
 					}
 					reset();
-					return *this;
+					THISREF();
 				}
 				//Dereference Operator
 				FINLINE T& operator*() const {
@@ -853,33 +853,33 @@ namespace Galactic {
 				FINLINE WeakReferencePtr& operator=(const WeakReferencePtr &c) {
 					obj = c.toStrongRefPtr().getPointer();
 					ref = c.ref;
-					return *this;
+					THISREF();
 				}
 				//Assignment Operator (From Other type of WeakRefPtr)
 				template <class objType> FINLINE WeakReferencePtr& operator=(const WeakReferencePtr<objType, m> &c) {
 					obj = c.toStrongRefPtr().getPointer();
 					ref = c.ref;
-					return *this;
+					THISREF();
 				}
 				//Assignment Operator (From StrongRefPtr)
 				template <class objType> FINLINE WeakReferencePtr& operator=(const StrongReferencePtr<objType, m> &c) {
 					obj = c.obj;
 					ref = c.ref;
-					return *this;
+					THISREF();
 				}
 				//Assignment Operator (From StrongRef)
 				template <class objType> FINLINE WeakReferencePtr& operator=(const StrongReference<objType, m> &c) {
 					obj = c.obj;
 					ref = c.ref;
-					return *this;
+					THISREF();
 				}
 				//Assign to Null
 				FINLINE WeakReferencePtr& operator=(PointerModes::Tags t) {
 					if (t != PointerModes::Null) {
-						return *this;
+						THISREF();
 					}
 					reset();
-					return *this;
+					THISREF();
 				}
 
 			private:
@@ -970,7 +970,7 @@ namespace Galactic {
 				/* Operators */
 				//Assignment operator (Hidden)
 				FINLINE makeRefPtr& operator=(const makeRefPtr &c) {
-					return *this;
+					THISREF();
 				}
 
 			private:
