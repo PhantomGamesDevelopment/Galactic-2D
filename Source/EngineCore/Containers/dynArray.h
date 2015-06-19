@@ -97,10 +97,6 @@ namespace Galactic {
 				ref operator[](U32);
 				//Alternate definition of operator [], using const ref
 				Z operator[](U32) const;
-				//Alternate of [](U32)
-				ref operator[](S32 i) { return operator[](U32(i)); }
-				//Alternate of [](U32)const
-				Z operator[](S32 i ) const { return operator[](U32(i)); }
 
 				/* Memory Functions */
 				//Reserves space in the arrayObj for future definitions

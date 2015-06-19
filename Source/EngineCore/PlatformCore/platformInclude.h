@@ -47,6 +47,9 @@
 #include "../GenericPlatform/time.h"
 #include "../GenericPlatform/platformFunctions.h"
 #include "../GenericPlatform/atomics.h"
+#include "../GenericPlatform/Files/fileHandle.h"
+#include "../GenericPlatform/Files/file.h"
+#include "../GenericPlatform/Files/physicalFile.h"
 
 //Load Our Platform
 #ifdef GALACTIC_WINDOWS

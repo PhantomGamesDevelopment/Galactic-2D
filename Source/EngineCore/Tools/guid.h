@@ -94,6 +94,11 @@ namespace Galactic {
 				//Convert a string to GUID using the specified format
 				static bool strToGUID(String &inStr, galacticGUID &outGuid, guidFormatTypes inFormat);
 
+				//Pack a GUID to a Stream
+				friend Stream& operator<<(Stream &s, galacticGUID &inGuid) {
+					s << inGuid.A << inGuid.B << inGuid.C << inGuid.D;
+				}
+
 				/* Public Class Members */
 				//First component
 				U32 A;

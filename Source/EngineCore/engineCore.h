@@ -39,8 +39,8 @@ namespace Galactic {
 		/* Forward Decs. (ToDo: Find a better order of execution) */
 		class String;
 		template <typename T> class DynArray;
-	}
-}
+	};
+};
 
 //Load up the console.
 #include "../Console/console.h"
@@ -57,11 +57,29 @@ namespace Galactic {
 #include "Tools/string.h"
 #include "Containers/mSingleton.h"
 #include "Containers/map.h"
-#include "Tools/filePath.h"
 
-//Load everything else we need.
+//-----------------------------------------------
+//Forward Declarations for the EngineCore Toolset
+//-----------------------------------------------
+namespace Galactic {
+	namespace Core {
+		class Stream;
+		class galacticGUID;
+		class Allocater;
+	};
+};
+
+//-----------------------------------------------
+//The EngineCore Toolset
+//-----------------------------------------------
+
+#include "Files/flags.h"
+#include "Files/fileTools.h"
+#include "Files/fileManager.h"
 #include "Tools/commandLineParams.h"
 #include "Stream/stream.h"
+#include "Containers/scopedPtr.h"
+#include "Containers/autoPtr.h"
 #include "Tools/reference.h"
 #include "Delegates/engineDelegates.h"
 #include "Thread/threadBase.h"
