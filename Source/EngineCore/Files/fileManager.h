@@ -49,6 +49,8 @@ namespace Galactic {
 				virtual Stream* createFileWriter(UTF16 filePath, U32 flags = 0) = 0;
 				
 				/* Basic File Operations */
+				//Does the specified file exist?
+				virtual bool fileExists(UTF16 filePath) = 0;
 				//Fetch the size of the specified file
 				virtual S64 fetchFileSize(UTF16 filePath) = 0;
 				//Move a file to a new location

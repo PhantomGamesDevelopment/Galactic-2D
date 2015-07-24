@@ -46,6 +46,37 @@ namespace Galactic {
 					virtual bool access(UTF16 path, bool isDir) = 0;
 				};
 
+				/*
+				GenericFile::RecursiveVisitor: A simple tool to assist class functions for recursive file and directory operations
+				*/
+				struct RecursiveVisitor : public Visitor {
+					/* Struct Members */
+					//Pointer to the platform file manipulation object
+					GenericFile *ptrToFMO;
+					//Pointer to the visitor structure
+					Visitor *ptrToV;
+					//String of the source directory (used for copy)
+					UTF16 srcDir;
+					//String of the target directory (used for copy)
+					UTF16 trgDir;
+					//Should the copy operation overwrite?
+					bool shouldOverwrite;
+
+					/* Struct Methods */
+					//Constructor (Two Vars)
+					RecursiveVisitor(GenericFile *gf, Visitor *v) : ptrToFMO(gf), ptrToV(v), srcDir(NULL), trgDir(NULL), shouldOverwrite(false) { }
+					//Constructor (Four Vars)
+					RecursiveVisitor(GenericFile *gf, UTF16 src, UTF16 trg, bool over) 
+						: ptrToFMO(gf), ptrToV(NULL), srcDir(src), trgDir(trg), shouldOverwrite(over) { }
+
+					//Explore the contents of the file/directory
+					virtual bool explore(UTF16 path, bool isDir);
+					//Copy the contents of the file/directory
+					virtual bool copy(UTF16 path, bool isDir);
+					//Purge the contents of the file/directory
+					virtual bool purge(UTF16 path, bool isDir);
+				};
+
 				/* Public Class Methods */
 				//Destructor
 				virtual ~GenericFile() { }

@@ -29,6 +29,63 @@ namespace Galactic {
 
 	namespace Core {
 
+		/* RecursiveVisitor */
+
+		bool GenericFile::RecursiveVisitor::explore(UTF16 path, bool isDir) {
+			bool result = ptrToV->access(path, isDir);
+			if (result == true && isDir == true) {
+				result = ptrToFMO->explore(path, *this);
+			}
+			return result;
+		}
+
+		bool GenericFile::RecursiveVisitor::copy(UTF16 path, bool isDir) {
+			String newLoc(path);
+			newLoc.replace(srcDir, trgDir);
+			//Are we copying a full directory, or just a file?
+			if (isDir) {
+				//Attempt to create the tree
+				if (!ptrToFMO->makeDirTree(newLoc.c_str()) && !ptrToFMO->doesDirExist(newLoc.c_str())) {
+					//Failed...
+					return false;
+				}
+			}
+			else {
+				bool copyError = false;
+				//Does the file already exist? Can we overwrite it?
+				if (ptrToFMO->exists(newLoc.c_str()) && shouldOverwrite) {
+					copyError = true;
+					ptrToFMO->deleteFile(newLoc.c_str());
+				}
+				//Try to copy the source file.
+				if (!ptrToFMO->copyFile(path, newLoc.c_str())) {
+					if (copyError) {
+						GC_CError("GenericFile::RecursiveVisitor::copy(%s): Copy operation failed with the overwrite flag on, file in parameter has been deleted.", newLoc.c_str());
+					}
+					return false;
+				}
+			}
+			return true;
+		}
+
+		bool GenericFile::RecursiveVisitor::purge(UTF16 path, bool isDir) {
+			if (isDir) {
+				//Ensure the directory is completely empty before deleting...
+				ptrToFMO->explore(path, *this);
+				ptrToFMO->deleteDir(path);
+			}
+			else {
+				//Flip off the read only flag if needed, then delete
+				if (ptrToFMO->isReadOnly(path)) {
+					GC_Warn("GenericFile::RecursiveVisitor::purge(%s): File is read-only, flag has been disabled");
+					ptrToFMO->setReadOnly(path, false);
+				}
+				ptrToFMO->deleteFile(path);
+			}
+		}
+
+		/* GenericFile */
+
 		bool GenericFile::copyFile(UTF16 currentPath, UTF16 newLocation) {
 			//Start by validating the source and destination
 			const S64 maxSize = 1048576;
@@ -69,6 +126,15 @@ namespace Galactic {
 			}
 			Memory::gfree(buffer);
 			return true;
+		}
+
+		bool GenericFile::exploreRecursive(UTF16 path, Visitor &accessCallback) {
+			RecursiveVisitor V(this, &(accessCallback));
+			return explore(path, V);
+		}
+
+		bool GenericFile::makeDirTree(UTF16 path) {
+
 		}
 
 	};

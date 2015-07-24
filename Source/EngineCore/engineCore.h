@@ -57,6 +57,7 @@ namespace Galactic {
 #include "Tools/string.h"
 #include "Containers/mSingleton.h"
 #include "Containers/map.h"
+#include "Files/filePath.h"
 
 //-----------------------------------------------
 //Forward Declarations for the EngineCore Toolset

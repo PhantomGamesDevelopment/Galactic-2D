@@ -743,6 +743,56 @@ namespace Galactic {
 			return subst;
 		}
 
+		bool String::startsWith(strRef testStr, U32 mode = NoCaseSens) const {
+			if (testStr.length() > 0) {
+				if (mode == NoCaseSens) {
+					return strnicmp(_str->utf16(), testStr.c_str(), testStr.length()) == 0;
+				}
+				else {
+					return strncmp(_str->utf16(), testStr.c_str(), testStr.length()) == 0;
+				}
+			}
+			return false;
+		}
+
+		bool String::startsWith(UTF16 testStr, U32 mode = NoCaseSens) const {
+			if (strlen(testStr) > 0) {
+				if (mode == NoCaseSens) {
+					return strnicmp(_str->utf16(), testStr, strlen(testStr)) == 0;
+				}
+				else {
+					return strncmp(_str->utf16(), testStr, strlen(testStr)) == 0;
+				}
+			}
+			return false;
+		}
+
+		bool String::endsWith(strRef testStr, U32 mode = NoCaseSens) const {
+			if (testStr.length() > 0 && (length() > testStr.length())) {
+				String ourSubStr = substr(length() - testStr.length());
+				if (mode == NoCaseSens) {					
+					return strnicmp(ourSubStr.c_str(), testStr.c_str(), testStr.length()) == 0;
+				}
+				else {
+					return strncmp(ourSubStr.c_str(), testStr.c_str(), testStr.length()) == 0;
+				}
+			}
+			return false;
+		}
+
+		bool String::endsWith(UTF16 testStr, U32 mode = NoCaseSens) const {
+			if (strlen(testStr) > 0 && (length() > strlen(testStr))) {
+				String ourSubStr = substr(length() - strlen(testStr));
+				if (mode == NoCaseSens) {
+					return strnicmp(ourSubStr.c_str(), testStr, strlen(testStr)) == 0;
+				}
+				else {
+					return strncmp(ourSubStr.c_str(), testStr, strlen(testStr)) == 0;
+				}
+			}
+			return false;
+		}
+
 		void String::split(UTF16 token, DynArray<String> &ref) const {
 			UTF16 chrs = _str->utf16(), copy = chrs;
 			while(*chrs) {

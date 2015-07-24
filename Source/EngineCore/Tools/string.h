@@ -108,6 +108,14 @@ namespace Galactic {
 				String &replace(U32 startPos, U32 len, const String &str);
 				//Extract a portion of the current string
 				String substr(U32 startPosition, U32 len = -1) const;
+				//Test if the string starts with the specified string
+				bool startsWith(const String &testStr, U32 mode = NoCaseSens) const;
+				//Test if the string starts with the specified string (UTF16 variant)
+				bool startsWith(UTF16 testStr, U32 mode = NoCaseSens) const;
+				//Test if the string ends with the specified string
+				bool endsWith(const String &testStr, U32 mode = NoCaseSens) const;
+				//Test if the string ends with the specified string (UTF16 variant)
+				bool endsWith(UTF16 testStr, U32 mode = NoCaseSens) const;
 				//Trim whitespace from the string.
 				String trim() const;
 				//Split string into numerous delimitors based on input token
