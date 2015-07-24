@@ -65,7 +65,7 @@ namespace Galactic {
 				if (tmp1.find("\\", 0, String::Right | String::CaseSens) != (tmp1.length() - 1)) {
 					tmp1 += "\\";
 				}
-				S32 findIndex = tmp1.find(":\\");
+				U32 findIndex = tmp1.find(":\\");
 				if (findIndex != String::NOTFOUND) {
 					tmp2 = tmp1.substr(tmp1.length() - findIndex - 2);
 				}
@@ -74,7 +74,7 @@ namespace Galactic {
 					if (tmp1.startsWith("\\\\")) {
 						tmp2 = tmp1.substr(tmp1.length() - 2);
 						//Grab the index of the slash (should be String::NOTFOUND)
-						S32 slashIndx = tmp2.find("\\");
+						U32 slashIndx = tmp2.find("\\");
 						if (slashIndx != String::NOTFOUND) {
 							//We have a remaining slash index, clean it up...
 							tmp2 = tmp2.substr(tmp2.length() - slashIndx - 1);
@@ -89,7 +89,7 @@ namespace Galactic {
 				if (tmp2.length() > 0) {
 					tmp2.replace("\\\\", "\\");
 					S32 dirCount = 0;
-					S32 slashIndex = tmp2.find("\\");
+					U32 slashIndex = tmp2.find("\\");
 					while (slashIndex != String::NOTFOUND) {
 						//compact directories until we have nothing left.
 						String name = tmp2.substr(0, slashIndex);
@@ -159,7 +159,7 @@ namespace Galactic {
 
 		String FilePath::fetchFileExtension(strRef path, bool withDot = false) {
 			String fileName = fetchFileName(path);
-			S32 findPos = fileName.find(".", 0, String::CaseSens | String::Right);
+			U32 findPos = fileName.find(".", 0, String::CaseSens | String::Right);
 			if (findPos != String::NOTFOUND) {
 				return fileName.substr(findPos + (withDot ? 0 : 1));
 			}
