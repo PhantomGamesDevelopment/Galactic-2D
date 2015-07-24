@@ -149,9 +149,7 @@ namespace Galactic {
 
 				/* General Platform Processing Information */
 				//Get the process ID
-				static U32 getProcID();
-				//Get the application root directory
-				static UTF16 getRootDir();
+				static U32 getProcID();			
 				//Get the user directory
 				static UTF16 getUserDir();
 				//Get the application settings directory

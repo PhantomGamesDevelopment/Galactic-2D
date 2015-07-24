@@ -107,10 +107,6 @@ namespace Galactic {
 			}
 		}
 
-		void GenericPlatformOperations::pumpMessages(bool fromMainLoop) {
-			//Stub Function...
-		}
-
 		U32 GenericPlatformOperations::getMappedKey(U16 *keyCodes, U32 maxMaps, String *keyNames) {
 			GC_Warn("getMappedKey() is not implemented on the generic platform.");
 			return 0;
@@ -119,6 +115,81 @@ namespace Galactic {
 		U32 GenericPlatformOperations::getMappedChar(U16 *keyCodes, U32 maxMaps, String *keyNames) {
 			GC_Warn("getMappedChar() is not implemented on the generic platform.");
 			return 0;
+		}
+
+		UTF16 GenericPlatformOperations::getRootDir() {
+			GC_Warn("getRootDir(): This method is not implemented on the generic platform.");
+			return "";
+		}
+
+		UTF16 GenericPlatformOperations::fetchPlatformSeparator() {
+			return "/";
+		}
+
+		void GenericPlatformOperations::normalizePath(String &inPath) {
+			GC_Warn("normalizePath(): This method is not implemented on the generic platform.");
+		}
+
+		void GenericPlatformOperations::preInit() {
+			//Stub Function...
+		}
+
+		void GenericPlatformOperations::onInit() {
+			//Stub Function...
+		}
+
+		void GenericPlatformOperations::postInit() {
+			//Stub Function...
+		}
+
+		void GenericPlatformOperations::requestExit(bool byForce) {
+			if (byForce) {
+				GC_CError("Application calling requestExit() with byForce=1, this may cause some problems!!!");
+				abort();
+			}
+			//Send a flag to mainLoop that it's time to exit cleanly.
+			GC_Print("Application calling requestExit(), beginning shutdown sequence.");
+			gWantExit = true;
+		}
+
+		any GenericPlatformOperations::fetchWindowObject() {
+			GC_Warn("fetchWindowObject() is not implemented on the generic platform.");
+			return NULL;
+		}
+
+		void GenericPlatformOperations::fetchEnvVar(UTF16 varName, UTF8 result, S32 length) {
+			GC_Warn("fetchEnvVar() is not implemented on the generic platform.");
+			*result = NULL;
+		}
+
+		String GenericPlatformOperations::fetchMACAddr() {
+			String result;
+			DynArray<U8> macAddr = PlatformOperations::fetchMACRaw();
+			for (S32 i = 0; i < macAddr.size(); i++) {
+				result += String::ToStr("%02x", macAddr[i]);
+			}
+			return result;
+		}
+
+		DynArray<U8> GenericPlatformOperations::fetchMACRaw() {
+			GC_Warn("fetchMACRaw() is not implemented on the generic platform.");
+			return DynArray<U8>(0);
+		}
+
+		void GenericPlatformOperations::strictMemory() {
+			GC_Warn("strictMemory() is not implemented on the generic platform.");
+		}
+
+		bool GenericPlatformOperations::platformMessagesAllowed() {
+			return true;
+		}
+
+		bool GenericPlatformOperations::platformAllowsLocalCaching() {
+			return true;
+		}
+
+		void GenericPlatformOperations::pumpMessages(bool fromMainLoop) {
+			//Stub Function...
 		}
 
 		U32 GenericPlatformOperations::fetchStandardKeyMap(U16 *keyCodes, U32 maxMaps, String *keyNames, bool mapUppercase, bool mapLowercase) {
@@ -207,64 +278,6 @@ namespace Galactic {
 				MAPKEY_fetchStandardKeyMap("z", 'z');
 			}
 			return totalMaps;
-		}
-
-		void GenericPlatformOperations::preInit() {
-			//Stub Function...
-		}
-
-		void GenericPlatformOperations::onInit() {
-			//Stub Function...
-		}
-
-		void GenericPlatformOperations::postInit() {
-			//Stub Function...
-		}
-
-		void GenericPlatformOperations::requestExit(bool byForce) {
-			if (byForce) {
-				GC_CError("Application calling requestExit() with byForce=1, this may cause some problems!!!");
-				abort();
-			}
-			//Send a flag to mainLoop that it's time to exit cleanly.
-			GC_Print("Application calling requestExit(), beginning shutdown sequence.");
-			gWantExit = true;
-		}
-
-		any GenericPlatformOperations::fetchWindowObject() {
-			GC_Warn("fetchWindowObject() is not implemented on the generic platform.");
-			return NULL;
-		}
-
-		void GenericPlatformOperations::fetchEnvVar(UTF16 varName, UTF8 result, S32 length) {
-			GC_Warn("fetchEnvVar() is not implemented on the generic platform.");
-			*result = NULL;
-		}
-
-		String GenericPlatformOperations::fetchMACAddr() {
-			String result;
-			DynArray<U8> macAddr = PlatformOperations::fetchMACRaw();
-			for (S32 i = 0; i < macAddr.size(); i++) {
-				result += String::ToStr("%02x", macAddr[i]);
-			}
-			return result;
-		}
-
-		DynArray<U8> GenericPlatformOperations::fetchMACRaw() {
-			GC_Warn("fetchMACRaw() is not implemented on the generic platform.");
-			return DynArray<U8>(0);
-		}
-
-		void GenericPlatformOperations::strictMemory() {
-			GC_Warn("strictMemory() is not implemented on the generic platform.");
-		}
-
-		bool GenericPlatformOperations::platformMessagesAllowed() {
-			return true;
-		}
-
-		bool GenericPlatformOperations::platformAllowsLocalCaching() {
-			return true;
 		}
 
 	};

@@ -56,7 +56,7 @@ namespace Galactic {
 			else if (testStr[0] == '\\' && testStr[1] == '\\' && strchr(testStr.c_str() + 2, '\\') == 0) {
 				return true;
 			}
-			else {		
+			else {
 				//If none of the above cases match, then we need to perform a set of additional tests
 				// mainly dealing with search result cases where they may contain a set of drive roots without
 				// an actual file path.
@@ -66,16 +66,16 @@ namespace Galactic {
 					tmp1 += "\\";
 				}
 				S32 findIndex = tmp1.find(":\\");
-				if (findIndex != -1) {
+				if (findIndex != String::NOTFOUND) {
 					tmp2 = tmp1.substr(tmp1.length() - findIndex - 2);
 				}
 				else {
 					//Networked Path?
 					if (tmp1.startsWith("\\\\")) {
 						tmp2 = tmp1.substr(tmp1.length() - 2);
-						//Grab the index of the slash (should be -1)
+						//Grab the index of the slash (should be String::NOTFOUND)
 						S32 slashIndx = tmp2.find("\\");
-						if (slashIndx != -1) {
+						if (slashIndx != String::NOTFOUND) {
 							//We have a remaining slash index, clean it up...
 							tmp2 = tmp2.substr(tmp2.length() - slashIndx - 1);
 						}
@@ -90,7 +90,7 @@ namespace Galactic {
 					tmp2.replace("\\\\", "\\");
 					S32 dirCount = 0;
 					S32 slashIndex = tmp2.find("\\");
-					while (slashIndex != -1) {
+					while (slashIndex != String::NOTFOUND) {
 						//compact directories until we have nothing left.
 						String name = tmp2.substr(0, slashIndex);
 						if (name == "..") {
@@ -114,6 +114,84 @@ namespace Galactic {
 			}
 			//All tests failed, not a drive
 			return false;
+		}
+
+		bool FilePath::isRelative(strRef path) {
+			return (path.startsWith("\\") || path.startsWith(".\\") || path.startsWith("..\\")
+				|| path.startsWith("../") || path.empty() || path.find("/") == String::NOTFOUND 
+				|| path.find("\\") == String::NOTFOUND);
+		}
+
+		bool FilePath::isAbsolute(strRef path) {
+			return !isRelative(path);
+		}
+
+		String FilePath::fetchFilePath(strRef path) {
+			U32 findPos = path.find("/", 0, String::CaseSens | String::Right);
+			findPos = PlatformMath::mMax(findPos, path.find("\\", 0, String::CaseSens | String::Right));
+			if (findPos != String::NOTFOUND) {
+				return path.substr(0, findPos);
+			}
+			return "";
+		}
+
+		String FilePath::fetchFileBase(strRef path, bool stripPath = true) {
+			String test = stripPath ? fetchFileName(path) : path;
+			U32 extPos = test.find(".", 0, String::CaseSens | String::Right);
+			if (extPos != String::NOTFOUND) {
+				test = test.substr(0, extPos);
+			}
+			return test;
+		}
+
+		String FilePath::fetchFileName(strRef path) {
+			U32 findPos = path.find("/", 0, String::CaseSens | String::Right);
+			findPos = PlatformMath::mMax(findPos, path.find("\\", 0, String::CaseSens | String::Right));
+			if (findPos != String::NOTFOUND) {
+				if (findPos == path.length() - 1) {
+					//Someone left some whitespace in the string instance, cut and reattempt
+					return fetchFileName(path.substr(0, findPos));
+				}
+				return path.substr(findPos + 1);
+			}
+			return path;
+		}
+
+		String FilePath::fetchFileExtension(strRef path, bool withDot = false) {
+			String fileName = fetchFileName(path);
+			S32 findPos = fileName.find(".", 0, String::CaseSens | String::Right);
+			if (findPos != String::NOTFOUND) {
+				return fileName.substr(findPos + (withDot ? 0 : 1));
+			}
+			return "";
+		}
+
+		void FilePath::stripDuplicates(String &inPath) {
+			while (inPath.find("//") != String::NOTFOUND) {
+				inPath = inPath.replace("//", "/");
+			}
+		}
+
+		String FilePath::makeTemporary(UTF16 path, UTF16 prefix = "", UTF16 extension = ".tmp") {
+			String newTmpName, strBuilder;
+			DynArray<String> tmpArray;
+			do {
+				strBuilder.clear();
+				tmpArray.clear();
+				tmpArray.compact();
+				tmpArray.pushToBack(String(path));
+				strBuilder += prefix;
+				strBuilder += galacticGUID::createGUID().toStr();
+				strBuilder += extension;
+				tmpArray.pushToBack(strBuilder);
+				newTmpName = join(tmpArray);
+			} while (FileManager::fetchInstance().fileExists(newTmpName.c_str()));
+			return newTmpName;
+		}
+		
+		void FilePath::normalizePath(String &inPath) {
+			inPath.replace("\\", "/");
+			PlatformOperations::normalizePath(inPath);
 		}
 
 		String FilePath::join(DynArray<String> paths) {

@@ -1,7 +1,7 @@
 /**
 * Galactic 2D
-* Source/EngineCore/Windows/loadPlatform.h
-* Loads up all of the necessary platform headers and our files
+* Source/EngineCore/Windows/platformOperations.h
+* Additional platform functions that are kept outside of the function lib for compatibility on Windows platforms
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,21 +23,27 @@
 * THE SOFTWARE.
 **/
 
-// Instance of our application
-extern "C" HINSTANCE hInstance;
+#ifdef GALACTIC_WINDOWS
 
-// Settings and C++ libs that are windows specific.
-#include <intrin.h>
-#include <tchar.h>
+	#ifndef GALACTIC_PLATFORM_WINDOWS_PLATFORMOPERATIONS
+	#define GALACTIC_PLATFORM_WINDOWS_PLATFORMOPERATIONS
 
-//load Windows.h now
-#include "loadWinH.h"
+	namespace Galactic {
 
-//Load the rest of our headers, notice how they match alongside genericPlatform includes.
-#include "memory.h"
-#include "platformOperations.h"
-#include "math.h"
-#include "time.h"
-#include "platformFunctions.h"
-#include "threadUtilityClasses.h"
-#include "atomics.h"
+		namespace Core {
+
+			/*
+			PlatformOperations: Declares a set of platform specific methods and operations. These are mainly used to gate each platform into the cross
+			compatibility nature of the engine. This is the definition for Windows platforms
+			*/
+			class PlatformOperations : public GenericPlatformOperations {
+
+			};
+
+		};
+
+	};
+
+	#endif //GALACTIC_PLATFORM_WINDOWS_PLATFORMOPERATIONS
+
+#endif //GALACTIC_WINDOWS

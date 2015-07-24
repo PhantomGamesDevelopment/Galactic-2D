@@ -47,6 +47,8 @@ namespace Galactic {
 				static bool isDrive(strRef path);
 				//Test if the specified path is a relative file path
 				static bool isRelative(strRef path);
+				//Test if the specified path is an absolute file path
+				static bool isAbsolute(strRef path);
 
 				/* Fetch Functions */
 				//Fetch the path up to the file name

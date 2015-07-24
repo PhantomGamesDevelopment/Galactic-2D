@@ -118,20 +118,16 @@ namespace Galactic {
 				static void createGUID(galacticGUID &inGuid);
 				//Open a message box with the specified options
 				static MBDefs::MBReturnType OpenPlatformMB(MBDefs::MBTypes mbType, UTF16 mbText, UTF16 mbCaption);
-				//Pump OS Messages
-				SFIN void pumpMessages(bool fromMainLoop);
 				//Fetch the mapping of a specified key from the code
 				SFIN U32 getMappedKey(U16 *keyCodes, U32 maxMaps, String *keyNames);
 				//Fetch the mapping of a specified key from a character
 				SFIN U32 getMappedChar(U16 *keyCodes, U32 maxMaps, String *keyNames);
-
-			protected:
-				/* Protected Class Methods */
-				//Get the standard named key mapping for the specified instance, overriden by individual OSs to handle individual instancing
-				static U32 fetchStandardKeyMap(U16 *keyCodes, U32 maxMaps, String *keyNames, bool mapUppercase, bool mapLowercase);
-
-			private:
-				/* Private Class Methods */
+				//Get the application root directory
+				static UTF16 getRootDir();
+				//Fetch the default platform separator
+				static UTF16 fetchPlatformSeparator();
+				//Normalize the file path based on the platform
+				static void normalizePath(String &inPath);
 				//Called prior to initialization
 				static void preInit();
 				//Called at initialization
@@ -154,6 +150,13 @@ namespace Galactic {
 				static bool platformMessagesAllowed();
 				//Platform allows caching of memory locally
 				static bool platformAllowsLocalCaching();
+				//Pump OS Messages
+				SFIN void pumpMessages(bool fromMainLoop);
+
+			protected:
+				/* Protected Class Methods */
+				//Get the standard named key mapping for the specified instance, overriden by individual OSs to handle individual instancing
+				static U32 fetchStandardKeyMap(U16 *keyCodes, U32 maxMaps, String *keyNames, bool mapUppercase, bool mapLowercase);
 		};
 
 	};

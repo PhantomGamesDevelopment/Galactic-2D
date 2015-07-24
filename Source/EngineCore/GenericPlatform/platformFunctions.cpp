@@ -60,10 +60,6 @@ namespace Galactic {
 		U32 GenericPlatformProcess::getProcID() {
 			return 0;
 		}
-		
-		UTF16 GenericPlatformProcess::getRootDir() {
-			return "";
-		}
 
 		UTF16 GenericPlatformProcess::getUserDir() {
 			GC_Warn("getUserDir(): This method is not implemented on the generic platform.");
