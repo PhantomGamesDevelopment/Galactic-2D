@@ -81,10 +81,8 @@ namespace Galactic {
 				/* File Path Tools */
 				//Convert a file path to a relative file path
 				virtual String makeRelative(UTF16 filePath) = 0;
-				//Convert a file path to an absolute file path, to be used for the createFileWriter() method
-				virtual String makeAbsFPForWrite(UTF16 filePath) = 0;
-				//Convert a file path to an absolute file path, to be used for the createFileReader() method
-				virtual String makeAbsFPForRead(UTF16 filePath) = 0;
+				//Convert a file path to an absolute file path, to be used for the createFileWriter()/createFileReader() methods
+				virtual String makeAbsFP(UTF16 filePath) = 0;
 
 				/* Finding Tools */
 				//Locate Files & Directories

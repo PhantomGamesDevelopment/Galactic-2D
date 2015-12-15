@@ -47,34 +47,57 @@ namespace Galactic {
 				};
 
 				/*
-				GenericFile::RecursiveVisitor: A simple tool to assist class functions for recursive file and directory operations
+				GenericFile::CopyVisitor: Definition of the Visitor class that allows copying of files and directories
 				*/
-				struct RecursiveVisitor : public Visitor {
+				struct CopyVisitor : public Visitor {
 					/* Struct Members */
-					//Pointer to the platform file manipulation object
-					GenericFile *ptrToFMO;
-					//Pointer to the visitor structure
-					Visitor *ptrToV;
-					//String of the source directory (used for copy)
-					UTF16 srcDir;
-					//String of the target directory (used for copy)
-					UTF16 trgDir;
-					//Should the copy operation overwrite?
+					//Root of the source directory
+					UTF16 sourceRoot;
+					//Root of the destination directory
+					UTF16 destinationRoot;
+					//Reference to the file instance
+					GenericFile &fileInstance;
+					//Overwrite existing files?
 					bool shouldOverwrite;
 
 					/* Struct Methods */
-					//Constructor (Two Vars)
-					RecursiveVisitor(GenericFile *gf, Visitor *v) : ptrToFMO(gf), ptrToV(v), srcDir(NULL), trgDir(NULL), shouldOverwrite(false) { }
-					//Constructor (Four Vars)
-					RecursiveVisitor(GenericFile *gf, UTF16 src, UTF16 trg, bool over) 
-						: ptrToFMO(gf), ptrToV(NULL), srcDir(src), trgDir(trg), shouldOverwrite(over) { }
+					//Constructor
+					CopyVisitor(GenericFile &fRef, UTF16 src, UTF16 dst, bool overwrite) :
+						fileInstance(fRef), sourceRoot(src), destinationRoot(dst), shouldOverwrite(overwrite) { }
+					//Explore the file or directory path recusrively (explore subdirectories, if they exist)
+					virtual bool access(UTF16 path, bool isDir);
+				};
 
-					//Explore the contents of the file/directory
-					virtual bool explore(UTF16 path, bool isDir);
-					//Copy the contents of the file/directory
-					virtual bool copy(UTF16 path, bool isDir);
-					//Purge the contents of the file/directory
-					virtual bool purge(UTF16 path, bool isDir);
+				/*
+				GenericFile::PurgeVisitor: Definition of the Visitor class that allows recursive deletion of files and directories
+				*/
+				struct PurgeVisitor : public Visitor {
+					/* Struct Members */
+					//Reference to the file instance
+					GenericFile &fileInstance;
+
+					/* Struct Methods */
+					//Constructor
+					PurgeVisitor(GenericFile &fRef) : fileInstance(fRef) { }
+					//Explore the file or directory path recusrively (explore subdirectories, if they exist)
+					virtual bool access(UTF16 path, bool isDir);
+				};
+
+				/*
+				GenericFile::RecursiveVisitor: Definition of the Visitor class that allows recursive exploring of files and directories
+				*/
+				struct RecursiveVisitor : public Visitor {
+					/* Struct Members */
+					//Reference to the file instance
+					GenericFile &fileInstance;
+					//Reference to the Visitor instance
+					Visitor &visitorInstance;
+
+					/* Struct Methods */
+					//Constructor
+					RecursiveVisitor(GenericFile &fRef, Visitor &vRef) : fileInstance(fRef), visitorInstance(vRef) { }
+					//Explore the file or directory path recusrively (explore subdirectories, if they exist)
+					virtual bool access(UTF16 path, bool isDir);
 				};
 
 				/* Public Class Methods */
@@ -95,7 +118,11 @@ namespace Galactic {
 				virtual FileHandle *openForWrite(UTF16 filePath, bool append = false, bool canAlsoRead = false) = 0;
 
 				/* File Operations */
-				//Fetch the PlatformFile object wrapped by this instance
+				//Fetch the physical file system used by the platform, this is a direct access method to PlatformFile
+				static GenericFile &fetchPhysicalInstance();
+				//Fetch the typename of this physical instance
+				static UTF16 fetchPhysicalInstanceTypeName();
+				//Fetch the PlatformFile object wrapped by this instance at the lower level
 				virtual GenericFile *fetchWrappedInstance() = 0;
 				//Does the specified file exist?
 				virtual bool exists(UTF16 filePath) = 0;
@@ -134,13 +161,13 @@ namespace Galactic {
 				//Create a directory tree (allows you to do blah/blah/blah/ and create three directories for example)
 				virtual bool makeDirTree(UTF16 path);
 				//Copy a directory tree to a new location
-				virtual bool copyDirTree(UTF16 srcTree, UTF16 dst, bool overwriteExisting);
+				virtual bool copyDirTree(UTF16 srcTree, UTF16 dstTree, bool overwriteExisting);
 				//Purge a directory (Delete all files and files contained in subdirectories, then wipe the main directory)
 				virtual bool purgeDir(UTF16 path);
-				//Convert a file path to an absolute file path, to be used for the createFileWriter() method
-				virtual String makeAbsFPForWrite(UTF16 filePath);
-				//Convert a file path to an absolute file path, to be used for the createFileReader() method
-				virtual String makeAbsFPForRead(UTF16 filePath);
+				//Should we use this specific file instance?
+				virtual bool useInstance(GenericFile *lowerLevel) const;
+				//Convert a file path to an absolute file path, to be used for the createFileWriter()/createFileReader() methods
+				virtual String makeAbsFP(UTF16 filePath);
 		};
 
 	};

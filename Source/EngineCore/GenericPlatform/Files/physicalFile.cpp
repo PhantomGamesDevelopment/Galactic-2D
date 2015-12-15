@@ -1,6 +1,6 @@
 /**
 * Galactic 2D
-* Source/EngineCore/GenericPlatform/Files/physicalFile.h
+* Source/EngineCore/GenericPlatform/Files/physicalFile.cpp
 * Defines a platform wrapper for physical file I/O functions on the low level
 * (C) 2014-2015 Phantom Games Development - All Rights Reserved
 *
@@ -23,32 +23,33 @@
 * THE SOFTWARE.
 **/
 
-#ifndef GALACTIC_INTERNAL_GENERICPLATFORM_PHYSICALFILE
-#define GALACTIC_INTERNAL_GENERICPLATFORM_PHYSICALFILE
+#include "../../engineCore.h"
 
 namespace Galactic {
 
 	namespace Core {
 
-		/*
-		GenericPhysicalFile: A platform independant file I/O wrapper interface. Mainly consistent of template functions that are overwritten by individual platform
-		 instances in their respective platform folders.
-		*/
-		class GenericPhysicalFile : public GenericFile {
-			public:
-				/* Public Class Members */
-				//Initialize this file instance
-				virtual bool init(GenericFile *file);
-				//Fetch the typename of this physical instance
-				static UTF16 fetchName();
-				//Fetch the PlatformFile object wrapped by this instance at the lower level
-				virtual GenericFile *fetchWrappedInstance();
-				//Should we use this specific file instance?
-				virtual bool useInstance(GenericFile *lowerLevel) const;
-		};
+		bool GenericPhysicalFile::init(GenericFile *file) {
+			if (file != NULL) {
+				//ToDo: We need an assertion clause here...
+				GC_CError("GenericPhysicalFile::init(): GenericFile instance was found when attempting to initialize, this will cause problems.");
+				return false;
+			}
+			return true;
+		}
+
+		UTF16 GenericPhysicalFile::fetchName() {
+			return GenericFile::fetchPhysicalInstanceTypeName();
+		}
+
+		GenericFile *GenericPhysicalFile::fetchWrappedInstance() {
+			return NULL;
+		}
+
+		bool GenericPhysicalFile::useInstance(GenericFile *lowerLevel) const {
+			return true;
+		}
 
 	};
 
 };
-
-#endif //GALACTIC_INTERNAL_GENERICPLATFORM_PHYSICALFILE

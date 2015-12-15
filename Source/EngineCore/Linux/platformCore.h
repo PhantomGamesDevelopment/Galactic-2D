@@ -52,6 +52,10 @@
 	#define GALACTIC_USE_SYS_TIME 1
 	//Linux does not have 128-bit atomics
 	#define GALACTIC_128_BIT_ATOMICS 0
+	//The maxmium length of a file path for Linux platforms
+	// NOTE (TO-DO): PATH_MAX has been known to cause issues on some Linux builds, some investigation into potential replacements for this
+	//  required define will be needed, for the time being, let's keep this and log a potential bug for later checking.
+	#define GALACTIC_PLATFORM_MAX_FILEPATH_LEN PATH_MAX
 
 	/* Some common C++ calls and replacements go here. */
 	//FINLINE: Force a function to be inline regardless of compiler commands, be careful when using this.

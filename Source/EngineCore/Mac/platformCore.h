@@ -48,6 +48,8 @@
 	#define GALACTIC_USE_SYS_TIME 1
 	//Macintosh does not have 128-bit atomics
 	#define GALACTIC_128_BIT_ATOMICS 0
+	//The maxmium length of a file path for Mac platforms
+	#define GALACTIC_PLATFORM_MAX_FILEPATH_LEN MAX_PATH
 
 	/* Some common C++ calls and replacements go here. */
 	//FINLINE: Force a function to be inline regardless of compiler commands, be careful when using this.

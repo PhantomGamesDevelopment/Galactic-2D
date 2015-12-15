@@ -29,23 +29,15 @@ namespace Galactic {
 
 	namespace Core {
 
-		/* RecursiveVisitor */
+		/* CopyVisitor */
 
-		bool GenericFile::RecursiveVisitor::explore(UTF16 path, bool isDir) {
-			bool result = ptrToV->access(path, isDir);
-			if (result == true && isDir == true) {
-				result = ptrToFMO->explore(path, *this);
-			}
-			return result;
-		}
-
-		bool GenericFile::RecursiveVisitor::copy(UTF16 path, bool isDir) {
+		bool GenericFile::CopyVisitor::access(UTF16 path, bool isDir) {
 			String newLoc(path);
-			newLoc.replace(srcDir, trgDir);
+			newLoc.replace(sourceRoot, destinationRoot);
 			//Are we copying a full directory, or just a file?
 			if (isDir) {
 				//Attempt to create the tree
-				if (!ptrToFMO->makeDirTree(newLoc.c_str()) && !ptrToFMO->doesDirExist(newLoc.c_str())) {
+				if (!fileInstance.makeDirTree(newLoc.c_str()) && !fileInstance.doesDirExist(newLoc.c_str())) {
 					//Failed...
 					return false;
 				}
@@ -53,14 +45,14 @@ namespace Galactic {
 			else {
 				bool copyError = false;
 				//Does the file already exist? Can we overwrite it?
-				if (ptrToFMO->exists(newLoc.c_str()) && shouldOverwrite) {
+				if (fileInstance.exists(newLoc.c_str()) && shouldOverwrite) {
 					copyError = true;
-					ptrToFMO->deleteFile(newLoc.c_str());
+					fileInstance.deleteFile(newLoc.c_str());
 				}
 				//Try to copy the source file.
-				if (!ptrToFMO->copyFile(path, newLoc.c_str())) {
+				if (!fileInstance.copyFile(path, newLoc.c_str())) {
 					if (copyError) {
-						GC_CError("GenericFile::RecursiveVisitor::copy(%s): Copy operation failed with the overwrite flag on, file in parameter has been deleted.", newLoc.c_str());
+						GC_CError("GenericFile::CopyVisitor::access(%s): Copy operation failed with the overwrite flag on, file in parameter has been deleted.", newLoc.c_str());
 					}
 					return false;
 				}
@@ -68,23 +60,39 @@ namespace Galactic {
 			return true;
 		}
 
-		bool GenericFile::RecursiveVisitor::purge(UTF16 path, bool isDir) {
+		/* PurgeVisitor */
+
+		bool GenericFile::PurgeVisitor::access(UTF16 path, bool isDir) {
 			if (isDir) {
 				//Ensure the directory is completely empty before deleting...
-				ptrToFMO->explore(path, *this);
-				ptrToFMO->deleteDir(path);
+				fileInstance.explore(path, *this);
+				fileInstance.deleteDir(path);
 			}
 			else {
 				//Flip off the read only flag if needed, then delete
-				if (ptrToFMO->isReadOnly(path)) {
-					GC_Warn("GenericFile::RecursiveVisitor::purge(%s): File is read-only, flag has been disabled");
-					ptrToFMO->setReadOnly(path, false);
+				if (fileInstance.isReadOnly(path)) {
+					GC_Warn("GenericFile::PurgeVisitor::access(%s): File is read-only, flag has been disabled", path);
+					fileInstance.setReadOnly(path, false);
 				}
-				ptrToFMO->deleteFile(path);
+				fileInstance.deleteFile(path);
 			}
 		}
 
+		/* RecursiveVisitor */
+
+		bool GenericFile::RecursiveVisitor::access(UTF16 path, bool isDir) {
+			bool result = visitorInstance.access(path, isDir);
+			if (result == true && isDir == true) {
+				result = fileInstance.explore(path, *this);
+			}
+			return result;
+		}
+
 		/* GenericFile */
+
+		UTF16 GenericFile::fetchPhysicalInstanceTypeName() {
+			return "PhysicalFile";
+		}
 
 		bool GenericFile::copyFile(UTF16 currentPath, UTF16 newLocation) {
 			//Start by validating the source and destination
@@ -129,12 +137,73 @@ namespace Galactic {
 		}
 
 		bool GenericFile::exploreRecursive(UTF16 path, Visitor &accessCallback) {
-			RecursiveVisitor V(this, &(accessCallback));
-			return explore(path, V);
+			RecursiveVisitor Visitor(*this, accessCallback);
+			return explore(path, Visitor);
 		}
 
 		bool GenericFile::makeDirTree(UTF16 path) {
+			S32 dirsCreated = 0;
+			String localFile(path);
+			FilePath::normalizePath(localFile);
+			UTF16 pathCSTR = localFile.c_str();
+			for (C8 fullPath[GALACTIC_MAX_FILEPATH_LEN] = (""), *pathPtr = fullPath; ; *pathPtr++ = *pathCSTR++) {
+				if (((*pathCSTR) == '/') || (*pathCSTR == NULL)) {
+					//Do we need a new directory here?
+					*pathPtr = NULL;
+					if ((pathPtr != fullPath) && !FilePath::isDrive(fullPath)) {
+						if (!makeDir(fullPath) && !doesDirExist(fullPath)) {
+							break;
+						}
+						dirsCreated++;
+					}
+				}
+				if (*pathCSTR == NULL) {
+					break;
+				}
+			}
+			return doesDirExist(localFile.c_str());
+		}
 
+		bool GenericFile::copyDirTree(UTF16 srcTree, UTF16 dstTree, bool overwriteExisting) {
+			if (dstTree == NULL) {
+				GC_Error("GenericFile::copyDirTree(): Failed to initialize method, destination is NULL.");
+				return false;
+			}
+			if (srcTree == NULL) {
+				GC_Error("GenericFile::copyDirTree(): Failed to initialize method, source tree is NULL.");
+				return false;
+			}
+			//Stringify and Normalize
+			String source(srcTree);
+			String destination(dstTree);
+			FilePath::normalizePath(source);
+			FilePath::normalizePath(destination);
+			//Verify existence and attempt to make the directory.
+			if (!doesDirExist(source.c_str())) {
+				GC_Error("GenericFile::copyDirTree([%s], %s): Failed to run method, source directory does not exist", srcTree, dstTree);
+				return false;
+			}
+			if (doesDirExist(destination.c_str()) && !makeDir(destination.c_str())) {
+				GC_Error("GenericFile::copyDirTree(%s, [%s]): Failed to run method, destination already exists or failed to create the directory", srcTree, dstTree);
+				return false;
+			}
+			//Initialize a Visitor instance
+			CopyVisitor Visitor(*this, source.c_str(), destination.c_str(), overwriteExisting);
+			return exploreRecursive(source.c_str(), Visitor);
+		}
+
+		bool GenericFile::purgeDir(UTF16 path) {
+			PurgeVisitor Visitor(*this);
+			Visitor.access(path, true);
+			return !doesDirExist(path);
+		}
+
+		bool GenericFile::useInstance(GenericFile *lowerLevel) const {
+			return false;
+		}
+
+		String GenericFile::makeAbsFP(UTF16 filePath) {
+			return FilePath::makeAbsolutePath(filePath);
 		}
 
 	};
