@@ -2,7 +2,7 @@
 * Galactic 2D
 * Source/EngineCore/Linux/time.h
 * Defines necessary time related classes for this class.
-* (C) 2014-2015 Phantom Games Development - All Rights Reserved
+* (C) 2014-2016 Phantom Games Development - All Rights Reserved
 *
 * References:
 *  http://stackoverflow.com/questions/17432502/how-can-i-measure-cpu-time-and-wall-clock-time-on-both-linux-windows

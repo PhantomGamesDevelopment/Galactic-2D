@@ -2,7 +2,7 @@
 * Galactic 2D
 * Source/EngineCore/GenericPlatform/Files/file.cpp
 * Defines a generic class instance for working directly with file instances
-* (C) 2014-2015 Phantom Games Development - All Rights Reserved
+* (C) 2014-2016 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -90,7 +90,7 @@ namespace Galactic {
 
 		/* GenericFile */
 
-		UTF16 GenericFile::fetchPhysicalInstanceTypeName() {
+		UTF16 GenericFile::fetchPhysicalInstanceTypeName() const {
 			return "PhysicalFile";
 		}
 

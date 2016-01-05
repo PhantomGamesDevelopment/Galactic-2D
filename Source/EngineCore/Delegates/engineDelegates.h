@@ -2,7 +2,7 @@
 * Galactic 2D
 * Source/EngineCore/Delegates/engineDelegates.h
 * Wraps the easydelegtate system into engine usable formats
-* (C) 2014-2015 Phantom Games Development - All Rights Reserved
+* (C) 2014-2016 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal

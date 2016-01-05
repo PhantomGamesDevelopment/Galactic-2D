@@ -2,7 +2,7 @@
 * Galactic 2D
 * Source/EngineCore/engineCore.h
 * Core module loading, settings, and header calls
-* (C) 2014-2015 Phantom Games Development - All Rights Reserved
+* (C) 2014-2016 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -48,6 +48,8 @@ namespace Galactic {
 #include "PlatformCore/platformInclude.h"
 
 //Load up the tools
+#include "GenericPlatform/Files/fileManager.h"
+#include "Files/fileLogging.h"
 #include "Containers/multitypeVar.h"
 #include "Tools/endian.h"
 #include "Tools/advTools.h"
@@ -76,7 +78,7 @@ namespace Galactic {
 
 #include "Files/flags.h"
 #include "Files/fileTools.h"
-#include "Files/fileManager.h"
+#include "Files/fileManagerWrapper.h"
 #include "Tools/commandLineParams.h"
 #include "Stream/stream.h"
 #include "Containers/scopedPtr.h"
@@ -108,5 +110,6 @@ extern bool gMainThreadInitd;
 extern U64  gFrameCount;
 extern bool gInInitialLoad;
 extern bool gSuspendRender;
+extern bool gIgnoreFileLogCalls;
 
 #endif

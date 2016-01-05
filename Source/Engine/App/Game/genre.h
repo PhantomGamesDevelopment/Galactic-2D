@@ -2,7 +2,7 @@
 * Galactic 2D
 * Source/Engine/App/Game/genre.h
 * Defines settings and options for individual G2D/G3D Applications
-* (C) 2014-2015 Phantom Games Development - All Rights Reserved
+* (C) 2014-2016 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal

@@ -2,7 +2,7 @@
 * Galactic 2D
 * Source/EngineCore/GenericPlatform/Input/forceFeedback.h
 * Defines a standard force feedback system for dealing with controller instances
-* (C) 2014-2015 Phantom Games Development - All Rights Reserved
+* (C) 2014-2016 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal

@@ -2,7 +2,7 @@
 * Galactic 2D
 * Source/EngineCore/engineCore.cpp
 * Core module loading, settings, and header calls
-* (C) 2014-2015 Phantom Games Development - All Rights Reserved
+* (C) 2014-2016 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -42,3 +42,4 @@ bool gMainThreadInitd     = false;     //gMainThreadIntd: Flag to determine if t
 U64  gFrameCount          = 0;         //gFrameCount: The total amount of frames that have been rendered since init(); 
 bool gInInitialLoad       = true;      //gInInitialLoad: Flag to check if the engine is still in the initial loading sequence (mainly to disable some stuff that shouldn't be done too early)
 bool gSuspendRender       = false;     //gSuspendRender: This is a debug flag that can be enabled to block the next render call for tracing.
+bool gIgnoreFileLogCalls  = false;     //gIgnoreFileLogCalls: This flag will disable file logging console output

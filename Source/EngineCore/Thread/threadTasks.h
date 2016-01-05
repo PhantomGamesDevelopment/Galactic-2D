@@ -2,7 +2,7 @@
 * Galactic 2D
 * Source/EngineCore/Thread/threadTasks.h
 * Defines classes to be used alongside or employed directly by the threading system in the engine
-* (C) 2014-2015 Phantom Games Development - All Rights Reserved
+* (C) 2014-2016 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal

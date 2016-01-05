@@ -2,7 +2,7 @@
 * Galactic 2D
 * Source/EngineCore/GenericPlatform/Files/file.h
 * Defines a generic class instance for working directly with file instances
-* (C) 2014-2015 Phantom Games Development - All Rights Reserved
+* (C) 2014-2016 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -121,7 +121,7 @@ namespace Galactic {
 				//Fetch the physical file system used by the platform, this is a direct access method to PlatformFile
 				static GenericFile &fetchPhysicalInstance();
 				//Fetch the typename of this physical instance
-				static UTF16 fetchPhysicalInstanceTypeName();
+				virtual UTF16 fetchPhysicalInstanceTypeName() const;
 				//Fetch the PlatformFile object wrapped by this instance at the lower level
 				virtual GenericFile *fetchWrappedInstance() = 0;
 				//Does the specified file exist?

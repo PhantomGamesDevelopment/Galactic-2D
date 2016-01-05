@@ -2,7 +2,7 @@
 * Galactic 2D
 * Source/EngineCore/Thread/pThread.h
 * Defines standardized threading classes for platforms that use the PThread system.
-* (C) 2014-2015 Phantom Games Development - All Rights Reserved
+* (C) 2014-2016 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal

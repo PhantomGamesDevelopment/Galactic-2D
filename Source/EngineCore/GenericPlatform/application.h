@@ -2,7 +2,7 @@
 * Galactic 2D
 * Source/EngineCore/GenericPlatform/application.h
 * Defines a standard application class instance for a generic platform. Mainly templates
-* (C) 2014-2015 Phantom Games Development - All Rights Reserved
+* (C) 2014-2016 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal

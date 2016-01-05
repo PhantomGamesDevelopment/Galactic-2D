@@ -2,7 +2,7 @@
 * Galactic 2D
 * Source/EngineCore/Files/filePath.cpp
 * Tools and helpers for working with absolute and relative file paths
-* (C) 2014-2015 Phantom Games Development - All Rights Reserved
+* (C) 2014-2016 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@ namespace Galactic {
 		}
 
 		bool FilePath::fileExists(strRef path) {
-			return FileManager::fetchInstance().fileExists(path.c_str());
+			return FileManagerWrapper::fetchInstance().fileExists(path.c_str());
 		}
 
 		bool FilePath::isDrive(strRef path) {
@@ -185,7 +185,7 @@ namespace Galactic {
 				strBuilder += extension;
 				tmpArray.pushToBack(strBuilder);
 				newTmpName = join(tmpArray);
-			} while (FileManager::fetchInstance().fileExists(newTmpName.c_str()));
+			} while (FileManagerWrapper::fetchInstance().fileExists(newTmpName.c_str()));
 			return newTmpName;
 		}
 		

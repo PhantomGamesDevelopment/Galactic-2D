@@ -2,7 +2,7 @@
 * Galactic 2D
 * Source/EngineCore/Math/mLimits.h
 * Definitions for the mathematical limits contained by the engine's variable types
-* (C) 2014-2015 Phantom Games Development - All Rights Reserved
+* (C) 2014-2016 Phantom Games Development - All Rights Reserved
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
