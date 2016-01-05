@@ -44,11 +44,11 @@ namespace Galactic {
 			typedef const T& Z;
 
 			public:
-				//Dynamic Array Constructor: initial size definition 
+				//Vector Constructor: initial size definition 
 				Vector(Z32 initialSize = 0);
-				//Dynamic Array Constructor: Clone existing array definition
+				//Vector Constructor: Clone existing array definition
 				Vector(const Vector & c);
-				//Dynamic Array Destructor.
+				//Vector Destructor.
 				~Vector();
 
 				//Standard STD::Vector function list.
@@ -169,15 +169,15 @@ namespace Galactic {
 		};
 
 		/*
-		DynArrayPtr is used for arrayObjs of pointer objects.
+		VectorPtr is used for arrayObjs of pointer objects.
 		*/
-		template <class T> class DynArrayPtr : public Vector<any > {
+		template <class T> class VectorPtr : public Vector<any> {
 			public:
 				//Parent Class Definition
-				typedef Vector<any > Parent;
+				typedef Vector<any> Parent;
 
 				//Constructor.
-				DynArrayPtr() { }
+				VectorPtr() { }
 
 				T* begin() { return (T*)Parent::begin(); }
 				const T* begin() const { return (const T*)Parent::begin(); }
