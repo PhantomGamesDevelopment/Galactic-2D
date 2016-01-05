@@ -38,7 +38,7 @@ namespace Galactic {
 	namespace Core {
 		/* Forward Decs. (ToDo: Find a better order of execution) */
 		class String;
-		template <typename T> class DynArray;
+		template <typename T> class Vector;
 	};
 };
 
@@ -50,12 +50,13 @@ namespace Galactic {
 //Load up the tools
 #include "GenericPlatform/Files/fileManager.h"
 #include "Files/fileLogging.h"
+#include "Containers/conditionalBlock.h"
 #include "Containers/multitypeVar.h"
 #include "Tools/endian.h"
 #include "Tools/advTools.h"
 #include "Tools/charTools.h"
 #include "Tools/strTools.h"
-#include "Containers/dynArray.h"
+#include "Containers/vector.h"
 #include "Tools/string.h"
 #include "Containers/mSingleton.h"
 #include "Containers/map.h"

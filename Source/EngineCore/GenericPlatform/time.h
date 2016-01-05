@@ -80,6 +80,18 @@ namespace Galactic {
 			}
 
 			//Apply Constructor
+			TimeVars(S64 inTicks) {
+				ticks = inTicks;
+
+				//We can resolve some time parameters from the ticks, others would require more advanced coding
+				// and is not needed by the engine at the time.
+				hours = (S32)((ticks / GenericPlatformTime::ticksPerHour) % 24);
+				minutes = (S32)((ticks / GenericPlatformTime::ticksPerMinute) % 60);
+				seconds = (S32)((ticks / GenericPlatformTime::ticksPerSecond) % 60);
+				miliseconds = (S32)((ticks / GenericPlatformTime::ticksPerMilisecond) % 1000);
+			}
+
+			//Apply Constructor
 			TimeVars(S32 yrs, S32 mo, S32 dow, S32 day, S32 hr, S32 min, S32 sec, S32 ms) { 
 				years = yrs;
 				months = mo;
@@ -89,6 +101,12 @@ namespace Galactic {
 				minutes = min;
 				seconds = sec;
 				miliseconds = ms;
+
+				ticks = dayNum * GenericPlatformTime::ticksPerDay
+					+ hours * GenericPlatformTime::ticksPerHour
+					+ minutes * GenericPlatformTime::ticksPerMinute
+					+ seconds * GenericPlatformTime::ticksPerSecond
+					+ miliseconds * GenericPlatformTime::ticksPerMilisecond;
 			}
 
 			//Compare two time values and return a result similar to strcmp() where smaller == -1, equal == 0, and larger == 1
@@ -109,6 +127,11 @@ namespace Galactic {
 					return -1;
 				}
 				return 0;
+			}
+
+			//Fetch tick count
+			S64 fetchTickCount() {
+				return ticks;
 			}
 
 			//Equality Check
@@ -161,6 +184,8 @@ namespace Galactic {
 			S32 seconds;
 			//Miliseconds
 			S32 miliseconds;
+			//Time (in engine ticks)
+			S64 ticks;
 		};
 
 		/*

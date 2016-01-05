@@ -124,9 +124,9 @@ namespace Galactic {
 				//A static constant table of values containing standard english letter frequencies.
 				Map<C8, U32> freqTable;
 				//Dynamic Array containing the list of Nodes.
-				DynArray<HuffNode> huffNodes;
+				Vector<HuffNode> huffNodes;
 				//Dynamic Array containing the list of Leaves.
-				DynArray<HuffLeaf> huffLeaves;
+				Vector<HuffLeaf> huffLeaves;
 		};
 
 	};

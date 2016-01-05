@@ -37,6 +37,23 @@ namespace Galactic {
 		*/
 		class LoggedFile : public GenericFile {
 			public:
+				/* Internal Structures */
+				/*
+				LoggedFile::LoggedVisitor: A basic tool class used to provide a basic set of internal-only functions for viewing files and naviagting through
+				directories. This version of the Visitor class has built in Logging support overlayed on the inherited-wide access() function
+				*/
+				struct LoggedVisitor : public GenericFile::Visitor {
+					/* Struct Methods */
+					//Constructor
+					LoggedVisitor(Visitor &toWrap);
+					//Callback function to be triggered when navigating files or directories
+					virtual bool access(UTF16 path, bool isDir);
+
+					/* Struct Members */
+					//Wrapped Visitor Instance
+					Visitor &wrappedVisitor;
+				};
+
 				/* Public Class Methods */
 				//Return the typename instance of this class, used by the GenericFileManager
 				static UTF16 getTypeName();
@@ -44,53 +61,53 @@ namespace Galactic {
 				LoggedFile();
 
 				//Initialize this file instance
-				virtual bool init(GenericFile *file) = 0;
+				virtual bool init(GenericFile *file);
 
 				/* File I/O Class Operations */
 				//Open a file for reading
-				virtual FileHandle *openForRead(UTF16 filePath) = 0;
+				virtual FileHandle *openForRead(UTF16 filePath);
 				//Open a file for writing
-				virtual FileHandle *openForWrite(UTF16 filePath, bool append = false, bool canAlsoRead = false) = 0;
+				virtual FileHandle *openForWrite(UTF16 filePath, bool append = false, bool canAlsoRead = false);
 
 				/* File Operations */
 				//Fetch the typename of this physical instance
 				virtual UTF16 fetchPhysicalInstanceTypeName() const;
 				//Fetch the PlatformFile object wrapped by this instance at the lower level
-				virtual GenericFile *fetchWrappedInstance() = 0;
+				virtual GenericFile *fetchWrappedInstance();
 				//Does the specified file exist?
-				virtual bool exists(UTF16 filePath) = 0;
+				virtual bool exists(UTF16 filePath);
 				//Fetch the size of the target file
-				virtual S64 fetchFileSize(UTF16 filePath) = 0;
+				virtual S64 fetchFileSize(UTF16 filePath);
 				//Move the file to a new location
-				virtual bool moveFile(UTF16 currentPath, UTF16 desiredPath) = 0;
+				virtual bool moveFile(UTF16 currentPath, UTF16 desiredPath);
 				//Copy a file to a new location
 				virtual bool copyFile(UTF16 currentPath, UTF16 newLocation);
 				//Check if the file is set to read-only
-				virtual bool isReadOnly(UTF16 filePath) = 0;
+				virtual bool isReadOnly(UTF16 filePath);
 				//Attempt to set the read-only status of a file
-				virtual bool setReadOnly(UTF16 filePath, bool newStatus) = 0;
+				virtual bool setReadOnly(UTF16 filePath, bool newStatus);
 				//Delete the file
-				virtual bool deleteFile(UTF16 filePath) = 0;
+				virtual bool deleteFile(UTF16 filePath);
 				//Fetch the last access timestamp of a file
-				virtual TimeVars fetchFileAccessTimestamp(UTF16 filePath) = 0;
+				virtual TimeVars fetchFileAccessTimestamp(UTF16 filePath);
 				//Fetch the last modified timestamp of a file
-				virtual TimeVars fetchFileLastEditTS(UTF16 filePath) = 0;
+				virtual TimeVars fetchFileLastEditTS(UTF16 filePath);
 				//Set the last modified timestamp of a file
-				virtual bool setFileLastEditTS(UTF16 filePath, TimeVars newTS) = 0;
+				virtual void setFileLastEditTS(UTF16 filePath, TimeVars newTS);
 
 				/* Directory Operations */
 				//Create a directory
-				virtual bool makeDir(UTF16 path) = 0;
+				virtual bool makeDir(UTF16 path);
 				//Delete a directory
-				virtual bool deleteDir(UTF16 path) = 0;
+				virtual bool deleteDir(UTF16 path);
 				//Does this directory exist?
-				virtual bool doesDirExist(UTF16 path) = 0;
+				virtual bool doesDirExist(UTF16 path);
 
 				/* Utility Functions */
 				//Explore the contents of a directory, do not visit subdirectories
-				virtual bool explore(UTF16 path, Visitor &accessCallback) = 0;
+				virtual bool explore(UTF16 path, GenericFile::Visitor &accessCallback);
 				//Recursively explore the contents of a directory, thereby also exploring subdirectories
-				virtual bool exploreRecursive(UTF16 path, Visitor &accessCallback);
+				virtual bool exploreRecursive(UTF16 path, GenericFile::Visitor &accessCallback);
 				//Create a directory tree (allows you to do blah/blah/blah/ and create three directories for example)
 				virtual bool makeDirTree(UTF16 path);
 				//Copy a directory tree to a new location
@@ -99,8 +116,6 @@ namespace Galactic {
 				virtual bool purgeDir(UTF16 path);
 				//Should we use this specific file instance?
 				virtual bool useInstance(GenericFile *lowerLevel) const;
-				//Convert a file path to an absolute file path, to be used for the createFileWriter()/createFileReader() methods
-				virtual String makeAbsFP(UTF16 filePath);
 
 			private:
 				/* Private Class Members */

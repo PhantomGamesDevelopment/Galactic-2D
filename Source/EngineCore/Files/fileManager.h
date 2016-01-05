@@ -87,9 +87,9 @@ namespace Galactic {
 
 				/* Finding Tools */
 				//Locate Files & Directories
-				void find(UTF16 target, DynArray<String> &result, bool findFiles = true, bool findDirs = true) = 0;
+				void find(UTF16 target, Vector<String> &result, bool findFiles = true, bool findDirs = true) = 0;
 				//Locate Files & Directories Recurviely
-				void findRecursive(UTF16 target, UTF16 startDir, DynArray<String> &result, bool findFiles = true, bool findDirs = true, bool clearNames = true) = 0;
+				void findRecursive(UTF16 target, UTF16 startDir, Vector<String> &result, bool findFiles = true, bool findDirs = true, bool clearNames = true) = 0;
 
 			private:
 				/* Private Class Methods */

@@ -35,7 +35,7 @@ namespace Galactic {
 		/* 
 		   Memory Trickery Functions 
 		   These are awesome in all ways, allows you to create and kill stuff without needing to use stuff like
-		   malloc, calloc, and delete, over, and over, and over, these are also shortcuts used by DynArray in quite
+		   malloc, calloc, and delete, over, and over, and over, these are also shortcuts used by Vector in quite
 		   a few places. We're referencing <new.h> in this file to allow for easier variants of memory copy functions
 		   by means of using new in template style constructors.
 		*/

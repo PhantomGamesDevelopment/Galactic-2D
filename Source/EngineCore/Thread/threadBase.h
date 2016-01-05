@@ -88,7 +88,7 @@ namespace Galactic {
 			private:
 				/* Private Class Members */
 				//The list of events stored in the engine
-				DynArray<Event *>ePool;
+				Vector<Event *>ePool;
 		};
 
 		/*

@@ -164,16 +164,16 @@ namespace Galactic {
 
 		String GenericPlatformOperations::fetchMACAddr() {
 			String result;
-			DynArray<U8> macAddr = PlatformOperations::fetchMACRaw();
+			Vector<U8> macAddr = PlatformOperations::fetchMACRaw();
 			for (S32 i = 0; i < macAddr.size(); i++) {
 				result += String::ToStr("%02x", macAddr[i]);
 			}
 			return result;
 		}
 
-		DynArray<U8> GenericPlatformOperations::fetchMACRaw() {
+		Vector<U8> GenericPlatformOperations::fetchMACRaw() {
 			GC_Warn("fetchMACRaw() is not implemented on the generic platform.");
-			return DynArray<U8>(0);
+			return Vector<U8>(0);
 		}
 
 		void GenericPlatformOperations::strictMemory() {

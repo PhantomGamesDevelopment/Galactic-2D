@@ -59,8 +59,8 @@ namespace Galactic {
 				void append(UTF16 toAppend) {
 					strncat(cmdLine, toAppend, getArrayCount(cmdLine));
 				}
-				//Split the command line parameters into a dynArray of string token instances for individual parsing.
-				void splitToTokens(UTF16 cmdLineTxt, DynArray<String> &tokens) {
+				//Split the command line parameters into a Vector of string token instances for individual parsing.
+				void splitToTokens(UTF16 cmdLineTxt, Vector<String> &tokens) {
 					String nextTokenInst;
 					while (StrTools::fetchCmdLineToken(cmdLineTxt, nextTokenInst, false)) {
 						if (*(nextTokenInst.c_str()) == '-') {
@@ -80,7 +80,7 @@ namespace Galactic {
 						while ((start = StrTools::find(start+1, param)) != NULL) {
 							if (start > inst && (start[-1] == '-')) {
 								UTF16 end = start + strlen(param);
-								if (end == NULL || *end == NULL || StrTools::isWSpace(*end)) {
+								if (end == NULL || *end == NULL || CharTools::isWSpace(*end)) {
 									//Got a match!
 									return true;
 								}

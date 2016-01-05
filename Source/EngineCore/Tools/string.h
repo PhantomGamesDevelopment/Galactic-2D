@@ -119,7 +119,7 @@ namespace Galactic {
 				//Trim whitespace from the string.
 				String trim() const;
 				//Split string into numerous delimitors based on input token
-				void split(UTF16 token, DynArray<String> &ref) const;
+				void split(UTF16 token, Vector<String> &ref) const;
 
 				//Utility function used to convert pointer arguments into a String.
 				static String VoidToStr(UTF16 format, void* args);

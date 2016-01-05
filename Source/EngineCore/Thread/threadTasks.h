@@ -264,11 +264,11 @@ namespace Galactic {
 				//The destruction process has begun
 				bool isBeingDeleted;
 				//List of all of the thread objects being stored
-				DynArray<WorkerThread *> allThreadObjects;
+				Vector<WorkerThread *> allThreadObjects;
 				//List of all of the work that needs to be done.
-				DynArray<Work *> jobsToDo;
+				Vector<Work *> jobsToDo;
 				//List of available threads to perform those jobsToDo
-				DynArray<WorkerThread *> openWorkerThreads;
+				Vector<WorkerThread *> openWorkerThreads;
 		};
 
 		//Global Definition of the Thread Pool

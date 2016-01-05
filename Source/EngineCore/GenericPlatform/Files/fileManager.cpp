@@ -55,7 +55,25 @@ namespace Galactic {
 
 		GenericFile *GenericFileManager::fetchByName(UTF16 name) {
 			GenericFile *returnFile = NULL;
+			if (strcmp(LoggedFile::getTypeName(), name) == 0) {
+				static ScopedPtr<GenericFile> tempInstance(new LoggedFile());
+				returnFile = tempInstance.fetchPtrInstance();
+			}
+			else {
+				//To-Do: When installing other platforms into the engine, if they require modules that differ from the standard name of
+				//        PhysicalFile, it will need to be looked up through this process.
+			}
+			return returnFile;
+		}
 
+		GenericFile *GenericFileManager::fetchInChain(UTF16 name) {
+			if (activeFile == NULL) {
+				GC_Error("GenericFileManager::fetchInChain(): Cannot initialize chain-search without base object");
+				return NULL;
+			}
+			for (GenericFile *topLink = activeFile; topLink; topLink = topLink->fetchWrappedInstance()) {
+
+			}
 		}
 
 	};

@@ -13,7 +13,7 @@
  *  An std::map is going to be utilized for these implementations.
  *  @todo Associated DelegateSet storing so that if a delegate instance is
  *  deleted directly it can be automatically removed from any DelegateSet
- *  instances it may be inside of. This will be done an std::vector
+ *  instances it may be inside of. This will be done an std::Vector
  *  that will be iterated over.
  *
  *  The use of the size_t type throughout the internal implementation is designed for x86 systems
@@ -28,7 +28,7 @@
  *   to STD::X with our own engine classes for consistency. There's still a few STL references left that will be removed in a future update.
  */
 
-//Phantom139: Removed <vector>, we have engine classes to handle these.
+//Phantom139: Removed <Vector>, we have engine classes to handle these.
 #include <stdexcept>    // Standard exception types
 #include <assert.h>     // assert(expr)
 
@@ -229,7 +229,7 @@ namespace Galactic {
 		};
 
 		/**
-		 *  @brief A set of delegates with manipulation similar to std::vector.
+		 *  @brief A set of delegates with manipulation similar to std::Vector.
 		 *  @note Both MemberDelegate and StaticDelegate instances may be used with
 		 *  this.
 		 *  @note The contained delegate instances are deleted upon deletion.
@@ -261,7 +261,7 @@ namespace Galactic {
 
 				//! Standard destructor.
 				~DelegateSet(void) {
-					for (typename DynArray<DelegateSet::DelegateBaseType *>::iterator it = mDelegateVector.begin(); it != mDelegateVector.end(); it++) {
+					for (typename Vector<DelegateSet::DelegateBaseType *>::iterator it = mDelegateVector.begin(); it != mDelegateVector.end(); it++) {
 						delete (*it);
 					}
 				}
@@ -284,7 +284,7 @@ namespace Galactic {
 				 *  @param it The iterator representing the position to insert at.
 				 *  @param in The static function to insert as a delegate.
 				 */
-				void insert(typename DynArray<DelegateSet::DelegateBaseType *>::iterator it, delegateFuncPtr in) { 
+				void insert(typename Vector<DelegateSet::DelegateBaseType *>::iterator it, delegateFuncPtr in) { 
 					mDelegateVector.insert(it, new DelegateSet::DelegateBaseType(in)); 
 				}
 
@@ -293,7 +293,7 @@ namespace Galactic {
 				 *  @param it The iterator representing the position to insert at.
 				 *  @param in the StaticDelegate instance to insert.
 				 */
-				void insert(typename DynArray<DelegateSet::DelegateBaseType *>::iterator it, DelegateSet::DelegateBaseType *in) { 
+				void insert(typename Vector<DelegateSet::DelegateBaseType *>::iterator it, DelegateSet::DelegateBaseType *in) { 
 					mDelegateVector.insert(it, in); 
 				}
 
@@ -313,12 +313,12 @@ namespace Galactic {
 				 *  @param procAddress The static proc address to check against.
 				 *  @param deleteInstances A boolean representing whether or not all matches should be deleted when removed. The default
 				 *  for this parameter is true for better memory management.
-				 *  @param out A pointer to an std::vector templated for the DelegateBase type that this DelegateSet contains. This vector
+				 *  @param out A pointer to an std::Vector templated for the DelegateBase type that this DelegateSet contains. This Vector
 				 *  will then be populated with a list of removed delegates. If deleteInstances is false, this list will never be populated.
 				 *  @warning If deleteInstances is false and there is no out specified, you will be leaking memory if there is no other
 				 *  delegate tracking mechanism implemented by your project.
 				 */
-				template <typename className> void remove_delegate_procaddress(DelegateSet::MemberDelegateFuncPtr<className> procAddress, bool deleteInstances = true, DynArray<DelegateSet::DelegateBaseType *>* out = NULL) {
+				template <typename className> void remove_delegate_procaddress(DelegateSet::MemberDelegateFuncPtr<className> procAddress, bool deleteInstances = true, Vector<DelegateSet::DelegateBaseType *>* out = NULL) {
 					size_t currentDelegateCount = mDelegateVector.size();
 
 					for (size_t iteration = 0; iteration < currentDelegateCount; iteration++) {
@@ -343,12 +343,12 @@ namespace Galactic {
 				 *  @param procAddress The static proc address to check against.
 				 *  @param deleteInstances A boolean representing whether or not all matches should be deleted when removed. The default
 				 *  for this parameter is true for better memory management.
-				 *  @param out A pointer to an std::vector templated for the DelegateBase type that this DelegateSet contains. This vector
+				 *  @param out A pointer to an std::Vector templated for the DelegateBase type that this DelegateSet contains. This Vector
 				 *  will then be populated with a list of removed delegates. If deleteInstances is false, this list will never be populated.
 				 *  @warning If deleteInstances is false and there is no out specified, you will be leaking memory if there is no other
 				 *  delegate tracking mechanism implemented by your project.
 				 */
-				void remove_delegate_procaddress(DelegateSet::StaticDelegateFuncPtr procAddress, bool deleteInstances = true, DynArray<DelegateSet::DelegateBaseType *>* out = NULL) {
+				void remove_delegate_procaddress(DelegateSet::StaticDelegateFuncPtr procAddress, bool deleteInstances = true, Vector<DelegateSet::DelegateBaseType *>* out = NULL) {
 					size_t currentDelegateCount = mDelegateVector.size();
 
 					for (size_t iteration = 0; iteration < currentDelegateCount; iteration++) {
@@ -372,12 +372,12 @@ namespace Galactic {
 				 *  @param thisPtr The address of the object to check against.
 				 *  @param deleteInstances A boolean representing whether or not all matches should be deleted when removed. The default
 				 *  for this parameter is true for better memory management.
-				 *  @param out A pointer to an std::vector templated for the DelegateBase type that this DelegateSet contains. This vector
+				 *  @param out A pointer to an std::Vector templated for the DelegateBase type that this DelegateSet contains. This Vector
 				 *  will then be populated with a list of removed delegates. If deleteInstances is false, this list will never be populated.
 				 *  @warning If deleteInstances is false and there is no out specified, you will be leaking memory if there is no other
 				 *  delegate tracking mechanism implemented by your project.
 				 */
-				void remove_delegate_this(void *thisPtr, const bool &deleteInstances = true, DynArray<DelegateSet::DelegateBaseType *>* out = NULL) {
+				void remove_delegate_this(void *thisPtr, const bool &deleteInstances = true, Vector<DelegateSet::DelegateBaseType *>* out = NULL) {
 					size_t currentDelegateCount = mDelegateVector.size();
 					for (size_t iteration = 0; iteration < currentDelegateCount; iteration++) {
 						if (mDelegateVector[iteration]->mIsMemberDelegate && mDelegateVector[iteration]->has_thispointer(thisPtr)) {
@@ -429,14 +429,14 @@ namespace Galactic {
 				 *  assert if assertions are enabled.
 				 */
 				void invoke(parameters... params) const {
-					for (typename DynArray<DelegateSet::DelegateBaseType *>::const_iterator it = mDelegateVector.begin(); it != mDelegateVector.end(); it++) {
+					for (typename Vector<DelegateSet::DelegateBaseType *>::const_iterator it = mDelegateVector.begin(); it != mDelegateVector.end(); it++) {
 						(*it)->invoke(params...);
 					}
 				}
 
 				/**
 				 *  @brief Invoke all delegates in the set, storing return values in out.
-				 *  @param out The std::vector that all return values will be sequentially written to.
+				 *  @param out The std::Vector that all return values will be sequentially written to.
 				 *  @param args All other arguments that will be used as parameters to each delegate.
 				 *  @throw std::runtime_error Thrown when assertions are disabled and either a stored MemberDelegate
 				 *  or StaticDelegate type have a NULL function to call.
@@ -446,8 +446,8 @@ namespace Galactic {
 				 *  @note The call will not throw an exception in any of the std::runtime_error cases but rather
 				 *  assert if assertions are enabled.
 				 */
-				void invoke(std::vector<returnType> &out, parameters... params) const {
-					for (typename DynArray<DelegateSet::DelegateBaseType *>::const_iterator it = mDelegateVector.begin(); it != mDelegateVector.end(); it++) {
+				void invoke(std::Vector<returnType> &out, parameters... params) const {
+					for (typename Vector<DelegateSet::DelegateBaseType *>::const_iterator it = mDelegateVector.begin(); it != mDelegateVector.end(); it++) {
 						out.push_back((*it)->invoke(params...));
 					}
 				}
@@ -456,7 +456,7 @@ namespace Galactic {
 				 *  @brief Get an iterator to the beginning of the set.
 				 *  @return An std::iterator referencing the beginning of the set.
 				 */
-				typename DynArray<DelegateSet::DelegateBaseType *>::iterator begin(void) { 
+				typename Vector<DelegateSet::DelegateBaseType *>::iterator begin(void) { 
 					return mDelegateVector.begin(); 
 				}
 
@@ -464,7 +464,7 @@ namespace Galactic {
 				 *  @brief Get an iterator to the end of the set.
 				 *  @return An std::const_iterator referencing the end of the set.
 				 */
-				typename DynArray<DelegateSet::DelegateBaseType *>::const_iterator end(void) { 
+				typename Vector<DelegateSet::DelegateBaseType *>::const_iterator end(void) { 
 					return mDelegateVector.end(); 
 				}
 
@@ -495,13 +495,13 @@ namespace Galactic {
 				}
 
 				//! Helper typedef to get an std::iterator that corresponds to this DelegateSet.
-				typedef typename DynArray<DelegateSet::DelegateBaseType *>::iterator iterator;
+				typedef typename Vector<DelegateSet::DelegateBaseType *>::iterator iterator;
 				//! Helper typedef to get an std::const_iterator that corresponds to this DelegateSet.
-				typedef typename DynArray<DelegateSet::DelegateBaseType *>::const_iterator const_iterator;
+				typedef typename Vector<DelegateSet::DelegateBaseType *>::const_iterator const_iterator;
 
 			private:
-				//! Internal vector storing the StaticDelegate instances.
-				DynArray<DelegateSet::DelegateBaseType *> mDelegateVector;
+				//! Internal Vector storing the StaticDelegate instances.
+				Vector<DelegateSet::DelegateBaseType *> mDelegateVector;
 		};
 
 		/**

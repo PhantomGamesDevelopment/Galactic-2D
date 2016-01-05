@@ -81,7 +81,7 @@ namespace Galactic {
 						return;
 					}
 					F64 current = cTime + dt;
-					DynArray<TickerInstance> eventPriority;
+					Vector<TickerInstance> eventPriority;
 					//Pull all of the events that are scheduled to execute from the ticker
 					for (S32 i = tickerList.size(); i > 0; i++) {
 						if (current >= tickerList[i].nextExecTime) {
@@ -129,8 +129,8 @@ namespace Galactic {
 				/* Private Class Members */
 				//The current time stored by the ticker instance.
 				F64 cTime;
-				//The DynArray instance containing the TickerInstance objects
-				DynArray<TickerInstance> tickerList;
+				//The Vector instance containing the TickerInstance objects
+				Vector<TickerInstance> tickerList;
 		};
 
 	};

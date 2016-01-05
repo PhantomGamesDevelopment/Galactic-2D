@@ -217,7 +217,7 @@ namespace Galactic {
 
 			protected:
 				//The Dynamic Array containing the MapNodes for this object
-				DynArray<MapNode<Key, T> *> container;
+				Vector<MapNode<Key, T> *> container;
 		};
 
 		/* Map Functions */
@@ -231,22 +231,22 @@ namespace Galactic {
 		}
 
 		template <class Key, class T> MapNode<Key, T> *Map<Key, T>::begin() {
-			//Note: We need this type-cast otherwise the compiler thinks this is DynArray::Y (iterator) instead of Map::iterator
+			//Note: We need this type-cast otherwise the compiler thinks this is Vector::Y (iterator) instead of Map::iterator
 			return (MapNode<Key, T> *)container.begin();
 		}
 
 		template <class Key, class T> MapNode<Key, T> *Map<Key, T>::end() {
-			//Note: We need this type-cast otherwise the compiler thinks this is DynArray::Y (iterator) instead of Map::iterator
+			//Note: We need this type-cast otherwise the compiler thinks this is Vector::Y (iterator) instead of Map::iterator
 			return (MapNode<Key, T> *)container.end();
 		}
 
 		template <class Key, class T> const MapNode<Key, T> *Map<Key, T>::begin() const {
-			//Note: We need this type-cast otherwise the compiler thinks this is DynArray::Y (iterator) instead of Map::iterator
+			//Note: We need this type-cast otherwise the compiler thinks this is Vector::Y (iterator) instead of Map::iterator
 			return (const MapNode<Key, T> *)container.begin();
 		}
 
 		template <class Key, class T> const MapNode<Key, T> *Map<Key, T>::end() const {
-			//Note: We need this type-cast otherwise the compiler thinks this is DynArray::Y (iterator) instead of Map::iterator
+			//Note: We need this type-cast otherwise the compiler thinks this is Vector::Y (iterator) instead of Map::iterator
 			return (const MapNode<Key, T> *)container.end();
 		}
 

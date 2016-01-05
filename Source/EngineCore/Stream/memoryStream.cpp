@@ -45,7 +45,7 @@ namespace Galactic {
 		MemoryWriter Definitions
 		*/
 
-		MemoryWriter::MemoryWriter(DynArray<U8> &refMem, bool isPersistent = false, bool setOffset = false) :
+		MemoryWriter::MemoryWriter(Vector<U8> &refMem, bool isPersistent = false, bool setOffset = false) :
 			MemoryStream(), memory(refMem) {
 			strIsSaving = true;
 			shouldSaveToPersistent = isPersistent;
@@ -84,7 +84,7 @@ namespace Galactic {
 		MemoryReader Definitions
 		*/
 
-		MemoryReader::MemoryReader(DynArray<U8> &refMem, bool isPersistent = false) :
+		MemoryReader::MemoryReader(Vector<U8> &refMem, bool isPersistent = false) :
 			MemoryStream(), memory(refMem) {
 			strIsLoading = true;
 			shouldSaveToPersistent = isPersistent;

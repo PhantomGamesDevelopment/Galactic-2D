@@ -82,12 +82,12 @@ namespace Galactic {
 			}
 			else {
 				//Saving is a bit more tricky (pun, haha), we need to perform adjustments on each 8-bit interval
-				DynArray<U8> packed;
+				Vector<U8> packed;
 				U32 remainingPacked = dataRef;
 				while (true) {
 					//To save data to the stream, we need to fetch each individual 8 bit component, leaving
 					// the 8th bit empty for extra space. To do this, we fetch 7 bits from the value and store
-					// it in a DynArray, then move to the next, and the next until done.
+					// it in a Vector, then move to the next, and the next until done.
 					U8 nextByte = remainingPacked & 0x7F;
 					remainingPacked >>= 7;
 					//Don't forget to empty the 8th bit...

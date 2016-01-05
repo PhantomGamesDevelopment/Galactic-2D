@@ -75,7 +75,7 @@ namespace Galactic {
 				// Vector Normalize
 				void normalize() {
 					if (length() == 0) {
-						GC_Error("Cannot Normalize a vector with 0 length");
+						GC_Error("Cannot Normalize a Vector with 0 length");
 						return;
 					}
 					x /= length();
@@ -140,7 +140,7 @@ namespace Galactic {
 				// Vector Normalize
 				void normalize() {
 					if(length() == 0) {
-						GC_Error("Cannot Normalize a vector with 0 length");
+						GC_Error("Cannot Normalize a Vector with 0 length");
 						return;
 					}
 					x /= length();
@@ -196,7 +196,7 @@ namespace Galactic {
 				// Vector Normalize
 				void normalize() {
 					if (length() == 0) {
-						GC_Error("Cannot Normalize a vector with 0 length");
+						GC_Error("Cannot Normalize a Vector with 0 length");
 						return;
 					}
 					x /= length();

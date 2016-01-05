@@ -324,7 +324,7 @@ namespace Galactic {
 					return DropEventTypes::None;
 				}
 				//Callback when a drag event enters an external file
-				virtual DropEventTypes onDragEnterExternalFile(windowRef wRef, const DynArray<String> &file) {
+				virtual DropEventTypes onDragEnterExternalFile(windowRef wRef, const Vector<String> &file) {
 					return DropEventTypes::None;
 				}
 
@@ -457,7 +457,7 @@ namespace Galactic {
 			//The relative safe area of this device, if there is "spill" over from rendering, this area can be used. (Mainly for PCs)
 			Vector2F relativeSafeArea;
 			//Information on ALL connected physical monitor devices, this is only used on PCs at the moment (Consoles don't allow multiple monitors)
-			DynArray<ViewingDeviceInformation> physicalMonitorInformation;
+			Vector<ViewingDeviceInformation> physicalMonitorInformation;
 		};
 
 		/*

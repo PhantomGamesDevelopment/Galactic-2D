@@ -1,6 +1,6 @@
 /**
 * Galactic 2D
-* Source/EngineCore/Containers/dynArray.h
+* Source/EngineCore/Containers/vector.h
 * Defines a dynamically allocated array instance, more commonly refered to as a Vector
 * (C) 2014-2016 Phantom Games Development - All Rights Reserved
 *
@@ -23,8 +23,8 @@
 * THE SOFTWARE.
 **/
 
-#ifndef GALACTIC_INTERNAL_DYNARRAY
-#define GALACTIC_INTERNAL_DYNARRAY
+#ifndef GALACTIC_INTERNAL_VECTOR
+#define GALACTIC_INTERNAL_VECTOR
 
 #include "../engineCore.h"
 
@@ -33,11 +33,11 @@ namespace Galactic {
 	namespace Core {
 
 		/*
-		DynArray is a template array class, you can create a definition of a dynamically adjusting array of objects by means of
-		 DynArray<class> x; Numerous arrayObj operations are provided in the class definition below, however the application of the DynArray
-		 class behaves quite similarly to that of std::vector, thus granting std::vector capabilities without needing the STL.
+		Vector is a template array class, you can create a definition of a dynamically adjusting array of objects by means of
+		 Vector<class> x; Numerous arrayObj operations are provided in the class definition below, however the application of the Vector
+		 class behaves quite similarly to that of std::Vector, thus granting std::Vector capabilities without needing the STL.
 		*/
-		template <class T> class DynArray {	
+		template <class T> class Vector {	
 			typedef T& ref;
 			typedef const T* X;
 			typedef T* Y;
@@ -45,11 +45,11 @@ namespace Galactic {
 
 			public:
 				//Dynamic Array Constructor: initial size definition 
-				DynArray(Z32 initialSize = 0);
+				Vector(Z32 initialSize = 0);
 				//Dynamic Array Constructor: Clone existing array definition
-				DynArray(const DynArray & c);
+				Vector(const Vector & c);
 				//Dynamic Array Destructor.
-				~DynArray();
+				~Vector();
 
 				//Standard STD::Vector function list.
 				//Returns a pointer to the first element in the arrayObj.
@@ -171,10 +171,10 @@ namespace Galactic {
 		/*
 		DynArrayPtr is used for arrayObjs of pointer objects.
 		*/
-		template <class T> class DynArrayPtr : public DynArray<any > {
+		template <class T> class DynArrayPtr : public Vector<any > {
 			public:
 				//Parent Class Definition
-				typedef DynArray<any > Parent;
+				typedef Vector<any > Parent;
 
 				//Constructor.
 				DynArrayPtr() { }
@@ -208,7 +208,7 @@ namespace Galactic {
 
 		/**
 		**/
-		template <class T> DynArray<T>::DynArray(Z32 initialSize) {
+		template <class T> Vector<T>::Vector(Z32 initialSize) {
 			arrayObj = NULL;
 			elementCount = 0;
 			arrayObjSize = 0;
@@ -218,45 +218,45 @@ namespace Galactic {
 			}
 		}
 
-		template <class T> DynArray<T>::DynArray(const DynArray & c) {
-			//Copy one DynArray into another.
+		template <class T> Vector<T>::Vector(const Vector & c) {
+			//Copy one Vector into another.
 			arrayObj = NULL;
 			resize(c.elementCount);
 			constr(0, p.elementCount, p.arrayObj);
 		}
 
-		template <class T> DynArray<T>::~DynArray() {
+		template <class T> Vector<T>::~Vector() {
 			clear();
 			//Compiler is bitching with C2146 if you use SendToHeaven() Here.
 			free(arrayObj);
 			arrayObj = NULL;
 		}
 
-		template <class T> T* DynArray<T>::begin() {
+		template <class T> T* Vector<T>::begin() {
 			return arrayObj;
 		}
 
-		template <class T> const T* DynArray<T>::begin() const {
+		template <class T> const T* Vector<T>::begin() const {
 			return arrayObj;
 		}
 
-		template <class T> T* DynArray<T>::end() {
+		template <class T> T* Vector<T>::end() {
 			return arrayObj + elementCount;
 		}
 
-		template <class T> const T* DynArray<T>::end() const {
+		template <class T> const T* Vector<T>::end() const {
 			return arrayObj + elementCount;
 		}
 
-		template <class T> S32 DynArray<T>::size() const {
+		template <class T> S32 Vector<T>::size() const {
 			return (S32)elementCount;
 		}
 
-		template <class T> bool DynArray<T>::isEmpty() const {
+		template <class T> bool Vector<T>::isEmpty() const {
 			return (elementCount == 0);
 		}
 
-		template <class T> bool DynArray<T>::contains(const T& e) const {
+		template <class T> bool Vector<T>::contains(const T& e) const {
 			const T* iterator = begin();
 			while(iterator != end()) {
 				if(*iterator == e) {
@@ -267,55 +267,55 @@ namespace Galactic {
 			return false;
 		}
 
-		template <class T> void DynArray<T>::insert(T* position, const T& newItem) {
+		template <class T> void Vector<T>::insert(T* position, const T& newItem) {
 			U32 indexPosition = (U32)(position - arrayObj);
 			insert(indexPosition);
 			arrayObj[index] = newItem;
 		}
 
-		template <class T> void DynArray<T>::erase(T* position) {
+		template <class T> void Vector<T>::erase(T* position) {
 			erase(U32(position - arrayObj));
 		}
 
-		template <class T> T& DynArray<T>::front() {
+		template <class T> T& Vector<T>::front() {
 			if(elementCount == 0) {
 				//ToDo: Throw an assert error here
 			}
 			return *begin();
 		}
 
-		template <class T> const T& DynArray<T>::front() const {
+		template <class T> const T& Vector<T>::front() const {
 			if(elementCount == 0) {
 				//ToDo: Throw an assert error here
 			}
 			return *begin();
 		}
 
-		template <class T> T& DynArray<T>::back() {
+		template <class T> T& Vector<T>::back() {
 			if(elementCount == 0) {
 				//ToDo: Throw an assert error here
 			}
 			return *(end() - 1);
 		}
 
-		template <class T> const T& DynArray<T>::back() const {
+		template <class T> const T& Vector<T>::back() const {
 			if(elementCount == 0) {
 				//ToDo: Throw an assert error here
 			}
 			return *(end() - 1);
 		}
 
-		template <class T> void DynArray<T>::pushToFront(const T& e) {
+		template <class T> void Vector<T>::pushToFront(const T& e) {
 			insert(0);
 			arrayObj[0] = e;
 		}
 
-		template <class T> void DynArray<T>::pushToBack(const T& e) {
+		template <class T> void Vector<T>::pushToBack(const T& e) {
 			inc();
 			arrayObj[elementCount - 1] = e;
 		}
 
-		template <class T> void DynArray<T>::popFront() {
+		template <class T> void Vector<T>::popFront() {
 			if(elementCount == 0) {
 				//No element to pop.
 				return;
@@ -323,7 +323,7 @@ namespace Galactic {
 			erase(U32(0));
 		}
 
-		template <class T> void DynArray<T>::popBack() {
+		template <class T> void Vector<T>::popBack() {
 			if(elementCount == 0) {
 				//No element to pop.
 				return;
@@ -331,7 +331,7 @@ namespace Galactic {
 			dec(); //dec() handles deletion of the back element.
 		}
 
-		template <class T> S32 DynArray<T>::findNext(const T& e, U32 startPos) const {
+		template <class T> S32 Vector<T>::findNext(const T& e, U32 startPos) const {
 			if(start >= elementCount) {
 				return -1;
 			}
@@ -343,21 +343,21 @@ namespace Galactic {
 			return -1;
 		}
 
-		template <class T> T& DynArray<T>::operator[](U32 index) {
+		template <class T> T& Vector<T>::operator[](U32 index) {
 			if(index < 0 || index >= elementCount) {
 				//ToDo: Throw an assert error here
 			}
 			return arrayObj[index];
 		}
 
-		template <class T> const T& DynArray<T>::operator[](U32 index) const {
+		template <class T> const T& Vector<T>::operator[](U32 index) const {
 			if(index < 0 || index >= elementCount) {
 				//ToDo: Throw an assert error here
 			}
 			return arrayObj[index];
 		}
 
-		template <class T> void DynArray<T>::reserve(U32 size) {
+		template <class T> void Vector<T>::reserve(U32 size) {
 			if(size <= arrayObjSize) {
 				//cannot de-allocate space using reserve
 				return;
@@ -369,15 +369,15 @@ namespace Galactic {
 			}
 		}
 
-		template <class T> U32 DynArray<T>::capacity() const {
+		template <class T> U32 Vector<T>::capacity() const {
 			return arrayObjSize;
 		}
 
-		template <class T> U32 DynArray<T>::memSize() const {
+		template <class T> U32 Vector<T>::memSize() const {
 			return capacity() * sizeof(T);
 		}
 
-		template <class T> U32 DynArray<T>::setSize(U32 s) {
+		template <class T> U32 Vector<T>::setSize(U32 s) {
 			Z32 oldSize = elementCount;
 			if(s > elementCount) {
 				//growing.
@@ -395,11 +395,11 @@ namespace Galactic {
 			return elementCount;
 		}
 
-		template <class T> T* DynArray<T>::addr() const {
+		template <class T> T* Vector<T>::addr() const {
 			return arrayObj;
 		}
 
-		template <class T> void DynArray<T>::inc() {
+		template <class T> void Vector<T>::inc() {
 			if(elementCount == arrayObjSize) {
 				resize(elementCount + 1);
 			}
@@ -410,7 +410,7 @@ namespace Galactic {
 			createRef(&arrayObj[elementCount - 1]);
 		}
 
-		template <class T> void DynArray<T>::dec() {
+		template <class T> void Vector<T>::dec() {
 			if(elementCount == 0) {
 				//No elements to delete.
 				return;
@@ -420,7 +420,7 @@ namespace Galactic {
 			killRef(&arrayObj[elementCount]);
 		}
 
-		template <class T> void DynArray<T>::inc(U32 amount) {
+		template <class T> void Vector<T>::inc(U32 amount) {
 			U32 currentCount = elementCount;
 			if((elementCount += amount) >= arrayObjSize) {
 				resize(elementCount);	
@@ -428,7 +428,7 @@ namespace Galactic {
 			constr(currentCount, elementCount);
 		}
 
-		template <class T> void DynArray<T>::dec(U32 amount) {
+		template <class T> void Vector<T>::dec(U32 amount) {
 			if(elementCount == 0) {
 				//Cannot decrement with 0 elements
 				return;
@@ -446,10 +446,10 @@ namespace Galactic {
 			elementCount = countNow;
 		}
 
-		template <class T> void DynArray<T>::insert(U32 pos) {
+		template <class T> void Vector<T>::insert(U32 pos) {
 			if(pos < 0 || pos >= elementCount) {
 				if(GALACTIC_DONT_REPORT_INTERNAL_ERRORS != 0) {
-					GC_Error("DynArray::insert(%i): Cannot insert an element outside of the array bounds [0 - %i].", pos, elementCount);
+					GC_Error("Vector::insert(%i): Cannot insert an element outside of the array bounds [0 - %i].", pos, elementCount);
 				}
 				return;
 			}
@@ -465,15 +465,15 @@ namespace Galactic {
 			createRef(&arrayObj[pos]);
 		}
 
-		template <class T> void DynArray<T>::insert(U32 pos, const T& e) {
+		template <class T> void Vector<T>::insert(U32 pos, const T& e) {
 			insert(pos);
 			arrayObj[pos] = e;
 		}
 
-		template <class T> void DynArray<T>::erase(U32 pos) {
+		template <class T> void Vector<T>::erase(U32 pos) {
 			if(pos < 0 || pos >= elementCount) {
 				if(GALACTIC_DONT_REPORT_INTERNAL_ERRORS != 0) {
-					GC_Error("DynArray::erase(%i): Cannot erase an element outside of the array bounds [0 - %i].", pos, elementCount);
+					GC_Error("Vector::erase(%i): Cannot erase an element outside of the array bounds [0 - %i].", pos, elementCount);
 				}
 				return;
 			}
@@ -486,22 +486,22 @@ namespace Galactic {
 			elementCount--;
 		}
 
-		template <class T> void DynArray<T>::erase(U32 start, U32 amount) {
+		template <class T> void Vector<T>::erase(U32 start, U32 amount) {
 			if(start < 0 || start >= elementCount) {
 				if(GALACTIC_DONT_REPORT_INTERNAL_ERRORS != 0) {
-					GC_Error("DynArray::erase(%i, %i): Cannot erase elements outside of the array bounds [0 - %i].", start, amount, elementCount);
+					GC_Error("Vector::erase(%i, %i): Cannot erase elements outside of the array bounds [0 - %i].", start, amount, elementCount);
 				}
 				return;
 			}
 			if(amount <= 0) {
 				if(GALACTIC_DONT_REPORT_INTERNAL_ERRORS != 0) {
-					GC_Error("DynArray::erase(%i, %i): Cannot erase an element count less than 0.", start, amount);
+					GC_Error("Vector::erase(%i, %i): Cannot erase an element count less than 0.", start, amount);
 				}
 				return;
 			}
 			if(start+amount >= elementCount) {
 				if(GALACTIC_DONT_REPORT_INTERNAL_ERRORS != 0) {
-					GC_Error("DynArray::erase(%i, %i): Cannot erase elements that are outside of the array bounds [0 - %i (Attempted %i)].", start, amount, elementCount, start + amount);
+					GC_Error("Vector::erase(%i, %i): Cannot erase elements that are outside of the array bounds [0 - %i (Attempted %i)].", start, amount, elementCount, start + amount);
 				}
 				return;
 			}
@@ -510,22 +510,22 @@ namespace Galactic {
 			elementCount -= amount;
 		}
 
-		template <class T> void DynArray<T>::clear() {
+		template <class T> void Vector<T>::clear() {
 			remove(0, elementCount);
 			elementCount = 0;
 		}
 
-		template <class T> void DynArray<T>::compact() {
+		template <class T> void Vector<T>::compact() {
 			resize(elementCount);
 		}
 
-		template <class T> void DynArray<T>::fill(const T& value) {
+		template <class T> void Vector<T>::fill(const T& value) {
 			for(U32 i = 0; i < size() i++) {
 				arrayObj[i] = value;
 			}
 		}
 
-		template <class T> U32 DynArray<T>::eraseSpecific(const T& value) {
+		template <class T> U32 Vector<T>::eraseSpecific(const T& value) {
 			U32 count = 0;
 			T* iterator = begin();
 			while(iterator != end()) {
@@ -538,7 +538,7 @@ namespace Galactic {
 			return count;
 		}
 
-		template <class T> void DynArray<T>::set(any addr, U32 size) {
+		template <class T> void Vector<T>::set(any addr, U32 size) {
 			if(!addr) {
 				size = 0;
 			}
@@ -548,35 +548,35 @@ namespace Galactic {
 			}
 		}
 
-		template <class T> T& DynArray<T>::first() {
+		template <class T> T& Vector<T>::first() {
 			if(elementCount == 0) {
 				//ToDo: Throw an assert error here
 			}
 			return arrayObj[0];
 		}
 
-		template <class T> const T& DynArray<T>::first() const {
+		template <class T> const T& Vector<T>::first() const {
 			if(elementCount == 0) {
 				//ToDo: Throw an assert error here
 			}
 			return arrayObj[0];
 		}
 
-		template <class T> T& DynArray<T>::last() {
+		template <class T> T& Vector<T>::last() {
 			if(elementCount == 0) {
 				//ToDo: Throw an assert error here
 			}
 			return arrayObj[elementCount - 1];
 		}
 
-		template <class T> const T& DynArray<T>::last() const {
+		template <class T> const T& Vector<T>::last() const {
 			if(elementCount == 0) {
 				//ToDo: Throw an assert error here
 			}
 			return arrayObj[elementCount - 1];
 		} 
 		 
-		template <class T> bool DynArray<T>::resize(U32 count) {
+		template <class T> bool Vector<T>::resize(U32 count) {
 			any *arrayObjPtr = (any *) &arrayObj;
 
 			X32 VectorBlockSize = GALACTIC_DYNARRAY_RESIZE_BLOCK_SIZE;
@@ -602,10 +602,10 @@ namespace Galactic {
 			return true;
 		}
 
-		template <class T> void DynArray<T>::remove(U32 start, U32 end) {
+		template <class T> void Vector<T>::remove(U32 start, U32 end) {
 			if(start < 0 || end < 0 || start >= elementCount || end >= elementCount) {
 				if(GALACTIC_DONT_REPORT_INTERNAL_ERRORS != 0) {
-					GC_Error("DynArray::remove(%i, %i): Cannot remove elements outside of the array bounds [0 - %i].", start, end, elementCount);
+					GC_Error("Vector::remove(%i, %i): Cannot remove elements outside of the array bounds [0 - %i].", start, end, elementCount);
 				}
 				return;
 			}
@@ -614,10 +614,10 @@ namespace Galactic {
 			}
 		}
 
-		template <class T> void DynArray<T>::constr(U32 start, U32 end) {
+		template <class T> void Vector<T>::constr(U32 start, U32 end) {
 			if(start < 0 || end < 0 || start >= elementCount || end >= elementCount) {
 				if(GALACTIC_DONT_REPORT_INTERNAL_ERRORS != 0) {
-					GC_Error("DynArray::constr(%i, %i): Cannot construct elements outside of the array bounds [0 - %i].", start, end, elementCount);
+					GC_Error("Vector::constr(%i, %i): Cannot construct elements outside of the array bounds [0 - %i].", start, end, elementCount);
 				}
 				return;
 			}
@@ -627,10 +627,10 @@ namespace Galactic {
 			}
 		}
 
-		template <class T> void DynArray<T>::constr(U32 start, U32 end, const T* element) {
+		template <class T> void Vector<T>::constr(U32 start, U32 end, const T* element) {
 			if(start < 0 || end < 0 || start >= elementCount || end >= elementCount) {
 				if(GALACTIC_DONT_REPORT_INTERNAL_ERRORS != 0) {
-					GC_Error("DynArray::constr(%i, %i, x): Cannot construct elements outside of the array bounds [0 - %i].", start, end, elementCount);
+					GC_Error("Vector::constr(%i, %i, x): Cannot construct elements outside of the array bounds [0 - %i].", start, end, elementCount);
 				}
 				return;
 			}
@@ -644,4 +644,4 @@ namespace Galactic {
 
 };
 
-#endif //GALACTIC_INTERNAL_DYNARRAY
+#endif //GALACTIC_INTERNAL_VECTOR

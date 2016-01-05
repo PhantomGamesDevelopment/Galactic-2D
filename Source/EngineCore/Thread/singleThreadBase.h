@@ -144,7 +144,7 @@ namespace Galactic {
 			private:
 				/* Private Class Members */
 				//The list containing the thread instances
-				DynArray<SingleThreadedContinualThread *> threadInstances;
+				Vector<SingleThreadedContinualThread *> threadInstances;
 		};
 
 	};

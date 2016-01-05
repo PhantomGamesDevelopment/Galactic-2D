@@ -143,7 +143,7 @@ namespace Galactic {
 				//Fetch the last modified timestamp of a file
 				virtual TimeVars fetchFileLastEditTS(UTF16 filePath) = 0;
 				//Set the last modified timestamp of a file
-				virtual bool setFileLastEditTS(UTF16 filePath, TimeVars newTS) = 0;
+				virtual void setFileLastEditTS(UTF16 filePath, TimeVars newTS) = 0;
 
 				/* Directory Operations */
 				//Create a directory

@@ -606,7 +606,7 @@ namespace Galactic {
 			//Get our numerical values ready...
 			Z32 &lenSrc = search.length(), &lenRep = replace.length();
 			U32 cPos = 0;
-			DynArray<U32> found_indicies;
+			Vector<U32> found_indicies;
 			//Grab a copy of our string, and begin looping through, finding all instances of &search
 			U32 findRes;
 			do {
@@ -793,7 +793,7 @@ namespace Galactic {
 			return false;
 		}
 
-		void String::split(UTF16 token, DynArray<String> &ref) const {
+		void String::split(UTF16 token, Vector<String> &ref) const {
 			UTF16 chrs = _str->utf16(), copy = chrs;
 			while(*chrs) {
 				if(*chrs != token[0]) {

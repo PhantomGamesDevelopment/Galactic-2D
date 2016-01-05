@@ -37,9 +37,6 @@
 #include <float.h>
 #include <string.h>
 
-//Load Generic Template Classes
-#include "platformMemory.h"
-
 //Load The Generic Platform
 #include "../GenericPlatform/memory.h"
 #include "../GenericPlatform/platformOperations.h"

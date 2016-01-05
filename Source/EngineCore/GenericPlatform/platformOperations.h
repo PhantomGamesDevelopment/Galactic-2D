@@ -143,7 +143,7 @@ namespace Galactic {
 				//Fetch the MAC address string
 				static String fetchMACAddr();
 				//Fetch the raw MAC address
-				static DynArray<U8> fetchMACRaw();
+				static Vector<U8> fetchMACRaw();
 				//Enforce strict memory loading across the barrier call.
 				static void strictMemory();
 				//Platform allows direct messenging

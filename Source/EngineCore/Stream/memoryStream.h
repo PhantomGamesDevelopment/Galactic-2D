@@ -58,7 +58,7 @@ namespace Galactic {
 			public:
 				/* Public Class Methods */
 				//Constructor
-				MemoryWriter(DynArray<U8> &refMem, bool isPersistent = false, bool setOffset = false);
+				MemoryWriter(Vector<U8> &refMem, bool isPersistent = false, bool setOffset = false);
 				//Pack data to the stream
 				void pack(any dataPtr, S64 len);
 				//Fetch the current size used by the stream
@@ -67,7 +67,7 @@ namespace Galactic {
 			protected:
 				/* Protected Class Members */
 				//The memory stored on this stream
-				DynArray<U8> &memory;
+				Vector<U8> &memory;
 		};
 
 		/*
@@ -77,7 +77,7 @@ namespace Galactic {
 			public:
 				/* Public Class Methods */
 				//Constructor
-				MemoryReader(DynArray<U8> &refMem, bool isPersistent = false);
+				MemoryReader(Vector<U8> &refMem, bool isPersistent = false);
 				//Pack data from the stream
 				void pack(any dataPtr, S64 len);
 				//Move the stream operation to the specified position
@@ -88,7 +88,7 @@ namespace Galactic {
 			protected:
 				/* Protected Class Members */
 				//The memory stored on this stream
-				DynArray<U8> &memory;
+				Vector<U8> &memory;
 		};
 
 	};

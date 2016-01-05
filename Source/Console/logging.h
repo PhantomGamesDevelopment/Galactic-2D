@@ -90,7 +90,7 @@ namespace Galactic {
 				};
 
 				//The buffer of messages in the console
-				::Galactic::Core::DynArray<LogEntry> consoleMB;
+				::Galactic::Core::Vector<LogEntry> consoleMB;
 		};
 
 	};

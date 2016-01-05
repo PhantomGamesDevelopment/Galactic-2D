@@ -174,7 +174,7 @@ namespace Galactic {
 
 		String FilePath::makeTemporary(UTF16 path, UTF16 prefix = "", UTF16 extension = ".tmp") {
 			String newTmpName, strBuilder;
-			DynArray<String> tmpArray;
+			Vector<String> tmpArray;
 			do {
 				strBuilder.clear();
 				tmpArray.clear();
@@ -194,15 +194,15 @@ namespace Galactic {
 			PlatformOperations::normalizePath(inPath);
 		}
 
-		String FilePath::join(DynArray<String> paths) {
-			DynArray<UTF16> utf16Paths;
+		String FilePath::join(Vector<String> paths) {
+			Vector<UTF16> utf16Paths;
 			for (S32 i = 0; i < paths.size(); i++) {
 				utf16Paths.pushToBack(paths[i].c_str());
 			}
 			return join(utf16Paths);
 		}
 
-		String FilePath::join(DynArray<UTF16> paths) {
+		String FilePath::join(Vector<UTF16> paths) {
 			String result;
 			__join(result, paths.begin(), paths.size());
 			return result;

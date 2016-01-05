@@ -86,9 +86,9 @@ namespace Galactic {
 				//Split a path into it's individual components
 				static void split(strRef inPath, String &basePath, String &fileName, String &extension);
 				//Join a group of paths together (external function)
-				static String join(DynArray<String> paths);
+				static String join(Vector<String> paths);
 				//Join a group of paths together (external function, uses UTF16)
-				static String join(DynArray<UTF16> paths);
+				static String join(Vector<UTF16> paths);
 
 			protected:
 				/* Protected Class Methods */
