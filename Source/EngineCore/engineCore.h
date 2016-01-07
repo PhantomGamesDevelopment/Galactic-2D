@@ -80,7 +80,7 @@ namespace Galactic {
 #include "Files/flags.h"
 #include "Files/fileTools.h"
 #include "Files/fileManagerWrapper.h"
-#include "Memory/memory.h"
+#include "Memory/allocater.h"
 #include "Tools/commandLineParams.h"
 #include "Stream/stream.h"
 #include "Containers/scopedPtr.h"

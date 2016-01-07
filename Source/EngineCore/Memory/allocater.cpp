@@ -1,6 +1,6 @@
 /**
 * Galactic 2D
-* Source/EngineCore/Memory/memory.cpp
+* Source/EngineCore/Memory/allocater.cpp
 * Defines the base memory allocator instance and loads out calls to the generic memory classes
 * (C) 2014-2016 Phantom Games Development - All Rights Reserved
 *
