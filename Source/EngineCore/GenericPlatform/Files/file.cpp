@@ -120,7 +120,7 @@ namespace Galactic {
 				GC_Error("GenericFile::copyFile(%s, %s): Failed to copy file, contents are providing negative size values, check for corruption.", currentPath, newLocation);
 				return false;
 			}
-			UTX8 buffer = (UTX8)Memory::gmalloc((S32)allocSize);
+			UTX8 buffer = (UTX8)Memory::Malloc((S32)allocSize);
 			if (!buffer) {
 				GC_Error("GenericFile::copyFile(%s, %s): Failed to copy file, cannot allocate storage, the engine may be out of available memory to use.", currentPath, newLocation);
 				return false;
@@ -132,7 +132,7 @@ namespace Galactic {
 				to->write(buffer, sizeNow);
 				fSize -= sizeNow;
 			}
-			Memory::gfree(buffer);
+			Memory::Free(buffer);
 			return true;
 		}
 

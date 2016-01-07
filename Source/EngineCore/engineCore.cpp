@@ -31,7 +31,7 @@
 */
 
 //Define Global Classes to NULL
-Allocater *_GAllocater    = NULL;      //Define the global memory allocater
+Galactic::Core::Allocater *_GAllocater    = NULL;      //Define the global memory allocater
 
 //Global Parameters
 F64  gVolumeModifier      = 1.0f;      //gvolumeModifier: Declares the global audio modifier to levels of output, set to 0.0f to silence the app.

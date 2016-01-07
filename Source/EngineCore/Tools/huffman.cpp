@@ -140,16 +140,16 @@ namespace Galactic {
 			huffTablesBuilt = true;
 			//Note: I should really look into alternate ways of this, however a constant frequency table seems to be the only viable option.
 			// See the reference (http://en.wikipedia.org/wiki/Letter_frequency) for more details on how these values are obtained ~Phantom
-			freqTable.insert(Pair<C8, U32>(0, 0));       /* ASCII 0: NULL */
-			freqTable.insert(Pair<C8, U32>(1, 0));       /* ASCII 1: SOTT */
-			freqTable.insert(Pair<C8, U32>(2, 0));       /* ASCII 2: STX */
-			freqTable.insert(Pair<C8, U32>(3, 0));       /* ASCII 3: ETY */
-			freqTable.insert(Pair<C8, U32>(4, 0));       /* ASCII 4: EOT */
-			freqTable.insert(Pair<C8, U32>(5, 0));       /* ASCII 5: ENQ */
-			freqTable.insert(Pair<C8, U32>(6, 0));       /* ASCII 6: ACK */
-			freqTable.insert(Pair<C8, U32>(7, 0));       /* ASCII 7: BELL */
-			freqTable.insert(Pair<C8, U32>(8, 0));       /* ASCII 8: BKSPC */
-			freqTable.insert(Pair<C8, U32>(9, 329));     /* ASCII 9: HZTAB */
+			freqTable.insert(Pair<C8, U32>(0, 0));       ///* ASCII 0: NULL */
+			freqTable.insert(Pair<C8, U32>(1, 0));       ///* ASCII 1: SOTT */
+			freqTable.insert(Pair<C8, U32>(2, 0));       ///* ASCII 2: STX */
+			freqTable.insert(Pair<C8, U32>(3, 0));       ///* ASCII 3: ETY */
+			freqTable.insert(Pair<C8, U32>(4, 0));       ///* ASCII 4: EOT */
+			freqTable.insert(Pair<C8, U32>(5, 0));       ///* ASCII 5: ENQ */
+			freqTable.insert(Pair<C8, U32>(6, 0));       ///* ASCII 6: ACK */
+			freqTable.insert(Pair<C8, U32>(7, 0));       ///* ASCII 7: BELL */
+			freqTable.insert(Pair<C8, U32>(8, 0));       ///* ASCII 8: BKSPC */
+			freqTable.insert(Pair<C8, U32>(9, 329));     ///* ASCII 9: HZTAB */
 			freqTable.insert(Pair<C8, U32>(10, 21));     /* ASCII 10: NEWLN */
 			freqTable.insert(Pair<C8, U32>(11, 0));      /* ASCII 11: VTAB */
 			freqTable.insert(Pair<C8, U32>(12, 0));      /* ASCII 12: FF */
@@ -288,7 +288,7 @@ namespace Galactic {
 				leaf.value = freqTable.at(Index)->second + 1;
 				leaf.letter = (U8)Index;
 
-				memset(&leaf.huffCode, 0, sizeof(leaf.huffCode));
+				Memory::Memset(&leaf.huffCode, 0, sizeof(leaf.huffCode));
 				leaf.bitCount = 0;
 				//Set the leaf for this tree index
 				tree[Index].set(&leaf);
@@ -364,7 +364,7 @@ namespace Galactic {
 			if(treeIndex < 0) {
 				//Leaf, grab the code from the leaf then back out to the root and proceed.
 				HuffLeaf &refLeaf = huffLeaves[-(treeIndex + 1)];
-				memcpy(&refLeaf.huffCode, ref.data, sizeof(refLeaf.huffCode));
+				Memory::Memcpy(&refLeaf.huffCode, ref.data, sizeof(refLeaf.huffCode));
 				refLeaf.bitCount = tableDepth;
 			}
 			else {

@@ -311,7 +311,7 @@
 			void PContinualThread::setPriority_internal(pthread_t thread, ThreadPriority newPriority) {
 				//Init the sched_param struct, then set the priority to the thread.
 				struct sched_param ptSchedParam;
-				Memory::gmemset(&ptSchedParam, 0, sizeof(struct sched_param));
+				Memory::zeroBlock(&ptSchedParam, sizeof(struct sched_param));
 				ptSchedParam.sched_priority = convPriorityToPTFormat(newPriority);
 				pthread_setschedparam(thread, SCHED_PR, &ptSchedParam);
 			}

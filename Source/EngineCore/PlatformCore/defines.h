@@ -34,9 +34,9 @@
 //SendToPitsOfHell(): Throw bad pointers and objects into the deep pits of hell where they can rot, but not be eliminated.
 #define SendToPitsOfHell(x) delete x;
 //SendToHeaven(): Send pointers and objects to memory heaven, where their lives end and happiness commences.
-#define SendToHeaven(x) free(x) x = NULL;
+#define SendToHeaven(x) Memory::Free(x) x = NULL;
 //SendToGatesOfHeaven(): Send pointers and objects to the gates of memory heaven, I guess they aren't quite... dead... yet.
-#define SendToGatesOfHeaven(x) free(x);
+#define SendToGatesOfHeaven(x) Memory::Free(x);
 
 /* Data Type Naming */
 #define DECL_TYPE_NAME(x) template<> struct type_name<x> { static const char* tName() {return #x;} }

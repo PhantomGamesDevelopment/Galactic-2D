@@ -192,8 +192,8 @@ namespace Galactic {
 					_tcscpy_s(execNameExt, sizeof(execNameExt), (WCHAR *)exeNameExt.c_str());
 				}
 				else {
-					Memory::gmemset(execName, 0, sizeof(execName));
-					Memory::gmemset(execNameExt, 0, sizeof(execNameExt));
+					Memory::zeroBlock(execName, sizeof(execName));
+					Memory::zeroBlock(execNameExt, sizeof(execNameExt));
 				}
 			}
 			return includeExtension ? ((UTF16)execNameExt) : ((UTF16)execName);
@@ -413,7 +413,7 @@ namespace Galactic {
 			bool success = false;
 			//Set up the Shell Execute information struct
 			SHELLEXECUTEINFO sInfo;
-			Memory::gmemset(&sInfo, 0, sizeof(SHELLEXECUTEINFO));
+			Memory::zeroBlock(&sInfo, sizeof(SHELLEXECUTEINFO));
 			sInfo.cbSize = sizeof(SHELLEXECUTEINFO);
 			sInfo.fMask = SEE_MASK_NOCLOSEPROCESS | SEE_MASK_UNICODE;
 			sInfo.lpFile = (TCHAR *)path;

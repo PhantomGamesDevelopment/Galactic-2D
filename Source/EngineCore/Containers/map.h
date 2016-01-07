@@ -204,6 +204,8 @@ namespace Galactic {
 				void insert(_pRef &src);
 				//Insert a pair at a specified location
 				void insert(iterator pos, _pRef &src);
+				//Insert a value to the Map
+				void insert(_keyType &key, _mapType &map);
 				//Erase a single element
 				void erase(iterator pos);
 				//Erase every element with a specific key
@@ -289,6 +291,11 @@ namespace Galactic {
 		template <class Key, class T> void Map<Key, T>::insert(MapNode<Key, T>* pos, Pair<Key, T> &src) {
 			MapNode newNode(src);
 			container.insert(pos, src);
+		}
+
+		template <class Key, class T> void Map<Key, T>::insert(_keyType &key, _mapType &map) {
+			MapNode newNode(key, map);
+			container.pushToBack(&newNode);
 		}
 
 		template <class Key, class T> void Map<Key, T>::erase(MapNode<Key, T>* pos) {

@@ -460,7 +460,7 @@ namespace Galactic {
 				elementCount++;
 			}
 			//Adjust nearby elements
-			memmove(&arrayObj[pos+1], &arrayObj[pos], (elementCount - pos - 1) * sizeof(T));
+			Memory::Memmove(&arrayObj[pos+1], &arrayObj[pos], (elementCount - pos - 1) * sizeof(T));
 			//Create the reference.
 			createRef(&arrayObj[pos]);
 		}
@@ -481,7 +481,7 @@ namespace Galactic {
 			killRef(&arrayObj[pos]);
 			if(pos < (elementCount - 1)) {
 				//Move existing memory into the correct position
-				memmove(&arrayObj[pos], &arrayObj[pos+1], (elementCount - pos - 1) * sizeof(T)); 
+				Memory::Memmove(&arrayObj[pos], &arrayObj[pos + 1], (elementCount - pos - 1) * sizeof(T));
 			}
 			elementCount--;
 		}
@@ -506,7 +506,7 @@ namespace Galactic {
 				return;
 			}
 			remove(start, start + amount);
-			memmove(&arrayObj[start], &arrayObj[start+amount], (elementCount - start - amount) * sizeof(T));
+			Memory::Memmove(&arrayObj[start], &arrayObj[start + amount], (elementCount - start - amount) * sizeof(T));
 			elementCount -= amount;
 		}
 
@@ -544,7 +544,7 @@ namespace Galactic {
 			}
 			setSize(size);
 			if(addr && size > 0) {
-				memcpy(addr(), addr, size * sizeof(T));
+				Memory::Memcpy(addr(), addr, size * sizeof(T));
 			}
 		}
 
@@ -579,14 +579,14 @@ namespace Galactic {
 		template <class T> bool Vector<T>::resize(U32 count) {
 			any *arrayObjPtr = (any *) &arrayObj;
 
-			X32 VectorBlockSize = GALACTIC_DYNARRAY_RESIZE_BLOCK_SIZE;
+			X32 VectorBlockSize = GALACTIC_VECTOR_RESIZE_BLOCK_SIZE;
 			if(count > 0) {
 				U32 arrayObjBlocks = count / VectorBlockSize;
 				if(count % VectorBlockSize) {
 					arrayObjBlocks++;
 				}
 				S32 arrayObjMemSize = arrayObjBlocks * VectorBlockSize * sizeof(T);
-				*arrayObjPtr = *arrayObjPtr ? realloc(*arrayObjPtr, arrayObjMemSize) : malloc(arrayObjMemSize);
+				*arrayObjPtr = *arrayObjPtr ? Memory::Realloc(*arrayObjPtr, arrayObjMemSize) : Memory::Malloc(arrayObjMemSize);
 				elementCount = count;
 				arrayObjSize = arrayObjBlocks * VectorBlockSize;
 				return true;
@@ -594,7 +594,7 @@ namespace Galactic {
 
 			if(*arrayObjPtr) {
 				//Compiler is bitching with C2146 if you use SendToHeaven() Here.
-				free(*arrayObjPtr);
+				Memory::Free(*arrayObjPtr);
 				arrayObjPtr = NULL;
 			}
 			arrayObjSize = 0;

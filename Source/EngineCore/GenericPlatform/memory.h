@@ -125,21 +125,19 @@ namespace Galactic {
 				//Update the memory statistics
 				static void updateStats();
 				//Generic platform memcmp function
-				SFIN S32 gmemcmp(cAny ptr1, cAny ptr2, SIZE_T amount) {
-					return ::memcmp(ptr1, ptr2, amount);
-				}
+				SFIN S32 Memcmp(cAny ptr1, cAny ptr2, SIZE_T amount);
 				//Generic platform memcpy function
-				SFIN any gmemcpy(any dstPtr, cAny srcPtr, SIZE_T amount) {
-					return ::memcpy(dstPtr, srcPtr, amount);
-				}
+				SFIN any Memcpy(any dstPtr, cAny srcPtr, SIZE_T amount);
 				//Generic platform memmove function
-				SFIN any gmemmove(any dstPtr, cAny srcPtr, SIZE_T amount) {
-					return ::memmove(dstPtr, srcPtr, amount);
-				}
+				SFIN any Memmove(any dstPtr, cAny srcPtr, SIZE_T amount);
 				//Generic platform memset function
-				SFIN any gmemset(any dstPtr, S32 value, SIZE_T amount) {
-					return ::memset(dstPtr, value, amount);
-				}
+				SFIN any Memset(any dstPtr, S32 value, SIZE_T amount);
+				//Generic platform memswap function
+				SFIN void Memswap(any m1, any m2, SIZE_T count);
+				//Alternate version of memcpy that is optimized for large blocks.
+				SFIN any Memcpy_block(any dst, cAny src, SIZE_T count);
+				//Alternate version of memcpy that streams copy commands to avoid L2 cache pollution by means of overloading with large blocks
+				SFIN any Memcpy_streamed(any dst, cAny src, SIZE_T count);
 		};
 
 	};

@@ -61,14 +61,14 @@
 **/
 #define GALACTIC_SCRIPT_ENTRY "Main.lua"
 
-//GALACTIC_DYNARRAY_RESIZE_BLOCK_SIZE
+//GALACTIC_VECTOR_RESIZE_BLOCK_SIZE
 /**
 	This define controls the amount of blocks to resize a dynamically allocated array Vector<X> by whenever it needs to expand it's bounds. Ideally, you
 	should pick a divisible byte factor of 2, that isn't too small, but not too large. Smaller values will increase size precision at the cost of performance
 	and larger values will occupy more memory, but give you increased performance. You should factor the requirements of your program when choosing this value.
 	By default, we choose a "mid-Range" to smaller value of 16 here.
 **/
-#define GALACTIC_DYNARRAY_RESIZE_BLOCK_SIZE 16
+#define GALACTIC_VECTOR_RESIZE_BLOCK_SIZE 16
 
 //GALACTIC_DISABLE_MULTITHREADING
 /**

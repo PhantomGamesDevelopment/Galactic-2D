@@ -303,7 +303,7 @@ namespace Galactic {
 				 *  @param endIndex A size_t whose default value is 0 representing a range
 				 *  of delegates between startIndex and endIndex, inclusive.
 				 */
-				void erase(size_t startIndex, size_t endIndex = 0) { 
+				void erase(SIZE_T startIndex, SIZE_T endIndex = 0) {
 					mDelegateVector.erase(mDelegateVector.begin() + startIndex, mDelegateVector.begin() + startIndex + endIndex); 
 				}
 
@@ -319,9 +319,9 @@ namespace Galactic {
 				 *  delegate tracking mechanism implemented by your project.
 				 */
 				template <typename className> void remove_delegate_procaddress(DelegateSet::MemberDelegateFuncPtr<className> procAddress, bool deleteInstances = true, Vector<DelegateSet::DelegateBaseType *>* out = NULL) {
-					size_t currentDelegateCount = mDelegateVector.size();
+					SIZE_T currentDelegateCount = mDelegateVector.size();
 
-					for (size_t iteration = 0; iteration < currentDelegateCount; iteration++) {
+					for (SIZE_T iteration = 0; iteration < currentDelegateCount; iteration++) {
 						if (mDelegateVector[iteration]->has_procaddress(procAddress)) {
 							if (deleteInstances) {
 								delete mDelegateVector[iteration];
@@ -349,9 +349,9 @@ namespace Galactic {
 				 *  delegate tracking mechanism implemented by your project.
 				 */
 				void remove_delegate_procaddress(DelegateSet::StaticDelegateFuncPtr procAddress, bool deleteInstances = true, Vector<DelegateSet::DelegateBaseType *>* out = NULL) {
-					size_t currentDelegateCount = mDelegateVector.size();
+					SIZE_T currentDelegateCount = mDelegateVector.size();
 
-					for (size_t iteration = 0; iteration < currentDelegateCount; iteration++) {
+					for (SIZE_T iteration = 0; iteration < currentDelegateCount; iteration++) {
 						if (mDelegateVector[iteration]->has_procaddress(procAddress)) {
 							if (deleteInstances) {
 								delete mDelegateVector[iteration];
@@ -378,8 +378,8 @@ namespace Galactic {
 				 *  delegate tracking mechanism implemented by your project.
 				 */
 				void remove_delegate_this(void *thisPtr, const bool &deleteInstances = true, Vector<DelegateSet::DelegateBaseType *>* out = NULL) {
-					size_t currentDelegateCount = mDelegateVector.size();
-					for (size_t iteration = 0; iteration < currentDelegateCount; iteration++) {
+					SIZE_T currentDelegateCount = mDelegateVector.size();
+					for (SIZE_T iteration = 0; iteration < currentDelegateCount; iteration++) {
 						if (mDelegateVector[iteration]->mIsMemberDelegate && mDelegateVector[iteration]->has_thispointer(thisPtr)) {
 							if (deleteInstances) {
 								delete mDelegateVector[iteration];
@@ -403,7 +403,7 @@ namespace Galactic {
 				 *  if deleteInstance is true.
 				 */
 				DelegateSet::DelegateBaseType *remove_delegate(DelegateSet::DelegateBaseType *instance, bool deleteInstance = true) {
-					for (size_t iteration = 0; iteration < mDelegateVector.size(); iteration++) {
+					for (SIZE_T iteration = 0; iteration < mDelegateVector.size(); iteration++) {
 						if (mDelegateVector[iteration] == instance) {
 							DelegateSet::DelegateBaseType *currentDelegate = mDelegateVector[iteration];
 							if (deleteInstance) {
@@ -481,7 +481,7 @@ namespace Galactic {
 				 *  @brief Returns the size of the DelegateSet.
 				 *  @return The size in elements.
 				 */
-				size_t size(void) { 
+				SIZE_T size(void) {
 					return mDelegateVector.size(); 
 				}
 
@@ -490,7 +490,7 @@ namespace Galactic {
 				 *  @param index A size_t representing the index to look at.
 				 *  @return A delegate at the given index.
 				 */
-				DelegateSet::DelegateBaseType *operator[](size_t index) { 
+				DelegateSet::DelegateBaseType *operator[](SIZE_T index) {
 					return mDelegateVector[index]; 
 				}
 

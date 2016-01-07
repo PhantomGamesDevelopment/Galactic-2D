@@ -82,15 +82,15 @@ namespace Galactic {
 						// larger than that of the fixed buffer to prevent anything from going wrong with out-of-bounds sizing later.
 						_strLen = firstLength;
 						_dynLen = sizeof(_strBuff) * 2;
-						_dynBuff = (UTF8)malloc(_dynLen);
-						memcpy(_dynBuff, _strBuff, _strLen+1);
+						_dynBuff = (UTF8)Memory::Malloc(_dynLen);
+						Memory::Memcpy(_dynBuff, _strBuff, _strLen + 1);
 					}
 					//At this point, if the dynamic buffer wasn't empty, we can now safely use the same formatting step to format into the dynamic buffer.
 					// to ensure we're ok on size, we'll keep doubling the buffer until we have a working case.
 					_strLen += _vsnprintf(_dynBuff + _strLen, _dynLen - _strLen, str, *(valptr)args);
 					while(_strLen < 0 || _strLen >= _dynLen) {
 						_strLen = firstLength;
-						_dynBuff = (UTF8)realloc(_dynBuff, _dynLen *= 2); //Note the multiplicative operator here to catch the change as well.
+						_dynBuff = (UTF8)Memory::Realloc(_dynBuff, _dynLen *= 2); //Note the multiplicative operator here to catch the change as well.
 						_strLen += _vsnprintf(_dynBuff + _strLen, _dynLen - _strLen, str, *(valptr)args);
 					}
 					return _strLen;
@@ -101,14 +101,14 @@ namespace Galactic {
 					// re-sizing and such throughout this function.
 					if(_dynBuff == NULL) {
 						if(_strLen + len >= 0 && _strLen + len < sizeof(_strBuff)) {
-							memcpy(_strBuff + _strLen, str, len);
+							Memory::Memcpy(_strBuff + _strLen, str, len);
 							_strLen += len;
 							_strBuff[_strLen] = '\0';
 							return _strLen;
 						}
 						_dynLen = sizeof(_strBuff) * 2;
-						_dynBuff = (UTF8)malloc(_dynLen);
-						memcpy(_dynBuff, _strBuff, _strLen + 1);
+						_dynBuff = (UTF8)Memory::Malloc(_dynLen);
+						Memory::Memcpy(_dynBuff, _strBuff, _strLen + 1);
 					}
 					//Validation step...
 					U32 newSize = _dynLen;
@@ -116,10 +116,10 @@ namespace Galactic {
 						newSize *= 2;
 					}
 					if(newSize != _dynLen) {
-						_dynBuff = (UTF8)realloc(_dynBuff, newSize);
+						_dynBuff = (UTF8)Memory::Realloc(_dynBuff, newSize);
 					}
 					_dynLen = newSize;
-					memcpy(_dynBuff + _strLen, str, len);
+					Memory::Memcpy(_dynBuff + _strLen, str, len);
 					_strLen += len;
 					_dynBuff[_strLen] = '\0';
 					return _strLen;
@@ -143,7 +143,7 @@ namespace Galactic {
 				}
 
 				UTF8 copyBuffer(UTF8 dest) const {
-					memcpy(dest, _dynBuff ? _dynBuff : _strBuff, _strLen+1);
+					Memory::Memcpy(dest, _dynBuff ? _dynBuff : _strBuff, _strLen + 1);
 					return dest;
 				}
 
@@ -166,7 +166,7 @@ namespace Galactic {
 					numChars = U32(0xffffffff);
 					if(data) {
 						//see operator new for initialization of length
-						memcpy(sData, data, sizeof(UTF8) * length);
+						Memory::Memcpy(sData, data, sizeof(UTF8)* length);
 						sData[length] = '\0';
 					}
 				}
@@ -236,12 +236,12 @@ namespace Galactic {
 				}
 				
 				//Allows length defining a la: new (length) StringData(x)
-				any operator new(size_t size, U32 len) {
+				any operator new(SIZE_T size, U32 len) {
 					if(len == 0) {
 						GC_Error("StringData::StringData(): Cannot create a String of length 0, use StringData::emptyStrRef()");
 						return NULL;
 					}
-					StringData *data = reinterpret_cast<StringData *>(malloc(size + len * sizeof(UTF8)));
+					StringData *data = reinterpret_cast<StringData *>(Memory::Malloc(size + len * sizeof(UTF8)));
 					data->length = len;
 					return data;
 				}
@@ -385,7 +385,7 @@ namespace Galactic {
 			//If we were not in no-case mode, it's time to finish up the compare work.
 			if(len) {
 				//If we have a stored length, we can use memcmp to get a result on the fly.
-				return memcmp(s1, s2, len);
+				return Memory::Memcmp(s1, s2, len);
 			}
 			else {
 				//Otherwise, do a quick loop through the strings to get a result.
@@ -637,21 +637,21 @@ namespace Galactic {
 					//IF we have any chars to copy over before our next string to replace, this will keep the count.
 					chrCt = index - cPos;
 					if(chrCt > 0) {
-						memcpy(newStr->utf8() + nPos, _str->utf8() + cPos, chrCt * sizeof(C8));
+						Memory::Memcpy(newStr->utf8() + nPos, _str->utf8() + cPos, chrCt * sizeof(C8));
 						nPos += chrCt;
 					}
 					//Copy the replacement.
 					if(lenRep > 0) {
-						memcpy(newStr->utf8() + nPos, replace._str->utf8(), lenRep * sizeof(C8));
+						Memory::Memcpy(newStr->utf8() + nPos, replace._str->utf8(), lenRep * sizeof(C8));
 					}
 					nPos += lenRep;
 					cPos = index + lenSrc;
 				}
 				//If there was some stuff after the last replacement, we need to put it back, do so now.
-				// Note: We're safe to use .last without try-catch(DYNARRAYEMPTY) here because this is handled above already.
+				// Note: We're safe to use .last without try-catch(VECTOREMPTY) here because this is handled above already.
 				chrCt = length() - found_indicies.last() - lenSrc;
 				if(chrCt != 0) {
-					memcpy(newStr->utf8() + nPos, _str->utf8() + cPos, chrCt * sizeof(C8));
+					Memory::Memcpy(newStr->utf8() + nPos, _str->utf8() + cPos, chrCt * sizeof(C8));
 				}
 				newStr->utf8()[newSize - 1] = NULL;
 			}
@@ -1079,7 +1079,7 @@ namespace Galactic {
 				return false;
 			}
 			else {
-				return memcmp(_str->utf8(), ref._str->utf8(), _str->getLength()) == 0;
+				return Memory::Memcmp(_str->utf8(), ref._str->utf8(), _str->getLength()) == 0;
 			}
 		}
 
@@ -1101,7 +1101,7 @@ namespace Galactic {
 		}
 
 		void String::copy(UTF16 source, UTF8 destination, U32 size) {
-			memcpy(destination, source, size * sizeof(C8));
+			Memory::Memcpy(destination, source, size * sizeof(C8));
 		}
 
 	};

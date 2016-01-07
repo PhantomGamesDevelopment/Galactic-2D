@@ -71,7 +71,7 @@ namespace Galactic {
 			}
 			//Write it.
 			if (len > 0) {
-				Memory::gmemcpy(&memory[cOffset], dataPtr, len);
+				Memory::Memcpy(&memory[cOffset], dataPtr, len);
 				cOffset += len;
 			}
 		}
@@ -94,7 +94,7 @@ namespace Galactic {
 			if (!hasError && len > 0) {
 				//Validate the offset ad available space
 				if (cOffset + len <= memory.size()) {
-					Memory::gmemcpy(dataPtr, &memory[cOffset], len);
+					Memory::Memcpy(dataPtr, &memory[cOffset], len);
 					cOffset += len;
 				}
 				else {
