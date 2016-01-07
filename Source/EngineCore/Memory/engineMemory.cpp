@@ -24,11 +24,22 @@
 **/
 
 #include "../engineCore.h"
-#include "malloc_threaded.h"
+#include "allocaterThreadProxy.h"
 
 namespace Galactic {
 
 	namespace Core {
+
+		//Method to be called on all class instances to ensure the allocater instance is created
+		void createAllocater() {
+			if (!_GAllocater) {
+				_GAllocater = PlatformMemory::Allocater();
+				//Do we need a Thread Proxy?
+				if (!_GAllocater->isThreadSafe()) {
+					//Create it.
+				}
+			}		
+		}
 
 		S32 Memory::Memcmp(cAny m1, cAny m2, SIZE_T count) {
 			return PlatformMemory::Memcmp(m1, m2, count);
@@ -56,6 +67,44 @@ namespace Galactic {
 
 		void Memory::C_free(any ptr) {
 			::free(ptr);
+		}
+
+		any Memory::Malloc(SIZE_T size, U32 alignment) {
+			GLOBALALLOCCHECK("Malloc");
+			return _GAllocater->Malloc(size, alignment);
+		}
+
+		any Memory::Realloc(any ptr, SIZE_T size, U32 alignment) {
+			GLOBALALLOCCHECK("Realloc");
+			return _GAllocater->Realloc(ptr, size, alignment);
+		}
+
+		void Memory::Free(any ptr) {
+			GLOBALALLOCCHECK("Free");
+			_GAllocater->Free(ptr);
+		}
+
+		SIZE_T Memory::fetchRealSize(SIZE_T requested, U32 alignment) {
+			GLOBALALLOCCHECK("fetchRealSize");
+			_GAllocater->fetchRealSize(requested, alignment);
+		}
+
+		SIZE_T Memory::fetchBlockSize(any ptr) {
+			GLOBALALLOCCHECK("fetchBlockSize");
+			SIZE_T result = 0;
+			return _GAllocater->fetchBlockSize(ptr, result) ? result : 0;
+		}
+
+		any Memory::zeroBlock(any dst, SIZE_T count) {
+			return Memory::Memset(dst, NULL, count);
+		}
+
+		any Memory::Memcpy_block(any dst, cAny src, SIZE_T count) {
+			return PlatformMemory::Memcpy_block(dst, src, count);
+		}
+
+		any Memory::Memcpy_streamed(any dst, cAny src, SIZE_T count) {
+			return PlatformMemory::Memcpy_streamed(dst, src, count);
 		}
 
 	};

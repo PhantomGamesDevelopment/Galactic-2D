@@ -30,6 +30,17 @@ namespace Galactic {
 
 	namespace Core {
 
+		//GLOBALALLOCCHECK(): Shortcut macro for repetitive function logic in the below methods, this will create the global allocator (if it's not there) and validate
+		// that the creation was successful. To-Do: We need to replace the CError clause with an assert when that capability is installed.
+		#define GLOBALALLOCCHECK(functionName) \
+				if (!_GAllocater) { \
+					createAllocater(); \
+					if (!_GAllocater) {\
+						String err = String::ToStr("Memory::%s(): Unable to perform %s(), cannot initalize global allocater module.", functionName, functionName); \
+						GC_CError(err.c_str()); \
+					} \
+				} \
+
 		/* Size definition enumerations */
 		enum {
 			//MEMORY_DEFAULTALIGN: If defined, then all memory allocation will try to align
@@ -75,8 +86,10 @@ namespace Galactic {
 				static void Free(any ptr);
 
 				/* Derived Tools */
+				//Fetch the size that "should" be used for the requested allocation under engine alignment rules.
+				static SIZE_T fetchRealSize(SIZE_T requested, U32 alignment = MEMORY_DEFEAULTALIGN);
 				//Fetch the block allocation size for this specific pointer
-				static SIZE_T fetchAllocSize(any ptr);
+				static SIZE_T fetchBlockSize(any ptr);
 				//Zero a specific block of memory, used to "clear" pointers, essentially the same as doing Memset(dst, NULL, count)
 				static any zeroBlock(any dst, SIZE_T count);
 				//Alternate version of memcpy that is optimized for large blocks.
